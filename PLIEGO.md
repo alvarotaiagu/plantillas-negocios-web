@@ -1,0 +1,243 @@
+# Pliego de construcción — plantillas de negocio ficticio
+
+Este documento manda sobre cualquier costumbre general. Se lee entero antes de
+empezar CADA plantilla, no solo la primera.
+
+---
+
+## 0. Qué se está construyendo y para qué
+
+Webs completas de negocios **inventados**. No son encargos: son piezas de
+muestra que luego se reskinean para clientes reales de un sector parecido.
+
+De ahí dos consecuencias que lo cambian todo respecto a un encargo normal:
+
+1. **Los datos se inventan a propósito.** Nombre, dirección, horario, carta,
+   precios, reseñas, equipo: todo ficticio y todo *completo*. Aquí NO se usan
+   marcadores `[PENDIENTE]`. Una plantilla con huecos no se puede enseñar.
+2. **A cambio, no puede parecerse a un negocio real.** Ver §1.
+
+El entregable es una web estática que se abre con doble clic y funciona:
+HTML + CSS + un `main.js`. Sin framework, sin build, sin backend, sin npm.
+GSAP/ScrollTrigger/Lenis por CDN. Se publica tal cual en GitHub Pages.
+
+---
+
+## 1. Línea roja: ficticio de verdad
+
+El negocio tiene que ser **inequívocamente inventado**. Antes de fijar el
+nombre, buscarlo en la web. Si existe un negocio real con ese nombre en ese
+sector, se cambia.
+
+- Nada de nombres, logos, rótulos, marcas ni eslóganes de negocios reales.
+- Direcciones: calle inventada o genérica en una ciudad real está bien
+  (`Rúa do Areal, 12 · Carballo`). Nunca la dirección exacta de un local real.
+- Teléfonos: prefijo real + número claramente de muestra (`981 00 00 00`).
+  Nunca un número que pueda sonar en casa de alguien.
+- Emails y dominios: `@ejemplo.com` o el propio nombre ficticio.
+- **Reseñas, valoraciones y premios: inventados sí, pero nunca atribuidos a una
+  plataforma real como si fueran verificables.** Nada de «4,9 ★ en Google con
+  637 reseñas» ni sellos de TripAdvisor/Michelin. Se escriben como testimonios
+  con nombre de pila ficticio, y se marcan (ver abajo).
+- `schema.org`: se puede usar `LocalBusiness` etc., pero **sin `aggregateRating`
+  ni `review`**. No se siembran datos estructurados falsos en el índice.
+
+Y el sello, obligatorio en las tres partes:
+
+- En el `<footer>`, visible, con el resto de avisos legales:
+  «Sitio de demostración. [Nombre] es un negocio ficticio; los datos,
+  fotografías y opiniones son de muestra.»
+- En el `README.md` del repo, en la primera pantalla.
+- En un comentario HTML arriba del todo en `index.html`.
+
+Y en el `<head>`: `<meta name="robots" content="noindex, nofollow">`.
+Una demo no compite en Google con los clientes reales.
+
+---
+
+## 2. Qué significa «súper inmersiva y moderna» aquí
+
+El listón NO es el kit ligero de fades con GSAP. Es densidad de movimiento tipo
+motionsites.ai. Una plantilla que no lleve **al menos cinco** de estos recursos,
+bien integrados (no pegados encima), está por debajo del listón:
+
+- **Lenis** (smooth scroll) como único motor de scroll de la página.
+- **Char-reveal**: titulares que entran letra a letra o palabra a palabra.
+- **Sticky-stack**: tarjetas que se apilan y se relevan al hacer scroll.
+- **Marquee** infinito, idealmente con la velocidad ligada al scroll.
+- **Botones/elementos magnéticos** que persiguen el cursor.
+- **Galería anclada (pin) con desplazamiento horizontal** scrubbeado.
+- **Cursor personalizado** contextual (cambia sobre enlaces, fotos, mapa).
+- **Hero con canvas o WebGL** propio del concepto (partículas, shader, líneas,
+  trama, humo, agua, brasas…).
+- **Contadores y máscaras** de imagen que se abren con el scroll.
+- **Transición de entrada** (preloader con contador o cortina) — solo si aporta.
+
+Regla de oro: **el movimiento sale del concepto, no de una lista.** Si la
+plantilla es de panadería, la masa sube, la harina cae y el horno da calor; no
+se mueve «porque toca». Un movimiento que no signifique nada, fuera.
+
+---
+
+## 3. Cada plantilla distinta de las demás
+
+El valor de la biblioteca es que **no son la misma web reskineada**. Se reutiliza
+el *utillaje* (funciones, patrones, trucos de rendimiento); **no se reutiliza el
+esqueleto**.
+
+Antes de escribir una línea, se decide y se escribe en el README:
+
+- **El concepto**, en una o dos palabras, con su porqué. Es la idea visual de la
+  que cuelga todo. Conceptos ya usados en la biblioteca, NO repetibles:
+  «Escaparate», «Recortables», «Plomada», «Balance», «Cuenta atrás»,
+  «Titulares», «Escritura», «Cláusula», «Territorio», «Ceibo en flor»,
+  «Pluma», «Capa fina», «Traza», «Cartucho», «Piezas», «Burbullas»,
+  «Trazo en movimiento», «Sintoniza», «Día y noche».
+- **La estructura de secciones**, que debe diferir de las anteriores en orden,
+  número y forma. Si la última fue hero → servicios → equipo → horario →
+  contacto, esta no puede serlo.
+- **La paleta**, distinta de las últimas tres plantillas.
+- **La tipografía**, distinta de las últimas tres. Google Fonts.
+- **El recurso de movimiento protagonista**, distinto del de la plantilla
+  anterior.
+
+Una plantilla que sea la anterior con otros colores se descarta y se rehace.
+
+---
+
+## 4. Imágenes e iconos: lo que hay y lo que no
+
+**No hay generador de imágenes.** Nunca se referencia un archivo que no se haya
+creado o descargado de verdad. Un `<img>` roto es un fallo de entrega.
+
+Por orden de preferencia:
+
+1. **SVG dibujado a mano en el propio repo.** Es la mejor opción y la que da
+   personalidad: ilustraciones planas, tramas, siluetas, logotipos, iconos.
+   Todas las plantillas deben tener obra gráfica propia en SVG.
+2. **Foto de archivo de Pexels/Unsplash**, si el sector la exige (comida,
+   interiores, textiles). Se descarga al repo, nunca hotlink. Se guarda la
+   procedencia en `CREDITOS.md`: URL, autor y licencia.
+3. Si no se consigue foto decente, se resuelve en SVG. Antes ilustración que
+   foto mala o `<img>` roto.
+
+Notas de sourcing: la búsqueda de Unsplash bloquea en headless, pero la descarga
+por ID sigue funcionando. Pexels necesita navegador nuevo por consulta, UA
+realista y ~9 s de espera.
+
+**Logotipo**: se diseña uno en SVG para el negocio ficticio. Es una ventaja de
+inventar el negocio; aprovéchala y hazlo bueno.
+
+**Personas**: nada de menores, ni siquiera de archivo. Si hace falta gente, va
+en ilustración plana propia.
+
+Toda imagen: `width`/`height` en el atributo + `height:auto` en CSS,
+`loading="lazy"` salvo el hero, y versiones a dos anchos con `srcset`.
+
+---
+
+## 5. Obligatorio en todas, sin preguntar
+
+- **Aviso de cookies.** Siempre. Y el botón tiene que cerrarlo de verdad:
+  el `display:flex` va en `.cookie-banner:not([hidden])`, **nunca** en
+  `.cookie-banner` a secas — si no, gana al atributo `[hidden]` y el botón
+  «no hace nada». Estado en `localStorage`.
+- **Mapa solo bajo clic.** El `<iframe>` de Google no existe en el DOM hasta que
+  se pulsa el botón; si no, contradice el aviso de «sin cookies de terceros».
+  `https://www.google.com/maps?q=<nombre+direccion>&output=embed`, sin API key.
+- **Página `404.html`** con el mismo lenguaje visual.
+- **`.nojekyll`**, `manifest.json`, favicon SVG, `og:image` de 1200×630 real.
+- **Menú móvil** que funciona, con `aria-expanded`.
+- **Aviso legal / privacidad**, aunque sea escueto, coherente con lo ficticio.
+- **`README.md`** con: el sello de demo, el concepto y su porqué, el mapa de
+  secciones, qué hay que tocar para reskinearlo a un cliente real (esto es lo
+  más valioso del repo), créditos de fotos y decisiones tomadas.
+- **Accesibilidad**: contraste AA, foco visible, landmarks, `alt` con sentido,
+  navegación completa por teclado.
+- **Sin GSAP tampoco se rompe.** Los estados «vacíos» (opacidad 0, desplazados)
+  viven bajo `html.has-motion`, clase que solo enciende `main.js` tras comprobar
+  que GSAP y ScrollTrigger existen. Con el CDN caído, la página se ve entera.
+- **`prefers-reduced-motion`**: se apaga el *movimiento*, no el *contenido*.
+  Contadores, imagen activa de una galería, índices y estados de horario tienen
+  que seguir cambiando. Separar la bandera `gsapReady` de la bandera `motion`.
+
+---
+
+## 6. Trampas ya pagadas — no volver a caer
+
+Cada una de estas costó una sesión de depuración. Leerlas.
+
+**Rendimiento**
+
+- Nunca `ctx.filter = "blur()"` ni `shadowBlur` por fotograma en un canvas,
+  menos aún a pantalla completa. Se cachea como sprite fuera de pantalla y se
+  pinta con `drawImage`. Verificar con `PerformanceObserver` de `longtask`,
+  no solo mirando los FPS.
+- Las tareas largas al cargar suelen ser GSAP + webfont, no el código propio.
+  Medir la animación desde `document.fonts.ready`.
+
+**GSAP**
+
+- `gsap.fromTo` pinta el estado «from» al crearse: `immediateRender: false` o el
+  hero se enciende antes de tiempo. Se ve en una captura a mitad de animación,
+  no en la final.
+- Rotar un SVG: `transformOrigin` mide sobre el bbox — usar `svgOrigin`. Y
+  cualquier `transform` puesto en CSS pisa el atributo que escribe GSAP y deja
+  la animación clavada.
+- Los tweens de opacidad scrubbeados pueden dejar una tarjeta sticky invisible.
+
+**Layout**
+
+- Sticky-stack: **el `<li>` es el sticky**, y el recorrido se lo da su
+  `margin-bottom`. `min-height` en el `<li>` + tarjeta sticky dentro = tarjetas
+  fantasma.
+- El recorrido de un sticky lo da el **contenido**: ni el `padding` del
+  contenedor ni el `margin` del último hijo sirven. Usar `::after`.
+- Char-reveal: con letras en `inline-block`, **la palabra también** tiene que ser
+  `inline-block` + `white-space: nowrap`, o parte en «se / mana».
+- `background-clip: text` se pelea con los `<span>` del char-reveal.
+- Dentro de un grid, cada trozo de texto suelto entre elementos es un item
+  anónimo y se va a su propia columna (una palabra por línea): envolver en
+  `<span>`.
+- Filas `auto` + figura al 100 % + `img{flex:1}` es una restricción circular y
+  el navegador estira la foto.
+- El `%` dentro de `translate()` es relativo al propio elemento, no al padre:
+  para un layout radial, usar `cqw` o px.
+- `mask-image` no funciona bajo `file://`, recorta a la caja del elemento (se
+  come las tildes) y una máscara clara sobre fondo claro es invisible.
+- `stroke-dasharray` + `pathLength` se rompe si el `viewBox` se estira sin
+  preservar la proporción: para barras rectas, un `div` con `transform: scaleY`.
+- `<use>` de un sprite SVG sin `width`/`height` escala al viewport del
+  contenedor, y `fill` no hereda de `color`.
+- Una `url()` dentro de una custom property se resuelve contra la hoja de
+  estilos que la usa, no contra el documento.
+- Una clase de wrapper con el mismo nombre que un `<g>` de un SVG inline pisa su
+  `transform`.
+
+**Lenis**
+
+- En una galería anclada con scrub horizontal, el retardo de asentamiento de
+  Lenis (invisible en vertical) se lee como «el contenido se va al revés durante
+  un segundo». Subir `lerp` a ~0,15–0,2 en esa build.
+
+---
+
+## 7. Verificación antes de dar por buena una plantilla
+
+No se anuncia como terminada sin esto. Si falta una herramienta en el entorno,
+se dice claramente en el informe en vez de darlo por hecho.
+
+1. **Abrirla de verdad** (Playwright / Chrome headless) en 1440×900 y 390×844.
+2. **Capturas de cada sección**, escritorio y móvil, en `screenshots/`.
+   Se miran. Una sección que se ve mal en la captura no está terminada.
+3. Con Lenis, `window.scrollTo` **no** dispara los ScrollTrigger del final:
+   recorrer con `mouse.wheel` y esperar ~3 s antes de medir.
+4. **Consola limpia**: cero errores, cero 404. Comprobar la lista de peticiones.
+5. Pasada con **GSAP bloqueado** (`route.abort()` del CDN): la página se lee
+   entera. Captura.
+6. Pasada con **`prefers-reduced-motion: reduce`**: sin movimiento pero el
+   contenido sigue cambiando. Captura.
+7. Probar el **botón de cookies**, el **menú móvil** y el **botón del mapa**.
+8. Revisar que no queda ningún `[PENDIENTE]`, `TODO` ni texto de relleno tipo
+   *lorem ipsum*.
+9. Repasar §1 entero: ningún dato puede parecer el de un negocio real.
