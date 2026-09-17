@@ -154,6 +154,19 @@ Toda imagen: `width`/`height` en el atributo + `height:auto` en CSS,
   más valioso del repo), créditos de fotos y decisiones tomadas.
 - **Accesibilidad**: contraste AA, foco visible, landmarks, `alt` con sentido,
   navegación completa por teclado.
+- **Nunca apagar un texto con `opacity`; apagarlo con color.** Un secundario a
+  `opacity: .45` sobre el color de tinta da 2,7–3,9 de contraste y **no se puede
+  auditar**: la herramienta ve el color declarado, no el resultado. Fue el fallo
+  estructural de las once primeras plantillas de la biblioteca. Se define un
+  token de color apagado por cada pareja de fondo y **se calcula el contraste
+  con un script**, no a ojo.
+- Si un color de marca no llega a AA como texto, **no se cambia el color de
+  marca**: se añade un token aparte solo para texto y la marca se queda donde
+  aporta (fondos, filetes, superficies grandes).
+- **Contenedores que desbordan en horizontal**: hacerlos focusables **solo
+  cuando de verdad desbordan** (y revisarlo al redimensionar), con `role="group"`
+  y `aria-label`. Un `tabindex="0"` fijo mete una parada de tabulación inútil en
+  escritorio, donde no desbordan.
 - **Sin GSAP tampoco se rompe.** Los estados «vacíos» (opacidad 0, desplazados)
   viven bajo `html.has-motion`, clase que solo enciende `main.js` tras comprobar
   que GSAP y ScrollTrigger existen. Con el CDN caído, la página se ve entera.
@@ -243,6 +256,10 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   estilos que la usa, no contra el documento.
 - Una clase de wrapper con el mismo nombre que un `<g>` de un SVG inline pisa su
   `transform`.
+- **Un elemento más ancho que la pantalla ensancha el viewport entero en móvil**
+  si a `html` le falta `overflow: clip`: el layout se calcula a 390 px pero
+  `innerWidth` sale 1066 y toda la página se descoloca. Se detecta porque los
+  clics de Playwright caen sobre el elemento equivocado, no porque se vea mal.
 - **El botón del menú móvil se queda por debajo de la cortina del menú** si la
   cortina lleva `z-index` y el botón no: abre pero no cierra. Se caza con un
   `click` de Playwright que da timeout, no mirando la captura.
