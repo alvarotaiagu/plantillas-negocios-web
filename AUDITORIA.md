@@ -29,7 +29,9 @@ scroll arriba y abajo. Solo tiene sentido en las plantillas con `<canvas>`.
 
 ## Resultado en una línea
 
-**Nueve plantillas auditadas, ocho terminan sin ninguna violación.** La única que
+**Nueve plantillas auditadas, ocho terminan sin ninguna violación.** La décima,
+CHINAGRAPH (estudio de fotografía), se construyó después y pasó axe antes de
+publicarse: también sin violaciones. La única que
 queda con un fallo abierto es el hotel rural, y es una decisión consciente:
 tocarlo significaría cambiar un color de marca ajeno.
 
@@ -45,6 +47,7 @@ tocarlo significaría cambiar un color de marca ajeno.
 | Óptica · Óptica Sextante | 3 tipos | **0** | sin canvas |
 | Hotel rural · Casa Bricaña | 2 tipos | **1 abierto** | 2 tareas, peor 92 ms / **0** |
 | Panadería · Milmigas | — | **no auditada** | ya medido por su agente |
+| Fotografía · CHINAGRAPH | — | **0** (auditada al nacer) | sin canvas |
 
 **Panadería: no auditada a propósito.** Al empezar tenía un push de hacía 19
 minutos (`Apuntar en el README la medición de tareas largas del canvas`), dentro
