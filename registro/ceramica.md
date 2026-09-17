@@ -44,6 +44,7 @@ SVG y axe no mira, se midieron a mano: 7,16. Detalle en `AUDITORIA.md`.
 **Rendimiento:** `PerformanceObserver` de `longtask`: **ninguna tarea larga** en tres cargas
 en frío medidas con la caché deshabilitada (`Network.setCacheDisabled`). En la primerísima
 carga del día, con el CDN sin resolver, se registraron 96, 61 y 81 ms.
+
 **Línea roja del sector:** **sin número del Registro de Artesanía de Galicia**. Es una
 acreditación pública y aparece en la marca «Artesanía de Galicia», así que el hueco se
 queda vacío a propósito y el aviso legal explica qué dato iría ahí. Precios y notas del
