@@ -1,0 +1,3 @@
+| # | Sector | Negocio ficticio | Concepto | Paleta | Tipografía | Movimiento protagonista | Repo | Demo |
+|---|---|---|---|---|---|---|---|---|
+| — | Autoescuela | CARRIL DEZ (Arteixo, A Coruña) | «Carril» — la web es el camino hasta el carné, en seis tramos | fondo #0B0D10 / panel #14181F / línea #262D38 / acero #39414D / humo #A5AEBB / acento cian eléctrico #23E5FF | Saira Condensed + Space Grotesk | un coche recorriendo el trazado SVG de la ruta con scrub, pintando el camino hecho (y test de muestra que corrige de verdad) | [repo](https://github.com/alvarotaiagu/plantilla-autoescuela-web) | [demo](https://alvarotaiagu.github.io/plantilla-autoescuela-web/) |
