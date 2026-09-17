@@ -175,6 +175,11 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   no solo mirando los FPS.
 - Las tareas largas al cargar suelen ser GSAP + webfont, no el código propio.
   Medir la animación desde `document.fonts.ready`.
+- **Cuidado con el cero falso al medir `longtask`**: una tarea larga lanzada
+  desde el `page.evaluate` de Playwright **no** se contabiliza como longtask de
+  la página, así que el control de la medición sale en 0 y parece que el
+  observador está muerto. Lanzar el control con `setTimeout`, que sí es una
+  tarea normal de la página.
 
 **GSAP**
 
