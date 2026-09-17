@@ -175,6 +175,14 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   no solo mirando los FPS.
 - Las tareas largas al cargar suelen ser GSAP + webfont, no el código propio.
   Medir la animación desde `document.fonts.ready`.
+- **Componer una capa translúcida sobre sí misma en canvas desvía el color
+  canal a canal.** Una niebla recompuesta a alfa 0,01 por fotograma acaba gris
+  y rosa a los pocos segundos (se ve muestreando con `getImageData`, no a ojo).
+  Repintar la capa entera cada fotograma desde el sprite limpio y llevar lo
+  borrado en una **máscara aparte**.
+- **Un búfer de canvas más pequeño que su caja se estira en bandas.** Con el
+  `100svh` del móvil hay que remedir con **`ResizeObserver`**, no solo con el
+  evento `resize`.
 - **Cuidado con el cero falso al medir `longtask`**: una tarea larga lanzada
   desde el `page.evaluate` de Playwright **no** se contabiliza como longtask de
   la página, así que el control de la medición sale en 0 y parece que el
@@ -198,6 +206,10 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   pantalla cuando se crea**, así que el hero no se revela nunca. Todo lo de
   «una sola vez» (titulares, apariciones, contadores) va con
   `IntersectionObserver`; ScrollTrigger se reserva para pins y scrubs.
+- **Dos tweens de GSAP sobre el mismo `clip-path` se pisan** y dejan la imagen a
+  medio abrir. Las máscaras y apariciones salen mejor como transición CSS + una
+  clase que pone el `IntersectionObserver`; GSAP se reserva para titulares,
+  intro, cinta, imán y anclaje.
 - En un `<g>` de SVG, GSAP escribe el `transform` **en el atributo**, así que
   cualquier `transform` en CSS lo pisa, **incluso `transform: none`**. Solución
   limpia: que el estado inicial sea el de por defecto (y así valga sin JS, con
@@ -231,6 +243,15 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   estilos que la usa, no contra el documento.
 - Una clase de wrapper con el mismo nombre que un `<g>` de un SVG inline pisa su
   `transform`.
+- **El botón del menú móvil se queda por debajo de la cortina del menú** si la
+  cortina lleva `z-index` y el botón no: abre pero no cierra. Se caza con un
+  `click` de Playwright que da timeout, no mirando la captura.
+
+**Tipografía**
+
+- No todas las tipografías traen todos los glifos: la cursiva de Fraunces no
+  tiene el signo del euro y pinta una «C». Revisar €, ñ, tildes y « » en la
+  tipografía elegida antes de cerrarla.
 
 **Lenis**
 
