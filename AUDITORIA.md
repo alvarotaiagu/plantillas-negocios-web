@@ -240,3 +240,119 @@ arrancar, que es GSAP más la webfont.
 
 Las limitaciones de arriba siguen valiendo igual para estas siete: solo Chromium, sin
 lector de pantalla real y sin auditar los estados de error de los formularios.
+
+---
+
+# Segunda pasada — agente B
+
+Hecha con el mismo arnés de la primera (axe-core 4.13.0, `wcag2a`, `wcag2aa`,
+`wcag21a`, `wcag21aa` y `best-practice`, en 1440×900 y 390×844, sobre portada,
+aviso legal y 404, cerrando antes el aviso de cookies y **recorriendo la página
+entera** para que entre lo que se revela con el scroll).
+
+## Lo que se decidió del hotel rural: aplicada la opción 2
+
+El índice de sección de Casa Bricaña (los números 02, 03, 06, 08 en óxido sobre
+sus propios fondos) pasa a **1,3 rem en negrita**. Por encima de 14 pt y en bold,
+el umbral de contraste baja de 4,5 a 3 y los ocho nodos pasan **sin tocar ni un
+color de marca**. Comprobado con axe: la plantilla queda **sin violaciones**.
+Captura en `screenshots/accesibilidad-indice-seccion.png` del propio repo.
+
+Esa es, además, la regla que se ha aplicado en toda esta segunda pasada: **cuando
+el que falla es un color de marca, se agranda el texto, no se retoca el color.**
+
+## Las tres del agente A
+
+| Plantilla | Antes | Después | Longtask |
+|---|---|---|---|
+| Floristería · Rega | 127 nodos + 1 crítico | **0** | sin canvas |
+| Arquitectura · (agente A) | 124 nodos + 1 crítico | 8 nodos abiertos | sin canvas |
+| Quesería · (agente A) | 146 nodos + 1 crítico | 4 nodos abiertos | sin canvas |
+
+**Floristería.** Tres cosas: el botón del menú no tenía nombre accesible (fallo
+crítico, `aria-label`); el token `--ciruela-suave` se quedaba en 3,93 sobre el
+hueso y 4,24 sobre el papel kraft (baja a `#6e5768`, 5,1); y **los pasos del
+montaje se apagaban con `opacity: .35`**, lo que dejaba el texto en **1,64 de
+contraste**. Ese último se ha arreglado apagando **con color** en vez de con
+opacidad: el paso que todavía no toca va en ciruela media y el activo en ciruela.
+Se conserva el efecto y el texto se lee. La fecha del taller va ahora en negrita
+para que el azafrán de la marca pase sin retocarse. Termina **sin violaciones**.
+
+**Arquitectura.** `--tinta-suave` baja de `#8a8179` a `#635c55`; el índice de la
+sección oscura y el número de fase se agrandan; el menú recibe `aria-label`.
+**Quedan 8 nodos abiertos**: los `h2` del pie («Dónde», «Horario», «Legal») y un
+`<code>`, en almagre claro sobre la tinta (3,37) a 11 px. Agrandar los rótulos de
+un pie lo desequilibra, así que aquí la única salida real es aclarar el almagre
+**solo sobre fondo oscuro**, que es tocar la marca. Queda a decisión del agente A.
+
+**Quesería.** `--tinta-suave` baja de `#957f63` a `#695942`; los índices de
+sección se agrandan; el día de mercado va en negrita; la unidad del contador usa
+la tinta media de la propia paleta. **Quedan 4 nodos abiertos**: los índices de
+las secciones «leche» y «visitas», en paja honda sobre el panel `#e7dac0`, que se
+quedan en **2,78 incluso ya agrandados** —por debajo del umbral 3 de texto
+grande—. Aquí no hay arreglo sin cambiar el color o el fondo: decisión del agente A.
+
+## Verificación independiente de las siete del agente C
+
+El agente C auditó y arregló siete por su cuenta. Se han **vuelto a pasar por axe
+desde un clon limpio**, sin tocar ni un archivo, como comprobación cruzada.
+
+| Plantilla | Verificación desde clon limpio |
+|---|---|
+| Panadería | **sin violaciones** ✔ |
+| Escuela de música | **sin violaciones** ✔ |
+| Carpintería | **sin violaciones** ✔ |
+| Enoteca | 2 nodos |
+| Lavandería | 2 nodos |
+| Bicicletas | 14 nodos |
+| Librería | 35 nodos |
+
+**No se ha tocado ninguna**: son del agente C y los hallazgos van aquí para que
+los vea él.
+
+- **Librería** (35 nodos): todos son `.lomo__autor`, y todos por la misma causa —
+  `opacity: .75` sobre el lomo—. Los colores de lomo que C ajustó están bien; lo
+  que sigue hundiendo el contraste es la opacidad del autor (3,25–3,85 en seis
+  lomos distintos). Es el mismo patrón que en los pasos de la floristería.
+- **Bicicletas** (14 nodos): el índice y los datos del club, en `#a1b9b0` sobre el
+  pino `#1f5d4c` (3,69), y el `km 27` en crema sobre el flúor `#ff4a17` (3,11) —
+  este último es el caso que C decidió no tocar por ser color de marca, y sigue
+  abierto.
+- **Enoteca** (2 nodos): el aviso de las catas, `#b6878b` sobre el vino `#6e1330`
+  (3,79).
+- **Lavandería** (2 nodos): la etiqueta de entrega, `#5e6e67` sobre `#e2ede6`
+  (**4,48**, a dos centésimas de pasar).
+
+La diferencia con la medición de C tiene una explicación probable y comprobable:
+este arnés **cierra el aviso de cookies y recorre la página entera antes de
+medir**, así que evalúa también lo que solo aparece después del scroll —el
+`#club` de bicicletas, los lomos de la balda— y los estados en los que se quedan
+los elementos animados. Merece la pena unificar el método antes de dar por
+cerrada ninguna.
+
+## El fallo estructural de la biblioteca
+
+Entre la primera y la segunda pasada, el **mismo fallo ha aparecido en once
+plantillas**: texto apagado con `opacity` en vez de con color. Aparece como
+`--tinta-45` (o su equivalente) en panadería, óptica, tatuajes, bicicletas,
+arquitectura, quesería, escuela de música, enoteca, carpintería y lavandería, y
+como `opacity` directa en los pasos de la floristería y en los autores de los
+lomos de la librería.
+
+Es un fallo que engaña por dos motivos: el color declarado y el que se ve dejan
+de ser el mismo, así que **no se puede comprobar leyendo el CSS**; y la opacidad
+depende del fondo que haya debajo, así que el mismo token pasa sobre un fondo y
+falla sobre otro —exactamente lo que ha pasado en floristería (hueso sí, papel
+kraft no), arquitectura (papel sí, arena no) y quesería (crema sí, panel no).
+
+Por eso pasa al §5 del pliego como regla: **el texto secundario se apaga con
+color, no con opacidad.**
+
+---
+
+## Recordatorio, que sigue valiendo
+
+Que una plantilla salga sin violaciones **no quiere decir que sea accesible**:
+quiere decir que no tiene ninguno de los fallos que esta herramienta sabe
+detectar. Sigue sin haber lector de pantalla real, sin Firefox ni Safari, y sin
+auditar los estados de error de los formularios.
