@@ -177,3 +177,66 @@ Queda a decisión del coordinador y del agente A.
 - axe cubre una parte de la WCAG, no toda: que una plantilla salga sin
   violaciones no quiere decir que sea accesible, quiere decir que no tiene
   ninguno de los fallos que esta herramienta sabe detectar.
+
+---
+
+## Addendum del agente C — las que quedaban pendientes
+
+Auditadas después, con el mismo axe-core 4.10 sobre portada, aviso legal y 404, y
+**arregladas en el mismo sitio**. Las siete terminan con **cero violaciones**.
+
+| Plantilla | Fallos encontrados | Estado |
+|---|---|---|
+| Panadería · Milmigas | contraste (33 nodos) + cookies fuera de landmark | **0** |
+| Bicicletas · Sete Curvas | contraste (26 + 5 + 3) + cookies y lectura del perfil fuera de landmark | **0** |
+| Librería · Cuadratín | contraste en 2 de los 12 lomos + `aside` anidado + cookies | **0** |
+| Escuela de música · Semitón | contraste (6 nodos) + `aside` anidado + cookies | **0** |
+| Enoteca · Trasfega | contraste (6 nodos) + `aside` anidado + cookies | **0** |
+| Carpintería · Espiga | contraste + `aside` anidado + cookies | **0** |
+| Lavandería · Escuma | contraste + `aside` anidado + cookies | **0** |
+
+### El patrón que se repite en todas
+
+1. **La tinta terciaria al 45 %.** El token `--tinta-45` (o `--crema-45`) daba entre
+   2,71 y 2,95 sobre sus fondos. Sube a **0,60–0,64** según la plantilla, calculado
+   para cada pareja de fondo con un script de contraste, no a ojo. Ningún color de
+   marca cambia. Es el mismo hallazgo que en tatuajes y óptica: si una plantilla de
+   esta tanda usa una tinta al 45 % como texto, falla.
+2. **El aviso de cookies fuera de landmarks.** Se le da
+   `role="region" aria-label="Aviso de cookies"`, que lo convierte en landmark con
+   nombre.
+3. **`<aside>` dentro de `<section>`.** `landmark-complementary-is-top-level` pide
+   que el complementario sea de primer nivel: las cajas laterales («lo que no
+   hacemos», «sin letra pequeña», «cómo va el club»…) pasan a `<div>` con la misma
+   clase. No cambia ni un píxel.
+
+### Dos casos que no eran el patrón
+
+- **Bicicletas.** El naranja flúor (#FF4A17) es el color de marca y no llega a 4,5
+  ni como texto pequeño (2,87) ni como fondo con texto crema (3,11). No se toca el
+  flúor: se añade `--naranja-texto` (#BE3510, 4,7) **solo para textos** y el botón
+  naranja pasa a llevar texto tinta (5,1). El flúor sigue intacto en fondos, en la
+  línea del perfil y en el punto del ciclista.
+- **Librería.** Dos de los doce pares de color de lomo no llegaban con su texto: el
+  verde (4,39 con crema) y el coral (4,21 con tinta). Se ajustan los dos **fondos**,
+  no los textos: verde a #356B43 (5,39) y coral a #E5806A (5,57). Los otros diez
+  pares ya pasaban y se quedan como estaban.
+
+### Cifras de longtask de estas siete
+
+Todas medidas con `PerformanceObserver` observando desde antes de cargar, y todas con
+el mismo resultado: **0 tareas largas mientras se recorre la página**, y una sola al
+arrancar, que es GSAP más la webfont.
+
+| Plantilla | Al arrancar | Rodando |
+|---|---|---|
+| Bicicletas | 1 tarea, 92 ms | 0 |
+| Librería | 1 tarea, 113 ms | 0 |
+| Escuela de música | 1 tarea, 121 ms | 0 |
+| Enoteca | 1 tarea, 69 ms | 0 |
+| Carpintería | 1 tarea, 69 ms | 0 |
+| Lavandería | 1 tarea, 78 ms | 0 |
+| Panadería (con canvas, 25 s rodando) | 4 tareas, peor 145 ms | 0 |
+
+Las limitaciones de arriba siguen valiendo igual para estas siete: solo Chromium, sin
+lector de pantalla real y sin auditar los estados de error de los formularios.
