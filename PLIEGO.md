@@ -185,6 +185,19 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   cualquier `transform` puesto en CSS pisa el atributo que escribe GSAP y deja
   la animación clavada.
 - Los tweens de opacidad scrubbeados pueden dejar una tarjeta sticky invisible.
+- **GSAP lee el `translate3d` que venga del CSS como `y` en píxeles, no como
+  `yPercent`.** Si el estado «vacío» del char-reveal está en CSS
+  (`transform: translate3d(0,120%,0)`), animar `yPercent` a 0 deja las letras
+  clavadas abajo y el titular no aparece. Fijar `y: 0` explícito al preparar.
+- **Un `ScrollTrigger` con `once: true` no dispara si el elemento ya está en
+  pantalla cuando se crea**, así que el hero no se revela nunca. Todo lo de
+  «una sola vez» (titulares, apariciones, contadores) va con
+  `IntersectionObserver`; ScrollTrigger se reserva para pins y scrubs.
+- En un `<g>` de SVG, GSAP escribe el `transform` **en el atributo**, así que
+  cualquier `transform` en CSS lo pisa, **incluso `transform: none`**. Solución
+  limpia: que el estado inicial sea el de por defecto (y así valga sin JS, con
+  movimiento reducido y en móvil) y se retire con una clase que ponga el propio
+  JS: `#plano:not(.esta-animado) .pieza { transform: … }`.
 
 **Layout**
 
