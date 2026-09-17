@@ -1,0 +1,3 @@
+| # | Sector | Negocio ficticio | Concepto | Paleta | Tipografía | Movimiento protagonista | Repo | Demo |
+|---|---|---|---|---|---|---|---|---|
+| — | Gimnasio / box de entrenamiento | VINTE QUILOS (A Coruña) | «Carga» — todo se mide en kilos: la página se carga de discos conforme bajas | negro #0A0B0C / carbón #101317 / grafito #171B21 / acero #272E37 / humo #AEB7C1 / acento lima #C6FF3D | Anton + Barlow Condensed + Barlow | cuadro semanal anclado con scrub horizontal (con hero de canvas: magnesio en suspensión y barra que flexiona) | [repo](https://github.com/alvarotaiagu/plantilla-gimnasio-web) | [demo](https://alvarotaiagu.github.io/plantilla-gimnasio-web/) |
