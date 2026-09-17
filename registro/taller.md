@@ -1,0 +1,3 @@
+| # | Sector | Negocio ficticio | Concepto | Paleta | Tipografía | Movimiento protagonista | Repo | Demo |
+|---|---|---|---|---|---|---|---|---|
+| — | Taller mecánico | RODADURA (Culleredo, A Coruña) | «Despiece» — el taller se explica separando las piezas de una rueda | fondo #0D0F12 / panel #14181D / línea #242C35 / acero #39424E / humo #A7B0BB / acento ámbar señal #FF7A1A | Oswald + IBM Plex Mono + IBM Plex Sans | despiece anclado: siete piezas de SVG que se separan con scrub (y rueda del hero que se traza sola) | [repo](https://github.com/alvarotaiagu/plantilla-taller-web) | [demo](https://alvarotaiagu.github.io/plantilla-taller-web/) |
