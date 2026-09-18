@@ -213,9 +213,12 @@ Cada una de estas costó una sesión de depuración. Leerlas.
 - `gsap.fromTo` pinta el estado «from» al crearse: `immediateRender: false` o el
   hero se enciende antes de tiempo. Se ve en una captura a mitad de animación,
   no en la final.
-- Rotar un SVG: `transformOrigin` mide sobre el bbox — usar `svgOrigin`. Y
-  cualquier `transform` puesto en CSS pisa el atributo que escribe GSAP y deja
-  la animación clavada.
+- Rotar o **escalar** un SVG: `transformOrigin` mide sobre el **bbox**, no sobre
+  el viewBox — usar `svgOrigin`, o sacar el gesto a CSS con una clase, que sí
+  resuelve el origen contra el viewBox. Si no, GSAP escribe
+  `transform-origin: 0 0` y lo compensa con un `translate` que echa la pieza
+  fuera del lienzo. Y cualquier `transform` puesto en CSS pisa el atributo que
+  escribe GSAP y deja la animación clavada.
 - Los tweens de opacidad scrubbeados pueden dejar una tarjeta sticky invisible.
 - **GSAP lee el `translate3d` que venga del CSS como `y` en píxeles, no como
   `yPercent`.** Si el estado «vacío» del char-reveal está en CSS
@@ -311,6 +314,12 @@ se dice claramente en el informe en vez de darlo por hecho.
    entera. Captura.
 6. Pasada con **`prefers-reduced-motion: reduce`**: sin movimiento pero el
    contenido sigue cambiando. Captura.
+6 bis. **La cortina, a mitad de camino.** En la captura final ya no está, así que
+   hay que guardar fotogramas intermedios y mirarlos: es la única forma de ver
+   que se levanta de verdad. Un fallo real ya cazado así: la cortina era **del
+   mismo color que el fondo** y se levantaba sin que se viera levantarse. Medir
+   además que acaba en `display:none` en los tres casos (normal, sin GSAP y con
+   movimiento reducido), o la página queda tapada.
 7. Probar el **botón de cookies**, el **menú móvil** y el **botón del mapa**.
 8. Revisar que no queda ningún `[PENDIENTE]`, `TODO` ni texto de relleno tipo
    *lorem ipsum*.
