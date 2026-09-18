@@ -71,7 +71,8 @@ bien integrados (no pegados encima), está por debajo del listón:
 - **Hero con canvas o WebGL** propio del concepto (partículas, shader, líneas,
   trama, humo, agua, brasas…).
 - **Contadores y máscaras** de imagen que se abren con el scroll.
-- **Transición de entrada** (preloader con contador o cortina) — solo si aporta.
+
+La **cortina de entrada** no cuenta para ese mínimo porque no es opcional: ver §5.
 
 Regla de oro: **el movimiento sale del concepto, no de una lista.** Si la
 plantilla es de panadería, la masa sube, la harina cae y el horno da calor; no
@@ -138,6 +139,11 @@ Toda imagen: `width`/`height` en el atributo + `height:auto` en CSS,
 
 ## 5. Obligatorio en todas, sin preguntar
 
+- **Cortina de entrada.** Obligatoria en todas, sin preguntar, y con acabado
+  premium: encadenado, `expo.inOut`, borde curvo, entrega limpia al hero y
+  **retirada garantizada** — se quita siempre, también sin GSAP y con movimiento
+  reducido, o la página queda tapada. El gesto tiene que ser **distinto en cada
+  sitio** y salir del concepto, no ser la misma cortina repintada.
 - **Aviso de cookies.** Siempre. Y el botón tiene que cerrarlo de verdad:
   el `display:flex` va en `.cookie-banner:not([hidden])`, **nunca** en
   `.cookie-banner` a secas — si no, gana al atributo `[hidden]` y el botón
