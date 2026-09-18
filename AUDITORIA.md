@@ -356,3 +356,61 @@ Que una plantilla salga sin violaciones **no quiere decir que sea accesible**:
 quiere decir que no tiene ninguno de los fallos que esta herramienta sabe
 detectar. Sigue sin haber lector de pantalla real, sin Firefox ni Safari, y sin
 auditar los estados de error de los formularios.
+
+---
+
+# Tercera pasada — agente B · las tres que quedaban
+
+Con estas tres, **las veinticinco de la biblioteca están auditadas**. Mismo arnés
+que las dos pasadas anteriores: axe-core 4.13.0 con `wcag2a`, `wcag2aa`,
+`wcag21a`, `wcag21aa` y `best-practice`, en 1440×900 y 390×844, sobre portada,
+aviso legal y 404, cerrando antes el aviso de cookies y **recorriendo la página
+entera** para que entre lo que se revela con el scroll.
+
+| Plantilla | Resultado | Qué hubo que tocar |
+|---|---|---|
+| Taller de cerámica · Olería Rañal | **sin violaciones** ✔ | nada; no se ha tocado el repo |
+| Fotovoltaica · GNOMON | **sin violaciones** ✔ | nada |
+| Seguridad y alarmas · ALDRABA | 7 nodos → **sin violaciones** ✔ | el texto que va **encima** del azul de marca |
+
+**Cerámica** se ha clonado limpio y se ha pasado axe **sin tocar un archivo**: es
+del agente C y sale sin violaciones. Queda como verificación independiente.
+
+**ALDRABA** es el caso interesante, porque es el mismo patrón de siempre visto
+desde el otro lado. Los siete nodos eran todos la misma pareja: el hueso
+`#EAEEF7` sobre el azul de marca `#3D5AFE`, en **4,41**. Por debajo de 4,5 por
+nueve centésimas, en los botones y en los números de sección.
+
+Aquí la plantilla ya venía con la lección aprendida a medias: el azul de marca
+**nunca** se usa como color de texto sobre el fondo, porque ahí se queda en 3,9;
+para eso hay un `--azul-claro` (5,99). Lo que no estaba previsto es el caso
+inverso —**el texto que va encima del color de marca**— y ahí el hueso no llega.
+
+La regla del pliego resuelve los dos casos igual: **el color de marca no se
+toca**. Se añadió un token nuevo, `--sobre-azul`, en blanco puro (**5,13** sobre
+el mismo azul), para el texto que se pinta encima. El azul de la marca sigue
+siendo exactamente el mismo en botones, filetes y superficies.
+
+Merece la pena anotarlo porque es fácil de pasar por alto: **un acento de marca
+necesita dos tokens de texto, no uno**. Uno para escribir *con* él sobre el fondo
+del sitio, y otro para escribir *sobre* él cuando es fondo. Comprobar solo el
+primero deja pasar la mitad de los fallos.
+
+## Lo que esta pasada NO cubre, dicho otra vez
+
+Sigue valiendo el recordatorio de las dos anteriores, y ahora con más motivo
+porque ya no queda ninguna sin auditar y es cuando se confunde «auditada» con
+«accesible»: que una plantilla salga sin violaciones quiere decir **solo** que no
+tiene ninguno de los fallos que esta herramienta sabe detectar. Sigue sin haber
+lector de pantalla real, sin Firefox ni Safari, y sin auditar los estados de error
+de los formularios.
+
+Y hay un sitio nuevo donde mirar que antes no existía: **la cortina de entrada**.
+Es un elemento que tapa la pantalla entera durante unos segundos al cargar, y axe
+la audita en el estado en que la pille. En las ocho plantillas donde se ha metido
+lleva `aria-hidden="true"`, no recibe foco, y —esto es lo que de verdad importa—
+**no llega a pintarse con `prefers-reduced-motion` ni sin GSAP**, además de tener
+una red de seguridad por tiempo que la retira pase lo que pase. Está comprobado
+con Playwright en las cuatro situaciones, no de palabra; pero conviene tenerlo en
+la lista de cosas que un lector de pantalla real todavía tiene que decir si están
+bien.
