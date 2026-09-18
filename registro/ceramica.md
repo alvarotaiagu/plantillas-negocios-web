@@ -23,6 +23,12 @@ corresponde** en vez de pintar el estado a mano. En móvil no hay recorrido —l
 encoge sola una vez al entrar— y mandan los botones. Sin GSAP y con movimiento reducido,
 los botones pintan directamente: verificado en las dos pasadas.
 
+**Cortina de entrada:** el perfil de la jarra se dibuja solo, el nombre encoge hasta su
+tamaño y después la cortina, en tinta oscura, sube **encogiendo un 6 %** con el borde de
+abajo curvado. , entrega al hero (el titular y los contadores los arranca la
+línea de tiempo de la cortina, no un retardo fijo) y retirada verificada en los tres casos:
+normal, sin GSAP y con movimiento reducido.
+
 **Obra gráfica propia:** la jarra (hero, escena de la merma y partida en dos en la 404),
 la regla graduada, las **ocho chapas de esmalte** —degradado CSS con motas y un goterón
 que crece, ocho goteos distintos—, el logotipo, el `favicon`, el mapa de relleno y la
