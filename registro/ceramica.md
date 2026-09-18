@@ -25,7 +25,7 @@ los botones pintan directamente: verificado en las dos pasadas.
 
 **Cortina de entrada:** el perfil de la jarra se dibuja solo, el nombre encoge hasta su
 tamaño y después la cortina, en tinta oscura, sube **encogiendo un 6 %** con el borde de
-abajo curvado. , entrega al hero (el titular y los contadores los arranca la
+abajo curvado. Con `expo.inOut`, entrega al hero (el titular y los contadores los arranca la
 línea de tiempo de la cortina, no un retardo fijo) y retirada verificada en los tres casos:
 normal, sin GSAP y con movimiento reducido.
 
