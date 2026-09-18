@@ -62,4 +62,4 @@ alimentaria, no una promesa. Sin RGSEAA, sin REGA y **sin reclamar la IGP «Mel 
 Galicia»**; el aviso legal dice qué iría en cada hueco y que esa parte no debe tocarse al
 reskinear. Nombre comprobado en búsqueda antes de usarlo.
 
-**Capturas:** 63 en `screenshots/`, en JPEG de calidad 72.
+**Capturas:** 71 en `screenshots/`, en JPEG de calidad 72, incluidos ocho fotogramas de la cortina a mitad de camino y su retirada sin GSAP y con movimiento reducido.

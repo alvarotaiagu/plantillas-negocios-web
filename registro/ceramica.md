@@ -57,4 +57,4 @@ queda vacío a propósito y el aviso legal explica qué dato iría ahí. Precios
 cuaderno rotulados como de muestra; las dos opiniones dicen en la propia página que no
 vienen de ninguna plataforma. Correo en dominio `.example`.
 
-**Capturas:** 64 en `screenshots/`, en JPEG de calidad 72.
+**Capturas:** 72 en `screenshots/`, en JPEG de calidad 72, incluidos ocho fotogramas de la cortina a mitad de camino y su retirada sin GSAP y con movimiento reducido.

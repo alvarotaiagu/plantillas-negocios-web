@@ -63,4 +63,4 @@ dicen en su pie dentro de la página**, no solo en los créditos: enseñar como 
 trabajo de otro es el clásico de este oficio. Nombre comprobado en búsqueda antes de
 usarlo.
 
-**Capturas:** 65 en `screenshots/`, en JPEG de calidad 72.
+**Capturas:** 73 en `screenshots/`, en JPEG de calidad 72, incluidos ocho fotogramas de la cortina a mitad de camino y su retirada sin GSAP y con movimiento reducido.
