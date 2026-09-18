@@ -270,6 +270,18 @@ Cada una de estas costó una sesión de depuración. Leerlas.
   cortina lleva `z-index` y el botón no: abre pero no cierra. Se caza con un
   `click` de Playwright que da timeout, no mirando la captura.
 
+**Parchear archivos con un script**
+
+- **Un `String.replace` con un literal `\n` no encuentra nada en un archivo con
+  finales de línea CRLF, y devuelve la cadena intacta sin avisar.** El script
+  escribe archivos «parcheados» que no lo están y nadie se entera.
+- **Un comodín `[\s\S]*?` entre dos anclas se come todo lo que haya en medio** si
+  la primera ancla aparece antes de lo previsto: en una plantilla se llevó por
+  delante 500 líneas de `main.js` porque usaba `document.fonts.ready` también en
+  la medición de tareas largas.
+- Regla: nada de comodines, comprobar cada escritura, y **negarse a escribir si
+  el archivo pierde líneas**.
+
 **Tipografía**
 
 - No todas las tipografías traen todos los glifos: la cursiva de Fraunces no
