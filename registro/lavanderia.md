@@ -27,3 +27,5 @@ dibujo y explicación no se desincronizan. Cero fotografías.
 **Datos ficticios:** Rúa do Pozo, 6 · Vilagarcía de Arousa · 986 00 00 73 ·
 hola@escuma.example. Sin `aggregateRating`, sin testimonios, con `noindex, nofollow` y
 sello de demo en footer, README y comentario HTML.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Etiqueta»: salen los cuatro símbolos de cuidado uno a uno y el agua se va por abajo; el borde de arriba de la cortina es una onda. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.

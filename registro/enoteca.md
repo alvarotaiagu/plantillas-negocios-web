@@ -31,3 +31,5 @@ desde cuatro perfiles, y «viño inventado» impreso dentro de la propia etiquet
 se vea incluso en una captura. Las comarcas citadas son lugares, no denominaciones ni
 marcas. Sin `aggregateRating`, con `noindex, nofollow` y sello de demo en footer, README
 y comentario HTML.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Cata a ciegas»: la botella se llena de vino de abajo arriba y la funda se levanta entera; su borde de abajo es el hombro de la botella, así que lo que destapa no es una línea recta. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.

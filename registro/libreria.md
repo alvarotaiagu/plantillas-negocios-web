@@ -30,3 +30,7 @@ README y comentario HTML.
 propósito; sin `overflow: clip` en `html` (y `hidden` en el contenedor), **el móvil
 ensancha el viewport entero** para que quepa y descoloca la página completa. Se detectó
 porque el clic de Playwright caía siempre sobre el hero.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Lomos»: la pantalla es una balda llena; los lomos se asientan y salen uno detrás de otro con la cabeza redondeada por delante, dejando ver la página por franjas. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.
+
+Los lomos miden 112vh con −6vh de margen arriba a propósito: así las esquinas redondeadas quedan fuera de pantalla en reposo y no se ve la página por los huecos del radio.

@@ -25,3 +25,5 @@ gradúa la vista con una pantalla; y no se inventa ningún número de colegiado.
 hola@opticasextante.example. Ocho monturas dibujadas en SVG (no reproducen ninguna marca
 real) y dos fotos de Pexels sin personas identificables. Sin `aggregateRating`, con
 `noindex, nofollow` y sello de demo en footer, README y comentario HTML.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Optotipo»: la letra E entra desenfocada, se enfoca, y entonces se abre la pupila —un círculo que crece desde el centro. El círculo es un `box-shadow` de 110vmax al que se le anima el **tamaño**: con `transform: scale` la sombra escalaría con él y al principio dejaría de cubrir. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.

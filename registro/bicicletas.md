@@ -25,3 +25,7 @@ hola@setecurvas.example. Seis bicicletas dibujadas en SVG desde una geometría c
 tres fotos de Pexels sin caras identificables. Las rutas avisan de que son inventadas y
 de que no están señalizadas. Sin `aggregateRating`, con `noindex, nofollow` y sello de
 demo en footer, README y comentario HTML.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Perfil de etapa»: se dibuja el perfil, el punto naranja lo recorre leyendo el trazado real con `getPointAtLength`, y después la ladera barre la pantalla hacia la derecha con su borde curvo por delante. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.
+
+Trampa cazada: el porcentaje horizontal de `border-radius` es sobre el **ancho del elemento** (172vw), no sobre el viewport. Con 34% la curva se metía 8vw dentro de la pantalla y dejaba ver la página por las esquinas antes de empezar.

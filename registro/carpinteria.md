@@ -28,3 +28,7 @@ footer, README y comentario HTML.
 las piezas se juntaban pero **no encajaban**. Para que un ensamble dibujado funcione, el
 hueco tiene que ocupar el mismo rango de coordenadas que la lengüeta. Y las piezas son
 `<g>` de SVG: el CSS no puede tocarles el `transform`, ni con `none`.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Ensamble»: se dibuja la cota, las dos piezas aprietan una contra otra y luego se separan, con la espiga saliendo de la mortaja. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.
+
+El apretón previo va hacia **dentro**: hacia fuera abriría un hueco de 14 px en el centro y se vería la página antes de tiempo. Las dos mitades miden 52% y se solapan para que las esquinas redondeadas no dejen ver nada.

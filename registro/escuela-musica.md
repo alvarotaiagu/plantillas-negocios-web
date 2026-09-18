@@ -33,3 +33,7 @@ comentario HTML.
 **Trampa nueva anotada:** la aguja es un `<g>` de SVG y GSAP le escribe el `transform` en
 el atributo; cualquier `transform` en CSS sobre ella —incluso `none`— deja la animación
 clavada. El CSS no toca `[data-aguja]` a propósito.
+
+**Cortina de entrada (añadida el 2026-09-19):** «Afinación»: la aguja entra desviada, vuelve al centro con rebote elástico y la cortina se va con ella, girando sobre su esquina mientras sube. Encadenada, con `expo.inOut` y borde curvo, y el hero no entra hasta que la cortina va por la mitad (constante `ESPERA` de `main.js`). **Retirada garantizada**: se quita al terminar, se quita sin GSAP, se quita con movimiento reducido y hay un `setTimeout` de 5 s de red de seguridad; el `display` va en `.cortina:not([hidden])`, nunca en la clase a secas —si fuera a secas ganaría al atributo `hidden` y la página quedaría tapada para siempre.
+
+La aguja es un `<g>` de SVG: gira con `svgOrigin`, y ni la cortina ni ese `<g>` llevan `transform` en CSS, porque pisaría el que escribe GSAP. La cortina va sobredimensionada para que el giro no destape las esquinas.
