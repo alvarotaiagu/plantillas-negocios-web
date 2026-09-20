@@ -144,6 +144,34 @@ Toda imagen: `width`/`height` en el atributo + `height:auto` en CSS,
   **retirada garantizada** — se quita siempre, también sin GSAP y con movimiento
   reducido, o la página queda tapada. El gesto tiene que ser **distinto en cada
   sitio** y salir del concepto, no ser la misma cortina repintada.
+- **Control de maqueta: dos densidades visuales, siempre.** Cada plantilla se
+  entrega con un mando de demostración (abajo a la izquierda) que cambia en
+  vivo entre dos versiones: la **cargada**, con el recurso protagonista en
+  todas partes, y la **sobria**, el mismo sitio con ese recurso solo donde
+  significa algo. Es una clase en el `<html>` y un bloque de reglas CSS, no
+  dos webs. El botón de la cargada **se llama como el concepto de esa
+  plantilla** («Mecanismo», «Ramo», «Calco»…), no «Normal»: así el mando
+  también explica de qué va el sitio. El otro, «Sobria», en todas.
+  - **Por qué.** El cliente no sabe cuánto adorno quiere hasta que ve las dos,
+    y un «modo sobrio» escrito solo en el README no se puede enseñar en una
+    reunión. Además obliga a separar lo que el recurso *significa* de lo que
+    es el mismo dibujo repetido: si un motivo sale en diez sitios, nueve son
+    decoración.
+  - **La sobria no es la pobre.** No quita secciones ni datos: **intercambia
+    dibujo por dato** (donde había un icono, el número en grande). Y conviene
+    que *añada* algo que la densa no tenga —un gráfico, una comparación—, o no
+    hay elección de verdad, solo una versión mutilada.
+  - **El mando NUNCA viaja al sitio de un cliente.** Va con comentario de
+    aviso en los tres archivos que toca y el README lleva la receta de borrado
+    paso a paso, **comprobada por script contra los archivos**, no escrita de
+    memoria.
+  - Detalles que ya costaron una pasada: va con `[hidden]` y lo enseña el JS
+    (sin JS no haría nada); la clase se aplica en el **script bloqueante del
+    `<head>`** o la página arranca en una versión y salta a la otra; se
+    **esconde mientras el aviso de cookies está en pantalla**, que en móvil
+    ocupa todo el ancho; y si recuerda la elección en `localStorage`, hay que
+    **actualizar el aviso de cookies y el aviso legal**, o el sitio se
+    contradice a sí mismo.
 - **Aviso de cookies.** Siempre. Y el botón tiene que cerrarlo de verdad:
   el `display:flex` va en `.cookie-banner:not([hidden])`, **nunca** en
   `.cookie-banner` a secas — si no, gana al atributo `[hidden]` y el botón
@@ -321,6 +349,12 @@ se dice claramente en el informe en vez de darlo por hecho.
    además que acaba en `display:none` en los tres casos (normal, sin GSAP y con
    movimiento reducido), o la página queda tapada.
 7. Probar el **botón de cookies**, el **menú móvil** y el **botón del mapa**.
+7 bis. **Las dos densidades del control de maqueta**, por código: que el mando
+   se aparte con el aviso de cookies y aparezca al cerrarlo, que en la versión
+   sobria se retire de verdad lo que tiene que retirarse y ocupe su sitio lo
+   que lo sustituye, que no aparezca desbordamiento horizontal nuevo y que se
+   pueda volver. Y capturas de las dos: la sobria es la que se le enseña a la
+   mitad de los clientes.
 8. Revisar que no queda ningún `[PENDIENTE]`, `TODO` ni texto de relleno tipo
    *lorem ipsum*.
 9. Repasar §1 entero: ningún dato puede parecer el de un negocio real.
