@@ -34,7 +34,8 @@ de otra carpeta, y allí el dial es un calendario fiscal, no un mecanismo.
 esfera calada → **el cuadrante de plazos** (una calculadora, lo primero de
 todo, antes de hablar del despacho) → el tren de rodaje (anclado, oscuro) →
 cinta de latón con los ocho plazos habituales → cuatro materias en pila sticky
-→ tres personas y cuatro cifras → honorarios → preguntas → contacto. La
+→ tres personas y cuatro cifras → honorarios → preguntas → contacto, más el
+mando de maqueta flotante, que no es sección. La
 decisión de forma más fuerte es poner **la herramienta antes que la
 presentación**: la sección 01 no cuenta nada del despacho, calcula tu plazo.
 
@@ -60,6 +61,52 @@ giren ni por mucho que el scroll las acelere. Las velocidades se derivan hacia
 atrás desde la rueda de escape, que avanza **un diente por segundo**. Sin
 `ctx.filter` ni `shadowBlur`: cada rueda es un `Path2D` construido una sola vez
 y por fotograma solo hay translate, rotate y fill/stroke.
+
+**El control de maqueta: dos densidades, y por qué.** Terminada la primera
+entrega, el propio cliente de la biblioteca preguntó si no era demasiado
+basar la web entera en relojes. Contado el motivo se vio el problema real,
+que era medible: **la rueda dentada salía en diez sitios** (logo, cortina,
+dial de avance, mecanismo del hero, corona del cuadrante, cinco ruedas del
+tren, cuatro diales de materias, tres piezas de personas, cursor y 404). La
+primera significa algo; la décima es el mismo adorno repetido, que es
+exactamente lo que el PLIEGO §2 llama movimiento que no sale del concepto.
+
+En vez de elegir por el cliente, se añadió un **mando de demostración** abajo
+a la izquierda con dos botones:
+
+- **Mecanismo**: como estaba.
+- **Sobria**: la rueda solo en los cuatro sitios donde significa algo (logo,
+  cortina, dial de avance y portada/cuadrante). Donde estaba el dibujo manda
+  el dato: el número de fase del tren pasa a 2,6 rem, los cuatro diales de
+  materias dejan sitio a la escala comparativa, y de las tres piezas de
+  personas se queda solo la de Noa, que es la única que el texto nombra
+  («es el trinquete: la pieza que impide que la rueda vuelva atrás»).
+
+Las dos versiones enseñan **las mismas secciones y los mismos datos**. Y la
+sobria **añade** algo que la otra no tiene: los cuatro plazos medidos con la
+misma vara, en barras rectas, con el de la ficha en latón. Cuatro diales
+redondos se parecen todos entre sí y no dejan ver que veinte días hábiles es
+una nada al lado de seis meses; cuatro barras sí. Los días viven en
+`data-dias` de cada `<li class="pila-item">` y el gráfico los lee de ahí, para
+no repetir la cifra en el script (la trampa de
+`feedback_generated_file_hardcoded_source`).
+
+Tres cuidados que llevó el mando:
+1. **No puede viajar al sitio de un cliente.** Va con comentario de aviso en
+   los tres archivos y el README trae la receta de borrado en cuatro pasos,
+   comprobada por script contra los archivos reales.
+2. **Guarda una segunda marca en `localStorage`** (`ouzande-maqueta`), así que
+   hubo que actualizar el aviso de cookies y `legal.html`, que decían que
+   solo se guardaba el cierre del aviso. Si no, el sitio se contradice.
+3. **Se esconde mientras el aviso de cookies está en pantalla**: en móvil el
+   aviso ocupa todo el ancho y se le montaría encima. El aviso legal va
+   primero.
+
+Y un fallo de la primera versión de la escala, cazado en la captura: las
+barras inactivas iban en `--canto` sobre una pista en `--linea`, que es 1,4:1,
+así que **no se distinguía cuál era larga y cuál corta** — es decir, el
+gráfico no hacía lo único que tenía que hacer. Relleno a `--acero-medio` y el
+latón reservado para la fila activa.
 
 **Obra gráfica propia, cero fotografía:** el logotipo (rueda de trinquete de 14
 dientes de sierra con su uñeta apoyada y su rubí, generada con la misma función
@@ -153,7 +200,7 @@ páginas, en el README y en un comentario HTML arriba del `index.html`, y
 generales del ordenamiento español— y por eso llevan aviso de orientativos en
 el cuadrante, en el pie y en el aviso legal.
 
-**Verificación:** `scripts/verify.js`, 22 comprobaciones, todas en verde.
+**Verificación:** `scripts/verify.js`, **30 comprobaciones**, todas en verde.
 Playwright (Chromium) en 1440×900 y 390×844 (`isMobile` y `hasTouch` reales),
 recorrido con `mouse.wheel`, fotogramas intermedios de la cortina y
 comprobación de que acaba en `display:none` en los **tres** casos (normal, sin
@@ -161,8 +208,12 @@ GSAP y con movimiento reducido), pasada con jsDelivr tumbado (`route.abort`),
 pasada con `prefers-reduced-motion: reduce` comprobando que el reloj y el
 cuadrante siguen funcionando, y prueba por código de cookies, menú móvil,
 mapa bajo clic, formulario, las dos ramas del cuadrante (vencido y en plazo),
-anchura real del documento (`scrollWidth == innerWidth` en los dos tamaños) y
-ausencia de marcadores. 37 capturas en `screenshots/`.
+anchura real del documento (`scrollWidth == innerWidth` en los dos tamaños),
+ausencia de marcadores y las seis del control de maqueta (que se aparta con
+el aviso de cookies, que aparece al cerrarlo, que en sobria se retiran los
+diales y las ruedas, que la escala pinta sus 16 filas, que queda una sola
+pieza de persona y que se puede volver atrás). 40 capturas en
+`screenshots/`.
 
 **Pendiente de esta plantilla:** sin auditoría automática de accesibilidad
 (axe/Lighthouse) —el contraste está calculado con script, no auditado—, sin
