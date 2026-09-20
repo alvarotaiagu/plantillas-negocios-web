@@ -14,8 +14,8 @@ sectores no aporta nada nuevo.
 | Podología | Postural |
 | Clínica dental | Louzao Dental |
 | Veterinaria | Gran Vía |
-| Abogacía | Blanco Regueiro, Castro Pombo, MJ Ramos Castro |
-| Asesoría fiscal | Dourado & Fernández, Rivand, Cervantes |
+| Abogacía | Blanco Regueiro, Castro Pombo, MJ Ramos Castro — **excepción abierta 2026-09-20**: se autoriza 1 plantilla ficticia más del sector (concepto Pórtico, despacho mercantilista Valladares Mendoza Abogados, Vigo), por el mismo motivo que la excepción de asesoría fiscal del 2026-09-18: es un nicho que ya ha dado varios clientes reales y conviene tener un escaparate de muestra propio para captar más. Registro visual deliberadamente distinto de los tres despachos reales (arquitectónico/pórtico frente a papel/prensa/notarial de esos tres). El resto de sectores de esta fila siguen prohibidos de repetir. |
+| Asesoría fiscal | Dourado & Fernández, Rivand, Cervantes — **excepción abierta 2026-09-18**: se autorizan hasta 4 plantillas ficticias más del sector (conceptos Sello, Casillas, Cinta sumadora, Expediente) porque es un nicho que ya ha dado varios clientes reales y conviene tener escaparates de muestra para captar más. El resto de sectores de esta fila siguen prohibidos de repetir. |
 | Inmobiliaria | A Ponte |
 | Informática / IT | Calidade Systems, Más que Tinta |
 | Academia / robótica | Astrobots, Espazo Bilitroque |
