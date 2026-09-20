@@ -132,3 +132,23 @@ medir `longtask` con `PerformanceObserver` (sin canvas/WebGL, riesgo bajo
 pero no medido); sin auditoría automática de contraste (axe/Lighthouse) —
 calculado a mano con script; solo probado en Chromium, sin lector de
 pantalla real.
+
+**Pasada de pulido, 2026-09-20 (mismo día, tras revisión del dueño):**
+comparada sección a sección contra `jack-3d-creator-web`/Ceibo/Astrobots y
+no estaba a la altura. Corregido de raíz (no parcheado): el hueco vacío de
+«alas» (la cabecera vivía fuera del contenedor anclado, así que la caja de
+100vh con las tarjetas centradas quedaba reservada antes incluso de que el
+pin se enganchara); «método» rediseñado como escalinata con un marcador
+que sube peldaño a peldaño (antes era una lista numerada plana que ni
+usaba su propia metáfora); «testimonios» con un sello notarial trazado en
+SVG + inclinación 3D al puntero, antes sin ningún gesto propio. De paso,
+un bug de robustez más serio que los tres ya conocidos: `overflow: clip`
+en `<html>` aplicaba a los dos ejes, y sin Lenis disponible (CDN caído)
+el eje vertical se quedaba sin caja de scroll — la página entera quedaba
+clavada en el hero con el CDN bloqueado, violando el §5 del pliego.
+Limitado a `overflow-x`. Verificación repetida entera (Playwright,
+1440×900/390×844, recorrido con `mouse.wheel`, pasada con GSAP bloqueado,
+pasada con `prefers-reduced-motion`, cookies/menú/mapa) contra local y
+contra GitHub Pages ya desplegado, en ambos casos limpia. Commits
+intermedios por sección: `bfcf382` (overflow), `1047209` (alas), `248cdaa`
+(escalinata), `cc5c995` (testimonios).
