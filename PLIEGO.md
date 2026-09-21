@@ -172,6 +172,22 @@ Toda imagen: `width`/`height` en el atributo + `height:auto` en CSS,
     ocupa todo el ancho; y si recuerda la elección en `localStorage`, hay que
     **actualizar el aviso de cookies y el aviso legal**, o el sitio se
     contradice a sí mismo.
+- **Control de paleta: mando de color, siempre, desde 2026-09-21.** Mismo
+  mecanismo que el de arriba (mando de demostración, clase en `<html>`,
+  resuelto en el script bloqueante del `<head>`, nunca viaja al cliente,
+  receta de borrado en el README) pero para el **color de marca**, no la
+  densidad: tres botones — la paleta real y **dos alternativas derivadas**,
+  no inventadas a ojo. Deriva las alternativas rotando el matiz del acento y
+  conservando la estructura de luminosidad/contraste del original (objetivo
+  ~7:1 en botones, ~4,5:1 mínimo en texto sobre el fondo — comprobar, no
+  suponer); el resto de la paleta (tinta, papel, grises neutros) **no
+  cambia** entre las tres, y **el logo real tampoco cambia de color** — es
+  el elemento fijo de la identidad, no parte del experimento. Nace de un
+  caso real: un cliente (Dourado & Fernández) dijo en la reunión que el
+  verde no le convencía, y hubiera sido mejor poder probarle otro color ahí
+  mismo en vez de improvisar la respuesta o esperar a la siguiente entrega.
+  Motivo de más para plantillas ficticias: un prospecto de sector nuevo
+  puede decidir el color viendo la propia demo, no una paleta impuesta.
 - **Aviso de cookies.** Siempre. Y el botón tiene que cerrarlo de verdad:
   el `display:flex` va en `.cookie-banner:not([hidden])`, **nunca** en
   `.cookie-banner` a secas — si no, gana al atributo `[hidden]` y el botón
@@ -355,6 +371,12 @@ se dice claramente en el informe en vez de darlo por hecho.
    que lo sustituye, que no aparezca desbordamiento horizontal nuevo y que se
    pueda volver. Y capturas de las dos: la sobria es la que se le enseña a la
    mitad de los clientes.
+7 ter. **Las tres paletas del control de paleta**, por código: que pulsar cada
+   botón cambie de verdad el color computado de algo real (no solo la clase
+   en `<html>`), que `aria-pressed` y el `localStorage` queden bien, y que al
+   recargar la paleta guardada se aplique sin parpadeo (comprobar la clase
+   justo tras `load`, no solo tras esperar). Medir el contraste texto/fondo
+   de las dos paletas derivadas, no darlo por bueno a ojo.
 8. Revisar que no queda ningún `[PENDIENTE]`, `TODO` ni texto de relleno tipo
    *lorem ipsum*.
 9. Repasar §1 entero: ningún dato puede parecer el de un negocio real.
