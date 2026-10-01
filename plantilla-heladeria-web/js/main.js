@@ -236,7 +236,7 @@
     ['uRes', 'uTime', 'uScroll', 'uStir', 'uBase', 'uVeta', 'uPtr', 'uTrail'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
 
     var rastro = new Float32Array(72), cab = 0;
-    var ptr = { x: 0, y: 0, px: 0, py: 0, activo: 0, ultimo: -1e4 };
+    var ptr = { x: 5, y: 5, ultimo: -1e4 };
     var stir = 0, base = colorBase.slice(), veta = colorVeta.slice(), objBase = base.slice(), objVeta = veta.slice();
     var visible = true, corriendo = false, t0 = performance.now(), anterior = t0;
 
@@ -310,7 +310,7 @@
 
     // fotograma inicial: con movimiento reducido es el único, con un surco ya hecho
     for (var k = 0; k < 14; k++) anadir(-0.7 + k * 0.1, 0.25 * Math.sin(k * 0.6));
-    for (var j = 0; j < 24; j++) rastro[j * 3 + 2] = 0.35 + 0.65 * (j / 24);
+    for (var j = 0; j < cab; j++) rastro[j * 3 + 2] = 0.35 + 0.65 * (j / cab);
     pintar(performance.now());
     lienzo.classList.add('es-webgl');
     arrancar();
