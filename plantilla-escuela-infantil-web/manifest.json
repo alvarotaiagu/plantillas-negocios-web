@@ -1,0 +1,9 @@
+{
+  "name": "Retallos · Escola Infantil (demo)",
+  "short_name": "Retallos",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F4EDE2",
+  "theme_color": "#2B4F8E",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
