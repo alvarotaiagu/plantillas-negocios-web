@@ -204,16 +204,13 @@
 
   /* ═════════ Cookies + mandos de demostración ═════════ */
   var cookies = $('.cookies');
-  var mando = $('.mando');
-  var enRevision = html.classList.contains('en-revision');
-  function mostrarMando() { if (mando) mando.hidden = !(enRevision && cookies.hidden); }
-  if (!store.get('pegada-cookies')) cookies.hidden = false;
-  $('.cookies-aceptar').addEventListener('click', function () { store.set('pegada-cookies', '1'); cookies.hidden = true; mostrarMando(); });
-  $('.pie-cookies').addEventListener('click', function () { cookies.hidden = false; mostrarMando(); $('.cookies-aceptar').focus(); });
-  mostrarMando();
+  var mostrarMando = function () {};
 
   // ── MANDO DE DEMOSTRACIÓN · NO VIAJA AL SITIO DE UN CLIENTE (ver README) ──
-  if (mando && enRevision) {
+  // Se esconde mientras el aviso de cookies está en pantalla (en móvil ocupa todo el ancho).
+  var mando = $('.mando');
+  if (mando && html.classList.contains('en-revision')) {
+    mostrarMando = function () { mando.hidden = !cookies.hidden; };
     var marcar = function () {
       $$('[data-densidad]', mando).forEach(function (b) { b.setAttribute('aria-pressed', String((b.dataset.densidad === 'sobria') === esSobria())); });
       var pal = html.classList.contains('paleta-granate') ? 'granate' : html.classList.contains('paleta-musgo') ? 'musgo' : 'mar';
@@ -238,6 +235,11 @@
     marcar();
   }
   // ── FIN MANDO DE DEMOSTRACIÓN ──
+
+  if (!store.get('pegada-cookies')) cookies.hidden = false;
+  $('.cookies-aceptar').addEventListener('click', function () { store.set('pegada-cookies', '1'); cookies.hidden = true; mostrarMando(); });
+  $('.pie-cookies').addEventListener('click', function () { cookies.hidden = false; mostrarMando(); $('.cookies-aceptar').focus(); });
+  mostrarMando();
 
   /* ─────────── Mapa solo bajo clic ─────────── */
   var mapaBoton = $('.mapa-boton');

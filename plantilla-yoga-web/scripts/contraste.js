@@ -10,6 +10,7 @@ const P = {
   apagadoCorcho:'#3E2D1E', apagadoEspuma:'#5E4E3E', apagadoCaucho:'#BDAF9C',
   mar:'#16475A', marTexto:'#0F3A4A', granateTexto:'#5C2230', musgoTexto:'#283C16', marClaro:'#8EC3D3', coral:'#E2683F',
   // alternativas derivadas: mismo L que «mar», matiz rotado
+  marOsc:'#0E3241', pasada:'#C9D3D6', granateOsc:'#4C1C25', pasadaG:'#E0C9CD', musgoOsc:'#233414', pasadaM:'#D3DCC7', espumaHero:'#E4DACB',
   granate:'#6A2A35', granateClaro:'#E3A3AE', musgo:'#33491F', musgoClaro:'#B4CE8F',
 };
 const parejas = [
@@ -18,6 +19,8 @@ const parejas = [
   ['espuma','mar',7],['mar','espuma',7],['marTexto','corcho',4.5],['marClaro','caucho',4.5],['caucho','coral',4.5],
   ['espuma','granate',7],['granateTexto','corcho',4.5],['granate','espuma',7],['granateClaro','caucho',4.5],
   ['espuma','musgo',7],['musgoTexto','corcho',4.5],['musgo','espuma',7],['musgoClaro','caucho',4.5],
+  ['pasada','marOsc',4.5],['pasadaG','granateOsc',4.5],['pasadaM','musgoOsc',4.5],
+  ['espumaHero','mar',4.5],['espumaHero','granate',4.5],['espumaHero','musgo',4.5],['marClaro','mar',4.5],['granateClaro','granate',4.5],['musgoClaro','musgo',4.5],
 ];
 let mal = 0;
 for (const [t,f,min] of parejas) {
