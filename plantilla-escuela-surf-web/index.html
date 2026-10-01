@@ -1,0 +1,858 @@
+<!--
+  SITIO DE DEMOSTRACIÓN. Treboada · Escola de Surf es un negocio FICTICIO:
+  nombre, dirección, teléfono, precios, parte de olas y opiniones son de muestra.
+  Plantilla de la biblioteca de negocios ficticios. No indexar.
+-->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Treboada · Escola de Surf en Malpica — lee el mar antes de entrar</title>
+<meta name="description" content="Escuela de surf en Malpica de Bergantiños (Costa da Morte). Cursos por niveles, clases sueltas, alquiler de tabla y neopreno y campamento de verano. Sitio de demostración: negocio ficticio.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#07141A">
+<meta property="og:title" content="Treboada · Escola de Surf (demo)">
+<meta property="og:description" content="Lee el mar antes de entrar. Escuela de surf ficticia en Malpica de Bergantiños.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500;600&family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script>
+  /* Script bloqueante: decide clases ANTES de pintar para que no haya salto.
+     MANDOS DE DEMOSTRACIÓN (maqueta y paleta): solo con ?revision en la URL.
+     NO VIAJAN AL SITIO DE UN CLIENTE: ver «Borrar los mandos» en el README. */
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    var rev = /[?&]revision(=|&|$)/.test(location.search);
+    if (rev) {
+      d.classList.add('es-revision');
+      try {
+        if (localStorage.getItem('treboada-maqueta') === 'sobria') d.classList.add('maqueta-sobria');
+        var p = localStorage.getItem('treboada-paleta');
+        if (p === 'xeo' || p === 'liquen') d.classList.add('paleta-' + p);
+      } catch (e) {}
+    }
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "name": "Treboada · Escola de Surf (negocio ficticio de demostración)",
+  "description": "Escuela de surf ficticia. Sitio de demostración.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rúa das Gaivotas Mansas, 4",
+    "postalCode": "15113",
+    "addressLocality": "Malpica de Bergantiños",
+    "addressRegion": "A Coruña",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34 981 00 00 00",
+  "email": "ola@treboada.example"
+}
+</script>
+</head>
+<body>
+
+<!-- Cortina «resaca»: la espuma cubre la pantalla y se retira hacia el mar. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="cortina-lamina">
+    <div class="cortina-marca">
+      <svg viewBox="0 0 48 48" width="56" height="56"><use href="#marca-trazo"/></svg>
+      <span class="cortina-nombre">Treboada</span>
+      <span class="cortina-dato mono">43°19′ N · 8°48′ O · período 13 s</span>
+    </div>
+  </div>
+  <svg class="cortina-borde" viewBox="0 0 1440 120" preserveAspectRatio="none"><path id="cortina-ola" d="M0,0 L1440,0 L1440,60 C1200,100 960,30 720,60 C480,90 240,30 0,60 Z"/></svg>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="marca-clip"><circle cx="24" cy="24" r="21.5"/></clipPath>
+    <symbol id="marca-trazo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="#E6F0EF" stroke-width="2"/>
+      <g clip-path="url(#marca-clip)" fill="none" stroke="#E6F0EF" stroke-width="2.3" stroke-linecap="round">
+        <path d="M4 13.5 C15 11.5 33 11.5 44 13.5"/>
+        <path d="M2 21 C12 20 21 20 26 22.6 C29.5 24.4 36 22.5 46 21.5"/>
+        <path d="M3 29.5 C11 28.5 19.5 29 23.5 32.2 C27 35 35.5 36.2 45 31"/>
+        <path d="M6 38 C15 37 25 38.6 34 41"/>
+      </g>
+      <circle cx="33.2" cy="28.4" r="3.6" fill="#8CE0CC"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera" id="cabecera">
+  <a class="logo" href="#portada" aria-label="Treboada, Escola de Surf — inicio">
+    <svg viewBox="0 0 48 48" width="38" height="38" aria-hidden="true"><use href="#marca-trazo"/></svg>
+    <span class="logo-texto"><span class="logo-nombre">Treboada</span><span class="logo-sub">Escola de surf · Malpica</span></span>
+  </a>
+  <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu">
+    <span class="menu-boton-texto">Menú</span><span class="menu-boton-lineas" aria-hidden="true"><i></i><i></i></span>
+  </button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ol>
+      <li><a href="#viaje"><span class="mono">01</span> La ola</a></li>
+      <li><a href="#niveles"><span class="mono">02</span> Niveles</a></li>
+      <li><a href="#parte"><span class="mono">03</span> Parte</a></li>
+      <li><a href="#material"><span class="mono">04</span> Material</a></li>
+      <li><a href="#seguridad"><span class="mono">05</span> Seguridad</a></li>
+      <li><a href="#campamento"><span class="mono">06</span> Campamento</a></li>
+      <li><a href="#contacto" class="menu-reserva"><span class="mono">07</span> Reserva</a></li>
+    </ol>
+  </nav>
+  <div class="progreso" aria-hidden="true"><span id="progreso-ola"></span></div>
+</header>
+
+<main id="contenido">
+
+<!-- 0 · PORTADA: el mar de fondo en WebGL. El cursor es un bajo de arena. -->
+<section class="portada" id="portada" aria-labelledby="portada-titulo">
+  <canvas class="portada-mar" id="mar" aria-hidden="true"></canvas>
+  <svg class="portada-respaldo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#8CE0CC" stroke-opacity=".35" stroke-width="1.4">
+      <path d="M0 250 C360 236 760 238 1440 252"/><path d="M0 300 C360 284 760 290 1440 304"/>
+      <path d="M0 362 C380 346 820 360 1440 368"/><path d="M0 440 C400 420 860 450 1440 450"/>
+      <path d="M0 540 C420 516 900 566 1440 552"/><path d="M0 670 C440 640 940 712 1440 684"/>
+      <path d="M0 840 C460 800 980 900 1440 860"/>
+    </g>
+  </svg>
+  <div class="portada-marco">
+    <p class="portada-sup mono"><span>Escola de surf</span><span>Malpica de Bergantiños</span><span>Costa da Morte</span></p>
+    <h1 class="portada-titulo" id="portada-titulo" data-ola>
+      <span class="linea">Lee el mar</span>
+      <span class="linea linea-2"><em>antes</em> de</span>
+      <span class="linea">entrar.</span>
+    </h1>
+    <div class="portada-pie">
+      <p class="portada-entradilla">Aquí el agua está a 13&nbsp;°C en marzo y la ola llega de una borrasca a dos mil kilómetros. Te enseñamos a leerla antes de remarla: cursos por niveles, clases sueltas y material para el Atlántico de verdad.</p>
+      <div class="portada-acciones">
+        <a class="boton boton-lleno iman" href="#contacto">Reserva tu primera clase</a>
+        <a class="boton boton-linea iman" href="#niveles">Ver los niveles</a>
+      </div>
+    </div>
+    <aside class="lectura mono" aria-label="Lectura de la mar de muestra">
+      <p class="lectura-titulo"><span class="sello-muestra">Muestra</span> Mar de fondo hoy</p>
+      <dl>
+        <div><dt>Período</dt><dd><span data-lectura="periodo">13</span> s</dd></div>
+        <div><dt>Dirección</dt><dd>NO <span data-lectura="dir">300</span>°</dd></div>
+        <div><dt>Altura</dt><dd><span data-lectura="altura">1,4</span> m</dd></div>
+        <div><dt>Agua</dt><dd><span data-lectura="agua">15</span> °C</dd></div>
+      </dl>
+    </aside>
+    <p class="portada-pista mono" aria-hidden="true"><span class="pista-punto"></span><span class="pista-raton">Mueve el cursor: eres un bajo de arena. Mira cómo se doblan las líneas.</span><span class="pista-tactil">Arrastra el dedo: eres un bajo de arena.</span></p>
+  </div>
+</section>
+
+<!-- Marquesina: el parte corre, y corre más si bajas rápido. -->
+<div class="cinta" aria-label="Datos del mar de muestra" role="group">
+  <div class="cinta-pista" id="cinta">
+    <p class="cinta-grupo mono">
+      <span>Período 13 s</span><i aria-hidden="true">≈</i><span>Mar de fondo del NO 300°</span><i aria-hidden="true">≈</i><span>1,4 m en serie</span><i aria-hidden="true">≈</i><span>Viento terral 8 km/h</span><i aria-hidden="true">≈</i><span>Agua 15 °C · neopreno 4/3</span><i aria-hidden="true">≈</i><span>Bandera verde</span><i aria-hidden="true">≈</i><span>Datos de muestra</span><i aria-hidden="true">≈</i>
+    </p>
+  </div>
+</div>
+
+<!-- 1 · EL VIAJE DE UNA OLA: anclada, con scrub. La física se calcula. -->
+<section class="viaje" id="viaje" aria-labelledby="viaje-titulo">
+  <div class="viaje-pin">
+    <header class="viaje-cab">
+      <p class="etiqueta mono">01 · El oficio</p>
+      <h2 class="titular" id="viaje-titulo" data-reveal>El viaje de una ola</h2>
+      <p class="viaje-intro">Antes de ponerte de pie hay que entender de dónde viene lo que te empuja. Baja despacio: son cinco pasos y tres días de viaje.</p>
+    </header>
+
+    <figure class="viaje-escena">
+      <svg id="corte" viewBox="0 0 1600 620" role="img" aria-labelledby="corte-titulo corte-desc">
+        <title id="corte-titulo">Corte del océano, de la borrasca a la playa</title>
+        <desc id="corte-desc">Una ola nace en una borrasca, viaja ordenada por mar abierto, se frena y crece al tocar la plataforma, rompe sobre el banco de arena y la coge una surfista.</desc>
+        <defs>
+          <linearGradient id="g-agua" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#16404A"/><stop offset="1" stop-color="#07141A"/>
+          </linearGradient>
+          <linearGradient id="g-fondo" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2A4652"/><stop offset="1" stop-color="#0C1D24"/>
+          </linearGradient>
+        </defs>
+        <!-- borrasca: isobaras en espiral -->
+        <g class="corte-borrasca" id="borrasca" transform="translate(170 150)">
+          <path d="M0 0 C 30 -10 40 30 10 40 C -30 52 -60 0 -30 -40 C 10 -90 90 -50 80 20 C 70 90 -40 110 -90 40" fill="none" stroke="#8CE0CC" stroke-width="2" stroke-linecap="round"/>
+          <path d="M0 0 C 30 -10 40 30 10 40 C -30 52 -60 0 -30 -40 C 10 -90 90 -50 80 20 C 70 90 -40 110 -90 40" fill="none" stroke="#E6F0EF" stroke-opacity=".25" stroke-width="10" stroke-linecap="round" transform="scale(1.6)"/>
+          <text x="-60" y="-110" class="corte-rotulo">B · 968 hPa</text>
+        </g>
+        <!-- agua -->
+        <path id="corte-agua" fill="url(#g-agua)" d="M0 300 L1600 300 L1600 620 L0 620 Z"/>
+        <!-- fondo marino: abisal, talud, plataforma, banco, playa -->
+        <path id="corte-lecho" fill="url(#g-fondo)" d="M0 620 L0 600 C 300 600 520 598 700 592 C 800 520 860 470 960 440 C 1120 410 1210 400 1260 392 C 1300 370 1330 352 1360 356 C 1400 362 1430 340 1470 318 L1600 286 L1600 620 Z"/>
+        <path fill="none" stroke="#3D5965" stroke-width="1.5" d="M0 600 C 300 600 520 598 700 592 C 800 520 860 470 960 440 C 1120 410 1210 400 1260 392 C 1300 370 1330 352 1360 356 C 1400 362 1430 340 1470 318 L1600 286"/>
+        <!-- superficie del mar, calculada por main.js -->
+        <path id="corte-ola" fill="none" stroke="#E6F0EF" stroke-width="3" stroke-linejoin="round" d="M0 300 L1100 300 C1180 300 1220 230 1260 222 C1300 220 1310 260 1320 300 L1600 300"/>
+        <g id="corte-espuma" fill="#E6F0EF"></g>
+        <!-- surfista (ilustración propia): dos posturas -->
+        <g id="surfista" class="surfista" opacity="0">
+          <g class="surfista-tumbada">
+            <rect x="-34" y="-5" width="68" height="7" rx="3.5" fill="#8CE0CC"/>
+            <path d="M-24 -6 C -10 -12 12 -12 22 -8" stroke="#0C1D24" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <circle cx="26" cy="-12" r="5.5" fill="#0C1D24"/>
+          </g>
+          <g class="surfista-pie">
+            <rect x="-34" y="-5" width="68" height="7" rx="3.5" fill="#8CE0CC"/>
+            <path d="M-14 -6 L -6 -26 L 4 -40 M 14 -6 L 8 -24 L 4 -40" stroke="#0C1D24" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M4 -40 L 18 -52" stroke="#0C1D24" stroke-width="7" stroke-linecap="round"/>
+            <path d="M10 -46 L -12 -40 M 12 -48 L 32 -42" stroke="#0C1D24" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="22" cy="-60" r="6" fill="#0C1D24"/>
+          </g>
+        </g>
+        <!-- rótulos de zona -->
+        <g class="corte-zonas mono">
+          <text x="40" y="585">Llanura abisal · 4.000 m</text>
+          <text x="760" y="510">Talud</text>
+          <text x="1010" y="470">Plataforma</text>
+          <text x="1255" y="430">Banco</text>
+          <text x="1470" y="345">Playa</text>
+        </g>
+        <line id="corte-marca" x1="0" x2="0" y1="300" y2="600" stroke="#8CE0CC" stroke-dasharray="3 5" stroke-width="1.4"/>
+      </svg>
+      <figcaption class="viaje-datos mono" aria-live="off">
+        <dl>
+          <div><dt>Profundidad bajo la cresta</dt><dd id="d-prof">4.000 m</dd></div>
+          <div><dt>Altura de la ola</dt><dd id="d-altura">1,2 m</dd></div>
+          <div><dt>Velocidad</dt><dd id="d-vel">73 km/h</dd></div>
+          <div><dt>Período (no cambia)</dt><dd>13 s</dd></div>
+        </dl>
+      </figcaption>
+    </figure>
+
+    <ol class="viaje-pasos" id="viaje-pasos">
+      <li class="paso" data-paso="0">
+        <button type="button" class="paso-boton"><span class="paso-num mono">1/5</span><span class="paso-titulo">Tres días antes, a dos mil kilómetros</span></button>
+        <p>Una borrasca al oeste de Irlanda sopla durante horas sobre cientos de kilómetros de mar. Ahí nace todo, revuelto y sin orden.</p>
+      </li>
+      <li class="paso" data-paso="1">
+        <button type="button" class="paso-boton"><span class="paso-num mono">2/5</span><span class="paso-titulo">El mar de fondo se ordena</span></button>
+        <p>Las olas largas viajan más rápido y se adelantan. Lo que llega a Galicia ya no es tormenta: son líneas limpias, en series, separadas por su período.</p>
+      </li>
+      <li class="paso" data-paso="2">
+        <button type="button" class="paso-boton"><span class="paso-num mono">3/5</span><span class="paso-titulo">Toca la plataforma y frena</span></button>
+        <p>Cuando la profundidad baja de media longitud de onda, el fondo la frena. Se acorta, se levanta y la energía de tres días se aprieta en poco espacio.</p>
+      </li>
+      <li class="paso" data-paso="3">
+        <button type="button" class="paso-boton"><span class="paso-num mono">4/5</span><span class="paso-titulo">Rompe en el banco de arena</span></button>
+        <p>Cuando la ola mide unas tres cuartas partes de la profundidad, la cresta va más deprisa que la base y se cae hacia delante. Ese es el pico.</p>
+      </li>
+      <li class="paso" data-paso="4">
+        <button type="button" class="paso-boton"><span class="paso-num mono">5/5</span><span class="paso-titulo">Y ahí estás tú</span></button>
+        <p>Remas antes de que llegue, sientes el empuje, manos al pecho y de pie. Lo que te lleva a la orilla viene de Irlanda. Esto se aprende en el nivel 1.</p>
+      </li>
+    </ol>
+    <div class="viaje-barra" aria-hidden="true"><span id="viaje-barra"></span></div>
+  </div>
+</section>
+
+<!-- 2 · NIVELES: pila sticky. Mismo alto para todas, medido por JS. -->
+<section class="niveles" id="niveles" aria-labelledby="niveles-titulo">
+  <svg class="borde-ola" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C360 40 1080 40 1440 40 L1440 80 L0 80 Z"/></svg>
+  <header class="niveles-cab">
+    <p class="etiqueta mono">02 · Cursos por niveles</p>
+    <h2 class="titular" id="niveles-titulo" data-reveal>De la espuma a la serie</h2>
+    <p class="niveles-intro">Cuatro niveles y una regla: no pasas al siguiente por haber pagado el anterior, sino cuando haces sola lo que en este hacías con ayuda. La talla de la ola es la de cada nivel, dibujada al lado de una persona de 1,70&nbsp;m.</p>
+  </header>
+
+  <ol class="pila" id="pila">
+    <li class="pila-item" data-horas="10" data-precio="120" data-altura="0,5">
+      <article class="nivel">
+        <div class="nivel-cab">
+          <p class="nivel-num mono">Nivel 0</p>
+          <h3 class="nivel-nombre">Espuma</h3>
+        </div>
+        <div class="nivel-cuerpo">
+          <p>Para quien no ha cogido nunca una tabla. Se trabaja en la orilla, en espuma que ya ha roto y a la altura de la cintura. Se aprende a tumbarse, a remar, a caerse bien y a ponerse de pie.</p>
+          <ul class="nivel-lista">
+            <li>Corrientes y banderas antes de mojarse</li>
+            <li>Remada, giro y salida de la espuma</li>
+            <li>El <i>pop-up</i>: de tumbada a de pie en un gesto</li>
+          </ul>
+        </div>
+        <figure class="nivel-figura">
+          <svg class="escala" viewBox="0 0 200 160" aria-hidden="true">
+            <path class="escala-ola" d="M0 150 L0 132 C 40 132 70 128 100 128 C 130 128 160 134 200 136 L200 150 Z"/>
+            <g class="escala-persona"><circle cx="160" cy="62" r="7"/><path d="M160 70 L160 112 M160 112 L152 150 M160 112 L168 150 M160 80 L148 100 M160 80 L172 100"/></g>
+          </svg>
+          <figcaption class="nivel-dato"><span class="nivel-dato-n">0,5</span><span class="nivel-dato-u">m de ola</span></figcaption>
+        </figure>
+        <dl class="nivel-cifras mono">
+          <div><dt>Sesiones</dt><dd>5 × 2 h</dd></div>
+          <div><dt>En el agua</dt><dd>10 h</dd></div>
+          <div><dt>Ratio</dt><dd>1:6</dd></div>
+          <div><dt>Precio</dt><dd>120 €</dd></div>
+        </dl>
+      </article>
+    </li>
+    <li class="pila-item" data-horas="16" data-precio="180" data-altura="1">
+      <article class="nivel">
+        <div class="nivel-cab">
+          <p class="nivel-num mono">Nivel 1</p>
+          <h3 class="nivel-nombre">Pared verde</h3>
+        </div>
+        <div class="nivel-cuerpo">
+          <p>Ya te pones de pie en la espuma. Ahora toca pasar la rompiente y coger la ola antes de que rompa, cuando todavía es verde. Aquí se aprende a elegir cuál, y no solo a remarla.</p>
+          <ul class="nivel-lista">
+            <li>Pasar la rompiente: <i>cuack</i> y remada larga</li>
+            <li>Posición en la tabla y ángulo de salida</li>
+            <li>Prioridad: quién tiene la ola y por qué</li>
+          </ul>
+        </div>
+        <figure class="nivel-figura">
+          <svg class="escala" viewBox="0 0 200 160" aria-hidden="true">
+            <path class="escala-ola" d="M0 150 L0 140 C 40 140 60 120 82 112 C 98 106 112 108 120 124 C 132 140 170 140 200 140 L200 150 Z"/>
+            <g class="escala-persona"><circle cx="160" cy="62" r="7"/><path d="M160 70 L160 112 M160 112 L152 150 M160 112 L168 150 M160 80 L148 100 M160 80 L172 100"/></g>
+          </svg>
+          <figcaption class="nivel-dato"><span class="nivel-dato-n">1</span><span class="nivel-dato-u">m de ola</span></figcaption>
+        </figure>
+        <dl class="nivel-cifras mono">
+          <div><dt>Sesiones</dt><dd>8 × 2 h</dd></div>
+          <div><dt>En el agua</dt><dd>16 h</dd></div>
+          <div><dt>Ratio</dt><dd>1:5</dd></div>
+          <div><dt>Precio</dt><dd>180 €</dd></div>
+        </dl>
+      </article>
+    </li>
+    <li class="pila-item" data-horas="16" data-precio="210" data-altura="1,5">
+      <article class="nivel">
+        <div class="nivel-cab">
+          <p class="nivel-num mono">Nivel 2</p>
+          <h3 class="nivel-nombre">Pico</h3>
+        </div>
+        <div class="nivel-cuerpo">
+          <p>Coges olas verdes por tu cuenta. Este nivel es para dejar de bajar recto: maniobras básicas, leer dónde va a abrir la ola y colocarte en el pico sin estorbar a nadie. Con vídeo de cada sesión.</p>
+          <ul class="nivel-lista">
+            <li>Giro de fondo y arriba-abajo por la pared</li>
+            <li>Lectura del pico con la marea que cambia</li>
+            <li>Análisis en vídeo después de cada salida</li>
+          </ul>
+        </div>
+        <figure class="nivel-figura">
+          <svg class="escala" viewBox="0 0 200 160" aria-hidden="true">
+            <path class="escala-ola" d="M0 150 L0 142 C 30 142 50 110 70 92 C 86 78 104 76 116 90 C 106 92 104 102 112 112 C 126 132 160 142 200 142 L200 150 Z"/>
+            <g class="escala-persona"><circle cx="160" cy="62" r="7"/><path d="M160 70 L160 112 M160 112 L152 150 M160 112 L168 150 M160 80 L148 100 M160 80 L172 100"/></g>
+          </svg>
+          <figcaption class="nivel-dato"><span class="nivel-dato-n">1,5</span><span class="nivel-dato-u">m de ola</span></figcaption>
+        </figure>
+        <dl class="nivel-cifras mono">
+          <div><dt>Sesiones</dt><dd>8 × 2 h</dd></div>
+          <div><dt>En el agua</dt><dd>16 h</dd></div>
+          <div><dt>Ratio</dt><dd>1:4</dd></div>
+          <div><dt>Precio</dt><dd>210 €</dd></div>
+        </dl>
+      </article>
+    </li>
+    <li class="pila-item" data-horas="8" data-precio="95" data-altura="2">
+      <article class="nivel">
+        <div class="nivel-cab">
+          <p class="nivel-num mono">Nivel 3</p>
+          <h3 class="nivel-nombre">Serie</h3>
+        </div>
+        <div class="nivel-cuerpo">
+          <p>Salidas guiadas, no clases. Cuatro al mes a los picos de la costa que no salen en las guías, eligiendo cada día el que mejor recibe el mar de fondo. Furgoneta, material y un instructor que conoce cada banco.</p>
+          <ul class="nivel-lista">
+            <li>Cuatro salidas al mes, según el parte</li>
+            <li>Lectura de cartas de presión y de mareas</li>
+            <li>Seguridad en picos sin socorrista</li>
+          </ul>
+        </div>
+        <figure class="nivel-figura">
+          <svg class="escala" viewBox="0 0 200 160" aria-hidden="true">
+            <path class="escala-ola" d="M0 150 L0 144 C 24 144 40 96 58 66 C 72 44 96 40 112 58 C 98 60 94 76 100 92 C 112 126 150 144 200 144 L200 150 Z"/>
+            <g class="escala-persona"><circle cx="160" cy="62" r="7"/><path d="M160 70 L160 112 M160 112 L152 150 M160 112 L168 150 M160 80 L148 100 M160 80 L172 100"/></g>
+          </svg>
+          <figcaption class="nivel-dato"><span class="nivel-dato-n">2</span><span class="nivel-dato-u">m de ola</span></figcaption>
+        </figure>
+        <dl class="nivel-cifras mono">
+          <div><dt>Salidas</dt><dd>4 al mes</dd></div>
+          <div><dt>En el agua</dt><dd>8 h</dd></div>
+          <div><dt>Ratio</dt><dd>1:4</dd></div>
+          <div><dt>Precio</dt><dd>95 €/mes</dd></div>
+        </dl>
+      </article>
+    </li>
+  </ol>
+
+  <!-- Solo en la versión sobria: el dato que la pila no deja comparar. -->
+  <figure class="comparativa solo-sobria" aria-labelledby="comparativa-titulo">
+    <figcaption>
+      <h3 id="comparativa-titulo">Lo que cuesta cada hora en el agua</h3>
+      <p>Las cuatro, medidas con la misma vara. El nivel 0 es el más barato en total y el más caro por hora: la ratio es más amplia y hay más material en juego.</p>
+    </figcaption>
+    <ol class="comparativa-barras" id="comparativa"></ol>
+  </figure>
+
+  <aside class="sueltas">
+    <h3 class="sueltas-titulo">¿Solo un día?</h3>
+    <dl class="sueltas-lista">
+      <div><dt>Bautismo · 2 h con material</dt><dd class="mono">35 €</dd></div>
+      <div><dt>Clase suelta de cualquier nivel · 2 h</dt><dd class="mono">32 €</dd></div>
+      <div><dt>Privada, una persona · 1 h 30</dt><dd class="mono">60 €</dd></div>
+      <div><dt>Privada, dos personas · 1 h 30</dt><dd class="mono">90 €</dd></div>
+    </dl>
+  </aside>
+</section>
+
+<!-- 3 · PARTE DE HOY: MUESTRA generada, marcada como ficticia. -->
+<section class="parte" id="parte" aria-labelledby="parte-titulo">
+  <header class="parte-cab">
+    <p class="etiqueta mono">03 · Parte de hoy <span class="sello-muestra">Muestra · ficticio</span></p>
+    <h2 class="titular" id="parte-titulo" data-reveal>¿Hay clase hoy?</h2>
+    <p class="parte-fecha mono" id="parte-fecha">Hoy</p>
+  </header>
+
+  <div class="parte-rejilla">
+    <figure class="marea">
+      <figcaption class="parte-sub">Marea en el puerto <span class="mono">(m sobre el cero)</span></figcaption>
+      <svg id="marea" viewBox="0 0 720 260" role="img" aria-labelledby="marea-desc">
+        <desc id="marea-desc">Curva de marea del día generada para la demostración.</desc>
+        <g class="marea-rejilla" id="marea-rejilla"></g>
+        <path id="marea-area" class="marea-area" d=""/>
+        <path id="marea-curva" class="marea-curva" d=""/>
+        <g id="marea-ahora" class="marea-ahora"><line y1="10" y2="230"/><circle r="6"/><text y="24" dx="8" class="mono">ahora</text></g>
+      </svg>
+      <ul class="marea-extremos mono" id="marea-extremos"></ul>
+    </figure>
+
+    <div class="parte-horas">
+      <p class="parte-sub">Ola y viento, cada tres horas</p>
+      <ol class="horas" id="horas"></ol>
+    </div>
+
+    <div class="veredicto" id="veredicto">
+      <p class="veredicto-bandera"><span class="bandera" id="bandera" aria-hidden="true"></span><span id="bandera-texto">Bandera verde</span></p>
+      <p class="veredicto-texto" id="veredicto-texto">Hoy hay clase.</p>
+      <p class="veredicto-clase mono" id="veredicto-clase"></p>
+    </div>
+  </div>
+
+  <p class="parte-aviso"><strong>Esto no es un parte real.</strong> Los datos de esta sección se generan a partir de la fecha para que la demostración cambie cada día; la marea sigue la forma de dos armónicos reales pero no la de Malpica. Antes de entrar al agua, consulta un parte oficial (Puertos del Estado, MeteoGalicia) o pregunta en la escuela.</p>
+</section>
+
+<!-- 4 · MATERIAL: galería anclada horizontal de tablas + alquiler + agua. -->
+<section class="material" id="material" aria-labelledby="material-titulo">
+  <svg class="borde-ola" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C360 40 1080 40 1440 40 L1440 80 L0 80 Z"/></svg>
+  <div class="material-pin" id="material-pin">
+    <header class="material-cab">
+      <p class="etiqueta mono">04 · Alquiler de tabla y neopreno</p>
+      <h2 class="titular" id="material-titulo" data-reveal>Cinco tablas, a escala</h2>
+      <p>Dibujadas con sus medidas reales, una al lado de la otra. Cuanta más tabla, más flota y más perdona: por eso se empieza en la larga y se baja con los meses.</p>
+    </header>
+    <div class="tablas-ventana" id="tablas-ventana" role="group" aria-label="Las cinco tablas de alquiler">
+      <ol class="tablas" id="tablas">
+        <li class="tabla">
+          <svg viewBox="0 0 120 440" aria-hidden="true"><path class="tabla-forma" d="M60,60 C73.1,60 98.3,111.2 98.3,213.6 C98.3,309.6 87,360.8 85,379 L35,379 C33,360.8 21.7,309.6 21.7,213.6 C21.7,111.2 46.9,60 60,60 Z"/><path class="tabla-larguero" d="M60 64 L60 376"/></svg>
+          <div class="tabla-ficha">
+            <h3>Espuma 8′0″</h3>
+            <p class="mono">8′0″ × 23″ · blanda</p>
+            <p>La del nivel 0. Corcho por fuera, flota como una balsa y no hace daño si te da.</p>
+            <p class="tabla-precio mono">15 € / 2 h · 25 € / día</p>
+          </div>
+        </li>
+        <li class="tabla">
+          <svg viewBox="0 0 120 440" aria-hidden="true"><path class="tabla-forma" d="M60,76.7 C70.1,76.7 96.7,122.5 96.7,214.3 C96.7,300.3 85.3,346.1 83.3,357.3 Q60,369.3 36.7,357.3 C34.7,346.1 23.3,300.3 23.3,214.3 C23.3,122.5 49.9,76.7 60,76.7 Z"/><path class="tabla-larguero" d="M60 80 L60 362"/></svg>
+          <div class="tabla-ficha">
+            <h3>Minimalibú 7′2″</h3>
+            <p class="mono">7′2″ × 22″ · epoxi</p>
+            <p>El paso a tabla dura. Rema fácil y entra pronto en la ola: la del nivel 1.</p>
+            <p class="tabla-precio mono">20 € / 2 h · 30 € / día</p>
+          </div>
+        </li>
+        <li class="tabla">
+          <svg viewBox="0 0 120 440" aria-hidden="true"><path class="tabla-forma" d="M60,86.7 C67.3,86.7 95,129.3 95,214.7 C95,294.7 84.5,337.3 82.5,352.3 Q82.5,354.3 71.3,353.3 L48.8,353.3 Q37.5,354.3 37.5,352.3 C35.5,337.3 25,294.7 25,214.7 C25,129.3 52.7,86.7 60,86.7 Z"/><path class="tabla-larguero" d="M60 90 L60 350"/></svg>
+          <div class="tabla-ficha">
+            <h3>Evolutiva 6′8″</h3>
+            <p class="mono">6′8″ × 21″ · cola squash</p>
+            <p>Para empezar a girar. Pide colocarse bien, y lo devuelve en la pared.</p>
+            <p class="tabla-precio mono">20 € / 2 h · 30 € / día</p>
+          </div>
+        </li>
+        <li class="tabla">
+          <svg viewBox="0 0 120 440" aria-hidden="true"><path class="tabla-forma" d="M60,103.3 C66.6,103.3 95.4,140.7 95.4,215.3 C95.4,285.3 87.8,322.7 85.8,335.7 L65,314.7 L55,314.7 L34.2,335.7 C32.2,322.7 24.6,285.3 24.6,215.3 C24.6,140.7 53.4,103.3 60,103.3 Z"/><path class="tabla-larguero" d="M60 107 L60 312"/></svg>
+          <div class="tabla-ficha">
+            <h3>Pez 5′10″</h3>
+            <p class="mono">5′10″ × 21¼″ · cola de pez</p>
+            <p>Corta y ancha, para olas blandas de verano. Solo con nivel 2 aprobado.</p>
+            <p class="tabla-precio mono">25 € / 2 h · 35 € / día</p>
+          </div>
+        </li>
+        <li class="tabla">
+          <svg viewBox="0 0 120 440" aria-hidden="true"><path class="tabla-forma" d="M60,38.3 C72.5,38.3 97.9,96.5 97.9,212.7 C97.9,321.7 86.2,379.9 84.2,400.7 L35.8,400.7 C33.8,379.9 22.1,321.7 22.1,212.7 C22.1,96.5 47.5,38.3 60,38.3 Z"/><path class="tabla-larguero" d="M60 42 L60 398"/></svg>
+          <div class="tabla-ficha">
+            <h3>Longboard 9′1″</h3>
+            <p class="mono">9′1″ × 22¾″ · quilla única</p>
+            <p>Para los días pequeños de agosto, cuando la serie no pasa de la rodilla.</p>
+            <p class="tabla-precio mono">25 € / 2 h · 35 € / día</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="material-bajo">
+    <form class="talon" id="talon" aria-labelledby="talon-titulo">
+      <h3 id="talon-titulo">Calcula tu alquiler</h3>
+      <fieldset>
+        <legend>Tabla</legend>
+        <label><input type="radio" name="tabla" value="15,25" checked> Espuma</label>
+        <label><input type="radio" name="tabla" value="20,30"> Minimalibú o evolutiva</label>
+        <label><input type="radio" name="tabla" value="25,35"> Pez o longboard</label>
+        <label><input type="radio" name="tabla" value="0,0"> Sin tabla</label>
+      </fieldset>
+      <fieldset>
+        <legend>Neopreno</legend>
+        <label><input type="radio" name="neo" value="10,15" checked> 4/3 mm</label>
+        <label><input type="radio" name="neo" value="12,18"> 5/4 con capucha y escarpines</label>
+        <label><input type="radio" name="neo" value="0,0"> Traigo el mío</label>
+      </fieldset>
+      <fieldset>
+        <legend>Tiempo</legend>
+        <label><input type="radio" name="tiempo" value="0" checked> 2 horas</label>
+        <label><input type="radio" name="tiempo" value="1"> Día entero</label>
+      </fieldset>
+      <output class="talon-total" id="talon-total" for="talon" aria-live="polite"><span class="mono">Total</span> <strong>25 €</strong></output>
+      <p class="talon-nota" id="talon-nota">Tabla y neopreno juntos llevan un 15 % menos. Se paga al recoger, con DNI.</p>
+    </form>
+
+    <figure class="agua">
+      <figcaption>
+        <h3>El agua de aquí, mes a mes</h3>
+        <p>Temperaturas aproximadas de superficie en la costa de Malpica. El grosor del neopreno sale de ahí.</p>
+      </figcaption>
+      <ol class="agua-meses mono" id="agua-meses">
+        <li data-t="13.5"><span>Ene</span><b>13,5°</b><i>5/4</i></li>
+        <li data-t="13"><span>Feb</span><b>13°</b><i>5/4</i></li>
+        <li data-t="13"><span>Mar</span><b>13°</b><i>5/4</i></li>
+        <li data-t="13.5"><span>Abr</span><b>13,5°</b><i>5/4</i></li>
+        <li data-t="14.5"><span>May</span><b>14,5°</b><i>4/3</i></li>
+        <li data-t="16"><span>Jun</span><b>16°</b><i>4/3</i></li>
+        <li data-t="17.5"><span>Jul</span><b>17,5°</b><i>4/3</i></li>
+        <li data-t="18.5"><span>Ago</span><b>18,5°</b><i>3/2</i></li>
+        <li data-t="18"><span>Sep</span><b>18°</b><i>4/3</i></li>
+        <li data-t="17"><span>Oct</span><b>17°</b><i>4/3</i></li>
+        <li data-t="15.5"><span>Nov</span><b>15,5°</b><i>4/3</i></li>
+        <li data-t="14.5"><span>Dic</span><b>14,5°</b><i>5/4</i></li>
+      </ol>
+    </figure>
+  </div>
+</section>
+
+<!-- 5 · SEGURIDAD: la corriente de retorno, animada. -->
+<section class="seguridad" id="seguridad" aria-labelledby="seguridad-titulo">
+  <div class="seguridad-texto">
+    <p class="etiqueta mono">05 · Seguridad en el agua</p>
+    <h2 class="titular" id="seguridad-titulo" data-reveal>Si te lleva, no luches</h2>
+    <p class="seguridad-entradilla">La corriente de retorno es el agua que han metido las olas volviendo al mar por el canal más hondo. No te hunde: te aleja. Quien se cansa nadando contra ella es quien tiene el problema.</p>
+    <ol class="reglas">
+      <li><b class="mono">1</b><span>No nades contra la corriente. Nada en paralelo a la orilla hasta salir del canal.</span></li>
+      <li><b class="mono">2</b><span>No sueltes nunca la tabla: flota más que tú y es lo que mejor se ve desde la arena.</span></li>
+      <li><b class="mono">3</b><span>Brazo en alto y quieto: es la señal de «necesito ayuda». Moverlo es saludar.</span></li>
+      <li><b class="mono">4</b><span>Bandera roja, no hay clase. Amarilla, solo niveles 0 y 1 en la ensenada.</span></li>
+      <li><b class="mono">5</b><span>Ratio máxima 1:6, socorrista en la orilla en cada clase y seguro de accidentes incluido.</span></li>
+    </ol>
+  </div>
+  <figure class="retorno">
+    <svg viewBox="0 0 480 520" role="img" aria-labelledby="retorno-desc">
+      <desc id="retorno-desc">Vista desde arriba de una playa: las olas rompen a los lados y el agua vuelve al mar por un canal central. Un punto que representa a una bañista se aleja por el canal, nada en paralelo a la orilla y vuelve por donde rompen las olas.</desc>
+      <rect width="480" height="520" fill="#0C1D24"/>
+      <path d="M0 430 C 120 420 200 448 240 446 C 290 444 360 418 480 428 L480 520 L0 520 Z" fill="#2A4652"/>
+      <g class="retorno-olas" fill="none" stroke="#E6F0EF" stroke-width="2" stroke-linecap="round">
+        <path d="M10 380 C 60 372 120 374 180 384"/><path d="M300 384 C 360 374 420 372 470 380"/>
+        <path d="M10 330 C 60 322 120 324 175 334"/><path d="M305 334 C 360 324 420 322 470 330"/>
+        <path d="M10 280 C 60 272 120 274 170 284"/><path d="M310 284 C 360 274 420 272 470 280"/>
+      </g>
+      <path class="retorno-canal" d="M240 430 C 236 340 244 250 240 120" fill="none" stroke="#8CE0CC" stroke-width="34" stroke-opacity=".12" stroke-linecap="round"/>
+      <path class="retorno-flujo" d="M240 430 C 236 340 244 250 240 120" fill="none" stroke="#8CE0CC" stroke-width="2.5" stroke-dasharray="6 16"/>
+      <path class="retorno-flujo" d="M222 420 C 218 330 228 250 220 150" fill="none" stroke="#8CE0CC" stroke-width="1.5" stroke-dasharray="4 18" stroke-opacity=".7"/>
+      <path class="retorno-flujo" d="M258 420 C 262 330 252 250 260 150" fill="none" stroke="#8CE0CC" stroke-width="1.5" stroke-dasharray="4 18" stroke-opacity=".7"/>
+      <path id="retorno-ruta" d="M240 410 C 240 340 240 260 240 200 C 280 198 330 200 370 204 C 380 260 384 330 380 410" fill="none" stroke="#E6F0EF" stroke-width="1.5" stroke-dasharray="2 6" stroke-opacity=".7"/>
+      <circle class="retorno-banista" r="7" fill="#E6F0EF" cx="240" cy="410"/>
+      <g class="mono retorno-rotulos" fill="#98B0B8" font-size="13">
+        <text x="252" y="112">canal: el agua vuelve</text>
+        <text x="300" y="190">nada en paralelo</text>
+        <text x="20" y="470">orilla</text>
+      </g>
+    </svg>
+    <figcaption class="mono">Arriba, el mar. Abajo, la orilla. El punto eres tú.</figcaption>
+  </figure>
+</section>
+
+<!-- 6 · CAMPAMENTO: sin imágenes de menores, por decisión. -->
+<section class="campamento" id="campamento" aria-labelledby="campamento-titulo">
+  <svg class="borde-ola" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C360 40 1080 40 1440 40 L1440 80 L0 80 Z"/></svg>
+  <div class="campamento-cab">
+    <p class="etiqueta mono">06 · Campamento de verano</p>
+    <h2 class="titular" id="campamento-titulo" data-reveal>Julio y agosto, de lunes a viernes</h2>
+  </div>
+  <div class="campamento-cuerpo">
+    <figure class="campamento-dibujo">
+      <svg viewBox="0 0 520 300" aria-hidden="true">
+        <!-- el soporte de tablas y la furgoneta de la escuela -->
+        <path d="M0 262 L520 262" stroke="#3D5965" stroke-width="2"/>
+        <g class="soporte" stroke="#98B0B8" stroke-width="4" stroke-linecap="round"><path d="M30 262 L30 120 M170 262 L170 120 M22 150 L178 150 M22 210 L178 210"/></g>
+        <g class="soporte-tablas">
+          <rect x="36" y="80" width="18" height="176" rx="9" fill="#8CE0CC"/>
+          <rect x="62" y="70" width="18" height="186" rx="9" fill="#E6F0EF"/>
+          <rect x="88" y="84" width="18" height="172" rx="9" fill="#8CE0CC"/>
+          <rect x="114" y="74" width="18" height="182" rx="9" fill="#E6F0EF"/>
+          <rect x="140" y="88" width="18" height="168" rx="9" fill="#8CE0CC"/>
+        </g>
+        <g class="furgo">
+          <path d="M240 250 L240 150 C 240 132 252 120 270 120 L440 120 C 470 120 494 150 500 190 L504 250 Z" fill="#12262F" stroke="#E6F0EF" stroke-width="3"/>
+          <path d="M452 132 C 474 138 488 160 492 188 L452 188 Z" fill="#1E3843" stroke="#E6F0EF" stroke-width="2"/>
+          <rect x="262" y="140" width="70" height="44" rx="6" fill="#1E3843"/>
+          <rect x="346" y="140" width="70" height="44" rx="6" fill="#1E3843"/>
+          <path d="M240 206 L504 206" stroke="#8CE0CC" stroke-width="6"/>
+          <rect x="250" y="104" width="230" height="12" rx="6" fill="#8CE0CC"/>
+          <circle cx="292" cy="252" r="22" fill="#040B0F" stroke="#E6F0EF" stroke-width="3"/>
+          <circle cx="452" cy="252" r="22" fill="#040B0F" stroke="#E6F0EF" stroke-width="3"/>
+        </g>
+      </svg>
+      <figcaption class="mono">Sin fotos de participantes: no publicamos imágenes de menores, ni aquí ni en redes.</figcaption>
+    </figure>
+    <div class="campamento-texto">
+      <p>Para chicas y chicos de 12 a 17 años que ya saben nadar. Por la mañana, agua; a media mañana, playa y mar sin tabla (mareas, corrientes, pesca de bajura, limpieza de la arena). No es un campamento con alojamiento: cada día se recoge en la escuela.</p>
+      <table class="semanas">
+        <caption class="sr">Semanas del campamento de verano</caption>
+        <thead><tr><th scope="col">Semana</th><th scope="col">Fechas</th><th scope="col">Plazas</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>29 jun – 3 jul</td><td class="mono">12</td></tr>
+          <tr><td>2</td><td>6 – 10 jul</td><td class="mono">12</td></tr>
+          <tr><td>3</td><td>13 – 17 jul</td><td class="mono">12</td></tr>
+          <tr><td>4</td><td>20 – 24 jul</td><td class="mono">12</td></tr>
+          <tr><td>5</td><td>3 – 7 ago</td><td class="mono">12</td></tr>
+          <tr><td>6</td><td>17 – 21 ago</td><td class="mono">12</td></tr>
+        </tbody>
+      </table>
+      <dl class="campamento-datos">
+        <div><dt>Horario</dt><dd class="mono">9:30 – 14:00</dd></div>
+        <div><dt>Ratio</dt><dd class="mono">1:6</dd></div>
+        <div><dt>Semana</dt><dd class="mono"><span data-contador="185">185</span> €</dd></div>
+        <div><dt>Incluye</dt><dd>tabla, neopreno, seguro y fruta a media mañana</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · EQUIPO Y VOCES: ilustración propia, opiniones de muestra. -->
+<section class="equipo" id="equipo" aria-labelledby="equipo-titulo">
+  <header class="equipo-cab">
+    <p class="etiqueta mono">07 · Quién te mete en el agua</p>
+    <h2 class="titular" id="equipo-titulo" data-reveal>Tres personas y una furgoneta</h2>
+  </header>
+  <ul class="personas">
+    <li class="persona">
+      <svg class="retrato" viewBox="0 0 200 220" aria-hidden="true">
+        <rect width="200" height="220" rx="6" fill="#12262F"/>
+        <g class="retrato-lineas" fill="none" stroke="#1E3843" stroke-width="2"><path d="M0 40 C60 34 140 34 200 40"/><path d="M0 70 C60 62 140 64 200 72"/><path d="M0 104 C60 94 140 98 200 106"/></g>
+        <path d="M40 220 C 44 170 70 150 100 150 C 130 150 156 170 160 220 Z" fill="#040B0F"/>
+        <path d="M84 150 L100 176 L116 150" fill="none" stroke="#8CE0CC" stroke-width="4"/>
+        <rect x="88" y="124" width="24" height="30" fill="#C9A88F"/>
+        <ellipse cx="100" cy="102" rx="30" ry="36" fill="#D8B79C"/>
+        <path d="M68 104 C 62 60 96 50 120 60 C 140 68 140 92 132 112 C 130 90 118 78 98 78 C 82 78 74 90 68 104 Z" fill="#2B1C14"/>
+        <path d="M128 92 C 146 104 146 150 132 176 C 140 140 134 118 126 106 Z" fill="#2B1C14"/>
+      </svg>
+      <h3>Antía Vilar Souto</h3>
+      <p class="persona-cargo mono">Directora · niveles 2 y 3</p>
+      <p>Lleva quince inviernos entrando en Malpica con capucha. Es la que decide cada mañana si hay clase, y la que más veces ha dicho que no.</p>
+    </li>
+    <li class="persona">
+      <svg class="retrato" viewBox="0 0 200 220" aria-hidden="true">
+        <rect width="200" height="220" rx="6" fill="#12262F"/>
+        <g class="retrato-lineas" fill="none" stroke="#1E3843" stroke-width="2"><path d="M0 50 C60 44 140 44 200 50"/><path d="M0 84 C60 76 140 78 200 86"/><path d="M0 120 C60 110 140 114 200 122"/></g>
+        <path d="M36 220 C 40 168 68 146 100 146 C 132 146 160 168 164 220 Z" fill="#040B0F"/>
+        <path d="M60 182 L140 182" stroke="#8CE0CC" stroke-width="4"/>
+        <rect x="87" y="122" width="26" height="30" fill="#9C7458"/>
+        <ellipse cx="100" cy="100" rx="31" ry="35" fill="#A97F61"/>
+        <path d="M70 92 C 70 66 86 58 100 58 C 116 58 132 66 130 92 C 122 80 110 76 100 76 C 88 76 78 80 70 92 Z" fill="#1A1410"/>
+        <path d="M76 118 C 84 140 116 140 124 118 C 116 132 84 132 76 118 Z" fill="#1A1410"/>
+      </svg>
+      <h3>Xurxo Pazos Leis</h3>
+      <p class="persona-cargo mono">Instructor · niveles 0 y 1</p>
+      <p>Enseña el <i>pop-up</i> en la arena hasta que sale sin pensar. Repara las tablas en invierno y tiene una teoría sobre cada rasguño.</p>
+    </li>
+    <li class="persona">
+      <svg class="retrato" viewBox="0 0 200 220" aria-hidden="true">
+        <rect width="200" height="220" rx="6" fill="#12262F"/>
+        <g class="retrato-lineas" fill="none" stroke="#1E3843" stroke-width="2"><path d="M0 36 C60 30 140 30 200 36"/><path d="M0 66 C60 58 140 60 200 68"/><path d="M0 100 C60 90 140 94 200 102"/></g>
+        <path d="M38 220 C 42 172 70 150 100 150 C 130 150 158 172 162 220 Z" fill="#B23A2E"/>
+        <path d="M70 196 L130 196" stroke="#E6F0EF" stroke-width="5"/>
+        <rect x="88" y="124" width="24" height="30" fill="#E2BFA6"/>
+        <ellipse cx="100" cy="102" rx="29" ry="35" fill="#EBCBB2"/>
+        <path d="M70 96 C 66 64 92 56 106 58 C 126 60 136 76 130 100 C 124 86 112 82 100 82 C 86 82 76 88 70 96 Z" fill="#B88A4A"/>
+        <path d="M72 100 C 66 108 66 120 72 126 L74 104 Z M128 100 C 134 108 134 120 128 126 L126 104 Z" fill="#B88A4A"/>
+      </svg>
+      <h3>Uxía Canosa Rey</h3>
+      <p class="persona-cargo mono">Socorrista · campamento</p>
+      <p>No da clase: mira. Está en la orilla en todas las sesiones con el tubo de rescate y es la que explica la corriente de retorno el primer día.</p>
+    </li>
+  </ul>
+
+  <div class="voces">
+    <p class="etiqueta mono">Voces <span class="sello-muestra">Opiniones de muestra</span></p>
+    <blockquote class="voz">
+      <p>«Me esperaba que me pusieran de pie el primer día. Me pusieron a mirar el mar veinte minutos. El tercer día entendí por qué.»</p>
+      <footer>— Lorena, nivel 0 en abril</footer>
+    </blockquote>
+    <blockquote class="voz">
+      <p>«Llegué con neopreno de verano en octubre. Me prestaron uno de 5/4 sin preguntar y me explicaron lo del agua sin hacerme sentir tonto.»</p>
+      <footer>— Mateo, clase suelta</footer>
+    </blockquote>
+    <blockquote class="voz">
+      <p>«Las salidas del nivel 3 son lo mejor: un día te llevan al norte y otro al sur según venga el mar. Nunca a donde va todo el mundo.»</p>
+      <footer>— Breogán, nivel 3</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- 8 · PREGUNTAS -->
+<section class="preguntas" id="preguntas" aria-labelledby="preguntas-titulo">
+  <h2 class="titular" id="preguntas-titulo" data-reveal>Lo que se pregunta antes de venir</h2>
+  <div class="preguntas-lista">
+    <details>
+      <summary>¿Tengo que saber nadar?</summary>
+      <p>Sí. Hay que poder nadar cincuenta metros sin parar y sin tabla. Para el nivel 0 no hace falta estilo, solo calma.</p>
+    </details>
+    <details>
+      <summary>¿Qué pasa si el día de la clase no hay olas, o hay demasiadas?</summary>
+      <p>Te avisamos la víspera a las 20:00 por mensaje y la movemos sin coste. Si hay bandera roja, no hay clase y tampoco se paga.</p>
+    </details>
+    <details>
+      <summary>¿No hace frío?</summary>
+      <p>Sí, si vienes con el neopreno equivocado. Con un 5/4, capucha y escarpines, una clase de dos horas en marzo se aguanta bien. El de la escuela va incluido en los cursos.</p>
+    </details>
+    <details>
+      <summary>¿Desde qué edad?</summary>
+      <p>Cursos desde los 16 años, y de 16 a 17 con autorización. El campamento de verano es de 12 a 17. No damos clases a menores de 12.</p>
+    </details>
+    <details>
+      <summary>¿Hay vestuario y duchas?</summary>
+      <p>Sí: vestuario, ducha de agua caliente y taquillas en el local, a dos minutos andando de la arena.</p>
+    </details>
+    <details>
+      <summary>¿Puedo cambiar de nivel a mitad de curso?</summary>
+      <p>Si el instructor ve que el nivel se te queda corto, te pasa al siguiente y solo pagas la diferencia de las sesiones que quedan.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 9 · RESERVA Y CONTACTO -->
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <svg class="borde-ola" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C360 40 1080 40 1440 40 L1440 80 L0 80 Z"/></svg>
+  <div class="contacto-cab">
+    <p class="etiqueta mono">08 · Reserva</p>
+    <h2 class="titular titular-grande" id="contacto-titulo" data-reveal>Ven a mirar el mar</h2>
+  </div>
+  <div class="contacto-rejilla">
+    <form class="reserva" id="reserva" novalidate>
+      <p class="reserva-aviso">Formulario de muestra: no envía nada a ningún sitio.</p>
+      <label>Nombre<input name="nombre" autocomplete="name" required></label>
+      <label>Teléfono o email<input name="contacto" autocomplete="email" required></label>
+      <label>Qué quieres
+        <select name="que">
+          <option>Bautismo (2 h)</option>
+          <option>Nivel 0 · Espuma</option>
+          <option>Nivel 1 · Pared verde</option>
+          <option>Nivel 2 · Pico</option>
+          <option>Nivel 3 · Serie</option>
+          <option>Clase privada</option>
+          <option>Campamento de verano</option>
+          <option>Solo alquiler</option>
+        </select>
+      </label>
+      <label>Cuéntanos algo (opcional)<textarea name="mensaje" rows="3"></textarea></label>
+      <button class="boton boton-lleno iman" type="submit">Pedir plaza</button>
+      <p class="reserva-estado" id="reserva-estado" role="status"></p>
+    </form>
+
+    <div class="contacto-datos">
+      <address>
+        <p class="contacto-direccion">Rúa das Gaivotas Mansas, 4<br>15113 Malpica de Bergantiños<br>A Coruña</p>
+        <p><a href="tel:+34981000000" class="mono">981 00 00 00</a><br><a href="mailto:ola@treboada.example" class="mono">ola@treboada.example</a></p>
+      </address>
+      <table class="horario" id="horario">
+        <caption>Horario del local</caption>
+        <tbody>
+          <tr data-dias="1"><th scope="row">Lunes</th><td class="mono">Cerrado</td></tr>
+          <tr data-dias="2"><th scope="row">Martes</th><td class="mono">16:00 – 20:00</td></tr>
+          <tr data-dias="3"><th scope="row">Miércoles</th><td class="mono">16:00 – 20:00</td></tr>
+          <tr data-dias="4"><th scope="row">Jueves</th><td class="mono">16:00 – 20:00</td></tr>
+          <tr data-dias="5"><th scope="row">Viernes</th><td class="mono">10:00 – 14:00 · 16:00 – 20:00</td></tr>
+          <tr data-dias="6"><th scope="row">Sábado</th><td class="mono">9:00 – 14:00 · 16:00 – 19:00</td></tr>
+          <tr data-dias="0"><th scope="row">Domingo</th><td class="mono">9:00 – 14:00</td></tr>
+        </tbody>
+      </table>
+      <p class="horario-nota">En julio y agosto, todos los días de 9:00 a 20:00. Las clases se fijan cada semana según la marea.</p>
+      <div class="mapa" id="mapa">
+        <button class="mapa-boton" id="mapa-boton" type="button" data-cursor="mapa">
+          <svg viewBox="0 0 400 220" aria-hidden="true"><g fill="none" stroke="#3D5965" stroke-width="1.5"><path d="M0 60 C80 50 160 70 240 54 C300 42 360 50 400 44"/><path d="M0 100 C80 92 160 110 240 96 C300 86 360 92 400 88"/><path d="M0 140 C80 134 160 150 240 140 C300 130 360 136 400 132"/></g><path d="M0 220 L0 176 C 60 170 120 186 180 174 C 240 162 300 182 400 168 L400 220 Z" fill="#12262F"/><circle cx="214" cy="170" r="8" fill="#8CE0CC"/></svg>
+          <span>Ver el mapa</span>
+          <small>Al pulsar se carga Google Maps, que puede guardar cookies propias.</small>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-marca">
+    <svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><use href="#marca-trazo"/></svg>
+    <p class="pie-nombre">Treboada</p>
+    <p class="pie-lema">La ola que coges nació en una tormenta.</p>
+  </div>
+  <nav class="pie-nav" aria-label="Pie">
+    <a href="legal.html">Aviso legal y privacidad</a>
+    <a href="#preguntas">Preguntas</a>
+    <a href="#parte">Parte de muestra</a>
+    <a href="#contacto">Reserva</a>
+  </nav>
+  <p class="sello">Sitio de demostración. Treboada es un negocio ficticio; los datos, fotografías y opiniones son de muestra. El parte de olas y la marea se generan para la demostración: no los uses para decidir si entras al agua.</p>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies de terceros. Guarda en tu navegador que has cerrado este aviso y, solo en modo revisión, la versión y la paleta elegidas en los mandos de demostración. El mapa de Google solo se carga si lo pides. <a href="legal.html#cookies">Más</a></p>
+  <button class="boton boton-lleno" id="cookies-ok" type="button">Entendido</button>
+</div>
+
+<!-- MANDOS DE DEMOSTRACIÓN (maqueta y paleta). Solo con ?revision.
+     NO VIAJAN AL SITIO DE UN CLIENTE: borrar este bloque (ver README). -->
+<div class="mandos" id="mandos" role="group" aria-label="Mandos de demostración" hidden>
+  <p class="mandos-titulo mono">Maqueta</p>
+  <div class="mandos-fila">
+    <button type="button" data-maqueta="mar" aria-pressed="true">Mar de fondo</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <p class="mandos-titulo mono">Paleta</p>
+  <div class="mandos-fila">
+    <button type="button" data-paleta="vidrio" aria-pressed="true"><i style="background:#8CE0CC"></i>Vidrio</button>
+    <button type="button" data-paleta="xeo" aria-pressed="false"><i style="background:#B8D4EC"></i>Xeo</button>
+    <button type="button" data-paleta="liquen" aria-pressed="false"><i style="background:#C7D974"></i>Liquen</button>
+  </div>
+</div>
+<!-- FIN MANDOS DE DEMOSTRACIÓN -->
+
+<div class="cursor" aria-hidden="true"><span class="cursor-aro"><span class="cursor-texto"></span></span><span class="cursor-punto"></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
