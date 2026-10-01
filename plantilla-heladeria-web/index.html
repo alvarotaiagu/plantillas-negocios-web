@@ -1,0 +1,674 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Salseiro es un negocio ficticio; los datos,
+  ilustraciones y opiniones son de muestra. No corresponde a ninguna
+  heladería real. Plantilla «Mantecar» de la biblioteca de negocios ficticios.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salseiro · Xeadaría de obrador en Baiona</title>
+<meta name="description" content="Heladería artesanal con obrador a la vista en Baiona. Sabores de temporada que cambian cada semana, carta con alérgenos y tartas heladas por encargo. Sitio de demostración.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2A1520">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<meta property="og:title" content="Salseiro · Xeadaría de obrador en Baiona">
+<meta property="og:description" content="Helado de hoy, mantecado a la vista. Sitio de demostración de un negocio ficticio.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<script>
+  // Script bloqueante: se resuelve antes de pintar para que no haya salto.
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var q = new URLSearchParams(location.search);              // MANDO
+      if (q.has('revision')) {                                   // MANDO
+        d.classList.add('es-revision');                          // MANDO
+        if (localStorage.getItem('salseiro-maqueta') === 'sobria') d.classList.add('maq-sobria'); // MANDO
+        var p = localStorage.getItem('salseiro-paleta');         // MANDO
+        if (p === 'pistacho' || p === 'arandano') d.classList.add('pal-' + p); // MANDO
+      }                                                          // MANDO
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300..800;1,300..800&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css">
+<link rel="stylesheet" href="css/estilos.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  "name": "Salseiro · Xeadaría de obrador",
+  "description": "Heladería artesanal ficticia (sitio de demostración).",
+  "telephone": "+34 986 00 00 00",
+  "email": "ola@salseiro.example",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rúa do Pairo, 9",
+    "postalCode": "36300",
+    "addressLocality": "Baiona",
+    "addressRegion": "Pontevedra",
+    "addressCountry": "ES"
+  },
+  "servesCuisine": "Helado artesanal",
+  "priceRange": "€"
+}
+</script>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <!-- Logotipo: la bola con su ola de crema y dos gotas de salseiro. Color fijo: no cambia con la paleta. -->
+    <symbol id="logo" viewBox="0 0 64 64">
+      <circle cx="30" cy="35" r="23" fill="#D63368"/>
+      <path d="M7.6 38.5c5.2-6.4 10.6-6.6 15.4-2.6 4.6 3.8 9.9 4 14.7-.6 4.4-4.2 9.2-4.6 14.6-1.4.2 1.1.3 2.3.3 3.5 0 .9 0 1.7-.1 2.6-4.9-3-8.9-2.4-12.6 1.1-5.7 5.4-12.6 5.3-18.1.6-4-3.4-8.2-3-12.9 2.4-.7-1.8-1.1-3.7-1.3-5.6z" fill="#FBF5EE"/>
+      <path d="M12.5 50.5c4.8-4.1 9-3.9 13 .4 3.8 4 8.4 4.3 13 .3" fill="none" stroke="#FBF5EE" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="51" cy="12" r="4.2" fill="#D63368"/>
+      <circle cx="58.5" cy="21" r="2.4" fill="#D63368"/>
+      <circle cx="44.5" cy="5" r="1.8" fill="#D63368"/>
+    </symbol>
+
+    <!-- Cubeta de vitrina vista de frente: crema en montaña, veteado y peinado de espátula. -->
+    <symbol id="cubeta" viewBox="0 0 240 150" preserveAspectRatio="none">
+      <path d="M8 74c10-22 26-40 50-38 18 1 26-20 50-18 22 2 30 18 52 10 24-9 46 6 56 22 8 12 14 18 16 24v58H8z" style="fill:var(--c1)"/>
+      <path class="cubeta-veta" vector-effect="non-scaling-stroke" d="M22 86c22-26 44-2 66-20s38-30 62-8 40 6 70-10" fill="none" style="stroke:var(--c2)" stroke-width="11" stroke-linecap="round"/>
+      <path class="cubeta-veta" vector-effect="non-scaling-stroke" d="M40 112c18-12 34 4 56-6s30-16 52-4 30 2 48-8" fill="none" style="stroke:var(--c2)" stroke-width="7" stroke-linecap="round"/>
+      <g class="cubeta-peinado" fill="none" stroke-linecap="round">
+        <path d="M20 70c18-18 34-30 52-30" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+        <path d="M92 34c14-10 30-14 46-10" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+        <path d="M150 34c22-8 42 0 56 16" stroke="rgba(255,255,255,.45)" stroke-width="3"/>
+        <path d="M30 96c26-20 58-22 82-14" stroke="rgba(42,21,32,.12)" stroke-width="3"/>
+        <path d="M128 84c22-10 52-12 80 2" stroke="rgba(42,21,32,.12)" stroke-width="3"/>
+      </g>
+      <rect x="0" y="118" width="240" height="32" rx="3" fill="#D8D2D4"/>
+      <rect x="0" y="118" width="240" height="5" fill="#F4F1F2"/>
+      <rect x="0" y="144" width="240" height="6" fill="#B9B1B5"/>
+    </symbol>
+
+    <!-- Iconos de alérgenos (trazo propio, 24×24) -->
+    <symbol id="al-leche" viewBox="0 0 24 24"><path d="M9 2.5h6M9.5 2.5v3L7 9.5V20a1.5 1.5 0 0 0 1.5 1.5h7A1.5 1.5 0 0 0 17 20V9.5l-2.5-4v-3M7 12.5c2.2-1 3.8 1 5 0s2.8-1 5 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="al-huevo" viewBox="0 0 24 24"><path d="M12 2.5c-3.6 0-6.5 6-6.5 11a6.5 6.5 0 0 0 13 0c0-5-2.9-11-6.5-11z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="al-cascara" viewBox="0 0 24 24"><path d="M12 4c-4.5 0-7.5 3.5-7.5 7.5S7.5 20 12 20s7.5-4.5 7.5-8.5S16.5 4 12 4zM12 4v16M8 8.5c1.5 1.5 1.5 5.5 0 7M16 8.5c-1.5 1.5-1.5 5.5 0 7M10 2.5c.8.8 3.2.8 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="al-gluten" viewBox="0 0 24 24"><path d="M12 22V6M12 10c-2.5 0-4-1.6-4-4 2.5 0 4 1.6 4 4zm0 0c2.5 0 4-1.6 4-4-2.5 0-4 1.6-4 4zm0 5c-2.5 0-4-1.6-4-4 2.5 0 4 1.6 4 4zm0 0c2.5 0 4-1.6 4-4-2.5 0-4 1.6-4 4zM12 6c-1-1-1-2.5 0-3.5 1 1 1 2.5 0 3.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="al-soja" viewBox="0 0 24 24"><path d="M5 18c-1.5-4 2-8 6-10s7-4 8-5c1 4-1 9-5 12s-7 4-9 3zM9 14.5a1.6 1.6 0 1 0 0 .1M13 11a1.6 1.6 0 1 0 0 .1M16.5 7.5a1.4 1.4 0 1 0 0 .1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="al-sulfitos" viewBox="0 0 24 24"><path d="M8.5 3.5h7M9 3.5v4.5c-2.5 1.2-4 3.5-4 6.5a7 7 0 0 0 14 0c0-3-1.5-5.3-4-6.5V3.5M5.4 13h13.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- Cortina «Boleado»: el color se vacía de un golpe de boleadora. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <svg class="cortina-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <defs>
+      <mask id="cortina-mascara" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+        <rect width="100" height="100" fill="#fff"/>
+        <ellipse id="cortina-hueco" cx="50" cy="56" rx="0" ry="0" fill="#000"/>
+      </mask>
+    </defs>
+    <rect width="100" height="100" class="cortina-fondo" mask="url(#cortina-mascara)"/>
+  </svg>
+  <svg class="cortina-rizo" viewBox="0 0 200 200" aria-hidden="true">
+    <path id="cortina-rizo-trazo" d="M100 20a80 80 0 1 1-56.6 23.4c10-10 26-12 34-2 7 9 2 22-9 23" pathLength="1" fill="none" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <div class="cortina-marca">
+    <svg class="cortina-logo" viewBox="0 0 64 64"><use href="#logo"/></svg>
+    <p class="cortina-nombre">Salseiro</p>
+  </div>
+</div>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera" id="cabecera">
+  <a class="marca" href="#portada" aria-label="Salseiro, xeadaría de obrador. Inicio">
+    <svg class="marca-logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>
+    <span class="marca-texto"><span class="marca-nombre">Salseiro</span><span class="marca-sub">xeadaría de obrador · Baiona</span></span>
+  </a>
+  <button class="menu-boton" id="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
+    <span class="menu-boton-raya" aria-hidden="true"></span><span class="menu-boton-raya" aria-hidden="true"></span>
+    <span class="menu-boton-texto">Menú</span>
+  </button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ul>
+      <li><a href="#vitrina">La vitrina</a></li>
+      <li><a href="#obrador">El obrador</a></li>
+      <li><a href="#tamanos">Precios</a></li>
+      <li><a href="#tartas">Tartas</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#visita">Visita</a></li>
+    </ul>
+    <a class="boton boton--relleno menu-cta iman" href="#encargo">Encargar una tarta</a>
+  </nav>
+</header>
+
+<main id="contenido">
+
+<!-- 1 · PORTADA ============================================== -->
+<section class="portada" id="portada" aria-labelledby="portada-titulo">
+  <div class="portada-lienzo" id="portada-lienzo">
+    <svg class="portada-poster" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect id="poster-base" width="1600" height="1000" fill="#EFD9C2"/>
+      <path d="M-40 420c180-120 320 80 520-40s300-200 520-60 360 40 640-80" fill="none" class="poster-veta" stroke="#8C3B5E" stroke-width="70" stroke-linecap="round" opacity=".85"/>
+      <path d="M-40 760c220-90 360 60 560-30s320-160 540-40 340 60 600-60" fill="none" class="poster-veta" stroke="#8C3B5E" stroke-width="42" stroke-linecap="round" opacity=".7"/>
+      <g fill="none" stroke="#fff" stroke-width="6" opacity=".55" stroke-linecap="round">
+        <path d="M80 260c160-80 300-60 420 0"/><path d="M700 200c140-60 260-50 380 10"/><path d="M1180 560c120-50 220-40 330 10"/><path d="M260 900c140-60 280-60 400 0"/>
+      </g>
+    </svg>
+    <canvas class="portada-canvas" id="portada-canvas" aria-hidden="true"></canvas>
+  </div>
+  <svg class="portada-anillo" id="portada-anillo" viewBox="0 0 400 400" aria-hidden="true">
+    <defs><path id="anillo-camino" d="M200 200m-188 0a188 188 0 1 1 376 0a188 188 0 1 1-376 0"/></defs>
+    <text><textPath href="#anillo-camino">Leche de Valmiñor · fruta de la semana · mantecado a la vista · lo de hoy se acaba hoy ·</textPath></text>
+  </svg>
+
+  <div class="portada-texto">
+    <p class="portada-antetitulo">Xeadaría de obrador · Baiona</p>
+    <h1 class="portada-titulo" id="portada-titulo" data-revelar>
+      <span class="linea">Helado</span>
+      <span class="linea linea--sangria"><em>de hoy,</em></span>
+      <span class="linea">mantecado</span>
+      <span class="linea linea--sangria2">a la vista.</span>
+    </h1>
+    <p class="portada-entradilla">Lo hacemos cada mañana detrás del cristal, con leche de Valmiñor y la fruta que toque esa semana. Lo que no se vende hoy, no se vende mañana.</p>
+    <div class="portada-acciones">
+      <a class="boton boton--relleno iman" href="#vitrina">Ver la vitrina</a>
+      <a class="boton boton--linea iman" href="#encargo">Encargar una tarta</a>
+    </div>
+  </div>
+
+  <aside class="portada-hoy" aria-label="Hoy en el obrador">
+    <dl>
+      <div><dt>Mantecado hoy</dt><dd class="cifra" id="hoy-hora">09:40</dd></div>
+      <div><dt>En vitrina</dt><dd class="cifra">14 sabores</dd></div>
+      <div class="portada-pala"><dt>En la pala</dt><dd><button type="button" class="pala-boton" id="pala-sabor" aria-describedby="portada-pista">Figo e mel</button></dd></div>
+    </dl>
+    <p class="portada-pista" id="portada-pista">Pasa el dedo o el ratón por la bola para removerla; pulsa el sabor para cambiarlo.</p>
+  </aside>
+</section>
+
+<!-- 2 · MANIFIESTO =========================================== -->
+<section class="manifiesto borde-nata" id="manifiesto" aria-labelledby="manifiesto-titulo">
+  <svg class="borde-nata-svg" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V64C160 52 340 76 500 64S840 52 1000 64V80z"/></svg>
+  <h2 class="visualmente-oculto" id="manifiesto-titulo">Por qué helado de hoy</h2>
+  <p class="manifiesto-frase" id="manifiesto-frase">
+    Un helado de obrador dura <em>lo que dura el día.</em> Por eso empezamos cada mañana de cero, a la vista, y por eso a las nueve de la noche la vitrina se queda corta. <em>No es escasez:</em> es que no guardamos nada para mañana.
+  </p>
+  <dl class="manifiesto-datos">
+    <div class="dato dato--a"><dt>de aire en cada bola</dt><dd><span class="contador" data-hasta="32">32</span>&nbsp;%</dd><p class="dato-nota">Un helado industrial puede llevar el 100 %: medio envase es aire.</p></div>
+    <div class="dato dato--b"><dt>en la vitrina, ni uno más</dt><dd>−<span class="contador" data-hasta="12">12</span>&nbsp;°C</dd><p class="dato-nota">Más frío endurece la bola y apaga el sabor.</p></div>
+    <div class="dato dato--c"><dt>sabores cambian cada semana</dt><dd><span class="contador" data-hasta="6">6</span>&nbsp;de 14</dd><p class="dato-nota">Los otros ocho son la casa: leche, chocolate, café, sal…</p></div>
+  </dl>
+</section>
+
+<!-- 3 · VITRINA ============================================== -->
+<section class="vitrina borde-nata" id="vitrina" aria-labelledby="vitrina-titulo">
+  <svg class="borde-nata-svg" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V64C160 52 340 76 500 64S840 52 1000 64V80z"/></svg>
+  <header class="seccion-cabeza seccion-cabeza--vitrina">
+    <p class="seccion-num">01 · Semana del 28 de septiembre</p>
+    <h2 class="seccion-titulo" id="vitrina-titulo" data-revelar>La vitrina de <em>esta semana</em></h2>
+    <p class="seccion-entradilla">Catorce cubetas. Las marcadas con una hoja son de temporada y se van cuando se acaba la fruta. Todas llevan los alérgenos al lado, no en un cartel aparte.</p>
+  </header>
+
+  <div class="filtro" role="group" aria-labelledby="filtro-titulo">
+    <p class="filtro-titulo" id="filtro-titulo">Enséñame solo lo que puedo comer:</p>
+    <div class="filtro-botones">
+      <button type="button" class="chip" data-sin="leche" aria-pressed="false">Sin leche</button>
+      <button type="button" class="chip" data-sin="huevo" aria-pressed="false">Sin huevo</button>
+      <button type="button" class="chip" data-sin="cascara" aria-pressed="false">Sin frutos de cáscara</button>
+      <button type="button" class="chip" data-sin="gluten" aria-pressed="false">Sin gluten</button>
+      <button type="button" class="chip" data-sin="soja" aria-pressed="false">Sin soja</button>
+    </div>
+    <p class="filtro-cuenta" id="filtro-cuenta" aria-live="polite">Los 14 sabores, sin filtro.</p>
+  </div>
+
+  <ul class="cubetas" id="cubetas">
+    <li class="cubeta cubeta--ancha" data-alergenos="leche" data-pct="96" data-temporada="no" style="--c1:#FAF4E6;--c2:#F1E4CB">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Leite de Valmiñor</h3><p class="cubeta-desc">Solo leche, nata y azúcar. El sabor con el que se mide a una heladería.</p><p class="cubeta-pct"><span>96 %</span> leche y nata</p><p class="cubeta-al">Contiene: <span>leche</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="leche" data-pct="18" data-temporada="si" style="--c1:#EFD9C2;--c2:#8C3B5E">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3><span class="hoja" aria-label="de temporada" role="img">❦</span> Figo e mel</h3><p class="cubeta-desc">Higo de septiembre asado con miel de brezo, en vetas.</p><p class="cubeta-pct"><span>18 %</span> higo</p><p class="cubeta-al">Contiene: <span>leche</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="leche huevo" data-pct="22" data-temporada="si" style="--c1:#C99B6E;--c2:#7A4A2E">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3><span class="hoja" aria-label="de temporada" role="img">❦</span> Castaña asada</h3><p class="cubeta-desc">Castaña de magosto, asada aquí y pasada por tamiz.</p><p class="cubeta-pct"><span>22 %</span> castaña</p><p class="cubeta-al">Contiene: <span>leche, huevo</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="" data-pct="45" data-temporada="si" style="--c1:#6E2E5E;--c2:#3D1838">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3><span class="hoja" aria-label="de temporada" role="img">❦</span> Amora silvestre</h3><p class="cubeta-desc">Sorbete. Moras de zarza, agua y azúcar. Nada más.</p><p class="cubeta-pct"><span>45 %</span> mora</p><p class="cubeta-al">Sin alérgenos declarados</p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta cubeta--ancha" data-alergenos="leche" data-pct="9" data-temporada="no" style="--c1:#E8C79A;--c2:#B4652A">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Salseiro</h3><p class="cubeta-desc">El de la casa: caramelo tostado con sal de la ría. Dulce primero, mar después.</p><p class="cubeta-pct"><span>9 %</span> caramelo</p><p class="cubeta-al">Contiene: <span>leche</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="sulfitos" data-pct="52" data-temporada="si" style="--c1:#D8D59A;--c2:#A7A45A">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3><span class="hoja" aria-label="de temporada" role="img">❦</span> Uva albariña</h3><p class="cubeta-desc">Sorbete de mosto de vendimia, sin fermentar.</p><p class="cubeta-pct"><span>52 %</span> mosto</p><p class="cubeta-al">Contiene: <span>sulfitos</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="leche cascara" data-pct="12" data-temporada="no" style="--c1:#B9BE84;--c2:#7C8A3E">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Pistacho tostado</h3><p class="cubeta-desc">Pasta de pistacho pura, sin colorante: por eso es pardo y no verde.</p><p class="cubeta-pct"><span>12 %</span> pistacho</p><p class="cubeta-al">Contiene: <span>leche, frutos de cáscara</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="soja" data-pct="14" data-temporada="no" style="--c1:#4A2A22;--c2:#2A1510">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Chocolate 70 %</h3><p class="cubeta-desc">Sorbete, sin leche: con agua el cacao sabe más a cacao.</p><p class="cubeta-pct"><span>14 %</span> cacao</p><p class="cubeta-al">Puede contener: <span>soja</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta cubeta--ancha" data-alergenos="leche huevo" data-pct="24" data-temporada="si" style="--c1:#F0B57A;--c2:#C9682E">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3><span class="hoja" aria-label="de temporada" role="img">❦</span> Calabaza e canela</h3><p class="cubeta-desc">Calabaza asada al horno con canela en rama y un punto de naranja.</p><p class="cubeta-pct"><span>24 %</span> calabaza</p><p class="cubeta-al">Contiene: <span>leche, huevo</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="leche" data-pct="6" data-temporada="no" style="--c1:#B48B6C;--c2:#6E4630">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Café de pota</h3><p class="cubeta-desc">Café hecho como en casa, infusionado en la leche toda la noche.</p><p class="cubeta-pct"><span>6 %</span> café</p><p class="cubeta-al">Contiene: <span>leche</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="leche gluten" data-pct="20" data-temporada="si" style="--c1:#EADBB0;--c2:#B07A3C">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3><span class="hoja" aria-label="de temporada" role="img">❦</span> Mazá reineta</h3><p class="cubeta-desc">Manzana asada con trocitos de crumble de mantequilla.</p><p class="cubeta-pct"><span>20 %</span> manzana</p><p class="cubeta-al">Contiene: <span>leche, gluten</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="" data-pct="30" data-temporada="no" style="--c1:#F3E88E;--c2:#9DB36A">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Limón e albahaca</h3><p class="cubeta-desc">Sorbete. Limón entero, piel incluida, y albahaca del huerto.</p><p class="cubeta-pct"><span>30 %</span> limón</p><p class="cubeta-al">Sin alérgenos declarados</p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta" data-alergenos="leche cascara" data-pct="14" data-temporada="no" style="--c1:#D3B28A;--c2:#8A6038">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Avellana</h3><p class="cubeta-desc">Avellana tostada y molida aquí la víspera.</p><p class="cubeta-pct"><span>14 %</span> avellana</p><p class="cubeta-al">Contiene: <span>leche, frutos de cáscara</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta cubeta--ancha" data-alergenos="leche" data-pct="16" data-temporada="no" style="--c1:#F6E4E0;--c2:#E2A58F">
+      <svg class="cubeta-dib" viewBox="0 0 240 150" aria-hidden="true"><use href="#cubeta"/></svg>
+      <div class="cubeta-ficha"><h3>Marmelo e requeixo</h3><p class="cubeta-desc">Requesón batido con vetas de membrillo de la casa. Postre de abuela en bola.</p><p class="cubeta-pct"><span>16 %</span> membrillo</p><p class="cubeta-al">Contiene: <span>leche</span></p><p class="cubeta-noapto">No apto con este filtro</p></div>
+    </li>
+    <li class="cubeta-nota"><p>Todos los helados se elaboran en un obrador donde también se trabaja con frutos de cáscara, huevo y gluten. Si tu alergia es grave, pregúntanos antes: limpiamos la pala y sacamos de una cubeta sin empezar.</p></li>
+  </ul>
+</section>
+
+<!-- 4 · OBRADOR (anclada) ===================================== -->
+<section class="obrador" id="obrador" aria-labelledby="obrador-titulo">
+  <div class="obrador-pin" id="obrador-pin">
+    <header class="obrador-cabeza">
+      <p class="seccion-num">02 · Un día de obrador</p>
+      <h2 class="seccion-titulo" id="obrador-titulo" data-revelar>De la leche <em>a la vitrina</em></h2>
+    </header>
+
+    <figure class="obrador-figura">
+      <svg class="obrador-dib" id="obrador-dib" viewBox="0 0 420 520" role="img" aria-labelledby="obrador-dib-tit">
+        <title id="obrador-dib-tit">La cuba del obrador en corte: nivel de la mezcla, burbujas de aire, escarcha en las paredes y pala.</title>
+        <defs>
+          <clipPath id="cuba-dentro"><rect x="92" y="96" width="236" height="352" rx="18"/></clipPath>
+          <linearGradient id="cuba-metal" x1="0" x2="1"><stop offset="0" stop-color="#9C9497"/><stop offset=".25" stop-color="#E9E4E6"/><stop offset=".6" stop-color="#C7C0C3"/><stop offset="1" stop-color="#8E8689"/></linearGradient>
+        </defs>
+        <!-- vapor (pasteurizar) -->
+        <g class="ob-vapor" id="ob-vapor" fill="none" stroke="#CDB8C0" stroke-width="5" stroke-linecap="round">
+          <path d="M150 70c-12-14 12-22 0-38"/><path d="M210 66c-12-14 12-22 0-38"/><path d="M270 70c-12-14 12-22 0-38"/>
+        </g>
+        <rect x="78" y="82" width="264" height="380" rx="26" fill="url(#cuba-metal)"/>
+        <rect x="92" y="96" width="236" height="352" rx="18" fill="#3B2230"/>
+        <g clip-path="url(#cuba-dentro)">
+          <rect id="ob-mezcla" x="92" y="250" width="236" height="210" fill="#FBF8F1"/>
+          <path id="ob-superficie" d="M92 250c40-10 80 10 118 0s80-10 118 0v12H92z" fill="#FBF8F1"/>
+          <g id="ob-burbujas" fill="#fff" stroke="#E9DCCF" stroke-width="1.5">
+            <circle cx="130" cy="380" r="6"/><circle cx="175" cy="330" r="4"/><circle cx="240" cy="400" r="7"/><circle cx="290" cy="340" r="5"/><circle cx="150" cy="300" r="3.5"/><circle cx="215" cy="290" r="5"/><circle cx="270" cy="430" r="4"/><circle cx="118" cy="420" r="3"/><circle cx="305" cy="395" r="3.5"/><circle cx="195" cy="420" r="4.5"/>
+          </g>
+          <g id="ob-escarcha" fill="#DDEBF2" opacity="0">
+            <path d="M92 96h14v352H92z"/><path d="M314 96h14v352h-14z"/>
+            <path d="M106 140l10 6-10 6M106 220l12 7-12 7M106 300l9 5-9 5M106 380l12 7-12 7M314 170l-10 6 10 6M314 260l-12 7 12 7M314 340l-9 5 9 5M314 410l-12 7 12 7"/>
+          </g>
+        </g>
+        <!-- pala (mantecar) -->
+        <g id="ob-pala">
+          <rect x="204" y="40" width="12" height="380" rx="6" fill="#6B5560"/>
+          <path d="M150 200h120l-8 30H158zM150 300h120l-8 30H158zM150 390h120l-8 30H158z" fill="#8F7A84"/>
+        </g>
+        <!-- termómetro -->
+        <g class="ob-termo">
+          <rect x="364" y="96" width="22" height="352" rx="11" fill="#F3E9DC" stroke="#2A1520" stroke-width="2"/>
+          <rect id="ob-termo-nivel" x="370" y="300" width="10" height="140" rx="5" class="ob-termo-nivel"/>
+          <g fill="#2A1520" font-family="Spline Sans Mono, monospace" font-size="12">
+            <text x="392" y="104">85</text><text x="392" y="270">0</text><text x="392" y="446">−35</text>
+          </g>
+          <path d="M360 266h30" stroke="#2A1520" stroke-width="1.5" stroke-dasharray="3 3"/>
+        </g>
+      </svg>
+    </figure>
+
+    <dl class="obrador-lectura" aria-live="off">
+      <div><dt>Temperatura</dt><dd><span id="ob-temp" class="cifra">4</span> °C</dd></div>
+      <div><dt>Aire incorporado</dt><dd><span id="ob-aire" class="cifra">0</span> %</dd></div>
+      <div><dt>Horas desde que llegó la leche</dt><dd><span id="ob-horas" class="cifra">0 h 00</span></dd></div>
+    </dl>
+
+    <ol class="obrador-pasos" id="obrador-pasos">
+      <li class="paso" data-t="4" data-a="0" data-h="0">
+        <p class="paso-num">1 / 6 · 07:30</p>
+        <h3>Llega la leche</h3>
+        <p>Entera, de una granja de Valmiñor a once kilómetros. Se pesa, se prueba y entra en la cuba a 4 °C. Si no sabe bien, no entra.</p>
+        <p class="paso-dato">4 °C · 0 % de aire</p>
+      </li>
+      <li class="paso" data-t="85" data-a="0" data-h="0.5">
+        <p class="paso-num">2 / 6 · 08:00 del día anterior</p>
+        <h3>Pasteurizar a 85 °C</h3>
+        <p>Con la nata, el azúcar y lo que lleve la base. Calor suave y removiendo: la leche no puede pegarse ni saber a cocido.</p>
+        <p class="paso-dato">85 °C · 0 % de aire</p>
+      </li>
+      <li class="paso" data-t="4" data-a="0" data-h="12.5">
+        <p class="paso-num">3 / 6 · toda la noche</p>
+        <h3>Madurar doce horas</h3>
+        <p>La mezcla reposa a 4 °C. Las proteínas se hidratan y la grasa cristaliza: de aquí sale la textura, no de los aditivos.</p>
+        <p class="paso-dato">4 °C · 12 h de reposo</p>
+      </li>
+      <li class="paso" data-t="-8" data-a="32" data-h="13">
+        <p class="paso-num">4 / 6 · 08:30</p>
+        <h3>Mantecar</h3>
+        <p>La pala bate mientras el cilindro enfría. Entra aire —un 32 %, ni más— y el agua se congela en cristales tan pequeños que la lengua no los nota.</p>
+        <p class="paso-dato">−8 °C · 32 % de aire</p>
+      </li>
+      <li class="paso" data-t="-35" data-a="32" data-h="13.3">
+        <p class="paso-num">5 / 6 · 08:50</p>
+        <h3>Abatir a −35 °C</h3>
+        <p>Veinte minutos en el abatidor para fijar la crema de golpe. Si enfriara despacio, los cristales crecerían y el helado se volvería arenoso.</p>
+        <p class="paso-dato">−35 °C · 32 % de aire</p>
+      </li>
+      <li class="paso" data-t="-12" data-a="32" data-h="13.7">
+        <p class="paso-num">6 / 6 · 09:40</p>
+        <h3>A la vitrina</h3>
+        <p>A −12 °C, peinado con espátula, delante de ti. Y ahí se acaba el viaje: lo que no se vende hoy, no vuelve a la cámara.</p>
+        <p class="paso-dato">−12 °C · listo para la pala</p>
+      </li>
+    </ol>
+    <div class="obrador-progreso" aria-hidden="true"><span id="obrador-barra"></span></div>
+  </div>
+</section>
+
+<!-- 5 · CALENDARIO =========================================== -->
+<section class="calendario borde-nata" id="calendario" aria-labelledby="calendario-titulo">
+  <svg class="borde-nata-svg" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V64C160 52 340 76 500 64S840 52 1000 64V80z"/></svg>
+  <header class="seccion-cabeza seccion-cabeza--calendario">
+    <p class="seccion-num">03 · Temporada</p>
+    <h2 class="seccion-titulo" id="calendario-titulo" data-revelar>La fruta <em>manda</em> en la carta</h2>
+    <p class="seccion-entradilla">No compramos pulpa congelada. Cada fruta entra cuando está buena por aquí y se va cuando se acaba. Este es el año del obrador; el mes en que estás va marcado.</p>
+  </header>
+  <div class="cal-marco" id="cal-marco" role="group" aria-label="Calendario de fruta por meses">
+    <table class="cal">
+      <caption class="visualmente-oculto">Meses en que cada fruta está en la vitrina</caption>
+      <thead><tr><th scope="col">Fruta</th><th scope="col" data-mes="0">E</th><th scope="col" data-mes="1">F</th><th scope="col" data-mes="2">M</th><th scope="col" data-mes="3">A</th><th scope="col" data-mes="4">M</th><th scope="col" data-mes="5">J</th><th scope="col" data-mes="6">J</th><th scope="col" data-mes="7">A</th><th scope="col" data-mes="8">S</th><th scope="col" data-mes="9">O</th><th scope="col" data-mes="10">N</th><th scope="col" data-mes="11">D</th></tr></thead>
+      <tbody>
+        <tr style="--f:#E8536A"><th scope="row">Fresa de Valmiñor</th><td colspan="12"><span class="cal-banda" style="--de:4;--a:7" aria-label="de mayo a julio">may–jul</span></td></tr>
+        <tr style="--f:#F4A57E"><th scope="row">Melocotón</th><td colspan="12"><span class="cal-banda" style="--de:6;--a:9" aria-label="de julio a septiembre">jul–sep</span></td></tr>
+        <tr style="--f:#6E2E5E"><th scope="row">Mora silvestre</th><td colspan="12"><span class="cal-banda" style="--de:8;--a:10" aria-label="de agosto a octubre">ago–oct</span></td></tr>
+        <tr style="--f:#8C3B5E"><th scope="row">Higo</th><td colspan="12"><span class="cal-banda" style="--de:8;--a:10" aria-label="de agosto a octubre">ago–oct</span></td></tr>
+        <tr style="--f:#C9C46A"><th scope="row">Uva albariña</th><td colspan="12"><span class="cal-banda" style="--de:9;--a:10" aria-label="de septiembre a octubre">sep–oct</span></td></tr>
+        <tr style="--f:#8A5A3B"><th scope="row">Castaña</th><td colspan="12"><span class="cal-banda" style="--de:10;--a:12" aria-label="de octubre a diciembre">oct–dic</span></td></tr>
+        <tr style="--f:#E08A3A"><th scope="row">Calabaza</th><td colspan="12"><span class="cal-banda" style="--de:10;--a:12" aria-label="de octubre a diciembre">oct–dic</span></td></tr>
+        <tr style="--f:#F08A24"><th scope="row">Naranja y mandarina</th><td colspan="12"><span class="cal-banda" style="--de:1;--a:4" aria-label="de enero a abril">ene–abr</span></td></tr>
+        <tr style="--f:#D9A23A"><th scope="row">Kiwi gallego</th><td colspan="12"><span class="cal-banda" style="--de:2;--a:5" aria-label="de febrero a mayo">feb–may</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cal-pie" id="cal-pie">En enero cerramos la vitrina; el obrador sigue con las tartas de encargo.</p>
+</section>
+
+<!-- 6 · CINTA =============================================== -->
+<div class="cinta" aria-hidden="true">
+  <div class="cinta-pista" id="cinta-pista">
+    <span>Fresa de mayo</span><span class="cinta-punto"></span><span><em>Melocotón de julio</em></span><span class="cinta-punto"></span><span>Higo de septiembre</span><span class="cinta-punto"></span><span><em>Castaña de magosto</em></span><span class="cinta-punto"></span><span>Mandarina de enero</span><span class="cinta-punto"></span><span><em>Kiwi de marzo</em></span><span class="cinta-punto"></span>
+  </div>
+</div>
+
+<!-- 7 · TAMAÑOS ============================================= -->
+<section class="tamanos" id="tamanos" aria-labelledby="tamanos-titulo">
+  <header class="seccion-cabeza seccion-cabeza--tamanos">
+    <p class="seccion-num">04 · Precios</p>
+    <h2 class="seccion-titulo" id="tamanos-titulo" data-revelar>Lo que te llevas, <em>a escala</em></h2>
+    <p class="seccion-entradilla">Dibujado al mismo tamaño para que se vea lo que cabe. El cucurucho es de barquillo hecho aquí, en la plancha de la entrada.</p>
+  </header>
+
+  <ul class="tallas" id="tallas">
+    <li class="talla" data-ml="90" data-precio="2.90">
+      <svg class="talla-dib" viewBox="0 0 120 300" aria-hidden="true">
+        <path d="M34 150l26 140 26-140z" class="talla-barquillo"/><path d="M38 160l44 30M36 180l42 30M42 210l32 22M34 150l48 60M46 150l38 26" class="talla-reja"/>
+        <circle cx="60" cy="132" r="30" style="fill:#8C3B5E"/><path d="M34 138c8-8 16 2 26-4s18-6 26 0" fill="none" stroke="#EFD9C2" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <h3>Una bola</h3><p class="talla-cap">90 ml · en cucurucho o tarrina</p><p class="talla-precio">2,90&nbsp;€</p>
+    </li>
+    <li class="talla" data-ml="170" data-precio="4.30">
+      <svg class="talla-dib" viewBox="0 0 120 300" aria-hidden="true">
+        <path d="M34 150l26 140 26-140z" class="talla-barquillo"/><path d="M38 160l44 30M36 180l42 30M42 210l32 22M34 150l48 60M46 150l38 26" class="talla-reja"/>
+        <circle cx="60" cy="134" r="30" style="fill:#C99B6E"/><circle cx="60" cy="88" r="28" style="fill:#E8C79A"/><path d="M38 92c8-6 14 2 22-3s14-4 22 0" fill="none" stroke="#B4652A" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <h3>Dos bolas</h3><p class="talla-cap">170 ml · dos sabores</p><p class="talla-precio">4,30&nbsp;€</p>
+    </li>
+    <li class="talla" data-ml="240" data-precio="5.60">
+      <svg class="talla-dib" viewBox="0 0 120 300" aria-hidden="true">
+        <path d="M14 196h92l-10 94H24z" class="talla-tarrina"/><path d="M14 196h92" stroke="#2A1520" stroke-width="3"/>
+        <circle cx="38" cy="180" r="24" style="fill:#6E2E5E"/><circle cx="82" cy="180" r="24" style="fill:#F3E88E"/><circle cx="60" cy="150" r="24" style="fill:#FAF4E6"/>
+      </svg>
+      <h3>Tres bolas</h3><p class="talla-cap">240 ml · en tarrina</p><p class="talla-precio">5,60&nbsp;€</p>
+    </li>
+    <li class="talla" data-ml="500" data-precio="10.50">
+      <svg class="talla-dib" viewBox="0 0 120 300" aria-hidden="true">
+        <path d="M10 170h100l-8 120H18z" class="talla-tarrina"/><rect x="6" y="160" width="108" height="14" rx="4" class="talla-tapa"/>
+        <text x="60" y="238" text-anchor="middle" class="talla-etiqueta">½ L</text>
+      </svg>
+      <h3>Para llevar, medio litro</h3><p class="talla-cap">500 ml · hasta dos sabores · aguanta 40 min en la bolsa térmica</p><p class="talla-precio">10,50&nbsp;€</p>
+    </li>
+    <li class="talla" data-ml="1000" data-precio="18.90">
+      <svg class="talla-dib" viewBox="0 0 120 300" aria-hidden="true">
+        <path d="M4 110h112l-10 180H14z" class="talla-tarrina"/><rect x="0" y="100" width="120" height="16" rx="4" class="talla-tapa"/>
+        <text x="60" y="210" text-anchor="middle" class="talla-etiqueta">1 L</text>
+      </svg>
+      <h3>Para llevar, un litro</h3><p class="talla-cap">1000 ml · hasta tres sabores</p><p class="talla-precio">18,90&nbsp;€</p>
+    </li>
+  </ul>
+
+  <div class="litro" id="litro" aria-labelledby="litro-titulo">
+    <h3 class="litro-titulo" id="litro-titulo">Lo mismo, en precio por litro</h3>
+    <p class="litro-nota">Para comparar de verdad: cuanto más grande, más barato el litro.</p>
+    <ul class="litro-barras" id="litro-barras"></ul>
+  </div>
+  <p class="tamanos-nota">Precios de muestra, IVA incluido. Cucurucho de barquillo sin gluten: +0,50 €. Agua del grifo, siempre gratis.</p>
+</section>
+
+<!-- 8 · TARTAS (pila sticky) ================================= -->
+<section class="tartas borde-nata" id="tartas" aria-labelledby="tartas-titulo">
+  <svg class="borde-nata-svg" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V64C160 52 340 76 500 64S840 52 1000 64V80z"/></svg>
+  <div class="tartas-rejilla">
+    <header class="seccion-cabeza seccion-cabeza--tartas">
+      <p class="seccion-num">05 · Por encargo</p>
+      <h2 class="seccion-titulo" id="tartas-titulo" data-revelar>Tartas heladas, <em>en capas</em></h2>
+      <p class="seccion-entradilla">Cuatro de la casa, montadas capa a capa y abatidas la víspera. Con 48 horas de aviso. Cualquiera se puede hacer con otro sabor de la vitrina.</p>
+      <a class="boton boton--relleno iman" href="#encargo">Hacer un encargo</a>
+    </header>
+
+    <ol class="pila" id="pila">
+      <li class="pila-item">
+        <article class="tarta" style="--t1:#FAF4E6;--t2:#6E2E5E;--t3:#E9D3B4">
+          <svg class="tarta-dib" viewBox="0 0 300 180" aria-hidden="true">
+            <rect x="20" y="138" width="260" height="26" rx="4" style="fill:var(--t3)"/>
+            <rect x="20" y="98" width="260" height="42" style="fill:var(--t1)"/>
+            <path d="M20 98c30-10 60 8 90-2s60-8 90 2 50-6 80-2v12H20z" style="fill:var(--t2)"/>
+            <rect x="20" y="58" width="260" height="42" style="fill:var(--t1)"/>
+            <path d="M20 58c26-16 52-2 78-10s56-12 84-2 64-4 98 4v8H20z" style="fill:var(--t2)"/>
+            <g style="fill:var(--t2)"><circle cx="70" cy="44" r="7"/><circle cx="150" cy="40" r="7"/><circle cx="230" cy="44" r="7"/></g>
+          </svg>
+          <div class="tarta-texto"><p class="tarta-num">I</p><h3>Leite e amora</h3><p>Dos pisos de leche de Valmiñor con mora silvestre en vetas, sobre bizcocho de almendra.</p><p class="tarta-datos">6 raciones 26 € · 10 raciones 38 €</p><p class="tarta-al">Contiene: leche, huevo, frutos de cáscara, gluten</p></div>
+        </article>
+      </li>
+      <li class="pila-item">
+        <article class="tarta" style="--t1:#EFD9C2;--t2:#8C3B5E;--t3:#B07A3C">
+          <svg class="tarta-dib" viewBox="0 0 300 180" aria-hidden="true">
+            <rect x="20" y="138" width="260" height="26" rx="4" style="fill:var(--t3)"/>
+            <rect x="20" y="78" width="260" height="62" style="fill:var(--t1)"/>
+            <path d="M40 110c20-12 40 6 60-4s40-10 60 0 40 4 70-6" fill="none" style="stroke:var(--t2)" stroke-width="9" stroke-linecap="round"/>
+            <path d="M20 78c40-18 80-18 130-8s90 8 130-4v12H20z" style="fill:var(--t2)"/>
+            <path d="M120 54c6-14 24-14 30 0-6 12-24 12-30 0zM150 54c6-14 24-14 30 0-6 12-24 12-30 0z" style="fill:var(--t2)"/>
+          </svg>
+          <div class="tarta-texto"><p class="tarta-num">II</p><h3>Figueira</h3><p>Higo y miel sobre base de galleta de mantequilla, cubierta de higo asado. Solo hasta octubre.</p><p class="tarta-datos">6 raciones 28 € · 10 raciones 40 €</p><p class="tarta-al">Contiene: leche, gluten</p></div>
+        </article>
+      </li>
+      <li class="pila-item">
+        <article class="tarta" style="--t1:#4A2A22;--t2:#E8C79A;--t3:#2A1510">
+          <svg class="tarta-dib" viewBox="0 0 300 180" aria-hidden="true">
+            <rect x="20" y="138" width="260" height="26" rx="4" style="fill:var(--t3)"/>
+            <rect x="20" y="100" width="260" height="40" style="fill:var(--t1)"/>
+            <rect x="20" y="64" width="260" height="38" style="fill:var(--t2)"/>
+            <path d="M20 64c40-6 60 10 100 2s80-10 160 0v-14H20z" style="fill:var(--t1)"/>
+            <g fill="#FBF5EE"><circle cx="60" cy="56" r="2"/><circle cx="110" cy="52" r="2"/><circle cx="170" cy="56" r="2"/><circle cx="230" cy="52" r="2"/></g>
+          </svg>
+          <div class="tarta-texto"><p class="tarta-num">III</p><h3>Faroleiro</h3><p>Chocolate 70 % y Salseiro (caramelo con sal) sobre crujiente de cacao. La que piden para los cumpleaños.</p><p class="tarta-datos">6 raciones 27 € · 10 raciones 39 € · 16 raciones 56 €</p><p class="tarta-al">Contiene: leche, gluten; puede contener soja</p></div>
+        </article>
+      </li>
+      <li class="pila-item">
+        <article class="tarta" style="--t1:#F3E88E;--t2:#FBF5EE;--t3:#E9D3B4">
+          <svg class="tarta-dib" viewBox="0 0 300 180" aria-hidden="true">
+            <rect x="20" y="138" width="260" height="26" rx="4" style="fill:var(--t3)"/>
+            <rect x="20" y="90" width="260" height="50" style="fill:var(--t1)"/>
+            <path d="M20 90c10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 30 0 10-30 20-30 20 0z" style="fill:var(--t2)" stroke="#E9D3B4" stroke-width="2"/>
+            <g fill="#9DB36A"><path d="M90 64c6-10 18-10 22 0-6 8-16 8-22 0z"/><path d="M190 60c6-10 18-10 22 0-6 8-16 8-22 0z"/></g>
+          </svg>
+          <div class="tarta-texto"><p class="tarta-num">IV</p><h3>Baixamar</h3><p>Sorbete de limón y albahaca con merengue tostado. Fresca, sin leche, para después de una mariscada.</p><p class="tarta-datos">6 raciones 25 € · 10 raciones 36 €</p><p class="tarta-al">Contiene: huevo</p></div>
+        </article>
+      </li>
+    </ol>
+  </div>
+
+  <form class="encargo" id="encargo" novalidate aria-labelledby="encargo-titulo">
+    <h3 class="encargo-titulo" id="encargo-titulo">Encargar una tarta</h3>
+    <p class="encargo-nota">Formulario de muestra: en esta demo no se envía nada. Respondemos en el día por teléfono.</p>
+    <div class="campo"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" autocomplete="given-name" required></div>
+    <div class="campo"><label for="f-tel">Teléfono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,}"></div>
+    <div class="campo"><label for="f-tarta">Tarta</label>
+      <select id="f-tarta" name="tarta"><option>Leite e amora</option><option>Figueira</option><option>Faroleiro</option><option>Baixamar</option><option>Otra, a partir de la vitrina</option></select></div>
+    <div class="campo"><label for="f-rac">Raciones</label>
+      <select id="f-rac" name="raciones"><option>6</option><option>10</option><option>16 (solo Faroleiro)</option></select></div>
+    <div class="campo"><label for="f-fecha">Para el día</label><input id="f-fecha" name="fecha" type="date" required><p class="campo-ayuda" id="f-fecha-ayuda">Con 48 horas de aviso como mínimo.</p></div>
+    <div class="campo campo--ancho"><label for="f-msg">Algo que debamos saber <span class="opcional">(opcional)</span></label><textarea id="f-msg" name="mensaje" rows="3" placeholder="Una alergia, un nombre para escribir en el chocolate…"></textarea></div>
+    <button class="boton boton--relleno iman" type="submit">Enviar el encargo</button>
+    <p class="encargo-estado" id="encargo-estado" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<!-- 9 · HORARIO =============================================== -->
+<section class="horario" id="horario" aria-labelledby="horario-titulo">
+  <header class="seccion-cabeza seccion-cabeza--horario">
+    <p class="seccion-num">06 · Cuándo</p>
+    <h2 class="seccion-titulo" id="horario-titulo" data-revelar>Dos horarios, <em>como el mar</em></h2>
+    <p class="estado-ahora" id="estado-ahora"><span class="estado-luz" aria-hidden="true"></span><span id="estado-texto">Consulta el horario de la temporada.</span></p>
+  </header>
+  <div class="horarios">
+    <div class="temporada" id="temp-verano" data-temporada="verano">
+      <h3>Verano <span>15 de junio – 15 de septiembre</span></h3>
+      <table class="hor">
+        <caption class="visualmente-oculto">Horario de verano</caption>
+        <tbody>
+          <tr data-dia="1"><th scope="row">Lunes</th><td>12:00 – 00:30</td></tr>
+          <tr data-dia="2"><th scope="row">Martes</th><td>12:00 – 00:30</td></tr>
+          <tr data-dia="3"><th scope="row">Miércoles</th><td>12:00 – 00:30</td></tr>
+          <tr data-dia="4"><th scope="row">Jueves</th><td>12:00 – 00:30</td></tr>
+          <tr data-dia="5"><th scope="row">Viernes</th><td>12:00 – 01:00</td></tr>
+          <tr data-dia="6"><th scope="row">Sábado</th><td>12:00 – 01:00</td></tr>
+          <tr data-dia="0"><th scope="row">Domingo</th><td>12:00 – 00:30</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="temporada" id="temp-invierno" data-temporada="invierno">
+      <h3>Invierno <span>16 de septiembre – 14 de junio · enero cerrado</span></h3>
+      <table class="hor">
+        <caption class="visualmente-oculto">Horario de invierno</caption>
+        <tbody>
+          <tr data-dia="1"><th scope="row">Lunes</th><td>Cerrado</td></tr>
+          <tr data-dia="2"><th scope="row">Martes</th><td>16:30 – 20:30</td></tr>
+          <tr data-dia="3"><th scope="row">Miércoles</th><td>16:30 – 20:30</td></tr>
+          <tr data-dia="4"><th scope="row">Jueves</th><td>16:30 – 20:30</td></tr>
+          <tr data-dia="5"><th scope="row">Viernes</th><td>16:30 – 21:30</td></tr>
+          <tr data-dia="6"><th scope="row">Sábado</th><td>12:00 – 14:30 · 16:30 – 21:30</td></tr>
+          <tr data-dia="0"><th scope="row">Domingo</th><td>12:00 – 14:30 · 16:30 – 21:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="horario-nota">El obrador trabaja de 7:30 a 10:00 todos los días que abrimos: se ve desde la calle por el ventanal de la izquierda.</p>
+</section>
+
+<!-- 10 · VISITA ============================================== -->
+<section class="visita borde-nata" id="visita" aria-labelledby="visita-titulo">
+  <svg class="borde-nata-svg" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80V64C160 52 340 76 500 64S840 52 1000 64V80z"/></svg>
+  <div class="visita-rejilla">
+    <div class="visita-texto">
+      <p class="seccion-num">07 · Dónde</p>
+      <h2 class="seccion-titulo seccion-titulo--grande" id="visita-titulo" data-revelar>A dos calles <em>del puerto</em></h2>
+      <address>
+        <p class="visita-dir">Rúa do Pairo, 9<br>36300 Baiona (Pontevedra)</p>
+        <p><a class="enlace" href="tel:+34986000000">986 00 00 00</a> · tienda y encargos</p>
+        <p><a class="enlace" href="mailto:ola@salseiro.example">ola@salseiro.example</a></p>
+      </address>
+      <ul class="testimonios" aria-label="Opiniones de muestra">
+        <li><blockquote><p>«Pedí la Faroleiro para veinte y sobró. El caramelo con sal no se parece a ningún otro.»</p></blockquote><p class="testimonio-quien">Uxía, cliente (opinión de muestra)</p></li>
+        <li><blockquote><p>«Mi hija es alérgica a la leche y por fin puede elegir entre cuatro.»</p></blockquote><p class="testimonio-quien">Ramón, cliente (opinión de muestra)</p></li>
+      </ul>
+    </div>
+    <div class="mapa" id="mapa">
+      <svg class="mapa-dib" viewBox="0 0 400 320" aria-hidden="true">
+        <rect width="400" height="320" fill="#DCE7EA"/>
+        <path d="M0 0h260c-20 40-10 80 20 110s50 70 40 120-30 70-60 90H0z" fill="#F3E9DC"/>
+        <path d="M30 60h190M40 140h220M20 220h230M90 0v320M180 0v320" stroke="#FBF5EE" stroke-width="12"/>
+        <path d="M260 0c-20 40-10 80 20 110s50 70 40 120-30 70-60 90" fill="none" stroke="#2A1520" stroke-width="2"/>
+        <path d="M300 150h70M300 170h56" stroke="#A9C3CB" stroke-width="3" stroke-linecap="round"/>
+        <g transform="translate(140 140)"><circle r="16" fill="#D63368"/><circle r="5" fill="#FBF5EE"/></g>
+        <text x="320" y="120" class="mapa-rot">puerto</text>
+      </svg>
+      <button class="boton boton--relleno mapa-boton iman" id="mapa-boton" type="button">Cargar el mapa de Google</button>
+      <p class="mapa-aviso">Al cargarlo, Google puede guardar cookies. Hasta que no pulses, no se conecta nada.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-marca">
+    <svg class="pie-logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>
+    <p class="pie-nombre">Salseiro</p>
+    <p>Xeadaría de obrador · Rúa do Pairo, 9 · Baiona</p>
+  </div>
+  <nav class="pie-nav" aria-label="Pie">
+    <a href="legal.html">Aviso legal y privacidad</a>
+    <a href="#portada">Volver arriba</a>
+  </nav>
+  <p class="sello">Sitio de demostración. Salseiro es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Aquí no hay cookies de terceros ni analítica. Guardamos en tu navegador solo que has cerrado este aviso. El mapa de Google se carga únicamente si lo pides.</p>
+  <button class="boton boton--relleno" id="cookies-ok" type="button">Entendido</button>
+</div>
+
+<!-- MANDO DE DEMOSTRACIÓN: inicio — NUNCA viaja al sitio de un cliente. Ver README, «Receta de borrado». -->
+<div class="mando" id="mando" hidden>
+  <div class="mando-grupo" role="group" aria-label="Densidad de la maqueta">
+    <span class="mando-rot">Maqueta</span>
+    <button type="button" data-maqueta="cargada" aria-pressed="true">Mantecar</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <div class="mando-grupo" role="group" aria-label="Color de marca">
+    <span class="mando-rot">Color</span>
+    <button type="button" data-paleta="framboesa" aria-pressed="true"><span class="mando-muestra" style="background:#D63368"></span>Framboesa</button>
+    <button type="button" data-paleta="pistacho" aria-pressed="false"><span class="mando-muestra" style="background:#598000"></span>Pistacho</button>
+    <button type="button" data-paleta="arandano" aria-pressed="false"><span class="mando-muestra" style="background:#735FEA"></span>Arándano</button>
+  </div>
+</div>
+<!-- MANDO DE DEMOSTRACIÓN: fin -->
+
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"><span class="cursor-rot"></span></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
