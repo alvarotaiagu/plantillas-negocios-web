@@ -785,6 +785,11 @@
       // tarjeta para calibrar
       nodo('rect', { x: pad, y: pad, width: tw.toFixed(1), height: th.toFixed(1), rx: (3 * ppm).toFixed(1), 'class': 'galga-svg-tarjeta' });
       nodo('text', { x: pad + 12, y: pad + 22, 'class': 'galga-svg-texto' }, 'tarjeta · 85,6 × 54 mm');
+      // regla milimetrada dentro de la tarjeta, ya calibrada: si cuadra con una regla de verdad, la escala es buena
+      var rg = '', ry = pad + th - 10;
+      for (var mm = 0; mm <= 80; mm++) { var rx = pad + 2.8 * ppm + mm * ppm; rg += 'M' + rx.toFixed(1) + ' ' + ry + 'v' + (mm % 10 ? (mm % 5 ? -5 : -9) : -15); }
+      nodo('path', { d: rg, stroke: '#A4B1A9', 'stroke-width': 1, fill: 'none' });
+      for (var cm = 0; cm <= 8; cm++) nodo('text', { x: (pad + 2.8 * ppm + cm * 10 * ppm).toFixed(1), y: ry - 19, 'text-anchor': 'middle', 'class': 'galga-svg-texto' }, String(cm));
       var cy = by + s / 2;
       // cabeza (vista de lado, entrecaras) y caña con la rosca
       nodo('rect', { x: bx, y: by, width: k.toFixed(1), height: s.toFixed(1), rx: 1.5, fill: '#B7C1BB' });
