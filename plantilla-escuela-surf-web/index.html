@@ -142,7 +142,7 @@
         <a class="boton boton-linea iman" href="#niveles">Ver los niveles</a>
       </div>
     </div>
-    <aside class="lectura mono" aria-label="Lectura de la mar de muestra">
+    <div class="lectura mono" role="group" aria-label="Lectura de la mar de muestra">
       <p class="lectura-titulo"><span class="sello-muestra">Muestra</span> Mar de fondo hoy</p>
       <dl>
         <div><dt>Período</dt><dd><span data-lectura="periodo">13</span> s</dd></div>
@@ -150,7 +150,7 @@
         <div><dt>Altura</dt><dd><span data-lectura="altura">1,4</span> m</dd></div>
         <div><dt>Agua</dt><dd><span data-lectura="agua">15</span> °C</dd></div>
       </dl>
-    </aside>
+    </div>
     <p class="portada-pista mono" aria-hidden="true"><span class="pista-punto"></span><span class="pista-raton">Mueve el cursor: eres un bajo de arena. Mira cómo se doblan las líneas.</span><span class="pista-tactil">Arrastra el dedo: eres un bajo de arena.</span></p>
   </div>
 </section>
@@ -397,7 +397,7 @@
     <ol class="comparativa-barras" id="comparativa"></ol>
   </figure>
 
-  <aside class="sueltas">
+  <div class="sueltas">
     <h3 class="sueltas-titulo">¿Solo un día?</h3>
     <dl class="sueltas-lista">
       <div><dt>Bautismo · 2 h con material</dt><dd class="mono">35 €</dd></div>
@@ -405,7 +405,7 @@
       <div><dt>Privada, una persona · 1 h 30</dt><dd class="mono">60 €</dd></div>
       <div><dt>Privada, dos personas · 1 h 30</dt><dd class="mono">90 €</dd></div>
     </dl>
-  </aside>
+  </div>
 </section>
 
 <!-- 3 · PARTE DE HOY: MUESTRA generada, marcada como ficticia. -->
@@ -833,7 +833,7 @@
 
 <!-- MANDOS DE DEMOSTRACIÓN (maqueta y paleta). Solo con ?revision.
      NO VIAJAN AL SITIO DE UN CLIENTE: borrar este bloque (ver README). -->
-<div class="mandos" id="mandos" role="group" aria-label="Mandos de demostración" hidden>
+<div class="mandos" id="mandos" role="region" aria-label="Mandos de demostración" hidden>
   <p class="mandos-titulo mono">Maqueta</p>
   <div class="mandos-fila">
     <button type="button" data-maqueta="mar" aria-pressed="true">Mar de fondo</button>

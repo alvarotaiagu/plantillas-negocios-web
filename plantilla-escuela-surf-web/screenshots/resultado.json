@@ -1,0 +1,401 @@
+{
+  "comprobaciones": [
+    {
+      "nombre": "escritorio: cortina vista a mitad de camino",
+      "ok": true,
+      "detalle": "{\"display\":\"block\",\"top\":-345,\"h\":900}"
+    },
+    {
+      "nombre": "escritorio: cortina acaba en display:none",
+      "ok": true,
+      "detalle": "none"
+    },
+    {
+      "nombre": "escritorio: cortina de color distinto al fondo",
+      "ok": true,
+      "detalle": "rgb(217, 230, 228) vs rgb(7, 20, 26)"
+    },
+    {
+      "nombre": "escritorio: el botón de cookies cierra de verdad",
+      "ok": true,
+      "detalle": "[{\"visible\":true,\"disp\":\"flex\"},{\"disp\":\"none\",\"ls\":\"ok\"}]"
+    },
+    {
+      "nombre": "escritorio: cursor nativo oculto tras el primer pointermove y cursor propio visible",
+      "ok": true,
+      "detalle": "{\"clase\":true,\"cursor\":\"none\",\"visible\":\"block\"}"
+    },
+    {
+      "nombre": "escritorio: sin desbordamiento horizontal",
+      "ok": true,
+      "detalle": "{\"sw\":1440,\"iw\":1440}"
+    },
+    {
+      "nombre": "escritorio: mapa solo bajo clic",
+      "ok": true,
+      "detalle": "0 iframes antes · https://www.google.com/maps?q=Malpica%20de%20Berganti%C3%B1os%2C%20A%20Coru%C3%B1a&output=embed"
+    },
+    {
+      "nombre": "escritorio: el formulario de muestra responde",
+      "ok": true,
+      "detalle": "Gracias, Prueba. Es una demostración: no se ha enviado nada. En la web real te escribiríamos hoy mismo."
+    },
+    {
+      "nombre": "escritorio: sin marcadores pendientes",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "escritorio: consola limpia y sin peticiones fallidas",
+      "ok": true,
+      "detalle": "{\"errores\":[],\"fallos\":[\"https://www.google.com/maps?q=Malpica%20de%20Berganti%C3%B1os%2C%20A%20Coru%C3%B1a&output=embed net::ERR_TUNNEL_CONNECTION_FAILED\"]}"
+    },
+    {
+      "nombre": "movil: cortina vista a mitad de camino",
+      "ok": true,
+      "detalle": "{\"display\":\"block\",\"top\":-174,\"h\":844}"
+    },
+    {
+      "nombre": "movil: cortina acaba en display:none",
+      "ok": true,
+      "detalle": "none"
+    },
+    {
+      "nombre": "movil: cortina de color distinto al fondo",
+      "ok": true,
+      "detalle": "rgb(217, 230, 228) vs rgb(7, 20, 26)"
+    },
+    {
+      "nombre": "movil: el botón de cookies cierra de verdad",
+      "ok": true,
+      "detalle": "[{\"visible\":true,\"disp\":\"flex\"},{\"disp\":\"none\",\"ls\":\"ok\"}]"
+    },
+    {
+      "nombre": "móvil: sin cursor propio en táctil",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "móvil: el menú abre a pantalla completa y vuelve a cerrar",
+      "ok": true,
+      "detalle": "{\"exp\":\"true\",\"vis\":\"visible\",\"h\":844,\"ih\":844}"
+    },
+    {
+      "nombre": "movil: sin desbordamiento horizontal",
+      "ok": true,
+      "detalle": "{\"sw\":390,\"iw\":390}"
+    },
+    {
+      "nombre": "movil: mapa solo bajo clic",
+      "ok": true,
+      "detalle": "0 iframes antes · https://www.google.com/maps?q=Malpica%20de%20Berganti%C3%B1os%2C%20A%20Coru%C3%B1a&output=embed"
+    },
+    {
+      "nombre": "movil: el formulario de muestra responde",
+      "ok": true,
+      "detalle": "Gracias, Prueba. Es una demostración: no se ha enviado nada. En la web real te escribiríamos hoy mismo."
+    },
+    {
+      "nombre": "movil: sin marcadores pendientes",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "movil: consola limpia y sin peticiones fallidas",
+      "ok": true,
+      "detalle": "{\"errores\":[],\"fallos\":[\"https://www.google.com/maps?q=Malpica%20de%20Berganti%C3%B1os%2C%20A%20Coru%C3%B1a&output=embed net::ERR_TUNNEL_CONNECTION_FAILED\"]}"
+    },
+    {
+      "nombre": "portada 360×640: sin solapes y todo dentro de pantalla",
+      "ok": true,
+      "detalle": "{\"sol\":[],\"fuera\":[],\"bajoCabecera\":true}"
+    },
+    {
+      "nombre": "portada 375×667: sin solapes y todo dentro de pantalla",
+      "ok": true,
+      "detalle": "{\"sol\":[],\"fuera\":[],\"bajoCabecera\":true}"
+    },
+    {
+      "nombre": "pila: mismo alto (medido por JS) y mismo margin-bottom en todos, incluido el último",
+      "ok": true,
+      "detalle": "{\"altos\":[498,498,498,498],\"mb\":[\"81px\",\"81px\",\"81px\",\"81px\"],\"pos\":[\"sticky\",\"sticky\",\"sticky\",\"sticky\"],\"after\":\"54px\"}"
+    },
+    {
+      "nombre": "pila: las cuatro tarjetas llegan a apilarse (pasos de 90 px)",
+      "ok": true,
+      "detalle": "4 apiladas a la vez en 60 pasos"
+    },
+    {
+      "nombre": "sin GSAP: la cortina también se levanta (fotograma a medias)",
+      "ok": true,
+      "detalle": "{\"display\":\"block\",\"top\":-202,\"h\":900}"
+    },
+    {
+      "nombre": "sin GSAP: la cortina se retira (display:none) y no hay estados vacíos",
+      "ok": true,
+      "detalle": "{\"cortina\":\"none\",\"motion\":false,\"titular\":\"none\"}"
+    },
+    {
+      "nombre": "sin GSAP: los pasos del viaje se eligen a mano y el dibujo cambia",
+      "ok": true,
+      "detalle": "1,3 m · rompe → 1,5 m · rompe"
+    },
+    {
+      "nombre": "movimiento reducido: cortina fuera, sin Lenis ni estados vacíos",
+      "ok": true,
+      "detalle": "{\"cortina\":\"none\",\"motion\":false,\"lenis\":false}"
+    },
+    {
+      "nombre": "movimiento reducido: el contenido sigue cambiando (pasos, hoy, ahora, marea)",
+      "ok": true,
+      "detalle": "{\"antes\":\"1,7 m\",\"despues\":\"29 m\",\"hoy\":true,\"ahora\":true,\"marea\":true,\"contador\":\"185\"}"
+    },
+    {
+      "nombre": "mandos: ocultos mientras está el aviso de cookies y visibles al cerrarlo",
+      "ok": true,
+      "detalle": "grid"
+    },
+    {
+      "nombre": "mandos: ocultos sin ?revision",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "sobria: se retira el dibujo, manda el dato y aparece la comparativa",
+      "ok": true,
+      "detalle": "{\"clase\":true,\"escala\":\"none\",\"dato\":86.4,\"comp\":\"grid\",\"filas\":4,\"sw\":1440,\"iw\":1440,\"ls\":\"sobria\",\"pressed\":\"true\"}"
+    },
+    {
+      "nombre": "maqueta: se puede volver a «Mar de fondo»",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "paletas: cada botón cambia un color computado real, aria-pressed y localStorage",
+      "ok": true,
+      "detalle": "{\"base\":\"rgb(140, 224, 204)\",\"xeo\":{\"color\":\"rgb(184, 212, 236)\",\"pressed\":\"true\",\"ls\":\"xeo\"},\"liquen\":{\"color\":\"rgb(199, 217, 116)\",\"pressed\":\"true\",\"ls\":\"liquen\"}}"
+    },
+    {
+      "nombre": "paletas: la guardada se aplica al recargar, sin parpadeo",
+      "ok": true,
+      "detalle": "js es-revision paleta-liquen has-motion cortina-js lenis webgl-si viaje-vivo galeria-viva"
+    },
+    {
+      "nombre": "paletas: contraste medido (texto ≥ 4,5 y botón ≥ 7) en las tres",
+      "ok": true,
+      "detalle": "{\"vidrio\":{\"textoSobrePanel2\":10.16,\"botón\":12.1},\"paleta-xeo\":{\"textoSobrePanel2\":10.17,\"botón\":12.1},\"paleta-liquen\":{\"textoSobrePanel2\":10.12,\"botón\":12.1}}"
+    },
+    {
+      "nombre": "longtask: el observador funciona (control con setTimeout detectado)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "longtask: ninguna tarea larga con el shader y el scroll vivos durante 20 s",
+      "ok": false,
+      "detalle": "{\"arranque\":[{\"t\":30,\"d\":122},{\"t\":163,\"d\":243},{\"t\":406,\"d\":52},{\"t\":459,\"d\":81},{\"t\":982,\"d\":55},{\"t\":1826,\"d\":65},{\"t\":1892,\"d\":58},{\"t\":1951,\"d\":53},{\"t\":2005,\"d\":62},{\"t\":2068,\"d\":52},{\"t\":2120,\"d\":61},{\"t\":2182,\"d\":56},{\"t\":2239,\"d\":60},{\"t\":2299,\"d\":65},{\"t\":2365,\"d\":73},{\"t\":2438,\"d\":69},{\"t\":2510,\"d\":72},{\"t\":2583,\"d\":89},{\"t\":2673,\"d\":66},{\"t\":2739,\"d\":54},{\"t\":2974,\"d\":55}],\"rodando\":[{\"t\":3939,\"d\":73},{\"t\":4013,\"d\":58},{\"t\":4212,\"d\":57},{\"t\":4270,\"d\":61},{\"t\":4566,\"d\":58},{\"t\":4889,\"d\":59},{\"t\":4949,\"d\":56},{\"t\":5057,\"d\":52},{\"t\":5110,\"d\":59},{\"t\":5170,\"d\":55},{\"t\":5227,\"d\":51},{\"t\":5480,\"d\":50}],\"fps\":61}"
+    },
+    {
+      "nombre": "axe index-escritorio: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe index-movil: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe legal-escritorio: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe legal-movil: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe 404-escritorio: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe 404-movil: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe index-sobria: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    }
+  ],
+  "longtask": {
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "escalaMar": "0.32",
+    "arranque": [
+      {
+        "t": 30,
+        "d": 122
+      },
+      {
+        "t": 163,
+        "d": 243
+      },
+      {
+        "t": 406,
+        "d": 52
+      },
+      {
+        "t": 459,
+        "d": 81
+      },
+      {
+        "t": 982,
+        "d": 55
+      },
+      {
+        "t": 1826,
+        "d": 65
+      },
+      {
+        "t": 1892,
+        "d": 58
+      },
+      {
+        "t": 1951,
+        "d": 53
+      },
+      {
+        "t": 2005,
+        "d": 62
+      },
+      {
+        "t": 2068,
+        "d": 52
+      },
+      {
+        "t": 2120,
+        "d": 61
+      },
+      {
+        "t": 2182,
+        "d": 56
+      },
+      {
+        "t": 2239,
+        "d": 60
+      },
+      {
+        "t": 2299,
+        "d": 65
+      },
+      {
+        "t": 2365,
+        "d": 73
+      },
+      {
+        "t": 2438,
+        "d": 69
+      },
+      {
+        "t": 2510,
+        "d": 72
+      },
+      {
+        "t": 2583,
+        "d": 89
+      },
+      {
+        "t": 2673,
+        "d": 66
+      },
+      {
+        "t": 2739,
+        "d": 54
+      },
+      {
+        "t": 2974,
+        "d": 55
+      }
+    ],
+    "control": 1,
+    "rodando": [
+      {
+        "t": 3939,
+        "d": 73
+      },
+      {
+        "t": 4013,
+        "d": 58
+      },
+      {
+        "t": 4212,
+        "d": 57
+      },
+      {
+        "t": 4270,
+        "d": 61
+      },
+      {
+        "t": 4566,
+        "d": 58
+      },
+      {
+        "t": 4889,
+        "d": 59
+      },
+      {
+        "t": 4949,
+        "d": 56
+      },
+      {
+        "t": 5057,
+        "d": 52
+      },
+      {
+        "t": 5110,
+        "d": 59
+      },
+      {
+        "t": 5170,
+        "d": 55
+      },
+      {
+        "t": 5227,
+        "d": 51
+      },
+      {
+        "t": 5480,
+        "d": 50
+      }
+    ],
+    "fpsHero": 61
+  },
+  "axe": {
+    "index-escritorio": [],
+    "index-movil": [],
+    "legal-escritorio": [],
+    "legal-movil": [],
+    "404-escritorio": [],
+    "404-movil": [],
+    "index-sobria": []
+  },
+  "errores": {
+    "escritorio": {
+      "consola": [],
+      "peticiones": [
+        "https://www.google.com/maps?q=Malpica%20de%20Berganti%C3%B1os%2C%20A%20Coru%C3%B1a&output=embed net::ERR_TUNNEL_CONNECTION_FAILED"
+      ]
+    },
+    "movil": {
+      "consola": [],
+      "peticiones": [
+        "https://www.google.com/maps?q=Malpica%20de%20Berganti%C3%B1os%2C%20A%20Coru%C3%B1a&output=embed net::ERR_TUNNEL_CONNECTION_FAILED"
+      ]
+    },
+    "sin-gsap": []
+  },
+  "resumen": "45/46 comprobaciones en verde"
+}

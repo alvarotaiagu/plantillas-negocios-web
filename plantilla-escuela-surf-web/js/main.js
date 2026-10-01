@@ -66,10 +66,11 @@
   const cortina = $('#cortina');
   const olaCortina = $('#cortina-ola');
   let cortinaFuera = false;
+  let cortinaSaliendo = !motion;   // mientras la espuma tapa la pantalla, el shader no pinta
   const arrancaPortada = [];
   function retirarCortina() {
     if (cortinaFuera) return;
-    cortinaFuera = true;
+    cortinaFuera = true; cortinaSaliendo = true;
     cortina.classList.add('es-fuera');
     cortina.style.display = 'none';
     arrancaPortada.forEach(f => f());
@@ -97,12 +98,13 @@
       .to(estado, { fase: 9, duration: 2.3, ease: 'none', onUpdate: () => bordeCortina(estado.fase, estado.amp) }, 0)
       .to(estado, { amp: 34, duration: 1.1, ease: 'expo.inOut' }, 0.8)
       .to(marca, { y: -40, opacity: 0, duration: 0.6, ease: 'expo.in' }, 0.95)
+      .add(() => { cortinaSaliendo = true; }, 0.95)
       .to(cortina, { yPercent: -100, y: -140, duration: 1.15, ease: 'expo.inOut' }, 1.05)
       .add(() => arrancaPortada.forEach(f => f()), 1.5);
   } else {
     // Sin GSAP: la misma retirada con una transición CSS.
     cortina.style.transition = 'transform 1.1s cubic-bezier(.87,0,.13,1)';
-    setTimeout(() => { cortina.style.transform = 'translate3d(0, calc(-100% - 140px), 0)'; }, 700);
+    setTimeout(() => { cortinaSaliendo = true; cortina.style.transform = 'translate3d(0, calc(-100% - 140px), 0)'; }, 700);
     cortina.addEventListener('transitionend', retirarCortina, { once: true });
     setTimeout(retirarCortina, 2200);
   }
@@ -162,7 +164,7 @@
       requestAnimationFrame(bucle);
       if (t0 === null || !visible) return;
       const t = (now - t0) / 1000;
-      const rTop = titulo.getBoundingClientRect().top;
+      const rTop = raton.dentro ? titulo.getBoundingClientRect().top : 0;
       const sb = sobria();
       letrasTitulo.forEach((l, i) => {
         const c = centros[i] || { x: 0, cx: 0, cy: 0 };
@@ -176,6 +178,8 @@
         }
         const w = base + (1 - e) * 110 + ola;
         const peso = c.em ? 300 : 900 - (1 - e) * 500;
+        if (Math.abs(w - (l._w || 0)) < 0.4 && e === 1 && l._e === 1) return;
+        l._w = w; l._e = e;
         l.style.fontVariationSettings = `"wdth" ${w.toFixed(1)}, "wght" ${peso.toFixed(0)}, "opsz" 144${c.em ? ', "slnt" -10' : ''}`;
         l.style.opacity = e.toFixed(3);
         l.style.transform = e < 1 ? `translate3d(0, ${((1 - e) * 0.5).toFixed(3)}em, 0)` : '';
@@ -197,21 +201,25 @@ float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32);
 void main(){
   vec2 uv = gl_FragCoord.xy / uRes;
   float asp = uRes.x / uRes.y;
-  float hz = 1.06 - uScroll * 0.22;
+  float hz = 1.04 - uScroll * 0.2;
   float d = max(hz - uv.y, 0.002);
-  float z = 0.33 / d;
+  float z = 1.0 / (d + 0.42);
   vec2 mar = vec2((uv.x - 0.5) * asp * z, z);
   vec2 p = vec2(uv.x * asp, uv.y);
   vec2 m = uMouse.xy / uRes.y;
   float dm = length((p - m) * vec2(1.0, 1.25));
   float bajo = uMouse.z * exp(-dm * dm / 0.016);
-  vec2 isla = vec2(0.66 * asp, 0.60);
-  float di = length((p - isla) * vec2(1.0, 1.6));
-  float sombra = exp(-di * di / 0.05);
+  vec2 isla = vec2(0.66 * asp, 0.62);
+  vec2 q = (p - isla) * vec2(1.0, 1.7);
+  float di = length(q);
+  float ang = atan(q.y, q.x);
+  float radio = 0.034 * (1.0 + 0.2 * sin(3.0 * ang + 0.6) + 0.1 * sin(5.0 * ang + 2.0));
+  // a sotavento de la isla (hacia la orilla) el mar de fondo llega doblado
+  float estela = exp(-q.x * q.x / (0.012 + 0.03 * max(-q.y, 0.0))) * smoothstep(0.02, -0.25, q.y) * smoothstep(-0.9, -0.2, q.y);
   // fase del mar de fondo: avanza hacia la orilla; la costa la curva un poco
-  float ph = mar.y * 3.1 + 0.32 * sin(mar.x * 0.55 + 1.3);
-  // refracción: sobre el bajo y tras la isla la ola va más despacio y la línea se dobla
-  ph += bajo * 2.4 + sombra * 1.7 + exp(-di * di / 0.008) * 2.0;
+  float ph = z * 21.0 + 0.6 * sin(mar.x * 0.9 + 1.3);
+  // refracción: sobre el bajo y junto a la isla la ola va más despacio y la línea se dobla
+  ph += bajo * 2.6 + estela * 1.6 + exp(-di * di / 0.006) * 2.2;
   float t = uTime * 0.5;
   float f = fract(ph - t);
   float w = fwidth(ph);
@@ -223,15 +231,15 @@ void main(){
   float serie = 0.5 + 0.5 * sin(mar.x * 0.8 - floor(ph - t) * 1.7 + t * 0.2);
   float intensidad = (linea * (0.45 + 0.55 * serie) + cara) * niebla * densidad;
   intensidad *= 1.0 + bajo * 1.6;
-  intensidad *= 1.0 - smoothstep(0.06, 0.03, di) ;
+  intensidad *= smoothstep(radio, radio + 0.012, di);
   vec3 hondo = vec3(0.016, 0.043, 0.059);
   vec3 medio = vec3(0.043, 0.106, 0.133);
   vec3 col = mix(medio, hondo, smoothstep(0.05, 0.95, uv.y));
   vec3 cLinea = mix(uAcento, vec3(0.90, 0.94, 0.94), 0.25 + 0.55 * bajo);
   col = mix(col, cLinea, clamp(intensidad, 0.0, 1.0) * 0.8);
   // la isla: roca oscura con su anillo de espuma que respira
-  float roca = smoothstep(0.052, 0.046, di);
-  float anillo = (1.0 - smoothstep(0.0, 0.010, abs(di - 0.06 - 0.006 * sin(uTime * 1.3)))) * 0.55;
+  float roca = smoothstep(radio, radio - 0.004, di);
+  float anillo = (1.0 - smoothstep(0.0, 0.006, abs(di - radio - 0.008 - 0.004 * sin(uTime * 1.3 + ang * 2.0)))) * 0.5;
   col = mix(col, vec3(0.90, 0.94, 0.94), anillo * (1.0 - roca));
   col = mix(col, vec3(0.012, 0.03, 0.04), roca);
   // espuma de orilla abajo
@@ -256,7 +264,17 @@ void main(){
   })();
   if (mar) {
     const { gl, u } = mar;
-    const escala = () => Math.min(devicePixelRatio || 1, 1.5) * (innerWidth < 760 ? 0.6 : 0.75);
+    // Resolución adaptativa: si el fotograma pasa de ~22 ms de media, el búfer baja
+    // un 25 % (hasta un mínimo). Un móvil flojo, o una GPU por software, pinta menos
+    // píxeles en vez de tartamudear. El escalado lo absorbe el propio dibujo de líneas.
+    let factor = 1;
+    const escala = () => Math.min(devicePixelRatio || 1, 1.5) * (innerWidth < 760 ? 0.6 : 0.75) * factor;
+    let media = 16, cuenta = 0, previo = 0;
+    const vigilar = now => {
+      if (previo) { media = media * 0.8 + (now - previo) * 0.2; cuenta++; }
+      previo = now;
+      if (cuenta > 8 && media > 22 && factor > 0.36) { factor *= media > 40 ? 0.55 : 0.75; cuenta = 0; media = 16; ajustar(); html.dataset.marEscala = factor.toFixed(2); }
+    };
     const ajustar = () => {
       const r = canvas.getBoundingClientRect(), k = escala();
       const w = Math.max(1, Math.round(r.width * k)), h = Math.max(1, Math.round(r.height * k));
@@ -302,9 +320,10 @@ void main(){
     new IntersectionObserver(([e]) => { vivo = e.isIntersecting; }).observe(canvas);
     const bucle = now => {
       requestAnimationFrame(bucle);
-      if (!vivo || document.hidden) return;
+      if (!vivo || document.hidden || !cortinaSaliendo) { previo = 0; return; }
       scrollHero = clamp(scrollY / innerHeight, 0, 1);
       pintar(now);
+      vigilar(now);
     };
     if (motion) requestAnimationFrame(bucle); else ajustar();
   }
@@ -363,7 +382,7 @@ void main(){
 
   /* ————————————————— 1 · El viaje de una ola (física de verdad) ————————————————— */
   const g = 9.81, T = 13, w0 = 2 * Math.PI / T, H0 = 1.2;
-  const perfil = [[0, 4000], [700, 3800], [960, 120], [1150, 22], [1260, 8], [1300, 3.2], [1330, 2.1], [1360, 2.2], [1430, 1.0], [1470, 0.3], [1600, 0.1]];
+  const perfil = [[0, 4000], [700, 3800], [960, 120], [1150, 18], [1240, 4], [1280, 2.0], [1320, 1.5], [1360, 1.9], [1430, 0.9], [1470, 0.3], [1600, 0.1]];
   const profundidad = x => {
     for (let i = 1; i < perfil.length; i++) {
       if (x <= perfil[i][0]) {
@@ -386,6 +405,7 @@ void main(){
     return { c, L: c * T, H, rompe };
   };
   const corte = $('#corte');
+  const agua = $('#corte-agua'), escena = $('.viaje-escena');
   const pathOla = $('#corte-ola'), espuma = $('#corte-espuma'), surfista = $('#surfista'), borrasca = $('#borrasca'), marca = $('#corte-marca');
   const dProf = $('#d-prof'), dAlt = $('#d-altura'), dVel = $('#d-vel');
   const pasos = $$('.paso');
@@ -404,7 +424,7 @@ void main(){
     const xc = crestaEn(p);
     const h = profundidad(xc);
     const o = ola(h);
-    const Hpx = clamp(o.H * 34, 10, 90);
+    const Hpx = clamp(o.H * 58, 16, 140);
     const Lpx = clamp(36 + o.L * 0.9, 70, 300);
     const roto = o.rompe && xc > 1250;
     const sesgo = clamp(o.H / (0.78 * h), 0, 1) * 0.62;
@@ -432,6 +452,7 @@ void main(){
       const y = Math.min(sup(x), lecho(x) - 1);
       d += (x ? 'L' : 'M') + x + ' ' + y.toFixed(1) + ' ';
     }
+    agua.setAttribute('d', d + 'L1600 620 L0 620 Z');
     const yc = sup(xc);
     // labio: cuando rompe, la cresta se cae hacia delante
     if (o.rompe) {
@@ -471,8 +492,14 @@ void main(){
       pasos.forEach((li, k) => { li.classList.toggle('es-activo', k === i); $('.paso-boton', li).setAttribute('aria-current', k === i ? 'step' : 'false'); });
     }
     const barra = $('#viaje-barra'); barra.style.setProperty('--p', p.toFixed(3));
+    // en móvil el corte es más ancho que la pantalla: la cámara sigue a la cresta
+    const W = corte.getBoundingClientRect().width, vw = escena.clientWidth;
+    if (W > vw + 4) {
+      const tx = clamp(vw * 0.55 - xc / 1600 * W, vw - W, 0);
+      corte.style.transform = `translate3d(${tx.toFixed(1)}px,0,0)`;
+    } else if (corte.style.transform) corte.style.transform = '';
   }
-  let progViaje = 0.9;
+  let progViaje = gsapReady && motion ? 0 : 0.9;
   let stViaje = null;
   if (gsapReady && motion) {
     html.classList.add('viaje-vivo');
