@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 900" width="520" height="900">
+  <defs>
+    <linearGradient id="m" x1="0" x2="1">
+      <stop offset="0" stop-color="#4A5951"/><stop offset=".35" stop-color="#C9D1CC"/><stop offset=".55" stop-color="#EDF0EA"/><stop offset=".8" stop-color="#7C8982"/><stop offset="1" stop-color="#3A453F"/>
+    </linearGradient>
+    <linearGradient id="c" x1="0" x2="1">
+      <stop offset="0" stop-color="#5E6E66"/><stop offset=".45" stop-color="#DDE3DF"/><stop offset=".5" stop-color="#9EA9A2"/><stop offset="1" stop-color="#4A5951"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(-17 260 450)">
+    <rect x="170" y="330" width="180" height="570" fill="url(#m)"/>
+    <g stroke="#2C3832" stroke-width="7" stroke-linecap="round">
+    <path d="M170 330L350 343" />
+    <path d="M170 356L350 369" />
+    <path d="M170 382L350 395" />
+    <path d="M170 408L350 421" />
+    <path d="M170 434L350 447" />
+    <path d="M170 460L350 473" />
+    <path d="M170 486L350 499" />
+    <path d="M170 512L350 525" />
+    <path d="M170 538L350 551" />
+    <path d="M170 564L350 577" />
+    <path d="M170 590L350 603" />
+    <path d="M170 616L350 629" />
+    <path d="M170 642L350 655" />
+    <path d="M170 668L350 681" />
+    <path d="M170 694L350 707" />
+    <path d="M170 720L350 733" />
+    <path d="M170 746L350 759" />
+    <path d="M170 772L350 785" />
+    <path d="M170 798L350 811" />
+    <path d="M170 824L350 837" />
+    <path d="M170 850L350 863" />
+    <path d="M170 876L350 889" />
+    </g>
+    <rect x="70" y="282" width="380" height="26" rx="6" fill="url(#c)"/>
+    <path d="M110 150H410L450 200V282H70V200Z" fill="url(#c)"/>
+    <path d="M190 150V282M330 150V282" stroke="#2C3832" stroke-width="3" opacity=".6"/>
+    <path d="M70 200H450" stroke="#EDF0EA" stroke-width="2" opacity=".5"/>
+  </g>
+</svg>
