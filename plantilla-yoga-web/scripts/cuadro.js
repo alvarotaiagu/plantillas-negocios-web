@@ -6,7 +6,7 @@ const T = {
   vinyasa: { n:'Vinyasa',          sala:'Sala Area',   prof:'Martín' },
   yin:     { n:'Yin',              sala:'Sala Area',   prof:'Antía' },
   suelo:   { n:'Pilates suelo',    sala:'Sala Area',   prof:'Sabela' },
-  reformer:{ n:'Pilates reformer', sala:'Sala Muelle', prof:'Iago' },
+  reformer:{ n:'Pilates reformer', sala:'Sala Muelle', prof:'Uxío' },
 };
 const D = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 // [hora, minutos, tipo, nivel]

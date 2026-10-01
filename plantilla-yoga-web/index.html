@@ -166,14 +166,15 @@
               <title id="figura-desc">Figura dibujada que pasa de estar de pie a la postura del niño, pasando por cuadrupedia y perro boca abajo.</title>
               <rect class="figura-esterilla" x="40" y="372" width="560" height="12" rx="6"/>
               <g class="figura-lejos">
-                <path class="miembro" data-seg="brazoL"/>
-                <path class="miembro" data-seg="piernaL"/>
+                <path class="s-brazo" data-seg="brazoL1"/><path class="s-antebrazo" data-seg="brazoL2"/>
+                <path class="s-muslo" data-seg="piernaL1"/><path class="s-pierna" data-seg="piernaL2"/><path class="s-pie" data-seg="pieL"/>
               </g>
               <g class="figura-cerca">
-                <path class="tronco" data-seg="tronco"/>
-                <path class="miembro" data-seg="piernaC"/>
-                <path class="miembro" data-seg="brazoC"/>
-                <circle class="cabeza" r="23"/>
+                <path class="s-muslo" data-seg="piernaC1"/><path class="s-pierna" data-seg="piernaC2"/><path class="s-pie" data-seg="pieC"/>
+                <path class="s-tronco" data-seg="tronco"/>
+                <circle class="mono" r="11"/>
+                <circle class="cabeza" r="22"/>
+                <path class="s-brazo" data-seg="brazoC1"/><path class="s-antebrazo" data-seg="brazoC2"/>
               </g>
               <g class="figura-contactos"></g>
             </svg>
@@ -401,10 +402,10 @@
             <ol class="cuadro-sesiones">
               <li class="sesion" data-tipo="vinyasa" data-inicio="07:30" data-fin="08:30" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="suelo" data-inicio="09:30" data-fin="10:20" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="13:30" data-fin="14:20" data-nivel="2"><span class="sesion-hora">13:30<span class="sesion-fin">–14:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="13:30" data-fin="14:20" data-nivel="2"><span class="sesion-hora">13:30<span class="sesion-fin">–14:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="18:00" data-fin="19:00" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–19:00</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="2"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="2"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="suelo" data-inicio="19:30" data-fin="20:20" data-nivel="2"><span class="sesion-hora">19:30<span class="sesion-fin">–20:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="yin" data-inicio="20:30" data-fin="21:45" data-nivel="1"><span class="sesion-hora">20:30<span class="sesion-fin">–21:45</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
             </ol>
@@ -414,10 +415,10 @@
             <ol class="cuadro-sesiones">
               <li class="sesion" data-tipo="suelo" data-inicio="07:30" data-fin="08:20" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="09:30" data-fin="10:30" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:30</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="18:00" data-fin="18:50" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–18:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="18:00" data-fin="18:50" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–18:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="vinyasa" data-inicio="18:30" data-fin="19:30" data-nivel="2"><span class="sesion-hora">18:30<span class="sesion-fin">–19:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="3"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="3"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="19:45" data-fin="20:45" data-nivel="2"><span class="sesion-hora">19:45<span class="sesion-fin">–20:45</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
             </ol>
           </li>
@@ -426,10 +427,10 @@
             <ol class="cuadro-sesiones">
               <li class="sesion" data-tipo="vinyasa" data-inicio="07:30" data-fin="08:30" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="suelo" data-inicio="09:30" data-fin="10:20" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="2"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="13:30" data-fin="14:20" data-nivel="1"><span class="sesion-hora">13:30<span class="sesion-fin">–14:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="2"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="13:30" data-fin="14:20" data-nivel="1"><span class="sesion-hora">13:30<span class="sesion-fin">–14:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="18:00" data-fin="19:00" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–19:00</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="2"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="2"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="suelo" data-inicio="19:30" data-fin="20:20" data-nivel="3"><span class="sesion-hora">19:30<span class="sesion-fin">–20:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="yin" data-inicio="20:30" data-fin="21:45" data-nivel="1"><span class="sesion-hora">20:30<span class="sesion-fin">–21:45</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
             </ol>
@@ -439,10 +440,10 @@
             <ol class="cuadro-sesiones">
               <li class="sesion" data-tipo="suelo" data-inicio="07:30" data-fin="08:20" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="09:30" data-fin="10:30" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:30</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="18:00" data-fin="18:50" data-nivel="2"><span class="sesion-hora">18:00<span class="sesion-fin">–18:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="18:00" data-fin="18:50" data-nivel="2"><span class="sesion-hora">18:00<span class="sesion-fin">–18:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="vinyasa" data-inicio="18:30" data-fin="19:30" data-nivel="3"><span class="sesion-hora">18:30<span class="sesion-fin">–19:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="1"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="1"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="19:45" data-fin="20:45" data-nivel="2"><span class="sesion-hora">19:45<span class="sesion-fin">–20:45</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
             </ol>
           </li>
@@ -451,8 +452,8 @@
             <ol class="cuadro-sesiones">
               <li class="sesion" data-tipo="vinyasa" data-inicio="07:30" data-fin="08:30" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="suelo" data-inicio="09:30" data-fin="10:20" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="17:30" data-fin="18:20" data-nivel="2"><span class="sesion-hora">17:30<span class="sesion-fin">–18:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="17:30" data-fin="18:20" data-nivel="2"><span class="sesion-hora">17:30<span class="sesion-fin">–18:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="18:30" data-fin="19:30" data-nivel="1"><span class="sesion-hora">18:30<span class="sesion-fin">–19:30</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="yin" data-inicio="19:45" data-fin="21:00" data-nivel="1"><span class="sesion-hora">19:45<span class="sesion-fin">–21:00</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
             </ol>
@@ -461,9 +462,9 @@
             <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Sábado</span><span class="cuadro-dia-corto" aria-hidden="true">Sáb</span><span class="cuadro-hoy-marca">hoy</span></h3>
             <ol class="cuadro-sesiones">
               <li class="sesion" data-tipo="vinyasa" data-inicio="09:30" data-fin="10:30" data-nivel="2"><span class="sesion-hora">09:30<span class="sesion-fin">–10:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="hatha" data-inicio="11:15" data-fin="12:15" data-nivel="1"><span class="sesion-hora">11:15<span class="sesion-fin">–12:15</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
-              <li class="sesion" data-tipo="reformer" data-inicio="11:15" data-fin="12:05" data-nivel="2"><span class="sesion-hora">11:15<span class="sesion-fin">–12:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="11:15" data-fin="12:05" data-nivel="2"><span class="sesion-hora">11:15<span class="sesion-fin">–12:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Uxío · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
               <li class="sesion" data-tipo="yin" data-inicio="12:30" data-fin="13:45" data-nivel="1"><span class="sesion-hora">12:30<span class="sesion-fin">–13:45</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
             </ol>
           </li>
@@ -498,7 +499,7 @@
           </div>
         </li>
         <li class="persona">
-          <svg class="persona-retrato" viewBox="0 0 240 280" role="img" aria-label="Ilustración de Iago: pelo corto rizado, barba corta, camiseta azul marino.">
+          <svg class="persona-retrato" viewBox="0 0 240 280" role="img" aria-label="Ilustración de Uxío: pelo corto rizado, barba corta, camiseta azul marino.">
             <path d="M20 280 V120 a100 100 0 0 1 200 0 V280Z" class="r-fondo"/>
             <path d="M54 280 c4 -52 28 -74 66 -74 s62 22 66 74Z" class="r-ropa-b"/>
             <rect x="104" y="160" width="32" height="50" rx="12" class="r-piel-c"/>
@@ -508,7 +509,7 @@
             <path d="M102 124 h12 M128 124 h12" class="r-trazo"/><path d="M121 130 l-3 14 h6" class="r-trazo-claro"/>
           </svg>
           <div class="persona-texto">
-            <h3>Iago Castiñeiras</h3>
+            <h3>Uxío Castiñeiras</h3>
             <p class="persona-rol">Pilates reformer</p>
             <p>Bailarín de formación, cuenta los muelles como otros cuentan compases. Es el que te dirá que quites resistencia, no que pongas más.</p>
           </div>

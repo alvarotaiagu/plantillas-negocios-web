@@ -34,6 +34,7 @@
   --aliento: 0;
 
   /* Grano de corcho: ruido SVG en línea (vale bajo file://) */
+  --grano-osc: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .9 0 0 0 0 .82 0 0 0 .55 -.3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   --grano: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .08 0 0 0 1.6 -.82'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 /* Alternativas derivadas: mismo L que «mar», matiz rotado. Tinta, corcho y espuma no cambian; el logo tampoco. */
@@ -111,7 +112,7 @@ html.has-motion .revela .l { transition: transform .9s var(--exhala), color .5s 
 html.js .cortina { display: block; position: fixed; inset: 0; z-index: 500; pointer-events: none; }
 .cortina-lamina {
   position: absolute; inset: 0;
-  background: var(--mar) var(--grano);
+  background: radial-gradient(120% 90% at 30% 20%, rgba(255,255,255,.08), transparent 60%), var(--mar);
   display: grid; place-content: center; justify-items: center; gap: 14px;
   color: var(--espuma);
   border-radius: 0 0 50% 50% / 0 0 0 0;
@@ -178,7 +179,7 @@ html.cabecera-oculta .cabecera { transform: translateY(-90px); }
     position: fixed; top: -10px; left: -10px; width: 100vw; height: 100dvh; z-index: 2;
     flex-direction: column; align-items: flex-start; justify-content: center; gap: 28px;
     padding: 90px 28px 40px;
-    background: var(--caucho) var(--grano); color: var(--espuma);
+    background: var(--caucho) var(--grano-osc); color: var(--espuma);
     clip-path: circle(0 at calc(100% - 50px) 40px);
     visibility: hidden;
     transition: clip-path .7s var(--inhala), visibility 0s linear .7s;
@@ -207,7 +208,7 @@ html.cabecera-oculta .cabecera { transform: translateY(-90px); }
   position: absolute; z-index: -2;
   inset: calc(var(--cab) + 4px) var(--margen) 18px;
   border-radius: 34px;
-  background: var(--mar) var(--grano);
+  background: radial-gradient(120% 90% at 30% 20%, rgba(255,255,255,.07), transparent 60%), var(--mar);
   box-shadow: 0 30px 60px -30px rgba(29,26,22,.7), inset 0 2px 0 rgba(255,255,255,.08);
 }
 html.webgl-ok .portada-respaldo { visibility: hidden; }
@@ -291,7 +292,7 @@ html.has-motion .portada-vivo { transition-delay: .55s; }
 }
 
 /* ─────────── 2 · La postura (anclada) ─────────── */
-.postura { background: var(--caucho) var(--grano); color: var(--espuma); position: relative; }
+.postura { background: var(--caucho) var(--grano-osc); color: var(--espuma); position: relative; }
 .postura .seccion-numero { color: var(--apagado-caucho); }
 .postura-fijo { min-height: 100svh; padding: calc(var(--cab) + 30px) var(--margen) 40px; display: flex; flex-direction: column; }
 .postura-cabeza .titular { font-size: clamp(2rem, 1rem + 3.4vw, 4.2rem); max-width: 14ch; margin-bottom: .3em; }
@@ -304,11 +305,13 @@ html.has-motion .portada-vivo { transition-delay: .55s; }
 .postura-figura { margin: 0; grid-column: 1; grid-row: 1 / 3; }
 .figura { width: 100%; height: auto; max-height: 62svh; display: block; overflow: visible; }
 .figura-esterilla { fill: var(--mar); }
-.figura .miembro, .figura .tronco { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.figura-cerca .miembro { stroke: var(--espuma); stroke-width: 24; }
-.figura-cerca .tronco { stroke: var(--espuma); stroke-width: 40; }
-.figura-lejos .miembro { stroke: #8C7B66; stroke-width: 22; }
+.figura path { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke: var(--espuma); }
+.figura-lejos path { stroke: #8C7B66; }
+.figura .s-tronco { stroke-width: 36; } .figura .s-muslo { stroke-width: 27; } .figura .s-pierna { stroke-width: 20; }
+.figura .s-pie { stroke-width: 13; } .figura .s-brazo { stroke-width: 18; } .figura .s-antebrazo { stroke-width: 15; }
+.figura-cerca .s-brazo, .figura-cerca .s-antebrazo { stroke: #E6DCCD; }
 .figura .cabeza { fill: var(--espuma); }
+.figura .mono { fill: var(--coral); }
 .figura-contactos circle { fill: var(--coral); }
 .postura-mapa { grid-column: 2; grid-row: 1 / 3; display: flex; flex-direction: column; gap: 18px; }
 .mapa { width: 100%; max-height: 46svh; height: auto; display: block; }
@@ -491,10 +494,11 @@ html.has-motion .sesion.es-siguiente::after { content: ""; position: absolute; t
 .equipo-cabeza .titular { max-width: 13ch; }
 .equipo-lista { list-style: none; margin: 30px 0 0; padding: 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px 24px; }
 .persona { display: grid; grid-template-columns: minmax(130px, 220px) 1fr; gap: 22px; align-items: end; }
-.persona:nth-child(1) { grid-column: 1 / 7; }
-.persona:nth-child(2) { grid-column: 7 / 13; margin-top: 140px; }
-.persona:nth-child(3) { grid-column: 2 / 8; margin-top: -40px; }
-.persona:nth-child(4) { grid-column: 8 / 13; margin-top: 80px; }
+.persona:nth-child(1) { grid-column: 7 / 13; margin-top: -300px; }
+.persona:nth-child(2) { grid-column: 1 / 7; margin-top: 30px; }
+.persona:nth-child(3) { grid-column: 7 / 13; margin-top: 150px; }
+.persona:nth-child(4) { grid-column: 2 / 8; margin-top: -60px; }
+@media (min-width: 901px) and (max-width: 1239px) { .persona:nth-child(1) { margin-top: 20px; } .persona:nth-child(3) { margin-top: 80px; } }
 .persona-retrato { width: 100%; height: auto; display: block; }
 .persona h3 { font-family: var(--f-titular); font-stretch: 120%; font-weight: 450; font-size: 1.6rem; line-height: 1.05; margin: 0 0 4px; }
 .persona-rol { font-family: var(--f-mono); font-size: .78rem; color: var(--mar-texto); margin: 0 0 10px; }
@@ -519,7 +523,7 @@ html.has-motion .sesion.es-siguiente::after { content: ""; position: absolute; t
 }
 
 /* ─────────── 7 · Bonos ─────────── */
-.bonos { background: var(--caucho) var(--grano); color: var(--espuma); padding: clamp(80px, 10vw, 150px) var(--margen); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 50px clamp(30px, 6vw, 110px); align-items: end; }
+.bonos { background: var(--caucho) var(--grano-osc); color: var(--espuma); padding: clamp(80px, 10vw, 150px) var(--margen); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 50px clamp(30px, 6vw, 110px); align-items: end; }
 .bonos .seccion-numero { color: var(--apagado-caucho); }
 .vale {
   position: relative; margin-top: 20px;
@@ -618,7 +622,7 @@ html.en-revision .cookies-revision { display: inline; }
 @media (max-width: 600px) { .cookies { left: 10px; right: 10px; bottom: 10px; flex-direction: column; align-items: stretch; } }
 
 /* ─────────── Mando de demostración · NO VIAJA AL SITIO DE UN CLIENTE ─────────── */
-.mando { position: fixed; z-index: 150; left: 12px; bottom: 12px; display: grid; gap: 6px; padding: 8px; border-radius: 16px; background: rgba(29,26,22,.92); color: var(--espuma); font-size: .8rem; box-shadow: 0 12px 30px -12px rgba(0,0,0,.6); }
+.mando { position: fixed; z-index: 150; left: 12px; bottom: 12px; gap: 6px; padding: 8px; border-radius: 16px; background: rgba(29,26,22,.92); color: var(--espuma); font-size: .8rem; box-shadow: 0 12px 30px -12px rgba(0,0,0,.6); }
 .mando:not([hidden]) { display: grid; }
 .mando-grupo { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .mando-titulo { font-family: var(--f-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; width: 5.4em; color: var(--apagado-caucho); }

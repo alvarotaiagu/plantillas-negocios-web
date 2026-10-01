@@ -1,0 +1,15 @@
+{
+  "name": "Pegada · yoga e pilates (demostración)",
+  "short_name": "Pegada",
+  "description": "Sitio de demostración de un estudio ficticio de yoga y pilates en Sanxenxo.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#C9A57E",
+  "theme_color": "#16475A",
+  "lang": "es",
+  "icons": [
+    { "src": "img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "img/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icono-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

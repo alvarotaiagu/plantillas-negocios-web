@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- SITIO DE DEMOSTRACIÓN. Pegada es un negocio ficticio; los datos, ilustraciones y opiniones son de muestra. -->
+<!-- Autocontenida a propósito: en GitHub Pages la 404 se sirve desde cualquier ruta y las rutas relativas no valdrían. -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aquí no hay esterilla · Pegada (demostración)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#16475A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600&family=Red+Hat+Mono:wght@400&family=Roboto+Serif:ital,opsz,wdth,wght@1,8..144,50..150,200..800&display=swap" rel="stylesheet">
+  <style>
+    :root { --corcho: #C9A57E; --espuma: #F3ECE2; --caucho: #1D1A16; --mar: #16475A; --apagado: #3E2D1E; }
+    * { box-sizing: border-box; }
+    html { overflow-x: clip; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; background: var(--corcho); color: var(--caucho); font-family: "Albert Sans", system-ui, sans-serif; text-align: center; }
+    main { max-width: 34rem; }
+    svg { width: min(260px, 70vw); height: auto; }
+    .mono { font-family: "Red Hat Mono", monospace; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--apagado); margin: 18px 0 6px; }
+    h1 { font-family: "Roboto Serif", Georgia, serif; font-style: italic; font-weight: 300; font-stretch: 130%; font-size: clamp(2.4rem, 1.6rem + 4vw, 4rem); line-height: .95; margin: 0 0 16px; }
+    p { color: var(--apagado); }
+    a.boton { display: inline-flex; align-items: center; min-height: 48px; padding: .8em 1.5em; border-radius: 999px; background: var(--mar); color: var(--espuma); font-weight: 600; text-decoration: none; }
+    a:focus-visible { outline: 3px solid var(--caucho); outline-offset: 3px; }
+    .sello { margin-top: 40px; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <svg viewBox="0 0 260 340" aria-hidden="true">
+      <rect x="20" y="10" width="220" height="320" rx="34" fill="#16475A"/>
+      <g fill="none" stroke="#F3ECE2" stroke-width="3" stroke-dasharray="6 9" opacity="1">
+        <ellipse cx="96" cy="230" rx="24" ry="34"/><ellipse cx="164" cy="230" rx="24" ry="34"/>
+      </g>
+      <text x="130" y="128" text-anchor="middle" font-family="Red Hat Mono, monospace" font-size="54" fill="#F3ECE2">404</text>
+    </svg>
+    <p class="mono">Página no encontrada</p>
+    <h1>Aquí no hay esterilla.</h1>
+    <p>La dirección no existe o ha cambiado. Vuelve al inicio y busca dónde apoyarte.</p>
+    <a class="boton" id="volver" href="./">Volver al inicio</a>
+    <p class="sello"><b>Sitio de demostración.</b> Pegada es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+  </main>
+  <script>
+    // En una project page de GitHub, el inicio es el primer tramo de la ruta.
+    (function () { var s = location.pathname.split('/').filter(Boolean); if (location.hostname.endsWith('github.io') && s.length) document.getElementById('volver').href = '/' + s[0] + '/'; })();
+  </script>
+</body>
+</html>
