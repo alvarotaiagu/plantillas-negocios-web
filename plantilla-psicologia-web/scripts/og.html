@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300..700&family=Literata:ital,opsz,wght@0,7..72,250;1,7..72,300&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+body{background:#F4E9E1;font-family:"Albert Sans";color:#1E2235;position:relative}
+.barra{position:absolute;left:0;right:0;top:0;height:46px;background:#283463;color:#FBF5F0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.barra b{color:#D9A84E;margin:0 .3em}
+h1{position:absolute;left:72px;top:150px;margin:0;font:250 112px/.92 Literata;letter-spacing:-3px;font-variation-settings:"opsz" 72}
+h1 em{display:block;color:#8A3628;font-weight:300;padding-left:90px}
+.marca{position:absolute;left:72px;top:82px;display:flex;align-items:center;gap:14px;font:400 30px Literata}
+.marca img{width:48px;height:48px}
+.pie{position:absolute;left:72px;bottom:120px;font-size:20px;color:#585467;letter-spacing:.04em}
+svg.o{position:absolute;right:40px;top:110px;width:470px;height:470px}
+.demo{position:absolute;left:72px;top:520px;bottom:auto;font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid #8A3628;color:#8A3628;border-radius:99px;padding:6px 14px}
+</style></head><body>
+<div class="barra">¿Estás en crisis? Llama al <b>024</b> · gratuito, 24 horas</div>
+<div class="marca"><img src="../img/logo.svg" alt="">Debandoira</div>
+<h1>Tirar del hilo, <em>sin prisa.</em></h1>
+<p class="pie">Gabinete de psicología · Lugo · presencial y en línea</p>
+<svg class="o" viewBox="0 0 400 400"><defs><clipPath id="c"><circle cx="190" cy="190" r="140"/></clipPath></defs>
+<ellipse cx="190" cy="350" rx="150" ry="22" fill="#1E2235" opacity=".08"/>
+<g clip-path="url(#c)" fill="none" stroke-width="2.2" id="g"></g>
+<circle cx="190" cy="190" r="140" fill="none" stroke="#283463" stroke-width="2"/>
+<path d="M326 220 C 360 240, 372 300, 340 340 S 280 380, 330 396" fill="none" stroke="#B4533F" stroke-width="3.5" stroke-linecap="round"/></svg>
+<p class="demo">Sitio de demostración</p>
+<script>
+var g=document.getElementById('g'),h='',cols=['#283463','#283463','#B4533F','#283463','#D9A84E','#283463','#283463','#B4533F'];
+for(var b=0;b<8;b++){var ang=b*23-60;for(var l=0;l<7;l++){var ry=20+l*14+b*3;h+='<ellipse cx="190" cy="190" rx="140" ry="'+ry+'" transform="rotate('+ang+' 190 190)" stroke="'+cols[b]+'" opacity="'+(0.55+l*0.06)+'"/>';}}
+g.innerHTML=h;
+</script>
+</body></html>
