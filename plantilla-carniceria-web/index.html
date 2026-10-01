@@ -1,0 +1,706 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Carnicería Mouriscal es un negocio ficticio: los datos,
+  precios, fotografías y opiniones son de muestra. No es un negocio real de Vilalba.
+-->
+<html lang="es" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mouriscal · Carnicería y charcutería en Vilalba (demo)</title>
+<meta name="description" content="Carnicería y charcutería ficticia en Vilalba: ternera gallega, cerdo y aves, embutido curado en casa, encargos de cocido y mostrador del día. Sitio de demostración.">
+<meta name="theme-color" content="#241013">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<meta property="og:title" content="Mouriscal · Carnicería y charcutería (demo)">
+<meta property="og:description" content="Cortamos a contraveta. Plantilla de demostración de una carnicería ficticia en Vilalba.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<script>
+  // Bloqueante a propósito: aplica densidad y paleta antes del primer pintado.
+  // AVISO: el mando de maqueta y el de paleta son de DEMOSTRACIÓN y NUNCA viajan
+  // al sitio de un cliente. Receta de borrado en el README («Quitar los mandos»).
+  (function () {
+    var h = document.documentElement;
+    h.classList.remove('no-js'); h.classList.add('js');
+    try {
+      var m = localStorage.getItem('mouriscal-maqueta');
+      if (m === 'sobria') h.classList.add('maqueta-sobria');
+      var p = localStorage.getItem('mouriscal-paleta');
+      if (p === 'azafran' || p === 'ciruela') h.classList.add('paleta-' + p);
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Onest:wght@300..700&family=Red+Hat+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ButcherShop",
+  "name": "Carnicería Mouriscal (demostración)",
+  "description": "Negocio ficticio de demostración.",
+  "address": { "@type": "PostalAddress", "streetAddress": "Rúa dos Coiteleiros, 9", "postalCode": "27800", "addressLocality": "Vilalba", "addressRegion": "Lugo", "addressCountry": "ES" },
+  "telephone": "+34 982 00 00 00",
+  "email": "hola@mouriscal.example",
+  "openingHours": ["Mo 09:00-14:00", "Tu-Fr 09:00-14:00", "Tu-Fr 17:00-20:30", "Sa 08:30-14:30"]
+}
+</script>
+</head>
+<body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- Cortina «loncheado»: seis lonchas que salen una a una, como del cortafiambres.
+     Retirada garantizada: GSAP, CSS sin GSAP, movimiento reducido y red de 5 s. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="cortina-lonchas">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="cortina-marca">
+    <svg viewBox="0 0 120 120" width="96" height="96" aria-hidden="true">
+      <circle class="cortina-aro" cx="60" cy="60" r="52" pathLength="1"/>
+      <path class="cortina-veta" d="M22 44 L98 44 M18 58 L102 58 M20 72 L100 72 M28 86 L92 86" pathLength="1"/>
+      <path class="cortina-corte" d="M38 18 L82 102" pathLength="1"/>
+    </svg>
+    <span class="cortina-nombre">Mouriscal</span>
+  </div>
+</div>
+
+<header class="cabecera" id="cabecera">
+  <a class="marca" href="#portada" aria-label="Carnicería Mouriscal, inicio">
+    <svg class="marca-sello" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+      <circle cx="32" cy="32" r="30" fill="#241013"/>
+      <g stroke="#F3EADF" stroke-width="2.2" stroke-linecap="round">
+        <path d="M12 24 H52 M9 32 H55 M11 40 H53"/>
+      </g>
+      <path d="M22 9 L42 55" stroke="#D8573F" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="32" cy="32" r="30" fill="none" stroke="#241013" stroke-width="2"/>
+    </svg>
+    <span class="marca-texto"><span class="marca-nombre">Mouriscal</span><span class="marca-sub">Carnicería · charcutería · 1971</span></span>
+  </a>
+  <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu">
+    <span class="menu-boton-rayas" aria-hidden="true"><i></i><i></i></span>
+    <span class="menu-boton-texto">Menú</span>
+  </button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ul>
+      <li><a href="#mostrador">Mostrador de hoy</a></li>
+      <li><a href="#oficio">Oficio</a></li>
+      <li><a href="#despiece">Despiece</a></li>
+      <li><a href="#curados">Curados</a></li>
+      <li><a href="#encargos">Encargos</a></li>
+      <li><a href="#visita">Visita</a></li>
+    </ul>
+    <p class="menu-pie">Rúa dos Coiteleiros, 9 · Vilalba<br><a href="tel:+34982000000">982 00 00 00</a></p>
+  </nav>
+</header>
+
+<main id="contenido">
+
+<!-- ============ PORTADA ============ -->
+<section class="portada" id="portada" aria-labelledby="portada-titulo">
+  <canvas class="portada-veta" id="veta" aria-hidden="true"></canvas>
+  <div class="portada-grano" aria-hidden="true"></div>
+  <div class="portada-dentro">
+    <p class="portada-antetitulo"><span class="punto-vivo" aria-hidden="true"></span><span id="portada-estado">Vilalba · Terra Chá · desde 1971</span></p>
+    <h1 class="portada-titulo" id="portada-titulo">
+      <span class="t-linea" data-revelar>Cortamos</span>
+      <span class="t-linea t-cursiva" data-revelar>a contraveta.</span>
+    </h1>
+    <div class="portada-lado">
+      <p class="portada-entradilla">Ternera gallega, cerdo de cebo y aves de corral de granjas a menos de treinta kilómetros. Embutido curado en el sobrado de casa. Y un cuchillo que va siempre de través a la fibra, porque así la carne se deja masticar.</p>
+      <div class="portada-botones">
+        <a class="boton boton-lleno" data-iman href="#mostrador">Ver el mostrador de hoy</a>
+        <a class="boton boton-linea" data-iman href="#encargos">Encargar para el cocido</a>
+      </div>
+    </div>
+    <p class="portada-pista" aria-hidden="true"><span class="pista-raya"></span><span class="pista-texto">Pasa el cursor: es el cuchillo</span></p>
+  </div>
+  <a class="portada-ticket" href="#mostrador" aria-label="Mostrador de hoy">
+    <span class="ticket-cab">Mostrador · <span id="ticket-dia">hoy</span></span>
+    <span class="ticket-linea" id="ticket-linea">Chuletón madurado 28 días</span>
+    <span class="ticket-precio" id="ticket-precio">32,00 €/kg</span>
+    <span class="ticket-nota">precio de muestra</span>
+  </a>
+</section>
+
+<!-- ============ MOSTRADOR DEL DÍA ============ -->
+<section class="mostrador seccion" id="mostrador" aria-labelledby="mostrador-titulo">
+  <div class="mostrador-cab">
+    <p class="etiqueta">01 · El mostrador</p>
+    <h2 class="titulo-grande" id="mostrador-titulo" data-revelar>Lo que hay hoy encima del mármol</h2>
+    <p class="mostrador-entradilla">Cada día de la semana el mostrador tiene su pieza. Elige una, ponle el peso y la báscula te dice lo que cuesta antes de venir.</p>
+  </div>
+
+  <div class="mostrador-cuerpo">
+    <div class="dias" role="tablist" aria-label="Día de la semana">
+      <button role="tab" class="dia" data-dia="1" aria-selected="false" aria-controls="dia-1" id="tab-dia-1"><span class="dia-corto">Lu</span><span class="dia-largo">Lunes</span></button>
+      <button role="tab" class="dia" data-dia="2" aria-selected="false" aria-controls="dia-2" id="tab-dia-2"><span class="dia-corto">Ma</span><span class="dia-largo">Martes</span></button>
+      <button role="tab" class="dia" data-dia="3" aria-selected="false" aria-controls="dia-3" id="tab-dia-3"><span class="dia-corto">Mi</span><span class="dia-largo">Miércoles</span></button>
+      <button role="tab" class="dia" data-dia="4" aria-selected="false" aria-controls="dia-4" id="tab-dia-4"><span class="dia-corto">Ju</span><span class="dia-largo">Jueves</span></button>
+      <button role="tab" class="dia" data-dia="5" aria-selected="false" aria-controls="dia-5" id="tab-dia-5"><span class="dia-corto">Vi</span><span class="dia-largo">Viernes</span></button>
+      <button role="tab" class="dia" data-dia="6" aria-selected="true" aria-controls="dia-6" id="tab-dia-6"><span class="dia-corto">Sá</span><span class="dia-largo">Sábado</span></button>
+    </div>
+
+    <div class="pizarras">
+      <div class="pizarra" id="dia-1" role="tabpanel" aria-labelledby="tab-dia-1" data-dia="1">
+        <p class="pizarra-lema">Lunes de picadillo</p>
+        <ul class="piezas">
+          <li><button class="pieza" data-nombre="Zorza (picadillo de chorizo)" data-precio="9.80"><span class="pieza-nombre">Zorza, el picadillo del chorizo</span><span class="pieza-nota">adobada el domingo, pimentón de la Vera</span><span class="pieza-precio">9,80 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Costilla de cerdo adobada" data-precio="8.90"><span class="pieza-nombre">Costilla adobada</span><span class="pieza-nota">para el horno, en tiras</span><span class="pieza-precio">8,90 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Carne picada mixta" data-precio="10.50"><span class="pieza-nombre">Picada mixta al momento</span><span class="pieza-nota">ternera y cerdo, mitad y mitad</span><span class="pieza-precio">10,50 €/kg</span></button></li>
+        </ul>
+      </div>
+      <div class="pizarra" id="dia-2" role="tabpanel" aria-labelledby="tab-dia-2" data-dia="2">
+        <p class="pizarra-lema">Martes de guiso</p>
+        <ul class="piezas">
+          <li><button class="pieza" data-nombre="Morcillo de ternera" data-precio="14.50"><span class="pieza-nombre">Morcillo de ternera</span><span class="pieza-nota">en tacos, con su gelatina</span><span class="pieza-precio">14,50 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Carrillera de ternera" data-precio="16.90"><span class="pieza-nombre">Carrillera</span><span class="pieza-nota">limpia, para cocer dos horas</span><span class="pieza-precio">16,90 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Aguja de ternera para guisar" data-precio="13.20"><span class="pieza-nombre">Aguja para guisar</span><span class="pieza-nota">con sus vetas, que es lo que da caldo</span><span class="pieza-precio">13,20 €/kg</span></button></li>
+        </ul>
+      </div>
+      <div class="pizarra" id="dia-3" role="tabpanel" aria-labelledby="tab-dia-3" data-dia="3">
+        <p class="pizarra-lema">Miércoles de corral</p>
+        <ul class="piezas">
+          <li><button class="pieza" data-nombre="Pollo de corral entero" data-precio="7.90"><span class="pieza-nombre">Pollo de corral entero</span><span class="pieza-nota">de Begonte, se trocea al pedirlo</span><span class="pieza-precio">7,90 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Pechuga fileteada" data-precio="11.40"><span class="pieza-nombre">Pechuga fileteada</span><span class="pieza-nota">fina, para la plancha</span><span class="pieza-precio">11,40 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Gallina para caldo" data-precio="6.20"><span class="pieza-nombre">Gallina para caldo</span><span class="pieza-nota">la que da color al caldo</span><span class="pieza-precio">6,20 €/kg</span></button></li>
+        </ul>
+      </div>
+      <div class="pizarra" id="dia-4" role="tabpanel" aria-labelledby="tab-dia-4" data-dia="4">
+        <p class="pizarra-lema">Jueves de cocido</p>
+        <ul class="piezas">
+          <li><button class="pieza" data-nombre="Lacón salado" data-precio="7.20"><span class="pieza-nombre">Lacón salado</span><span class="pieza-nota">desalado si lo pides el martes</span><span class="pieza-precio">7,20 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Costilla salgada" data-precio="8.40"><span class="pieza-nombre">Costilla salgada</span><span class="pieza-nota">de la artesa de sal de casa</span><span class="pieza-precio">8,40 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Unto" data-precio="9.00"><span class="pieza-nombre">Unto curado</span><span class="pieza-nota">amarillo, de un año</span><span class="pieza-precio">9,00 €/kg</span></button></li>
+        </ul>
+      </div>
+      <div class="pizarra" id="dia-5" role="tabpanel" aria-labelledby="tab-dia-5" data-dia="5">
+        <p class="pizarra-lema">Viernes de preparados</p>
+        <ul class="piezas">
+          <li><button class="pieza" data-nombre="Hamburguesa de ternera" data-precio="12.90"><span class="pieza-nombre">Hamburguesa de ternera</span><span class="pieza-nota">70 de magro, 30 de grasa, sal y nada más</span><span class="pieza-precio">12,90 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Albóndigas de la casa" data-precio="11.80"><span class="pieza-nombre">Albóndigas de la casa</span><span class="pieza-nota">con pan de Vilalba y perejil</span><span class="pieza-precio">11,80 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Pinchos morunos" data-precio="10.60"><span class="pieza-nombre">Pinchos de cerdo</span><span class="pieza-nota">adobo suave, para la plancha</span><span class="pieza-precio">10,60 €/kg</span></button></li>
+        </ul>
+      </div>
+      <div class="pizarra" id="dia-6" role="tabpanel" aria-labelledby="tab-dia-6" data-dia="6">
+        <p class="pizarra-lema">Sábado de madurado</p>
+        <ul class="piezas">
+          <li><button class="pieza" data-nombre="Chuletón madurado 28 días" data-precio="32.00"><span class="pieza-nombre">Chuletón madurado 28 días</span><span class="pieza-nota">de vaca rubia, cortado al grosor que digas</span><span class="pieza-precio">32,00 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Solomillo de ternera" data-precio="38.00"><span class="pieza-nombre">Solomillo de ternera</span><span class="pieza-nota">entero o en medallones</span><span class="pieza-precio">38,00 €/kg</span></button></li>
+          <li><button class="pieza" data-nombre="Entrecot de ternera" data-precio="26.50"><span class="pieza-nombre">Entrecot</span><span class="pieza-nota">lomo alto, con su veta</span><span class="pieza-precio">26,50 €/kg</span></button></li>
+        </ul>
+      </div>
+      <p class="pizarra-domingo" id="pizarra-domingo" hidden>Hoy es domingo y la persiana está bajada. Te enseñamos el mostrador del lunes.</p>
+    </div>
+
+    <aside class="bascula" aria-labelledby="bascula-titulo">
+      <h3 class="bascula-titulo" id="bascula-titulo">La báscula</h3>
+      <div class="bascula-pantalla" aria-live="polite">
+        <p class="bascula-pieza" id="bascula-pieza">Elige una pieza</p>
+        <p class="bascula-cifras">
+          <span class="bascula-peso"><output id="bascula-peso">500</output> g</span>
+          <span class="bascula-total"><output id="bascula-total">0,00</output> €</span>
+        </p>
+      </div>
+      <label class="bascula-rango">
+        <span>Peso</span>
+        <input type="range" id="bascula-gramos" min="100" max="3000" step="50" value="500" aria-describedby="bascula-ayuda">
+      </label>
+      <p class="bascula-ayuda" id="bascula-ayuda">De 100 g a 3 kg. Los precios son de muestra: es un negocio ficticio.</p>
+      <div class="bascula-atajos" role="group" aria-label="Pesos habituales">
+        <button type="button" data-g="250">¼ kg</button>
+        <button type="button" data-g="500">½ kg</button>
+        <button type="button" data-g="1000">1 kg</button>
+        <button type="button" data-g="1500">1,5 kg</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Solo en la versión sobria: dato en vez de dibujo -->
+  <figure class="comparador solo-sobria" aria-labelledby="comparador-titulo">
+    <figcaption id="comparador-titulo">Precio por kilo de todo lo del mostrador de la semana, de menos a más</figcaption>
+    <ol class="comparador-barras" id="comparador-barras"></ol>
+  </figure>
+</section>
+
+<!-- ============ OFICIO (anclado con scrub) ============ -->
+<section class="oficio" id="oficio" aria-labelledby="oficio-titulo">
+  <div class="oficio-escena" id="oficio-escena">
+    <div class="oficio-texto">
+      <p class="etiqueta etiqueta-clara">02 · El oficio</p>
+      <h2 class="oficio-titulo" id="oficio-titulo">De la canal al papel, en cinco gestos</h2>
+      <p class="oficio-contador" aria-hidden="true"><span id="oficio-num">01</span><span class="oficio-de">/05</span></p>
+      <ol class="oficio-pasos" id="oficio-pasos">
+        <li class="oficio-paso" data-paso="1">
+          <h3>Origen</h3>
+          <p>Rubia gallega y cruces de Terra Chá, de cuatro casas que conocemos por el nombre. Ninguna a más de treinta kilómetros del mostrador.</p>
+        </li>
+        <li class="oficio-paso" data-paso="2">
+          <h3>Despiece</h3>
+          <p>La canal se abre siguiendo las costuras del músculo, no la sierra. Cada pieza sale con su nombre y su destino: plancha, guiso o cocido.</p>
+        </li>
+        <li class="oficio-paso" data-paso="3">
+          <h3>Maduración</h3>
+          <p>El lomo descansa en cámara a dos grados. A los <strong>28 días</strong> la grasa infiltrada ha hecho su trabajo y la fibra se afloja.</p>
+        </li>
+        <li class="oficio-paso" data-paso="4">
+          <h3>A contraveta</h3>
+          <p>El cuchillo cruza la fibra, nunca la sigue. Fibra corta en el plato es carne tierna en la boca: es lo único que de verdad no se puede arreglar después.</p>
+        </li>
+        <li class="oficio-paso" data-paso="5">
+          <h3>Papel</h3>
+          <p>Papel de estraza, cordel y la etiqueta escrita a mano con el peso. Se envuelve en el momento, nunca antes.</p>
+        </li>
+      </ol>
+    </div>
+
+    <figure class="oficio-figura" aria-labelledby="oficio-figura-texto">
+      <svg class="oficio-svg" id="oficio-svg" viewBox="0 0 800 600" role="img" aria-labelledby="oficio-figura-texto">
+        <defs>
+          <pattern id="pat-veta" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+            <rect width="10" height="10" fill="#B9442F"/>
+            <path d="M0 2 H10 M0 6.5 H10" stroke="#CF5F48" stroke-width="1.6"/>
+          </pattern>
+          <pattern id="pat-grasa" width="60" height="40" patternUnits="userSpaceOnUse">
+            <path d="M2 10 C14 6 22 16 34 12 C44 9 50 14 58 12 M8 28 C18 24 26 32 40 28 M30 36 C38 34 44 38 52 35" fill="none" stroke="#F4E6D6" stroke-width="2.4" stroke-linecap="round"/>
+          </pattern>
+          <clipPath id="clip-res"><path d="M70 74 C66 58 72 44 84 38 L92 26 L98 40 C108 40 118 46 126 56 C150 74 176 82 210 80 C280 74 360 72 430 72 C480 72 526 78 548 100 C562 114 566 136 562 160 C560 184 556 206 552 226 L566 262 L558 266 L548 244 C546 268 548 300 552 330 L528 332 C524 304 518 278 510 258 C502 280 500 306 502 330 L478 332 C474 300 474 274 470 256 C420 266 340 268 270 262 C258 280 256 306 258 330 L234 332 C230 304 226 282 218 262 C208 282 206 306 208 330 L184 332 C180 300 178 272 172 248 C158 234 146 214 140 190 C132 172 120 162 104 156 C92 160 74 162 62 156 C50 150 46 136 50 124 C54 110 62 100 66 90 C58 86 50 80 48 72 C56 72 64 74 70 74 Z"/></clipPath>
+          <clipPath id="clip-filete"><path d="M250 210 C300 170 420 160 520 186 C580 202 600 250 590 300 C580 360 520 400 430 404 C330 408 250 380 222 330 C204 296 214 240 250 210 Z"/></clipPath>
+        </defs>
+
+        <!-- La res: silueta trazada + despiece -->
+        <g class="of-res" id="of-res" transform="translate(100 120)">
+          <path class="of-res-relleno" d="M70 74 C66 58 72 44 84 38 L92 26 L98 40 C108 40 118 46 126 56 C150 74 176 82 210 80 C280 74 360 72 430 72 C480 72 526 78 548 100 C562 114 566 136 562 160 C560 184 556 206 552 226 L566 262 L558 266 L548 244 C546 268 548 300 552 330 L528 332 C524 304 518 278 510 258 C502 280 500 306 502 330 L478 332 C474 300 474 274 470 256 C420 266 340 268 270 262 C258 280 256 306 258 330 L234 332 C230 304 226 282 218 262 C208 282 206 306 208 330 L184 332 C180 300 178 272 172 248 C158 234 146 214 140 190 C132 172 120 162 104 156 C92 160 74 162 62 156 C50 150 46 136 50 124 C54 110 62 100 66 90 C58 86 50 80 48 72 C56 72 64 74 70 74 Z"/>
+          <g clip-path="url(#clip-res)">
+            <rect class="of-lomo" x="300" y="60" width="180" height="90" fill="url(#pat-veta)"/>
+            <rect class="of-lomo-grasa" x="300" y="60" width="180" height="90" fill="url(#pat-grasa)"/>
+          </g>
+          <path class="of-res-linea" pathLength="1" d="M70 74 C66 58 72 44 84 38 L92 26 L98 40 C108 40 118 46 126 56 C150 74 176 82 210 80 C280 74 360 72 430 72 C480 72 526 78 548 100 C562 114 566 136 562 160 C560 184 556 206 552 226 L566 262 L558 266 L548 244 C546 268 548 300 552 330 L528 332 C524 304 518 278 510 258 C502 280 500 306 502 330 L478 332 C474 300 474 274 470 256 C420 266 340 268 270 262 C258 280 256 306 258 330 L234 332 C230 304 226 282 218 262 C208 282 206 306 208 330 L184 332 C180 300 178 272 172 248 C158 234 146 214 140 190 C132 172 120 162 104 156 C92 160 74 162 62 156 C50 150 46 136 50 124 C54 110 62 100 66 90 C58 86 50 80 48 72 C56 72 64 74 70 74 Z"/>
+          <g class="of-cortes" clip-path="url(#clip-res)">
+            <path pathLength="1" d="M200 60 L205 262"/>
+            <path pathLength="1" d="M300 60 L300 262"/>
+            <path pathLength="1" d="M410 60 L410 262"/>
+            <path pathLength="1" d="M490 70 L480 262"/>
+            <path pathLength="1" d="M205 150 L410 145"/>
+            <path pathLength="1" d="M120 70 L130 200"/>
+          </g>
+          <g class="of-nombres" font-family="Red Hat Mono, monospace" font-size="13" fill="#F3EADF">
+            <text x="140" y="120">aguja</text>
+            <text x="320" y="118">lomo</text>
+            <text x="422" y="118">cadera</text>
+            <text x="500" y="170">tapa</text>
+            <text x="230" y="210">pecho</text>
+            <text x="330" y="210">falda</text>
+          </g>
+          <g class="of-dias">
+            <rect x="300" y="-38" width="180" height="30" rx="15" fill="#F3EADF"/>
+            <text x="390" y="-17" text-anchor="middle" font-family="Red Hat Mono, monospace" font-size="15" fill="#241013"><tspan id="of-dias-num">0</tspan> días a 2 °C</text>
+          </g>
+        </g>
+
+        <!-- El filete: tres lonchas que se separan tras el cuchillo -->
+        <g class="of-filete" id="of-filete">
+          <g class="of-loncha" data-l="0"><g clip-path="url(#clip-filete)"><rect x="200" y="150" width="140" height="280" fill="url(#pat-veta)"/><path d="M200 220 C260 200 300 250 340 230 M200 300 C240 290 300 320 340 300" stroke="#F4E6D6" stroke-width="5" fill="none" stroke-linecap="round"/></g></g>
+          <g class="of-loncha" data-l="1"><g clip-path="url(#clip-filete)"><rect x="340" y="150" width="130" height="280" fill="url(#pat-veta)"/><path d="M340 230 C380 220 420 260 470 240 M340 330 C380 340 430 310 470 330" stroke="#F4E6D6" stroke-width="5" fill="none" stroke-linecap="round"/></g></g>
+          <g class="of-loncha" data-l="2"><g clip-path="url(#clip-filete)"><rect x="470" y="150" width="140" height="280" fill="url(#pat-veta)"/><path d="M470 240 C520 230 560 260 610 250 M470 320 C520 336 560 300 610 316" stroke="#F4E6D6" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M520 186 C580 202 600 250 590 300" stroke="#F4E6D6" stroke-width="16" fill="none"/></g></g>
+          <g class="of-cuchillo" id="of-cuchillo">
+            <path d="M0 -150 L18 -150 L22 110 L8 140 L-4 110 Z" fill="#E8ECEA"/>
+            <path d="M18 -150 L22 110" stroke="#9AA7A2" stroke-width="2"/>
+            <rect x="-6" y="-250" width="30" height="104" rx="8" fill="#241013"/>
+            <circle cx="9" cy="-222" r="4" fill="#C9B8A6"/><circle cx="9" cy="-176" r="4" fill="#C9B8A6"/>
+          </g>
+        </g>
+
+        <!-- El papel: se dobla, se ata y se etiqueta -->
+        <g class="of-papel" id="of-papel">
+          <rect class="of-papel-fondo" x="190" y="160" width="430" height="270" rx="6" fill="#E9DCC6"/>
+          <path class="of-solapa of-solapa-a" d="M190 160 L405 300 L190 430 Z" fill="#DCCBB0"/>
+          <path class="of-solapa of-solapa-b" d="M620 160 L405 300 L620 430 Z" fill="#E2D3BA"/>
+          <path class="of-cordel" pathLength="1" d="M405 150 L405 440 M180 296 L630 296" stroke="#8A3B2A" stroke-width="3" fill="none"/>
+          <g class="of-etiqueta">
+            <rect x="440" y="320" width="150" height="74" rx="4" fill="#F8F9F5" stroke="#241013" stroke-width="1.5"/>
+            <text x="452" y="344" font-family="Red Hat Mono, monospace" font-size="13" fill="#241013">Entrecot · 3 u.</text>
+            <text x="452" y="364" font-family="Red Hat Mono, monospace" font-size="13" fill="#241013">0,860 kg</text>
+            <text x="452" y="384" font-family="Red Hat Mono, monospace" font-size="13" fill="#A0321D">22,79 €</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption class="visually-hidden" id="oficio-figura-texto">Ilustración en cinco estados: la silueta de una ternera, sus cortes de despiece, el lomo madurando 28 días, un filete cortado en tres a contraveta y el paquete de papel atado con su etiqueta.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ DESPIECE (herramienta) ============ -->
+<section class="despiece seccion" id="despiece" aria-labelledby="despiece-titulo">
+  <div class="despiece-cab">
+    <p class="etiqueta">03 · Despiece</p>
+    <h2 class="titulo-grande" id="despiece-titulo" data-revelar>Dinos el plato y te decimos la pieza</h2>
+  </div>
+
+  <div class="despiece-mando">
+    <div class="animales" role="group" aria-label="Animal">
+      <button type="button" class="animal" data-animal="ternera" aria-pressed="true">Ternera</button>
+      <button type="button" class="animal" data-animal="cerdo" aria-pressed="false">Cerdo</button>
+      <button type="button" class="animal" data-animal="ave" aria-pressed="false">Aves</button>
+    </div>
+    <div class="platos" role="group" aria-label="Plato">
+      <button type="button" class="plato" data-plato="cocido" aria-pressed="false">Cocido</button>
+      <button type="button" class="plato" data-plato="guiso" aria-pressed="false">Guiso</button>
+      <button type="button" class="plato" data-plato="plancha" aria-pressed="false">Plancha</button>
+      <button type="button" class="plato" data-plato="horno" aria-pressed="false">Horno</button>
+      <button type="button" class="plato" data-plato="filetes" aria-pressed="false">Filetes</button>
+    </div>
+  </div>
+
+  <div class="despiece-cuerpo">
+    <div class="carta" id="carta">
+      <svg class="carta-svg es-visible" data-animal="ternera" viewBox="0 0 600 360" role="group" aria-label="Despiece de la ternera">
+        <defs><clipPath id="clip-ternera"><path d="M70 74 C66 58 72 44 84 38 L92 26 L98 40 C108 40 118 46 126 56 C150 74 176 82 210 80 C280 74 360 72 430 72 C480 72 526 78 548 100 C562 114 566 136 562 160 C560 184 556 206 552 226 L566 262 L558 266 L548 244 C546 268 548 300 552 330 L528 332 C524 304 518 278 510 258 C502 280 500 306 502 330 L478 332 C474 300 474 274 470 256 C420 266 340 268 270 262 C258 280 256 306 258 330 L234 332 C230 304 226 282 218 262 C208 282 206 306 208 330 L184 332 C180 300 178 272 172 248 C158 234 146 214 140 190 C132 172 120 162 104 156 C92 160 74 162 62 156 C50 150 46 136 50 124 C54 110 62 100 66 90 C58 86 50 80 48 72 C56 72 64 74 70 74 Z"/></clipPath></defs>
+        <g clip-path="url(#clip-ternera)">
+          <path class="region" tabindex="0" role="button" data-pieza="carrillera" d="M0 0 H118 L124 190 H0 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="pescuezo" d="M118 0 H200 L205 150 L140 190 L124 190 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="aguja" d="M200 0 H300 V150 L205 150 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="lomo" d="M300 0 H410 V145 L300 150 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="cadera" d="M410 0 H495 L482 135 L410 145 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="tapa" d="M495 0 H600 V262 H480 L482 135 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="falda" d="M300 150 L410 145 L480 135 L480 262 H300 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="pecho" d="M124 190 L140 190 L205 150 L300 150 V262 H124 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="morcillo" d="M0 262 H600 V360 H0 Z"/>
+        </g>
+        <path class="carta-contorno" d="M70 74 C66 58 72 44 84 38 L92 26 L98 40 C108 40 118 46 126 56 C150 74 176 82 210 80 C280 74 360 72 430 72 C480 72 526 78 548 100 C562 114 566 136 562 160 C560 184 556 206 552 226 L566 262 L558 266 L548 244 C546 268 548 300 552 330 L528 332 C524 304 518 278 510 258 C502 280 500 306 502 330 L478 332 C474 300 474 274 470 256 C420 266 340 268 270 262 C258 280 256 306 258 330 L234 332 C230 304 226 282 218 262 C208 282 206 306 208 330 L184 332 C180 300 178 272 172 248 C158 234 146 214 140 190 C132 172 120 162 104 156 C92 160 74 162 62 156 C50 150 46 136 50 124 C54 110 62 100 66 90 C58 86 50 80 48 72 C56 72 64 74 70 74 Z"/>
+      </svg>
+      <svg class="carta-svg" data-animal="cerdo" viewBox="0 0 600 360" role="group" aria-label="Despiece del cerdo" hidden>
+        <defs><clipPath id="clip-cerdo"><path d="M74 150 C60 150 46 146 40 138 C34 130 36 118 46 112 C56 106 70 104 84 104 L92 80 L112 96 C130 84 160 76 200 72 C280 64 380 64 450 72 C510 80 552 110 560 150 C570 154 580 148 584 140 C588 152 580 166 562 168 C560 200 548 228 530 246 L530 318 L504 318 L500 262 C470 272 440 276 410 276 L402 318 L378 318 L376 278 C320 280 270 280 230 274 L226 318 L202 318 L198 268 C178 262 160 254 150 244 L148 318 L124 318 L118 226 C104 210 92 184 84 160 C80 156 78 152 74 150 Z"/></clipPath></defs>
+        <g clip-path="url(#clip-cerdo)">
+          <path class="region" tabindex="0" role="button" data-pieza="oreja" d="M0 0 H140 L150 230 H0 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="lacon" d="M140 0 H250 V170 L150 230 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="cinta" d="M250 0 H450 V125 H250 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="solomillo-cerdo" d="M370 125 H450 V160 H370 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="costilla" d="M250 125 H370 V160 H450 V200 H250 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="panceta" d="M150 230 L250 170 V200 H450 V290 H150 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="jamon" d="M450 0 H600 V290 H450 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="manos" d="M0 290 H600 V360 H0 Z"/>
+        </g>
+        <path class="carta-contorno" d="M74 150 C60 150 46 146 40 138 C34 130 36 118 46 112 C56 106 70 104 84 104 L92 80 L112 96 C130 84 160 76 200 72 C280 64 380 64 450 72 C510 80 552 110 560 150 C570 154 580 148 584 140 C588 152 580 166 562 168 C560 200 548 228 530 246 L530 318 L504 318 L500 262 C470 272 440 276 410 276 L402 318 L378 318 L376 278 C320 280 270 280 230 274 L226 318 L202 318 L198 268 C178 262 160 254 150 244 L148 318 L124 318 L118 226 C104 210 92 184 84 160 C80 156 78 152 74 150 Z"/>
+      </svg>
+      <svg class="carta-svg" data-animal="ave" viewBox="0 0 600 360" role="group" aria-label="Despiece del pollo de corral" hidden>
+        <defs><clipPath id="clip-ave"><path d="M150 120 C146 96 150 70 168 56 L160 40 C170 38 178 42 182 48 C188 38 196 34 204 36 C200 44 200 52 204 58 C214 70 218 88 214 106 C226 128 250 144 290 148 C340 152 390 140 430 112 C450 98 470 82 494 76 C504 92 510 112 508 132 C524 140 532 156 528 172 C512 236 460 280 380 292 L392 336 L410 342 L372 344 L362 294 L340 296 L350 336 L368 342 L330 344 L322 292 C252 284 192 252 166 206 C154 186 150 168 150 150 L126 152 L148 132 C148 128 150 124 150 120 Z"/></clipPath></defs>
+        <g clip-path="url(#clip-ave)">
+          <path class="region" tabindex="0" role="button" data-pieza="carcasa" d="M100 0 H230 V130 L190 230 H100 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="pechuga" d="M230 130 C280 150 330 156 380 146 L360 300 H190 L190 230 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="ala" d="M230 0 H600 V100 C520 130 450 150 380 146 C330 156 280 150 230 130 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="contramuslo" d="M380 146 C450 150 520 130 600 100 V200 H440 Z"/>
+          <path class="region" tabindex="0" role="button" data-pieza="muslo" d="M380 146 L440 200 H600 V360 H340 L360 300 Z"/>
+        </g>
+        <path class="carta-contorno" d="M150 120 C146 96 150 70 168 56 L160 40 C170 38 178 42 182 48 C188 38 196 34 204 36 C200 44 200 52 204 58 C214 70 218 88 214 106 C226 128 250 144 290 148 C340 152 390 140 430 112 C450 98 470 82 494 76 C504 92 510 112 508 132 C524 140 532 156 528 172 C512 236 460 280 380 292 L392 336 L410 342 L372 344 L362 294 L340 296 L350 336 L368 342 L330 344 L322 292 C252 284 192 252 166 206 C154 186 150 168 150 150 L126 152 L148 132 C148 128 150 124 150 120 Z"/>
+        <circle cx="180" cy="80" r="5" fill="#241013"/>
+      </svg>
+    </div>
+
+    <div class="ficha" id="ficha" aria-live="polite">
+      <p class="ficha-animal" id="ficha-animal">Ternera</p>
+      <h3 class="ficha-nombre" id="ficha-nombre">Lomo</h3>
+      <p class="ficha-texto" id="ficha-texto">El lomo bajo: entrecot y chuletón. Es la pieza que madura 28 días en cámara.</p>
+      <dl class="ficha-datos">
+        <div><dt>Para</dt><dd id="ficha-platos">plancha</dd></div>
+        <div><dt>Precio de muestra</dt><dd id="ficha-precio">26,50 €/kg</dd></div>
+      </dl>
+      <p class="ficha-pista">Toca una zona del dibujo o elige un plato arriba.</p>
+      <ul class="ficha-lista" id="ficha-lista" aria-label="Piezas de este animal"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CURADOS (pila sticky) ============ -->
+<section class="curados" id="curados" aria-labelledby="curados-titulo">
+  <div class="curados-cab">
+    <p class="etiqueta etiqueta-clara">04 · Curados de la casa</p>
+    <h2 class="titulo-grande titulo-claro" id="curados-titulo" data-revelar>El sobrado, de octubre a abril</h2>
+    <p class="curados-entradilla">Lo que cuelga del sobrado de casa cuando el frío de la Terra Chá entra por la ventana. Humo de roble, pimentón y paciencia: nada más.</p>
+  </div>
+  <ol class="pila" id="pila">
+    <li class="pila-item" data-dias="45">
+      <article class="curado">
+        <div class="curado-dibujo" aria-hidden="true">
+          <svg viewBox="0 0 320 240">
+            <path d="M20 60 C80 40 240 40 300 60" stroke="#C9B8A6" stroke-width="3" fill="none"/>
+            <g fill="#8E2A17"><rect x="34" y="60" width="44" height="120" rx="22"/><rect x="96" y="58" width="44" height="130" rx="22"/><rect x="158" y="58" width="44" height="124" rx="22"/><rect x="220" y="60" width="44" height="116" rx="22"/></g>
+            <g fill="#F4E6D6"><circle cx="50" cy="100" r="3"/><circle cx="62" cy="130" r="2.5"/><circle cx="48" cy="156" r="2"/><circle cx="112" cy="96" r="2.5"/><circle cx="126" cy="140" r="3"/><circle cx="110" cy="170" r="2"/><circle cx="172" cy="104" r="3"/><circle cx="188" cy="150" r="2.5"/><circle cx="236" cy="96" r="2"/><circle cx="250" cy="132" r="3"/><circle cx="238" cy="160" r="2.5"/></g>
+            <g stroke="#C9B8A6" stroke-width="3"><path d="M56 60 V48 M118 58 V46 M180 58 V46 M242 60 V48"/></g>
+          </svg>
+        </div>
+        <div class="curado-datos">
+          <p class="curado-num">01</p>
+          <h3 class="curado-nombre">Chorizo de la casa</h3>
+          <p class="curado-texto">Magro y papada de cerdo de cebo, pimentón dulce y picante, ajo y sal. Embutido en tripa natural y ahumado con roble.</p>
+          <p class="curado-dias"><span class="curado-dias-num">45</span> días de curación</p>
+          <div class="curado-barra" aria-hidden="true"><span style="--d:45"></span></div>
+          <p class="curado-precio">16,80 €/kg <small>precio de muestra</small></p>
+        </div>
+      </article>
+    </li>
+    <li class="pila-item" data-dias="120">
+      <article class="curado">
+        <div class="curado-dibujo" aria-hidden="true">
+          <svg viewBox="0 0 320 240">
+            <path d="M70 70 C120 30 230 40 262 100 C290 150 250 210 180 214 C110 218 60 180 52 140 C46 110 50 86 70 70 Z" fill="#8E2A17"/>
+            <path d="M262 100 C290 150 250 210 180 214" stroke="#F4E6D6" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <path d="M70 70 L34 40" stroke="#E9DCC6" stroke-width="18" stroke-linecap="round"/>
+            <circle cx="30" cy="36" r="13" fill="#E9DCC6"/>
+            <g stroke="#F4E6D6" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M100 110 C130 100 150 130 180 118"/><path d="M110 160 C140 150 170 176 200 160"/></g>
+          </svg>
+        </div>
+        <div class="curado-datos">
+          <p class="curado-num">02</p>
+          <h3 class="curado-nombre">Lacón curado</h3>
+          <p class="curado-texto">La paleta del cerdo, salada en artesa y colgada hasta que se corta en lonchas finas como papel. Para picar, no para cocer.</p>
+          <p class="curado-dias"><span class="curado-dias-num">120</span> días de curación</p>
+          <div class="curado-barra" aria-hidden="true"><span style="--d:120"></span></div>
+          <p class="curado-precio">24,00 €/kg <small>precio de muestra</small></p>
+        </div>
+      </article>
+    </li>
+    <li class="pila-item" data-dias="30">
+      <article class="curado">
+        <div class="curado-dibujo" aria-hidden="true">
+          <svg viewBox="0 0 320 240">
+            <path d="M50 150 C40 90 120 50 190 60 C260 70 290 120 270 170 C250 210 180 210 140 196 C100 184 56 190 50 150 Z" fill="#7A2614"/>
+            <path d="M44 150 L22 160 M276 168 L298 182" stroke="#C9B8A6" stroke-width="4" stroke-linecap="round"/>
+            <g fill="#F4E6D6"><circle cx="110" cy="110" r="3"/><circle cx="150" cy="140" r="3.5"/><circle cx="190" cy="100" r="2.5"/><circle cx="220" cy="150" r="3"/><circle cx="96" cy="160" r="2.5"/><circle cx="240" cy="120" r="2"/></g>
+          </svg>
+        </div>
+        <div class="curado-datos">
+          <p class="curado-num">03</p>
+          <h3 class="curado-nombre">Androlla</h3>
+          <p class="curado-texto">Costilla de cerdo picada con su hueso blando y el adobo del chorizo. Se cuece entera, se sirve con cachelos y no se le pide nada más.</p>
+          <p class="curado-dias"><span class="curado-dias-num">30</span> días de curación</p>
+          <div class="curado-barra" aria-hidden="true"><span style="--d:30"></span></div>
+          <p class="curado-precio">11,50 €/kg <small>precio de muestra</small></p>
+        </div>
+      </article>
+    </li>
+    <li class="pila-item" data-dias="40">
+      <article class="curado">
+        <div class="curado-dibujo" aria-hidden="true">
+          <svg viewBox="0 0 320 240">
+            <circle cx="160" cy="130" r="84" fill="#8E2A17"/>
+            <path d="M160 46 C150 30 170 22 166 10" stroke="#C9B8A6" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M100 74 C140 100 180 100 220 74 M90 130 C140 150 180 150 236 130 M104 186 C140 200 180 200 216 186" stroke="#C9B8A6" stroke-width="2.5" fill="none"/>
+            <g fill="#F4E6D6"><circle cx="130" cy="110" r="3"/><circle cx="190" cy="160" r="3"/><circle cx="150" cy="170" r="2.5"/><circle cx="200" cy="112" r="2"/></g>
+          </svg>
+        </div>
+        <div class="curado-datos">
+          <p class="curado-num">04</p>
+          <h3 class="curado-nombre">Botelo</h3>
+          <p class="curado-texto">El primo redondo de la androlla: costilla y rabo adobados en el estómago del cerdo, atado con cordel. Para el cocido grande de febrero.</p>
+          <p class="curado-dias"><span class="curado-dias-num">40</span> días de curación</p>
+          <div class="curado-barra" aria-hidden="true"><span style="--d:40"></span></div>
+          <p class="curado-precio">12,90 €/kg <small>precio de muestra</small></p>
+        </div>
+      </article>
+    </li>
+    <li class="pila-item" data-dias="180">
+      <article class="curado">
+        <div class="curado-dibujo" aria-hidden="true">
+          <svg viewBox="0 0 320 240">
+            <path d="M40 80 L250 60 L282 150 L70 176 Z" fill="#6E1F12"/>
+            <g fill="#A8432C" stroke="#F4E6D6" stroke-width="1.5"><path d="M150 150 L290 130 L300 150 L160 172 Z"/><path d="M162 168 L296 152 L304 170 L172 190 Z"/><path d="M174 186 L300 172 L306 188 L184 206 Z"/></g>
+            <path d="M40 80 L250 60" stroke="#F4E6D6" stroke-width="6"/>
+          </svg>
+        </div>
+        <div class="curado-datos">
+          <p class="curado-num">05</p>
+          <h3 class="curado-nombre">Cecina de vaca</h3>
+          <p class="curado-texto">Tapa de vaca vieja, salada, ahumada y secada medio año. Se corta a máquina en el momento, a contraveta, claro.</p>
+          <p class="curado-dias"><span class="curado-dias-num">180</span> días de curación</p>
+          <div class="curado-barra" aria-hidden="true"><span style="--d:180"></span></div>
+          <p class="curado-precio">34,00 €/kg <small>precio de muestra</small></p>
+        </div>
+      </article>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ PREPARADOS (cinta) ============ -->
+<section class="preparados" id="preparados" aria-labelledby="preparados-titulo">
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta-pista" id="cinta-pista">
+      <span>Hamburguesa 70/30</span><i>✕</i><span>Albóndigas con pan de Vilalba</span><i>✕</i><span>Pollo relleno de castañas</span><i>✕</i><span>Callos de los jueves</span><i>✕</i><span>Empanada de raxo</span><i>✕</i><span>Raxo adobado</span><i>✕</i>
+      <span>Hamburguesa 70/30</span><i>✕</i><span>Albóndigas con pan de Vilalba</span><i>✕</i><span>Pollo relleno de castañas</span><i>✕</i><span>Callos de los jueves</span><i>✕</i><span>Empanada de raxo</span><i>✕</i><span>Raxo adobado</span><i>✕</i>
+    </div>
+  </div>
+  <div class="preparados-cuerpo seccion">
+    <div class="preparados-cab">
+      <p class="etiqueta">05 · Listos para cocinar</p>
+      <h2 class="titulo-medio" id="preparados-titulo" data-revelar>Para el día que no hay tiempo, pero hay hambre</h2>
+    </div>
+    <dl class="preparados-lista">
+      <div class="prep"><dt>Raxo adobado</dt><dd>Cinta de cerdo en tacos con ajo, pimentón y vino blanco. A la sartén diez minutos.</dd><dd class="prep-precio">11,20 €/kg</dd></div>
+      <div class="prep"><dt>Pollo relleno de castañas</dt><dd>Deshuesado y atado, con castaña de Terra Chá y su jugo. Al horno, una hora.</dd><dd class="prep-precio">13,90 €/kg</dd></div>
+      <div class="prep"><dt>Callos de los jueves</dt><dd>Hechos el miércoles por la tarde, con garbanzo y chorizo de la casa. En tarrina de un kilo.</dd><dd class="prep-precio">14,00 €/u.</dd></div>
+      <div class="prep"><dt>Empanada de raxo</dt><dd>La masa la trae el horno de la esquina; el relleno es nuestro. Por encargo, de un día para otro.</dd><dd class="prep-precio">22,00 €/u.</dd></div>
+    </dl>
+    <p class="nota-precios">Todos los precios de esta web son <strong>de muestra</strong>: Mouriscal es un negocio ficticio.</p>
+  </div>
+</section>
+
+<!-- ============ ENCARGOS ============ -->
+<section class="encargos seccion" id="encargos" aria-labelledby="encargos-titulo">
+  <div class="encargos-cab">
+    <p class="etiqueta">06 · Encargos</p>
+    <h2 class="titulo-grande" id="encargos-titulo" data-revelar>¿Cuántos sois al cocido?</h2>
+    <p class="encargos-entradilla">Para el Entroido, San Martiño, Navidad o un domingo de familia grande. Dinos cuántos sois y te calculamos el lote; nos lo encargas con tres días y te lo damos desalado si quieres.</p>
+  </div>
+
+  <div class="encargos-cuerpo">
+    <form class="calculadora" id="calculadora" aria-labelledby="calc-titulo">
+      <h3 class="calc-titulo" id="calc-titulo">Calculadora de cocido</h3>
+      <label class="calc-personas">
+        <span>Comensales</span>
+        <span class="calc-personas-fila">
+          <button type="button" class="calc-menos" aria-label="Uno menos">−</button>
+          <output id="calc-n" aria-live="polite">8</output>
+          <button type="button" class="calc-mas" aria-label="Uno más">+</button>
+        </span>
+        <input type="range" id="calc-rango" min="2" max="24" value="8" aria-label="Número de comensales">
+      </label>
+      <fieldset class="calc-apetito">
+        <legend>Apetito</legend>
+        <label><input type="radio" name="apetito" value="1" checked> De diario</label>
+        <label><input type="radio" name="apetito" value="1.3"> De feria</label>
+      </fieldset>
+      <table class="calc-tabla">
+        <caption class="visually-hidden">Cantidades estimadas para el cocido</caption>
+        <thead><tr><th scope="col">Pieza</th><th scope="col">Cantidad</th><th scope="col">Importe</th></tr></thead>
+        <tbody id="calc-filas"></tbody>
+        <tfoot><tr><th scope="row" colspan="2">Total estimado</th><td id="calc-total">—</td></tr></tfoot>
+      </table>
+      <p class="calc-nota">Cantidades orientativas de la casa y precios de muestra.</p>
+    </form>
+
+    <form class="encargo" id="encargo" novalidate aria-labelledby="encargo-titulo">
+      <h3 class="encargo-titulo" id="encargo-titulo">Déjanos el encargo</h3>
+      <label>Nombre <input type="text" name="nombre" autocomplete="given-name" required></label>
+      <label>Teléfono <input type="tel" name="tel" autocomplete="tel" inputmode="tel" required></label>
+      <label>Día de recogida <input type="date" name="dia" required></label>
+      <label>Qué quieres <textarea name="nota" rows="4" id="encargo-nota"></textarea></label>
+      <button class="boton boton-lleno" type="submit" data-iman>Enviar encargo</button>
+      <p class="encargo-respuesta" id="encargo-respuesta" role="status" hidden></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ LA CASA ============ -->
+<section class="casa seccion" id="casa" aria-labelledby="casa-titulo">
+  <div class="casa-ano" aria-hidden="true">1971</div>
+  <div class="casa-texto">
+    <p class="etiqueta">07 · La casa</p>
+    <h2 class="titulo-medio" id="casa-titulo" data-revelar>Tres generaciones con el mismo tajo</h2>
+    <p>Avelino Mouriscal abrió en 1971 con un mostrador de mármol de Incio y una báscula de pesas que todavía está en la trastienda. Hoy lleva la casa su hija Rosa, que despieza; Iago Seoane, que aprendió con ella; y Marta Pena, que hace el embutido en el obrador de atrás.</p>
+    <p>El tajo de castaño es el mismo desde el primer día. Lo han rebajado tres dedos a fuerza de cepillo.</p>
+  </div>
+  <ul class="cifras">
+    <li><span class="cifra" data-contar="55">0</span><span class="cifra-txt">años de mostrador</span></li>
+    <li><span class="cifra" data-contar="4">0</span><span class="cifra-txt">granjas, todas a menos de 30 km</span></li>
+    <li><span class="cifra" data-contar="28">0</span><span class="cifra-txt">días de maduración del lomo</span></li>
+  </ul>
+  <div class="opiniones">
+    <p class="opiniones-aviso">Opiniones de muestra: personas y frases inventadas para la demostración.</p>
+    <blockquote class="opinion">
+      <p>«Le pido el filete de tapa fino y me pregunta para qué es. Si es para empanar, me lo corta de otra manera. Eso no lo hace una bandeja.»</p>
+      <footer>— Carmela, clienta de los sábados</footer>
+    </blockquote>
+    <blockquote class="opinion">
+      <p>«El cocido de Navidad lo encargo en noviembre. Me lo dan pesado, desalado y con la cuenta hecha.»</p>
+      <footer>— Xosé, de Goiriz</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ VISITA ============ -->
+<section class="visita seccion" id="visita" aria-labelledby="visita-titulo">
+  <div class="visita-cab">
+    <p class="etiqueta">08 · Visita</p>
+    <h2 class="titulo-grande" id="visita-titulo" data-revelar>Rúa dos Coiteleiros, 9</h2>
+    <p class="visita-estado" id="visita-estado" aria-live="polite">Consulta el horario</p>
+  </div>
+  <div class="visita-cuerpo">
+    <table class="horario" id="horario">
+      <caption>Horario</caption>
+      <tbody>
+        <tr data-dia="1"><th scope="row">Lunes</th><td>9:00–14:00</td></tr>
+        <tr data-dia="2"><th scope="row">Martes</th><td>9:00–14:00 · 17:00–20:30</td></tr>
+        <tr data-dia="3"><th scope="row">Miércoles</th><td>9:00–14:00 · 17:00–20:30</td></tr>
+        <tr data-dia="4"><th scope="row">Jueves</th><td>9:00–14:00 · 17:00–20:30</td></tr>
+        <tr data-dia="5"><th scope="row">Viernes</th><td>9:00–14:00 · 17:00–20:30</td></tr>
+        <tr data-dia="6"><th scope="row">Sábado</th><td>8:30–14:30</td></tr>
+        <tr data-dia="0"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+      </tbody>
+    </table>
+    <address class="contacto">
+      <p>Rúa dos Coiteleiros, 9<br>27800 Vilalba (Lugo)</p>
+      <p><a href="tel:+34982000000" data-iman>982 00 00 00</a><br><a href="tel:+34600000000">600 00 00 00</a> <small>encargos</small><br><a href="mailto:hola@mouriscal.example">hola@mouriscal.example</a></p>
+      <p class="contacto-nota">Aparcamiento en la plaza de abajo. Si vienes a por un encargo, te lo sacamos al coche.</p>
+    </address>
+    <div class="mapa" id="mapa">
+      <svg class="mapa-dibujo" viewBox="0 0 400 260" aria-hidden="true">
+        <rect width="400" height="260" fill="currentColor" opacity=".0"/>
+        <path d="M0 180 C80 170 140 120 220 128 C300 136 340 100 400 90" stroke="#B7C6BC" stroke-width="22" fill="none"/>
+        <path d="M150 0 L170 260 M0 70 L400 60 M260 0 L300 260" stroke="#B7C6BC" stroke-width="10" fill="none"/>
+        <circle cx="210" cy="126" r="14" fill="#D8573F"/><circle cx="210" cy="126" r="5" fill="#F8F9F5"/>
+      </svg>
+      <button class="boton boton-lleno mapa-boton" id="mapa-boton" type="button">Cargar el mapa de Google</button>
+      <p class="mapa-aviso">El mapa no se carga hasta que lo pides: así Google no pone cookies si no quieres.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-marca">
+    <span class="pie-nombre">Mouriscal</span>
+    <span>Carnicería y charcutería · Vilalba · desde 1971</span>
+  </div>
+  <nav class="pie-nav" aria-label="Pie">
+    <a href="legal.html">Aviso legal y privacidad</a>
+    <a href="#portada">Volver arriba</a>
+  </nav>
+  <p class="pie-sello"><strong>Sitio de demostración.</strong> Carnicería Mouriscal es un negocio ficticio; los datos, fotografías y opiniones son de muestra. Precios ficticios.</p>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies propias ni de terceros. Guarda en tu navegador (<code>localStorage</code>) que has cerrado este aviso y, si los tocas, los mandos de demostración de maqueta y color. El mapa de Google solo se carga si lo pides.</p>
+  <button class="boton boton-lleno" id="cookies-ok" type="button">Entendido</button>
+</div>
+
+<!-- AVISO: mando de DEMOSTRACIÓN (maqueta y paleta). Nunca viaja al sitio de un cliente.
+     Solo aparece con ?revision en la URL. Receta de borrado en el README. -->
+<div class="mandos" id="mandos" role="group" aria-label="Mandos de demostración" hidden>
+  <div class="mando" role="group" aria-label="Densidad">
+    <span class="mando-tit">Maqueta</span>
+    <button type="button" data-maqueta="contraveta" aria-pressed="true">Contraveta</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <div class="mando" role="group" aria-label="Color de marca">
+    <span class="mando-tit">Color</span>
+    <button type="button" data-paleta="lomo" aria-pressed="true"><i style="background:#D8573F"></i>Lomo</button>
+    <button type="button" data-paleta="azafran" aria-pressed="false"><i style="background:#C98A1E"></i>Azafrán</button>
+    <button type="button" data-paleta="ciruela" aria-pressed="false"><i style="background:#D2588F"></i>Ciruela</button>
+  </div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"><span class="cursor-texto"></span></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
