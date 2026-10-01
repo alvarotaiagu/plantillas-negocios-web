@@ -170,7 +170,9 @@
       ioUnaVez.unobserve(el);
     });
   }, { threshold: .25 });
-  $$('[data-palabras], .manifiesto, .mascara, .contador').forEach(function (el) { ioUnaVez.observe(el); });
+  /* La máscara se observa por su padre: con clip-path a 0 el
+     IntersectionObserver la ve sin área y no dispara nunca. */
+  $$('[data-palabras], .manifiesto, .cocina, .contador').forEach(function (el) { ioUnaVez.observe(el); });
 
   /* Contadores: con movimiento reducido no cuentan, pero el número está */
   function contar(el) {

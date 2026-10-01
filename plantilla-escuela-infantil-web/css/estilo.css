@@ -405,6 +405,7 @@ html.has-motion .aula-tarjeta-dibujo svg { animation: mece-lento 5.5s ease-in-ou
 .dia-intro strong { color: var(--luna); }
 .dia-ahora { grid-column: 7 / -1; margin: 14px 0 0; color: var(--luna); }
 .dia .estado::before { background: var(--noche-apagado); }
+@media (max-width: 900px) { .dia-cab .h2, .dia-intro, .dia-ahora { grid-column: 1 / -1; } }
 .tendedero { position: relative; margin-top: 70px; padding-top: 6px; }
 .tendedero-cuerda { position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--noche-apagado); }
 .tendedero-pista { list-style: none; margin: 0; padding: 0 var(--margen); display: flex; gap: 22px; width: max-content; }
@@ -428,7 +429,7 @@ html.has-motion .tendedero-pista { will-change: transform; }
 .cocina { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 6vw, 110px); align-items: center; padding: clamp(90px, 10vw, 160px) var(--margen); }
 .cocina-dibujo svg { width: 100%; height: auto; display: block; }
 html.has-motion .mascara { clip-path: circle(0% at 50% 60%); transition: clip-path 1.6s var(--e-manta); }
-html.has-motion .mascara.es-visible { clip-path: circle(75% at 50% 60%); }
+html.has-motion .es-visible > .mascara { clip-path: circle(75% at 50% 60%); }
 html.has-motion .vapor path { animation: vapor 3.2s ease-in-out infinite; }
 html.has-motion .vapor path:nth-child(2) { animation-delay: -1s; }
 html.has-motion .vapor path:nth-child(3) { animation-delay: -2s; }
@@ -461,7 +462,7 @@ html.has-motion .vapor path:nth-child(3) { animation-delay: -2s; }
 .tabla-cuotas th[scope="row"] { text-align: left; font-weight: 700; padding: 18px 12px 18px 0; }
 .tabla-cuotas th small, .tabla-cuotas td small { display: block; font-weight: 400; font-size: .9rem; color: var(--apagado); }
 .tabla-cuotas td small { display: inline; }
-.tabla-cuotas td { font-family: var(--serif); font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem); white-space: nowrap; font-variation-settings: "opsz" 200; }
+.tabla-cuotas td { font-variant-numeric: lining-nums; font-family: var(--serif); font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem); white-space: nowrap; font-variation-settings: "opsz" 200; }
 .calculadora { background: var(--tinta); color: var(--papel); border-radius: var(--radio); padding: clamp(22px, 3vw, 36px); position: sticky; top: calc(var(--cab-h) + 20px); }
 .calculadora h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 2rem; font-weight: 500; }
 .calculadora fieldset { border: 0; padding: 0; margin: 0 0 16px; }
@@ -470,7 +471,8 @@ html.has-motion .vapor path:nth-child(3) { animation-delay: -2s; }
 .opcion input { width: 20px; height: 20px; accent-color: var(--acento-claro); margin: 0; }
 .calc-total { margin: 18px 0 6px; font-family: var(--serif); font-size: clamp(3rem, 2rem + 4vw, 5.4rem); line-height: 1; font-variation-settings: "opsz" 900, "wdth" 87.5; }
 .calc-total small { font-family: var(--sans); font-size: .9rem; color: var(--noche-apagado); margin-left: 6px; }
-.calc-num { display: inline-block; min-width: 3ch; }
+.calc-num { font-variant-numeric: lining-nums tabular-nums; }
+.calc-total { font-variant-numeric: lining-nums; }
 .calc-nota { margin: 0; font-size: .92rem; color: var(--noche-apagado); }
 .calculadora :focus-visible { outline-color: var(--acento-claro); }
 @media (max-width: 900px) {
@@ -602,3 +604,14 @@ html.maqueta-sobria .cocina-dibujo .vapor { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
 }
+
+/* ---------- Páginas de texto: aviso legal y 404 ---------- */
+.pagina-texto .cab-cta--siempre { display: inline-flex; }
+.legal { max-width: 760px; margin: 0 auto; padding: calc(var(--cab-h) + 70px) var(--margen) 100px; }
+.legal .h2 { margin-bottom: 36px; }
+.legal h2:not(.h2) { font-family: var(--serif); font-weight: 500; font-size: 1.8rem; margin: 44px 0 10px; font-variation-settings: "opsz" 120; }
+.legal-sello { padding: 18px 20px; border: 2px dashed var(--acento-txt); border-radius: 16px; }
+.legal code { font-size: .9em; background: var(--panel); padding: 1px 6px; border-radius: 6px; }
+.error { min-height: 80vh; display: grid; justify-items: start; align-content: center; gap: 4px; padding: calc(var(--cab-h) + 40px) var(--margen) 80px; max-width: 980px; margin: 0 auto; }
+.error-dibujo { width: min(100%, 560px); height: auto; margin-bottom: 20px; }
+.error p { max-width: 34em; }
