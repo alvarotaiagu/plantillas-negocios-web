@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<!--
+  Sitio de demostración. O Abaneo es una escuela infantil FICTICIA, creada
+  como plantilla de muestra para la biblioteca de webs de negocio. El nombre,
+  la dirección, los teléfonos, las cuotas, el menú, las personas y las
+  opiniones son inventados: no corresponden a ninguna escuela real de Lalín
+  ni de ningún otro lugar. Las cuotas están marcadas como ficticias.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O Abaneo — Escola infantil de 0 a 3 años en Lalín</title>
+<meta name="description" content="Escola infantil de 0 a 3 años en Lalín: tres aulas por edades, 39 plazas, cocina propia, horario ampliado de 7:30 a 17:30 y un periodo de adaptación sin prisa. Sitio de demostración ficticio.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5EDE0">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="O Abaneo — Escola infantil 0-3 · Lalín">
+<meta property="og:description" content="Un sitio pequeño para empezar despacio. Sitio de demostración ficticio.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icono-192.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wdth,wght@0,5..1200,87.5..112.5,300..900;1,5..1200,87.5..112.5,300..900&family=Atkinson+Hyperlegible+Next:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+
+<script>
+  /* Script bloqueante: decide antes de pintar. No depende de ningún CDN. */
+  (function () {
+    var html = document.documentElement;
+    html.classList.add('js');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) html.classList.add('reduce');
+    /* Medición de tareas largas desde el primer momento (PLIEGO §6). */
+    window.__tareasLargas = [];
+    try {
+      new PerformanceObserver(function (l) {
+        l.getEntries().forEach(function (e) { window.__tareasLargas.push({ t: Math.round(e.startTime), d: Math.round(e.duration) }); });
+      }).observe({ type: 'longtask', buffered: true });
+    } catch (e) {}
+    /* CONTROLES DE DEMOSTRACIÓN (maqueta y paleta). Se resuelven aquí para
+       que la página no arranque en una versión y salte a la otra. Nunca
+       viajan al sitio de un cliente: ver README, «Quitar los mandos». */
+    try {
+      if (/[?&]revision\b/.test(location.search)) html.classList.add('es-revision');
+      var m = localStorage.getItem('abaneo-maqueta');
+      if (m === 'sobria') html.classList.add('maqueta-sobria');
+      var p = localStorage.getItem('abaneo-paleta');
+      if (p === 'pino' || p === 'malva') html.classList.add('paleta-' + p);
+    } catch (e) {}
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ChildCare",
+  "name": "O Abaneo · Escola infantil",
+  "description": "Escuela infantil de 0 a 3 años con tres aulas por edades, cocina propia y horario ampliado. Negocio ficticio de demostración.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Travesa da Lavandeira, 6",
+    "addressLocality": "Lalín",
+    "addressRegion": "Pontevedra",
+    "postalCode": "36500",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34986000000",
+  "email": "ola@oabaneo.example",
+  "openingHours": "Mo-Fr 07:30-17:30"
+}
+</script>
+</head>
+<body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- CORTINA: la manta de la siesta. Se pespunta, se levanta con borde curvo
+     y deja la portada. Retirada garantizada sin GSAP y con movimiento
+     reducido (ver main.js, retirarCortina). -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <svg class="cortina-manta" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+    <path class="cortina-tela" d="M0 0H1000V1000Q500 1000 0 1000Z"/>
+  </svg>
+  <div class="cortina-centro">
+    <svg class="cortina-lua" viewBox="0 0 64 64" width="64" height="64"><path d="M38 10a22 22 0 1 0 .2 44A18 18 0 1 1 38 10Z"/></svg>
+    <svg class="cortina-pespunte" viewBox="0 0 400 20" width="400" height="20" preserveAspectRatio="none"><path d="M4 10H396" pathLength="1"/></svg>
+    <p class="cortina-texto">O Abaneo</p>
+  </div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"><span class="cursor-txt"></span></span></div>
+
+<header class="cab" id="cab">
+  <a class="cab-marca" href="#inicio" aria-label="O Abaneo, ir al inicio">
+    <img src="img/marca.svg" width="40" height="40" alt="">
+    <span class="cab-nombre">O Abaneo<small>escola infantil · Lalín</small></span>
+  </a>
+  <button class="cab-boton" id="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
+    <span class="cab-boton-txt">Menú</span><span class="cab-boton-ico" aria-hidden="true"><i></i><i></i></span>
+  </button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ul>
+      <li><a href="#adaptacion">Adaptación</a></li>
+      <li><a href="#aulas">Aulas</a></li>
+      <li><a href="#dia">El día</a></li>
+      <li><a href="#cocina">Cocina</a></li>
+      <li><a href="#cuotas">Cuotas</a></li>
+      <li><a href="#visita">Puertas abiertas</a></li>
+    </ul>
+    <p class="menu-estado"><span class="estado" data-estado>Lunes a viernes, 7:30–17:30</span></p>
+  </nav>
+  <a class="cab-cta iman" href="#visita">Ven a verla</a>
+</header>
+
+<main id="contenido">
+
+  <!-- 1 · PORTADA -->
+  <section class="portada" id="inicio" aria-labelledby="titulo-portada">
+    <div class="portada-movil" aria-hidden="true">
+      <canvas id="movil" class="movil-canvas"></canvas>
+      <!-- Respaldo sin JS: el mismo móvil quieto, en SVG -->
+      <svg class="movil-quieto" viewBox="0 0 600 640" width="600" height="640">
+        <path d="M300 0v120" stroke="#23264A" stroke-width="2"/>
+        <path d="M80 136 520 112" stroke="#23264A" stroke-width="5" stroke-linecap="round"/>
+        <path d="M110 135v170M300 124v250M490 114v130" stroke="#23264A" stroke-width="1.5"/>
+        <path d="M135 300a62 62 0 1 0 .5 120 50 50 0 1 1-.5-120Z" fill="var(--acento-sup)"/>
+        <path d="M300 370c17 0 26 17 28 36 2 16 26 33 26 63 0 34-25 59-54 59s-54-25-54-59c0-30 24-47 26-63 2-19 11-36 28-36Z" fill="#E7B44A"/>
+        <path d="M490 240v70l46-10Z" fill="#8FB3A8"/><path d="M436 322h112l-19 32h-74Z" fill="#23264A"/>
+      </svg>
+    </div>
+
+    <div class="portada-texto">
+      <p class="antetitulo">Escola infantil · 0 a 3 años · Lalín</p>
+      <h1 class="portada-titulo" id="titulo-portada">
+        <span class="t1 parte" data-letras>Empezar</span>
+        <span class="t2 parte" data-letras>despacio.</span>
+      </h1>
+      <div class="portada-pie">
+        <p class="portada-entradilla">Tres aulas por edades, treinta y nueve plazas, una cocina que huele a caldo a las once y un periodo de adaptación que dura lo que tenga que durar. Sin prisa: aquí lo primero es que quiera quedarse.</p>
+        <div class="portada-acciones">
+          <a class="boton boton-lleno iman" href="#visita"><span>Reserva una visita</span></a>
+          <a class="boton boton-linea iman" href="#cuotas"><span>Ver cuotas</span></a>
+        </div>
+      </div>
+      <dl class="portada-datos">
+        <div><dt>Plazas</dt><dd>39</dd></div>
+        <div><dt>Horario</dt><dd>7:30–17:30</dd></div>
+        <div><dt>Ahora</dt><dd><span class="estado" data-estado>L–V</span></dd></div>
+      </dl>
+      <p class="portada-sopla" aria-hidden="true">Sopla con el ratón (o con el dedo) y se mueve todo un poco.</p>
+    </div>
+  </section>
+
+  <!-- 2 · LO QUE CUELGA (manifiesto) -->
+  <section class="manifiesto" aria-labelledby="titulo-manifiesto">
+    <div class="manifiesto-manta"></div>
+    <div class="manifiesto-cuerpo">
+      <p class="hilo-cabecera"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-lua" aria-hidden="true"></span>Lo que cuelga</p>
+      <h2 class="h2 manifiesto-titulo" id="titulo-manifiesto" data-palabras>Un móvil de cuna se sostiene con muy poco: <em>una varilla y unos hilos.</em></h2>
+      <div class="manifiesto-columnas">
+        <p class="capitular">Lo que nos importa es lo que pasa cuando una pieza se mueve: se mueven todas un poco y luego se paran. En una escuela de cero a tres años es igual. Llega una criatura nueva y cambia el aula entera durante unos días; después todo vuelve a colgar tranquilo.</p>
+        <p>Por eso somos pequeños a propósito. Treinta y nueve plazas, seis educadoras, una cocinera y una directora que también cambia pañales. No prometemos que vaya a leer antes, ni que vaya a ser bilingüe a los dos años. Prometemos lo que se puede cumplir: que coma bien, que duerma cuando tenga sueño, que alguien lo conozca por su nombre y que tú sepas cada tarde cómo ha ido el día.</p>
+      </div>
+      <dl class="cifras">
+        <div><dt>plazas en total</dt><dd><span class="contador" data-hasta="39">39</span></dd></div>
+        <div><dt>educadoras</dt><dd><span class="contador" data-hasta="6">6</span></dd></div>
+        <div><dt>horas abierto al día</dt><dd><span class="contador" data-hasta="10">10</span></dd></div>
+        <div><dt>cocina, la nuestra</dt><dd><span class="contador" data-hasta="1">1</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 3 · LA ADAPTACIÓN, DÍA A DÍA (secuencia anclada con scrub) -->
+  <section class="adapta" id="adaptacion" aria-labelledby="titulo-adapta">
+    <div class="adapta-marco">
+      <header class="adapta-cab">
+        <p class="hilo-cabecera"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-pera" aria-hidden="true"></span>El periodo de adaptación</p>
+        <h2 class="h2" id="titulo-adapta" data-palabras>Diez días para que la silla de la familia <em>salga por la puerta.</em></h2>
+      </header>
+
+      <div class="adapta-escena" aria-hidden="true">
+        <svg class="aula" id="aula" viewBox="0 0 800 470" width="800" height="470" data-paso="0">
+          <defs>
+            <pattern id="tablas" width="80" height="14" patternUnits="userSpaceOnUse"><path d="M0 13.5H80M40 0v14" stroke="#D9CBB2" stroke-width="1"/></pattern>
+          </defs>
+          <!-- pared y suelo -->
+          <rect x="0" y="0" width="800" height="330" fill="var(--panel)"/>
+          <rect x="0" y="330" width="800" height="140" fill="#E3D5BD"/>
+          <rect x="0" y="330" width="800" height="140" fill="url(#tablas)"/>
+          <!-- ventana baja, a la altura de quien gatea -->
+          <g class="aula-ventana"><rect x="70" y="150" width="190" height="150" rx="8" fill="#DCE6E4" stroke="#23264A" stroke-width="3"/><path d="M165 150v150M70 225h190" stroke="#23264A" stroke-width="2"/><circle cx="215" cy="190" r="16" fill="#F2DDA3"/></g>
+          <!-- móvil del aula -->
+          <g class="aula-movil"><path d="M400 0v40M340 46l120-8M346 46v26M400 42v38M454 38v22" stroke="#23264A" stroke-width="2" fill="none"/><circle cx="346" cy="80" r="9" fill="var(--acento-sup)"/><path d="M400 80c6 0 9 6 10 12 1 6 9 11 9 21 0 11-8 19-19 19s-19-8-19-19c0-10 8-15 9-21 1-6 4-12 10-12Z" fill="#E7B44A"/><path d="M454 60v20l14-3Z" fill="#8FB3A8"/></g>
+          <!-- puerta y pasillo -->
+          <rect x="630" y="110" width="140" height="222" fill="#CBBBA0"/>
+          <rect x="630" y="110" width="140" height="222" fill="none" stroke="#23264A" stroke-width="3"/>
+          <path class="aula-hoja" d="M630 110 600 122v222l30-12Z" fill="#E9DDC7" stroke="#23264A" stroke-width="2"/>
+          <text x="700" y="100" text-anchor="middle" class="aula-rotulo">pasillo</text>
+          <!-- percheros -->
+          <path d="M290 190h150" stroke="#23264A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M320 190v10M370 190v10M420 190v10" stroke="#23264A" stroke-width="3" stroke-linecap="round"/>
+          <g class="aula-abrigo"><path d="M356 200h28l8 52h-44Z" fill="var(--acento-sup)"/><path d="M370 200v52" stroke="#23264A" stroke-width="1.5" opacity=".5"/></g>
+          <!-- alfombra -->
+          <ellipse cx="300" cy="400" rx="190" ry="40" fill="#E9B7A6"/>
+          <ellipse cx="300" cy="400" rx="160" ry="30" fill="none" stroke="#FBF7F0" stroke-width="2" stroke-dasharray="6 7"/>
+          <!-- objeto de apego: la mantita con nudo -->
+          <g class="aula-apego"><path d="M232 388c10-14 34-14 46-2l-8 22c-12 6-30 4-40-6Z" fill="#9DB4D6"/><circle cx="276" cy="388" r="6" fill="#7E97BD"/></g>
+          <!-- mesa baja con plato -->
+          <g class="aula-mesa"><rect x="430" y="352" width="120" height="10" rx="3" fill="#B98E5F"/><path d="M442 362v40M538 362v40" stroke="#B98E5F" stroke-width="7"/><ellipse cx="490" cy="350" rx="24" ry="6" fill="#FBF7F0" stroke="#23264A" stroke-width="2"/><path d="M520 349l16-12" stroke="#23264A" stroke-width="3" stroke-linecap="round"/></g>
+          <!-- cuna baja para la siesta -->
+          <g class="aula-cuna"><rect x="90" y="360" width="120" height="44" rx="10" fill="#FBF7F0" stroke="#23264A" stroke-width="2.5"/><path d="M106 360v44M122 360v44M138 360v44M154 360v44M170 360v44M186 360v44" stroke="#23264A" stroke-width="1.5"/><path d="M120 352a12 12 0 1 0 .1 16 10 10 0 1 1-.1-16Z" fill="var(--acento-sup)"/></g>
+          <!-- la silla de la familia -->
+          <g class="aula-silla"><g class="aula-silla-in">
+            <path d="M0 0h54v8H0z" fill="#23264A"/><path d="M4 8v60M50 8v60" stroke="#23264A" stroke-width="6"/><path d="M50 0V-62" stroke="#23264A" stroke-width="6"/><path d="M50-62h-8" stroke="#23264A" stroke-width="6" stroke-linecap="round"/>
+            <path d="M8 -6c8-30 34-30 40 0" fill="var(--acento-sup)" opacity=".0"/>
+            <rect x="-10" y="-40" width="44" height="34" rx="6" fill="#23264A" class="aula-bolso"/>
+          </g></g>
+        </svg>
+        <div class="adapta-reloj">
+          <p class="adapta-dia"><span class="adapta-dia-lbl">Día</span> <span class="adapta-dia-num" id="adapta-dia">—</span></p>
+          <div class="adapta-barra"><span class="adapta-barra-relleno" id="adapta-barra"></span></div>
+          <p class="adapta-horas"><span id="adapta-horas">0 h</span> en la escuela · <span id="adapta-familia">familia dentro</span></p>
+        </div>
+      </div>
+
+      <ol class="adapta-pasos" id="adapta-pasos">
+        <li class="adapta-paso" data-dia="Antes" data-horas="0" data-familia="con la familia" data-x="330">
+          <h3>Antes: una tarde, sin prisa</h3>
+          <p>Vienes con la criatura una hora. Nos cuentas cómo duerme, qué come, qué la calma y qué la asusta. Conoce a su educadora de referencia, que será la misma los diez días.</p>
+        </li>
+        <li class="adapta-paso" data-dia="1–2" data-horas="1" data-familia="familia dentro del aula" data-x="330">
+          <h3>Días 1 y 2: una hora, contigo dentro</h3>
+          <p>Te sientas en el aula, en una silla junto a la alfombra. No hace falta que hagas nada: que vea que este sitio te parece bien.</p>
+        </li>
+        <li class="adapta-paso" data-dia="3–4" data-horas="1.5" data-familia="familia en el pasillo" data-x="640">
+          <h3>Días 3 y 4: hora y media, tú en el pasillo</h3>
+          <p>La silla sale hasta la puerta. Te despides de verdad —nada de escaparse sin decir adiós— y esperas fuera, a la vista si te busca.</p>
+        </li>
+        <li class="adapta-paso" data-dia="5–6" data-horas="2.5" data-familia="la familia se va" data-x="900">
+          <h3>Días 5 y 6: dos horas y media, sin la silla</h3>
+          <p>Ya no hay silla. Llega su mantita o su muñeco de casa, que se queda en el aula lo que haga falta. Su abrigo tiene percha propia.</p>
+        </li>
+        <li class="adapta-paso" data-dia="7–8" data-horas="4" data-familia="se queda a comer" data-x="900">
+          <h3>Días 7 y 8: se queda a comer</h3>
+          <p>Primera comida en la escuela, a su ritmo. Si un plato no entra, no pasa nada: te lo contamos y lo volvemos a intentar otro día.</p>
+        </li>
+        <li class="adapta-paso" data-dia="9–10" data-horas="6.5" data-familia="jornada con siesta" data-x="900">
+          <h3>Días 9 y 10: con siesta</h3>
+          <p>Duerme en su cuna baja, con su mantita. A partir de aquí, la jornada que vaya a tener. Y si necesita más días, los tiene: son diez de referencia, no un plazo.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4 · AULAS POR EDADES (pila sticky) -->
+  <section class="aulas" id="aulas" aria-labelledby="titulo-aulas">
+    <header class="aulas-cab">
+      <p class="hilo-cabecera"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-barco" aria-hidden="true"></span>Tres aulas</p>
+      <h2 class="h2" id="titulo-aulas" data-palabras>Cada edad tiene <em>su altura.</em></h2>
+      <p class="aulas-intro">Las aulas se llaman como las piezas del móvil del logo. En las tres, las ventanas empiezan a cuarenta centímetros del suelo: para mirar fuera no hay que estar en brazos.</p>
+    </header>
+
+    <!-- Versión sobria: el dato en lugar del dibujo. Niños por adulto en cada
+         aula contra el máximo que permite la normativa gallega. -->
+    <figure class="ratio" aria-labelledby="ratio-titulo">
+      <figcaption id="ratio-titulo"><strong>Niños por educadora</strong>, aula a aula, frente al máximo que permite la normativa gallega.</figcaption>
+      <ul class="ratio-filas">
+        <li><span class="ratio-nombre">Lúa · 4–12 meses</span><span class="ratio-pista"><span class="ratio-max" style="--v:.4">máx. 8</span><span class="ratio-nos" style="--v:.2">4</span></span></li>
+        <li><span class="ratio-nombre">Pera · 1–2 años</span><span class="ratio-pista"><span class="ratio-max" style="--v:.65">máx. 13</span><span class="ratio-nos" style="--v:.325">6,5</span></span></li>
+        <li><span class="ratio-nombre">Barquiño · 2–3 años</span><span class="ratio-pista"><span class="ratio-max" style="--v:1">máx. 20</span><span class="ratio-nos" style="--v:.45">9</span></span></li>
+      </ul>
+    </figure>
+
+    <ul class="pila" id="pila">
+      <li class="pila-item" style="--n:0">
+        <article class="aula-tarjeta aula-tarjeta--lua">
+          <div class="aula-tarjeta-dibujo" aria-hidden="true" data-dato="8">
+            <svg viewBox="0 0 240 240" width="240" height="240"><path class="colgante" d="M120 0v70" stroke="currentColor" stroke-width="2"/><g class="colgante"><path d="M150 72a62 62 0 1 0 .6 120 50 50 0 1 1-.6-120Z" fill="var(--acento-sup)"/><path d="M150 80a54 54 0 1 0 .5 104" fill="none" stroke="#FBF7F0" stroke-width="2" stroke-dasharray="5 6"/></g></svg>
+          </div>
+          <div class="aula-tarjeta-texto">
+            <p class="aula-edad">4 a 12 meses</p>
+            <h3>Aula Lúa</h3>
+            <p class="aula-dato"><span>8</span> plazas · 2 educadoras</p>
+            <p>Cunas bajas, suelo blando y un cambiador con vista al patio. Cada bebé sigue su horario de casa: come y duerme cuando le toca a él, no cuando le toca al aula.</p>
+            <ul class="aula-lista"><li>Biberones y purés preparados aquí</li><li>Diario del día en papel, cada tarde</li><li>Siesta: la que pida</li></ul>
+          </div>
+        </article>
+      </li>
+      <li class="pila-item" style="--n:1">
+        <article class="aula-tarjeta aula-tarjeta--pera">
+          <div class="aula-tarjeta-dibujo" aria-hidden="true" data-dato="13">
+            <svg viewBox="0 0 240 240" width="240" height="240"><path class="colgante" d="M120 0v80" stroke="currentColor" stroke-width="2"/><g class="colgante"><path d="M120 80c22 0 33 22 36 46 3 21 33 42 33 80 0 43-32 75-69 75s-69-32-69-75c0-38 30-59 33-80 3-24 14-46 36-46Z" fill="#E7B44A" transform="scale(.8) translate(30 20)"/><path d="M120 86c10-12 22-15 32-13" stroke="currentColor" stroke-width="3" fill="none"/></g></svg>
+          </div>
+          <div class="aula-tarjeta-texto">
+            <p class="aula-edad">1 a 2 años</p>
+            <h3>Aula Pera</h3>
+            <p class="aula-dato"><span>13</span> plazas · 2 educadoras</p>
+            <p>El aula de los primeros pasos: barras a la altura de la mano, una rampa de gateo y un rincón de cajas para meter y sacar cosas, que es lo que más les gusta a esta edad.</p>
+            <ul class="aula-lista"><li>Empiezan a comer con cuchara propia</li><li>Patio cubierto para los días de orballo</li><li>Siesta después de comer</li></ul>
+          </div>
+        </article>
+      </li>
+      <li class="pila-item" style="--n:2">
+        <article class="aula-tarjeta aula-tarjeta--barco">
+          <div class="aula-tarjeta-dibujo" aria-hidden="true" data-dato="18">
+            <svg viewBox="0 0 240 240" width="240" height="240"><path class="colgante" d="M120 0v60" stroke="currentColor" stroke-width="2"/><g class="colgante"><path d="M120 60v100l64-16Z" fill="#8FB3A8"/><path d="M114 80v72l-44-8Z" fill="#9DB4D6"/><path d="M50 166h150l-24 40H76Z" fill="currentColor"/></g></svg>
+          </div>
+          <div class="aula-tarjeta-texto">
+            <p class="aula-edad">2 a 3 años</p>
+            <h3>Aula Barquiño</h3>
+            <p class="aula-dato"><span>18</span> plazas · 2 educadoras</p>
+            <p>Mesas bajas, baño dentro del aula para dejar el pañal cuando toque (no antes) y un huerto de cuatro cajones donde lo que más crece es la paciencia.</p>
+            <ul class="aula-lista"><li>Salida semanal al parque, si no llueve</li><li>Cuentos en gallego y en castellano</li><li>Preparación tranquila para el cole</li></ul>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 5 · EL DÍA (tendedero: marquesina ligada al scroll) -->
+  <section class="dia" id="dia" aria-labelledby="titulo-dia">
+    <div class="dia-cab">
+      <p class="hilo-cabecera hilo-cabecera--claro"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-lua" aria-hidden="true"></span>Un día cualquiera</p>
+      <h2 class="h2" id="titulo-dia" data-palabras>De las 7:30 a las 17:30, <em>tendido en una cuerda.</em></h2>
+      <p class="dia-intro">La jornada es de 9:00 a 16:00. Antes y después está el <strong>horario ampliado</strong>, para quien entra a trabajar temprano o sale tarde: se paga aparte y se puede contratar por meses sueltos.</p>
+      <p class="dia-ahora"><span class="estado" data-estado>Lunes a viernes</span> <span class="dia-franja" id="dia-franja"></span></p>
+    </div>
+    <div class="tendedero" role="group" aria-label="Horario de un día">
+      <div class="tendedero-cuerda" aria-hidden="true"></div>
+      <ul class="tendedero-pista" id="tendedero">
+        <li data-desde="7.5" data-hasta="9"><span class="pinza" aria-hidden="true"></span><b>7:30</b>Acogida<small>horario ampliado</small></li>
+        <li data-desde="9" data-hasta="9.5"><span class="pinza" aria-hidden="true"></span><b>9:00</b>Llegada y saludo<small>en el aula, sin carreras</small></li>
+        <li data-desde="9.5" data-hasta="10"><span class="pinza" aria-hidden="true"></span><b>9:30</b>Fruta<small>de temporada, troceada aquí</small></li>
+        <li data-desde="10" data-hasta="11.5"><span class="pinza" aria-hidden="true"></span><b>10:00</b>Patio o sala de movimiento<small>según lo que diga el cielo</small></li>
+        <li data-desde="11.5" data-hasta="12"><span class="pinza" aria-hidden="true"></span><b>11:30</b>Cambio y aseo<small>con calma, uno a uno</small></li>
+        <li data-desde="12" data-hasta="13"><span class="pinza" aria-hidden="true"></span><b>12:00</b>Comida<small>de nuestra cocina</small></li>
+        <li data-desde="13" data-hasta="15"><span class="pinza" aria-hidden="true"></span><b>13:00</b>Siesta<small>con luz baja y su mantita</small></li>
+        <li data-desde="15" data-hasta="16"><span class="pinza" aria-hidden="true"></span><b>15:00</b>Merienda y juego libre<small>y el diario para casa</small></li>
+        <li data-desde="16" data-hasta="17.5"><span class="pinza" aria-hidden="true"></span><b>16:00</b>Recogida<small>o horario ampliado hasta las 17:30</small></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6 · COCINA PROPIA -->
+  <section class="cocina" id="cocina" aria-labelledby="titulo-cocina">
+    <div class="cocina-dibujo mascara" aria-hidden="true">
+      <svg viewBox="0 0 420 460" width="420" height="460">
+        <rect x="0" y="0" width="420" height="460" rx="210" fill="var(--panel)"/>
+        <g class="vapor" fill="none" stroke="#B9AE9C" stroke-width="5" stroke-linecap="round">
+          <path d="M170 150c-18-22 18-34 0-58"/><path d="M210 140c-18-22 18-34 0-58"/><path d="M250 150c-18-22 18-34 0-58"/>
+        </g>
+        <path d="M100 190h220v20c0 70-40 120-110 120S100 280 100 210Z" fill="var(--acento-sup)"/>
+        <path d="M90 186h240" stroke="#23264A" stroke-width="10" stroke-linecap="round"/>
+        <path d="M100 216H74M320 216h26" stroke="#23264A" stroke-width="8" stroke-linecap="round"/>
+        <path d="M118 236c40 10 144 10 184 0" stroke="#FBF7F0" stroke-width="3" stroke-dasharray="7 8" fill="none"/>
+        <path d="M300 60 236 200" stroke="#B98E5F" stroke-width="12" stroke-linecap="round"/>
+        <ellipse cx="306" cy="48" rx="16" ry="26" transform="rotate(24 306 48)" fill="#B98E5F"/>
+        <path d="M80 380h260" stroke="#23264A" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="140" cy="404" r="14" fill="#E7B44A"/><circle cx="180" cy="410" r="10" fill="#8FB3A8"/><path d="M232 392c18-6 36 4 36 20h-46c0-8 4-16 10-20Z" fill="#E9B7A6"/>
+      </svg>
+    </div>
+    <div class="cocina-texto">
+      <p class="hilo-cabecera"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-pera" aria-hidden="true"></span>Comedor con cocina propia</p>
+      <h2 class="h2" id="titulo-cocina" data-palabras>La comida no llega en bandeja: <em>se hace aquí, cada mañana.</em></h2>
+      <p>Carmiña entra a las siete y media y a las once ya huele a caldo. Compra dos veces por semana en tiendas de la villa. Los bebés comen triturado y, poco a poco, a trocitos; los mayores, lo mismo que en casa pero sin sal de más. Las alergias y las dietas se adaptan con informe médico, y el menú del mes se cuelga en la puerta y se envía a las familias.</p>
+      <div class="menu-semana">
+        <div class="menu-pestanas" role="tablist" aria-label="Menú de muestra de esta semana">
+          <button role="tab" type="button" id="tab-1" aria-controls="dia-1" data-dia="1">Lun</button>
+          <button role="tab" type="button" id="tab-2" aria-controls="dia-2" data-dia="2">Mar</button>
+          <button role="tab" type="button" id="tab-3" aria-controls="dia-3" data-dia="3">Mié</button>
+          <button role="tab" type="button" id="tab-4" aria-controls="dia-4" data-dia="4">Jue</button>
+          <button role="tab" type="button" id="tab-5" aria-controls="dia-5" data-dia="5">Vie</button>
+        </div>
+        <div class="menu-paneles">
+          <dl role="tabpanel" id="dia-1" aria-labelledby="tab-1" data-dia="1"><div><dt>Primero</dt><dd>Crema de calabacín y puerro</dd></div><div><dt>Segundo</dt><dd>Merluza al horno con patata cocida</dd></div><div><dt>Postre</dt><dd>Pera</dd></div></dl>
+          <dl role="tabpanel" id="dia-2" aria-labelledby="tab-2" data-dia="2"><div><dt>Primero</dt><dd>Lentejas estofadas con verduras</dd></div><div><dt>Segundo</dt><dd>Tortilla francesa con tomate</dd></div><div><dt>Postre</dt><dd>Yogur natural</dd></div></dl>
+          <dl role="tabpanel" id="dia-3" aria-labelledby="tab-3" data-dia="3"><div><dt>Primero</dt><dd>Arroz con tomate casero</dd></div><div><dt>Segundo</dt><dd>Pollo guisado con zanahoria</dd></div><div><dt>Postre</dt><dd>Manzana asada</dd></div></dl>
+          <dl role="tabpanel" id="dia-4" aria-labelledby="tab-4" data-dia="4"><div><dt>Primero</dt><dd>Caldo de grelos y alubias</dd></div><div><dt>Segundo</dt><dd>Albóndigas de ternera en salsa de verduras</dd></div><div><dt>Postre</dt><dd>Plátano</dd></div></dl>
+          <dl role="tabpanel" id="dia-5" aria-labelledby="tab-5" data-dia="5"><div><dt>Primero</dt><dd>Sopa de fideos con caldo de pollo</dd></div><div><dt>Segundo</dt><dd>Pescadilla rebozada con ensalada</dd></div><div><dt>Postre</dt><dd>Mandarina</dd></div></dl>
+        </div>
+        <p class="menu-nota" id="menu-nota">Menú de muestra. Los bebés del aula Lúa lo toman en puré.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · CUOTAS (ficticias, con calculadora) -->
+  <section class="cuotas" id="cuotas" aria-labelledby="titulo-cuotas">
+    <div class="cuotas-cab">
+      <p class="hilo-cabecera"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-barco" aria-hidden="true"></span>Cuotas</p>
+      <h2 class="h2" id="titulo-cuotas" data-palabras>Lo que cuesta, <em>sin letra pequeña.</em></h2>
+      <p class="sello-ficticio" role="note"><strong>Cuotas de muestra, ficticias.</strong> No son precios reales de ninguna escuela.</p>
+    </div>
+    <div class="cuotas-cuerpo">
+      <table class="tabla-cuotas">
+        <caption class="oculto">Cuotas mensuales de muestra</caption>
+        <thead><tr><th scope="col">Concepto</th><th scope="col">Cuota</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Matrícula <small>una vez, al reservar plaza</small></th><td>60 €</td></tr>
+          <tr><th scope="row">Media jornada <small>9:00–13:00, sin comida</small></th><td>210 €<small>/mes</small></td></tr>
+          <tr><th scope="row">Jornada completa <small>9:00–16:00, comida y merienda incluidas</small></th><td>340 €<small>/mes</small></td></tr>
+          <tr><th scope="row">Horario ampliado de mañana <small>7:30–9:00</small></th><td>30 €<small>/mes</small></td></tr>
+          <tr><th scope="row">Horario ampliado de tarde <small>16:00–17:30</small></th><td>30 €<small>/mes</small></td></tr>
+          <tr><th scope="row">Comida en día suelto <small>con media jornada</small></th><td>6,50 €</td></tr>
+        </tbody>
+      </table>
+      <form class="calculadora" id="calculadora" aria-labelledby="calc-titulo">
+        <h3 id="calc-titulo">Calcula tu mes</h3>
+        <fieldset>
+          <legend>Jornada</legend>
+          <label class="opcion"><input type="radio" name="jornada" value="210"> <span>Media jornada</span></label>
+          <label class="opcion"><input type="radio" name="jornada" value="340" checked> <span>Jornada completa</span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Horario ampliado</legend>
+          <label class="opcion"><input type="checkbox" name="ampliado" value="30"> <span>Mañana, desde las 7:30</span></label>
+          <label class="opcion"><input type="checkbox" name="ampliado" value="30"> <span>Tarde, hasta las 17:30</span></label>
+        </fieldset>
+        <p class="calc-total" aria-live="polite"><span class="calc-num" id="calc-num">340</span> €<small>/mes (de muestra)</small></p>
+        <p class="calc-nota">Las ayudas públicas que estén vigentes pueden bajar esta cifra, a veces mucho. Te ayudamos con el papeleo en la visita.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 8 · LO QUE DICEN (de muestra) -->
+  <section class="voces" aria-labelledby="titulo-voces">
+    <h2 class="oculto" id="titulo-voces">Lo que dicen las familias (opiniones de muestra)</h2>
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista" id="cinta">
+        <span>Despacio</span><span class="cinta-pieza"></span><span>Su nombre</span><span class="cinta-pieza"></span><span>Su mantita</span><span class="cinta-pieza"></span><span>Su cuna</span><span class="cinta-pieza"></span><span>Su hora</span><span class="cinta-pieza"></span>
+      </div>
+    </div>
+    <div class="voces-lista">
+      <blockquote><p>«El tercer día lloré yo más que ella. Me dejaron la silla en el pasillo una tarde más y no me hicieron sentir tonta.»</p><footer>— Uxía, madre de una niña del aula Pera</footer></blockquote>
+      <blockquote><p>«Lo que más valoro es el papelito de cada tarde: cuánto comió, cuánto durmió, qué le hizo gracia.»</p><footer>— Martiño, padre de un bebé del aula Lúa</footer></blockquote>
+      <p class="voces-nota">Opiniones de muestra, escritas para esta demostración.</p>
+    </div>
+  </section>
+
+  <!-- 9 · PUERTAS ABIERTAS -->
+  <section class="visita" id="visita" aria-labelledby="titulo-visita">
+    <div class="visita-cab">
+      <p class="hilo-cabecera"><span class="hilo" aria-hidden="true"></span><span class="pieza pieza-lua" aria-hidden="true"></span>Puertas abiertas</p>
+      <h2 class="h2" id="titulo-visita" data-palabras>Ven un sábado. <em>Trae a la criatura.</em></h2>
+      <ul class="fechas">
+        <li><span class="fecha-dia">7</span><span class="fecha-mes">noviembre</span><span class="fecha-hora">sábado · 10:30–12:30</span></li>
+        <li><span class="fecha-dia">21</span><span class="fecha-mes">noviembre</span><span class="fecha-hora">sábado · 10:30–12:30</span></li>
+        <li><span class="fecha-dia">mar</span><span class="fecha-mes">cualquier martes</span><span class="fecha-hora">16:30, con cita</span></li>
+      </ul>
+    </div>
+    <form class="formulario" id="formulario" novalidate>
+      <p class="formulario-aviso">Formulario de muestra: no se envía nada.</p>
+      <label>Tu nombre<input name="nombre" autocomplete="name" required></label>
+      <label>Teléfono<input name="tel" type="tel" autocomplete="tel" required></label>
+      <label>Edad de la criatura
+        <select name="edad"><option>Menos de 1 año</option><option>Entre 1 y 2 años</option><option>Entre 2 y 3 años</option><option>Todavía no ha nacido</option></select>
+      </label>
+      <label>¿Qué visita prefieres?
+        <select name="visita"><option>Sábado 7 de noviembre</option><option>Sábado 21 de noviembre</option><option>Un martes por la tarde</option></select>
+      </label>
+      <button class="boton boton-lleno iman" type="submit"><span>Reservar la visita</span></button>
+      <p class="formulario-ok" id="formulario-ok" hidden role="status"></p>
+    </form>
+  </section>
+
+  <!-- 10 · PREGUNTAS -->
+  <section class="preguntas" aria-labelledby="titulo-preguntas">
+    <h2 class="h2" id="titulo-preguntas" data-palabras>Lo que se pregunta <em>en la puerta.</em></h2>
+    <div class="preguntas-lista">
+      <details><summary>¿Desde qué edad admitís?</summary><p>Desde los cuatro meses cumplidos, hasta que empieza el segundo ciclo de infantil en el colegio.</p></details>
+      <details><summary>¿Y si se pone malo?</summary><p>Te llamamos. Con fiebre de 37,5 o más, vómitos o diarrea, la criatura vuelve a casa: por ella y por las otras treinta y ocho.</p></details>
+      <details><summary>¿Hay que traer comida?</summary><p>No. Solo la leche de fórmula si toma una concreta, y pañales y toallitas, que guardamos en su cajón.</p></details>
+      <details><summary>¿Abrís en verano?</summary><p>Sí, todo el año menos la segunda quincena de agosto, los festivos y la semana entre Navidad y Reyes.</p></details>
+      <details><summary>¿Cómo sé cómo ha ido el día?</summary><p>Con el diario en papel que se lleva cada tarde, y hablando con su educadora en la recogida. No mandamos fotos al móvil: preferimos que el tiempo del aula sea del aula.</p></details>
+    </div>
+  </section>
+
+  <!-- 11 · CONTACTO -->
+  <section class="contacto" id="contacto" aria-labelledby="titulo-contacto">
+    <div class="contacto-texto">
+      <h2 class="h2" id="titulo-contacto" data-palabras>Travesa da Lavandeira, 6. <em>Lalín.</em></h2>
+      <address>
+        <p>Travesa da Lavandeira, 6 · 36500 Lalín (Pontevedra)</p>
+        <p><a href="tel:+34986000000">986 00 00 00</a> · <a href="https://wa.me/34600000000">WhatsApp 600 00 00 00</a></p>
+        <p><a href="mailto:ola@oabaneo.example">ola@oabaneo.example</a></p>
+        <p>Lunes a viernes, 7:30–17:30 · <span class="estado" data-estado></span></p>
+      </address>
+      <p class="contacto-equipo">Dirige <strong>Iria Bouzas</strong>. Educadoras: Sabela, Noemí, Antía, Olalla, Rut y Brais (sí, educador). En la cocina, Carmiña.</p>
+    </div>
+    <div class="mapa" id="mapa">
+      <div class="mapa-tapa">
+        <svg viewBox="0 0 400 300" width="400" height="300" aria-hidden="true"><rect width="400" height="300" fill="var(--panel)"/><path d="M0 210C80 190 120 230 200 200S330 120 400 140" stroke="#FBF7F0" stroke-width="18" fill="none"/><path d="M150 0 190 300M0 80h400" stroke="#FBF7F0" stroke-width="10"/><circle cx="196" cy="150" r="12" fill="var(--acento-sup)"/><path d="M196 162v20" stroke="#23264A" stroke-width="3"/></svg>
+        <p>El mapa es de Google y deja cookies suyas. Por eso no se carga hasta que lo pidas.</p>
+        <button class="boton boton-linea iman" type="button" id="mapa-boton"><span>Cargar el mapa</span></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="pie-marca"><img src="img/marca.svg" width="56" height="56" alt=""><p>O Abaneo<br><small>escola infantil · Lalín</small></p></div>
+  <p class="pie-sello"><strong>Sitio de demostración.</strong> O Abaneo es un negocio ficticio; los datos, ilustraciones, cuotas y opiniones son de muestra.</p>
+  <p class="pie-legal"><a href="aviso-legal.html">Aviso legal y privacidad</a> · <button type="button" class="enlace" id="cookies-reabrir">Aviso de cookies</button></p>
+</footer>
+
+<!-- Aviso de cookies -->
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Aquí no hay cookies de seguimiento ni analítica. Tu navegador solo guarda que has visto este aviso (y, en la versión de revisión, la densidad y el color elegidos). El mapa de Google solo se carga si lo pides.</p>
+  <div class="cookies-acciones"><a href="aviso-legal.html#privacidad">Más detalle</a><button type="button" class="boton boton-lleno" id="cookies-ok"><span>Entendido</span></button></div>
+</div>
+
+<!-- MANDOS DE DEMOSTRACIÓN (maqueta + paleta). Solo con ?revision en la URL.
+     NO VIAJAN AL SITIO DE UN CLIENTE: ver README, «Quitar los mandos». -->
+<div class="mandos" id="mandos" hidden>
+  <div class="mando" role="group" aria-label="Maqueta: densidad visual">
+    <span class="mando-lbl">Maqueta</span>
+    <button type="button" data-maqueta="movil" aria-pressed="true">Móvil</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <div class="mando" role="group" aria-label="Paleta: color de marca">
+    <span class="mando-lbl">Color</span>
+    <button type="button" data-paleta="tomate" aria-pressed="true"><i style="background:#D9573B"></i>Tomate</button>
+    <button type="button" data-paleta="pino" aria-pressed="false"><i style="background:#009E8E"></i>Pino</button>
+    <button type="button" data-paleta="malva" aria-pressed="false"><i style="background:#B65DC0"></i>Malva</button>
+  </div>
+  <p class="mando-lt" id="mando-lt">tareas largas: —</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
