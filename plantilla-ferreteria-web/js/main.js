@@ -309,26 +309,30 @@
       ' gl_FragColor=vec4(col*uIntro,uIntro);}'
     ].join('\n');
 
-    function sh(tipo, src) { var s = gl.createShader(tipo); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
-    var prog;
-    try {
-      prog = gl.createProgram();
-      gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
-      gl.linkProgram(prog);
-      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
-    } catch (e) { html.classList.add('sin-webgl'); return null; }
-    gl.useProgram(prog);
-    var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    var loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    var U = {}; ['uRes', 'uAng', 'uAdv', 'uLuz', 'uAcento', 'uIntro'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+    // Compilación sin bloquear: con KHR_parallel_shader_compile se consulta el
+    // estado en cada fotograma en vez de esperar al enlace en el hilo principal.
+    var paralelo = gl.getExtension('KHR_parallel_shader_compile');
+    var prog = gl.createProgram(), vs = gl.createShader(gl.VERTEX_SHADER), fs = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(vs, VS); gl.compileShader(vs); gl.shaderSource(fs, FS); gl.compileShader(fs);
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    var U = {}, listo = false;
+    function preparar() {
+      if (paralelo && !gl.getProgramParameter(prog, paralelo.COMPLETION_STATUS_KHR)) { requestAnimationFrame(preparar); return; }
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { html.classList.add('sin-webgl'); return; }
+      gl.useProgram(prog);
+      var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      ['uRes', 'uAng', 'uAdv', 'uLuz', 'uAcento', 'uIntro'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+      listo = true; acento(); pedir();
+    }
 
     // Calidad: el renderizador por software (SwiftShader) no aguanta la resolución entera.
     var calidad = 1;
     try {
       var dbg = gl.getExtension('WEBGL_debug_renderer_info');
       var ren = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : '';
-      if (/swiftshader|llvmpipe|software/i.test(ren)) calidad = 0.45;
+      if (/swiftshader|llvmpipe|software/i.test(ren)) calidad = 0.35;
     } catch (e) {}
 
     var est = { ang: 0, adv: 0, lx: 0.25, ly: 0.2, intro: motion ? 0 : 1 };
@@ -342,14 +346,28 @@
       if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); pedir(); }
     }
     function acento() {
+      if (!listo) return;
       var c = getComputedStyle(html).getPropertyValue('--acento').trim();
       var m = /^#?([0-9a-f]{6})$/i.exec(c) || ['', 'E2552B'];
       var n = parseInt(m[1], 16);
       gl.uniform3f(U.uAcento, ((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
       pedir();
     }
-    function pintar() {
+    // Calidad adaptativa: si mientras se anima el fotograma pasa de ~24 ms de media,
+    // se baja la resolución del búfer (hasta la mitad). Pensado para móviles modestos.
+    var ultimoT = 0, tiempos = [];
+    function vigilar(t) {
+      if (ultimoT && t - ultimoT < 200) { tiempos.push(t - ultimoT); if (tiempos.length > 14) tiempos.shift(); }
+      ultimoT = t;
+      if (tiempos.length === 14 && calidad > 0.5 * calidadBase) {
+        var media = tiempos.reduce(function (a, b) { return a + b; }, 0) / 14;
+        if (media > 24) { calidad = Math.max(0.5 * calidadBase, calidad * 0.8); tiempos = []; medir(); }
+      }
+    }
+    function pintar(t) {
       raf = 0;
+      if (!listo) return;
+      vigilar(t);
       var k = motion ? 0.14 : 1, sigue = false;
       ['ang', 'adv', 'lx', 'ly'].forEach(function (c) {
         est[c] = lerp(est[c], obj[c], k);
@@ -371,7 +389,8 @@
     document.addEventListener('visibilitychange', function () { if (!document.hidden) pedir(); });
     canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); html.classList.add('sin-webgl'); });
 
-    medir(); acento();
+    var calidadBase = calidad;
+    medir(); preparar();
     return {
       acento: acento,
       vueltas: function (v) { obj.ang = v * Math.PI * 2; obj.adv = v * 0.21; pedir(); },
@@ -673,8 +692,9 @@
       aro.style.transform = 'translate3d(' + ax.toFixed(1) + 'px,' + ay.toFixed(1) + 'px,0)';
       if (Math.abs(ax - mx) > 0.3 || Math.abs(ay - my) > 0.3) raf = requestAnimationFrame(mover);
     }
+    var fino = window.matchMedia('(hover: hover) and (pointer: fine)');
     window.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse') return;
+      if (e.pointerType !== 'mouse' || !fino.matches) return;
       if (!vivo) { vivo = true; html.classList.add('cursor-propio'); ax = e.clientX; ay = e.clientY; }
       mx = e.clientX; my = e.clientY;
       var t = e.target.closest ? e.target : null;
@@ -757,7 +777,8 @@
       var tw = 85.6 * ppm, th = 53.98 * ppm;
       var bx = pad, by = pad + th + 34;
       var d = m[0] * ppm, k = m[3] * ppm, s = m[2] * ppm, Lp = L * ppm;
-      var W = Math.ceil(Math.max(tw, k + Lp) + pad * 2 + 10), H = Math.ceil(by + Math.max(s, d) + 46);
+      var e = s * 1.1547, hx = bx + k + Lp + 28 + e / 2;
+      var W = Math.ceil(Math.max(tw, k + Lp + 28 + e + 70) + pad * 2 + 10), H = Math.ceil(by + Math.max(s, d) + 46);
       svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
       svg.style.width = W + 'px';
       while (svg.lastChild && svg.lastChild.tagName !== 'title') svg.removeChild(svg.lastChild);
@@ -771,6 +792,13 @@
       var paso = m[1] * ppm, filetes = '';
       for (var x = bx + k + paso; x < bx + k + Lp - 0.5; x += paso) filetes += 'M' + x.toFixed(1) + ' ' + (cy - d / 2).toFixed(1) + 'l' + (paso * 0.5).toFixed(1) + ' ' + d.toFixed(1);
       nodo('path', { d: filetes, stroke: '#4A5951', 'stroke-width': Math.max(0.6, paso * 0.28).toFixed(2), fill: 'none' });
+      // la cabeza vista de frente: entrecaras = la llave que le va
+      var hex = '';
+      for (var a = 0; a < 6; a++) { var an = Math.PI / 3 * a; hex += (a ? 'L' : 'M') + (hx + Math.cos(an) * e / 2).toFixed(1) + ' ' + (cy + Math.sin(an) * e / 2).toFixed(1); }
+      nodo('path', { d: hex + 'Z', fill: '#B7C1BB' });
+      nodo('circle', { cx: hx.toFixed(1), cy: cy.toFixed(1), r: (d * 0.5).toFixed(1), fill: 'none', stroke: '#4A5951', 'stroke-width': 1.2, 'stroke-dasharray': '3 3' });
+      nodo('path', { d: 'M' + (hx + e / 2 + 8).toFixed(1) + ' ' + (cy - s / 2).toFixed(1) + 'h10M' + (hx + e / 2 + 8).toFixed(1) + ' ' + (cy + s / 2).toFixed(1) + 'h10M' + (hx + e / 2 + 13).toFixed(1) + ' ' + (cy - s / 2).toFixed(1) + 'V' + (cy + s / 2).toFixed(1), 'class': 'galga-svg-cota' });
+      nodo('text', { x: (hx + e / 2 + 20).toFixed(1), y: (cy + 4).toFixed(1), 'class': 'galga-svg-cota-texto' }, String(m[2]).replace('.', ','));
       // cota de largo
       var yc = by + Math.max(s, d) + 18;
       nodo('path', { d: 'M' + (bx + k).toFixed(1) + ' ' + (yc - 7) + 'v14M' + (bx + k + Lp).toFixed(1) + ' ' + (yc - 7) + 'v14M' + (bx + k).toFixed(1) + ' ' + yc + 'H' + (bx + k + Lp).toFixed(1), 'class': 'galga-svg-cota' });

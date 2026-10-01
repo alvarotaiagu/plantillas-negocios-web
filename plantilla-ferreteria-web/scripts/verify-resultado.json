@@ -3,7 +3,7 @@
   "nombre": "Cortina: fotograma a medias capturado con la chapa en movimiento",
   "ok": true,
   "detalle": {
-   "top": -361,
+   "top": -709,
    "fondoCortina": "rgb(226, 85, 43)",
    "fondoBody": "rgb(14, 20, 17)"
   }
@@ -12,10 +12,15 @@
   "nombre": "Cortina de color distinto al fondo",
   "ok": true,
   "detalle": {
-   "top": -361,
+   "top": -709,
    "fondoCortina": "rgb(226, 85, 43)",
    "fondoBody": "rgb(14, 20, 17)"
   }
+ },
+ {
+  "nombre": "Cortina: segundo fotograma con el canto dentado a la vista",
+  "ok": false,
+  "detalle": 0
  },
  {
   "nombre": "Cortina acaba en display:none (normal)",
@@ -91,7 +96,7 @@
  },
  {
   "nombre": "Pila: <li> sticky, todos del alto de la más alta (no 100vh)",
-  "ok": false,
+  "ok": true,
   "detalle": {
    "alturas": [
     400,
@@ -109,7 +114,7 @@
     "72px",
     "72px"
    ],
-   "max": 398,
+   "max": 400,
    "vh": 900,
    "after": "162px",
    "sticky": "sticky"
@@ -146,8 +151,8 @@
   "nombre": "Marquesina en movimiento",
   "ok": true,
   "detalle": [
-   "translate3d(-2597.4px, 0px, 0px)",
-   "translate3d(-2627.4px, 0px, 0px)"
+   "translate3d(-2600.3px, 0px, 0px)",
+   "translate3d(-2630.3px, 0px, 0px)"
   ]
  },
  {
@@ -206,7 +211,7 @@
  },
  {
   "nombre": "Sin [PENDIENTE], TODO ni lorem",
-  "ok": false
+  "ok": true
  },
  {
   "nombre": "noindex, nofollow en la portada",
@@ -220,17 +225,17 @@
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
   "detalle": {
-   "antes": 13,
-   "despues": 14
+   "antes": 8,
+   "despues": 9
   }
  },
  {
   "nombre": "longtasks escritorio (carga en frío + recorrido completo)",
   "ok": true,
   "detalle": {
-   "n": 13,
-   "total": 872,
-   "max": 200
+   "n": 8,
+   "total": 767,
+   "max": 283
   }
  },
  {
@@ -240,17 +245,8 @@
  },
  {
   "nombre": "axe (WCAG 2.1 AA + buenas prácticas) en portada de escritorio: 0 violaciones",
-  "ok": false,
-  "detalle": [
-   {
-    "id": "landmark-complementary-is-top-level",
-    "impacto": "moderate",
-    "n": 1,
-    "ej": [
-     "#ficha"
-    ]
-   }
-  ]
+  "ok": true,
+  "detalle": []
  },
  {
   "nombre": "Táctil: sin cursor propio",
@@ -293,8 +289,8 @@
   "ok": true,
   "detalle": {
    "n": 9,
-   "total": 666,
-   "max": 99
+   "total": 744,
+   "max": 182
   }
  },
  {

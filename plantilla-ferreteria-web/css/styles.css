@@ -93,6 +93,8 @@ strong { font-weight: 700; }
 .svg-crono { fill: var(--acento-claro); font-family: var(--mono); font-size: 34px; font-weight: 600; }
 
 /* char-reveal: palabra inline-block nowrap, letra inline-block */
+/* el reveal cambia la anchura de cada letra: que el reflujo se quede dentro del titular */
+[data-reveal] { contain: layout; }
 .palabra { display: inline-block; white-space: nowrap; }
 .letra { display: inline-block; font-variation-settings: "wdth" var(--w, 75); will-change: transform; }
 html.has-motion [data-reveal]:not(.es-dentro) .letra { opacity: 0; }
@@ -234,7 +236,9 @@ html.sin-webgl .portada-lienzo canvas { display: none; }
 @media (max-width: 760px) {
   .portada { padding-bottom: 5.5vh; align-content: end; }
   .portada-lienzo { top: calc(var(--cab) - 10px); right: -34vw; width: 100vw; height: 60svh; }
-  .portada .etiqueta { letter-spacing: .02em; font-size: .72rem; }
+  .portada .etiqueta { display: none; }
+  /* el lema no puede caer sobre metal brillante: la mitad baja del tornillo se funde con el fondo */
+  .portada-lienzo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(to bottom, transparent, var(--fondo) 85%); pointer-events: none; }
   .portada-texto { grid-column: 1 / -1; }
   .portada-titulo { font-size: clamp(4.4rem, 38vw, 10rem); margin: .4rem 0 1rem; }
   .portada-lema { font-size: 1.02rem; margin-bottom: 1.2rem; max-width: 30ch; }
