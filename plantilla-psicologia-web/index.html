@@ -1,0 +1,525 @@
+<!--
+  SITIO DE DEMOSTRACIÓN. «Debandoira» es un gabinete de psicología FICTICIO.
+  Nombre, dirección, teléfonos, números de colegiación y de registro sanitario,
+  tarifas y personas son de muestra y no corresponden a ningún negocio real.
+  El único dato real de la página es el 024, la línea pública de atención a la
+  conducta suicida en España, y está puesto a propósito.
+-->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Debandoira · Gabinete de psicología en Lugo (demo)</title>
+<meta name="description" content="Gabinete de psicología ficticio en Lugo: adultos, pareja y adolescentes, presencial y en línea. Sitio de demostración.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#283463">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Debandoira · Gabinete de psicología (demo)">
+<meta property="og:description" content="Tirar del hilo, sin prisa. Plantilla de demostración de un gabinete de psicología ficticio en Lugo.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+  /* Bloqueante a propósito: aplica la densidad y la paleta ANTES de pintar,
+     para que la página no arranque en una versión y salte a otra.
+     MANDO DE DEMOSTRACIÓN — no viaja al sitio de un cliente (ver README). */
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      if (localStorage.getItem('debandoira-maqueta') === 'sobria') d.classList.add('maqueta-sobria');
+      var p = localStorage.getItem('debandoira-paleta');
+      if (p === 'brezo' || p === 'musgo') d.classList.add('paleta-' + p);
+    } catch (e) {}
+    if (/[?&]revision(=|&|$)/.test(location.search)) d.classList.add('es-revision');
+    /* Retirada garantizada de la cortina: pase lo que pase con los scripts. */
+    setTimeout(function () { d.classList.add('cortina-fuera'); }, 4200);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Debandoira · Gabinete de psicología (sitio de demostración)",
+  "description": "Negocio ficticio de demostración.",
+  "address": { "@type": "PostalAddress", "streetAddress": "Rúa das Fiadeiras, 14, 1.º", "postalCode": "27001", "addressLocality": "Lugo", "addressCountry": "ES" },
+  "telephone": "+34 982 00 00 00",
+  "email": "ola@debandoira.example",
+  "openingHours": ["Mo-Th 09:00-14:00", "Mo-Th 16:00-20:30", "Fr 09:00-15:00"]
+}
+</script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- Cortina: un hilo de rubia cruza la pantalla y tira del telón hacia arriba. -->
+<div class="cortina" aria-hidden="true">
+  <div class="cortina-telon">
+    <svg class="cortina-borde" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 0 H1440 V0 Q720 0 0 0 Z"/></svg>
+  </div>
+  <svg class="cortina-hilo" viewBox="0 0 1440 200" preserveAspectRatio="none"><path pathLength="1" d="M-20 120 C 240 60, 420 170, 720 100 S 1180 60, 1460 110"/></svg>
+  <p class="cortina-marca"><span>Debandoira</span><em>tirar del hilo</em></p>
+</div>
+
+<div class="hilo-conductor" aria-hidden="true">
+  <svg viewBox="0 0 20 1000" preserveAspectRatio="none"><path class="hc-fondo" d="M10 0 C 2 120, 18 240, 10 360 S 2 600, 10 720 S 18 900, 10 1000"/><path class="hc-avance" pathLength="1" d="M10 0 C 2 120, 18 240, 10 360 S 2 600, 10 720 S 18 900, 10 1000"/></svg>
+</div>
+
+<header class="cabecera">
+  <p class="aviso-crisis-barra">¿Estás en crisis? <a href="tel:024">Llama al <strong>024</strong></a> · gratuito, 24 horas. Esto es un gabinete con cita, no un servicio de urgencias.</p>
+  <div class="cabecera-fila">
+    <a class="marca" href="#inicio" aria-label="Debandoira, ir al inicio">
+      <img src="img/logo.svg" alt="" width="44" height="44">
+      <span class="marca-texto"><span class="marca-nombre">Debandoira</span><span class="marca-sub">gabinete de psicología · Lugo</span></span>
+    </a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-boton-texto">Menú</span><span class="menu-boton-icono" aria-hidden="true"></span></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="#proceso">Cómo empezamos</a></li>
+        <li><a href="#areas">Con quién</a></li>
+        <li><a href="#consulta">Dónde</a></li>
+        <li><a href="#equipo">Quiénes</a></li>
+        <li><a href="#tarifas">Tarifas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a class="boton boton-pequeno iman" href="#contacto">Pedir primera cita</a>
+      <p class="menu-crisis">Si estás en crisis: <a href="tel:024">024</a> · emergencia: <a href="tel:112">112</a></p>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============ PORTADA ============ -->
+<section class="portada" id="inicio" aria-labelledby="portada-titulo">
+  <div class="portada-texto">
+    <p class="antetitulo">Gabinete de psicología · Lugo · presencial y en línea</p>
+    <h1 id="portada-titulo" class="titulo-portada" data-letras><span class="tl">Tirar</span> <span class="tl">del hilo,</span> <em class="tl">sin prisa.</em></h1>
+    <p class="entradilla">Nadie llega con las cosas ordenadas. Se llega con un ovillo, y lo vamos devanando contigo, hablando, al ritmo que tú marques. Sin juicios, sin recetas y sin prometerte lo que nadie puede prometer.</p>
+    <div class="portada-acciones">
+      <a class="boton iman" href="#contacto"><span>Pedir primera cita</span></a>
+      <a class="enlace-flecha" href="#proceso">Cómo es empezar <span aria-hidden="true">↓</span></a>
+    </div>
+    <dl class="portada-datos">
+      <div><dt>Primera sesión</dt><dd>50 min · 55 €<sup>*</sup></dd></div>
+      <div><dt>Dónde</dt><dd>Rúa das Fiadeiras, 14 · o en línea</dd></div>
+      <div><dt>Idiomas</dt><dd>castellano e galego</dd></div>
+    </dl>
+  </div>
+  <figure class="portada-ovillo" data-cursor="tira">
+    <canvas class="ovillo-canvas" aria-hidden="true"></canvas>
+    <svg class="ovillo-estatico" viewBox="0 0 400 400" aria-hidden="true">
+      <defs><clipPath id="oc"><circle cx="190" cy="210" r="120"/></clipPath></defs>
+      <g fill="none" stroke-linecap="round">
+        <g clip-path="url(#oc)" stroke="var(--anil)" stroke-width="1.6" opacity=".9">
+          <ellipse cx="190" cy="210" rx="120" ry="44" transform="rotate(-32 190 210)"/>
+          <ellipse cx="190" cy="210" rx="120" ry="76" transform="rotate(48 190 210)"/>
+          <ellipse cx="190" cy="210" rx="120" ry="20" transform="rotate(8 190 210)"/>
+          <ellipse cx="190" cy="210" rx="38" ry="120" transform="rotate(-14 190 210)"/>
+          <ellipse cx="190" cy="210" rx="120" ry="98" transform="rotate(-70 190 210)"/>
+          <ellipse cx="190" cy="210" rx="120" ry="60" transform="rotate(20 190 210)"/>
+        </g>
+        <circle cx="190" cy="210" r="120" stroke="var(--tinta)" stroke-width="2.4"/>
+        <path d="M310 214 C 340 230, 352 290, 320 330 S 250 380, 300 396" stroke="var(--rubia)" stroke-width="3"/>
+      </g>
+    </svg>
+    <figcaption class="ovillo-pie"><span class="solo-raton">Mueve el ratón: el cabo suelto te sigue.</span><span class="solo-tactil">Toca y arrastra: el cabo suelto te sigue.</span> Baja y el ovillo se devana.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ LO QUE TRAES ============ -->
+<section class="traes" id="traes" aria-labelledby="traes-titulo">
+  <h2 id="traes-titulo" class="nota-margen">Lo que traes</h2>
+  <p class="traes-texto" data-tinte>No hace falta saber explicarlo. Mucha gente llega diciendo «no sé ni por dónde empezar», y ese es un buen sitio para empezar. Lo primero no es desenredar nada: es <em>encontrar el cabo</em>, y para eso basta con sentarse y hablar.</p>
+  <ul class="traes-lista" aria-label="Motivos frecuentes de consulta">
+    <li>una época que pesa más de la cuenta</li>
+    <li>una pérdida</li>
+    <li>la pareja, que ya no se entiende</li>
+    <li>el trabajo, que no se queda en el trabajo</li>
+    <li>un hijo adolescente que no habla</li>
+    <li>dormir mal, preocuparse mucho</li>
+    <li>o nada concreto, y aun así</li>
+  </ul>
+</section>
+
+<!-- ============ PROCESO (anclado con scrub) ============ -->
+<section class="proceso" id="proceso" aria-labelledby="proceso-titulo">
+  <div class="ola" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 120 Q 720 120 1440 120 Z"/></svg></div>
+  <div class="proceso-escena">
+    <header class="proceso-cabeza">
+      <p class="antetitulo antetitulo-claro">De la primera llamada en adelante</p>
+      <h2 id="proceso-titulo" class="titulo-seccion" data-letras>Cómo es empezar</h2>
+    </header>
+    <p class="proceso-cuenta" aria-hidden="true"><span class="proceso-num">01</span><span class="proceso-de">/06</span></p>
+    <ol class="proceso-pasos">
+      <li class="paso" data-paso="1">
+        <p class="paso-cuando">Día 0</p>
+        <h3>Llamas o escribes</h3>
+        <p>Te contesta Sabela o Breixo, no una centralita. Diez minutos para ver si podemos ayudarte nosotros o si te conviene más otro recurso. Esa llamada no se cobra.</p>
+      </li>
+      <li class="paso" data-paso="2">
+        <p class="paso-cuando">Días 1 a 7</p>
+        <h3>Elegimos día y forma</h3>
+        <p>Presencial en la consulta de la Rúa das Fiadeiras o en línea, por videollamada. Solemos tener hueco en menos de una semana.</p>
+      </li>
+      <li class="paso" data-paso="3">
+        <p class="paso-cuando">Primera sesión · 50 min</p>
+        <h3>Hablamos y escuchas cómo trabajamos</h3>
+        <p>Nos cuentas lo que quieras contar, hasta donde quieras. Te explicamos cómo trabajamos, qué podemos ofrecerte y qué no. Preguntas lo que necesites. No sales con una etiqueta.</p>
+      </li>
+      <li class="paso" data-paso="4">
+        <p class="paso-cuando">Al acabar la primera</p>
+        <h3>Decides tú</h3>
+        <p>Si seguimos, acordamos por escrito qué quieres trabajar, cada cuánto nos vemos y cómo vamos a saber si te está sirviendo. Si no seguimos, sin compromiso y sin dar explicaciones.</p>
+      </li>
+      <li class="paso" data-paso="5">
+        <p class="paso-cuando">Semanal o quincenal</p>
+        <h3>Las sesiones</h3>
+        <p>Cincuenta minutos, siempre con la misma persona. Puedes alternar presencial y en línea si un día no te viene bien venir.</p>
+      </li>
+      <li class="paso" data-paso="6">
+        <p class="paso-cuando">Cada 6 u 8 sesiones</p>
+        <h3>Paramos a mirar</h3>
+        <p>Revisamos juntos lo acordado: seguir igual, espaciar las sesiones o cerrar. Cerrar también se prepara. Y puedes dejarlo cuando quieras.</p>
+      </li>
+    </ol>
+    <svg class="proceso-hilo" viewBox="0 0 1200 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <path class="ph-fondo" d="M0 110 C 43 70, 73 70, 86 110 C 130 110, 122 62, 100 62 C 78 62, 70 110, 114 110 C 200 150, 230 150, 286 110 C 330 110, 322 62, 300 62 C 278 62, 270 110, 314 110 C 400 70, 430 70, 486 110 C 530 110, 522 62, 500 62 C 478 62, 470 110, 514 110 C 600 150, 630 150, 686 110 C 730 110, 722 62, 700 62 C 678 62, 670 110, 714 110 C 800 70, 830 70, 886 110 C 930 110, 922 62, 900 62 C 878 62, 870 110, 914 110 C 1000 150, 1030 150, 1086 110 C 1130 110, 1122 62, 1100 62 C 1078 62, 1070 110, 1114 110 C 1160 110, 1180 90, 1200 84"/>
+      <path class="ph-avance" pathLength="1" d="M0 110 C 43 70, 73 70, 86 110 C 130 110, 122 62, 100 62 C 78 62, 70 110, 114 110 C 200 150, 230 150, 286 110 C 330 110, 322 62, 300 62 C 278 62, 270 110, 314 110 C 400 70, 430 70, 486 110 C 530 110, 522 62, 500 62 C 478 62, 470 110, 514 110 C 600 150, 630 150, 686 110 C 730 110, 722 62, 700 62 C 678 62, 670 110, 714 110 C 800 70, 830 70, 886 110 C 930 110, 922 62, 900 62 C 878 62, 870 110, 914 110 C 1000 150, 1030 150, 1086 110 C 1130 110, 1122 62, 1100 62 C 1078 62, 1070 110, 1114 110 C 1160 110, 1180 90, 1200 84"/>
+      <g class="ph-nudos">
+        <circle cx="100" cy="86" r="7"/><circle cx="300" cy="86" r="7"/><circle cx="500" cy="86" r="7"/><circle cx="700" cy="86" r="7"/><circle cx="900" cy="86" r="7"/><circle cx="1100" cy="86" r="7"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ MARQUESINA ============ -->
+<div class="cinta" aria-hidden="true">
+  <div class="cinta-pista">
+    <p>a tu ritmo <i>·</i> confidencial <i>·</i> presencial y en línea <i>·</i> sin lista de espera larga <i>·</i> en castellano e galego <i>·</i> siempre la misma persona <i>·</i>&nbsp;</p>
+    <p>a tu ritmo <i>·</i> confidencial <i>·</i> presencial y en línea <i>·</i> sin lista de espera larga <i>·</i> en castellano e galego <i>·</i> siempre la misma persona <i>·</i>&nbsp;</p>
+  </div>
+</div>
+
+<!-- ============ ÁREAS (pila sticky) ============ -->
+<section class="areas" id="areas" aria-labelledby="areas-titulo">
+  <header class="areas-cabeza">
+    <p class="antetitulo">Con quién trabajamos</p>
+    <h2 id="areas-titulo" class="titulo-seccion" data-letras>Cuatro maneras de sentarse</h2>
+    <p class="areas-intro">No trabajamos por etiquetas, sino por quién viene a la consulta. Esto es lo que cambia en cada caso: quién se sienta, cuánto dura y qué se acuerda al principio.</p>
+  </header>
+  <ul class="pila">
+    <li class="pila-item" data-duracion="50" data-frecuencia="semanal o quincenal">
+      <article class="tarjeta">
+        <div class="tarjeta-texto">
+          <p class="tarjeta-num">01</p>
+          <h3>Adultos</h3>
+          <p>Para épocas que pesan, cambios que no se eligen, pérdidas, el trabajo que se cuela en casa o esa sensación de no estar del todo bien sin saber por qué. Una persona, una silla enfrente.</p>
+          <p class="tarjeta-pie">Desde 18 años · individual</p>
+        </div>
+        <div class="tarjeta-dibujo">
+          <svg viewBox="0 0 320 240" aria-hidden="true"><g fill="none" stroke-linecap="round"><path class="trazo" pathLength="1" stroke="var(--anil)" stroke-width="3" d="M20 200 C 80 200, 90 120, 150 120 C 210 120, 220 60, 170 50 C 120 40, 120 110, 180 130 C 240 150, 260 90, 300 70"/><circle cx="300" cy="70" r="6" fill="var(--rubia)" stroke="none"/></g></svg>
+        </div>
+        <dl class="tarjeta-datos"><div><dt>Sesión</dt><dd><b>50</b> min</dd></div><div><dt>Ritmo habitual</dt><dd>semanal o quincenal</dd></div><div><dt>Formato</dt><dd>presencial o en línea</dd></div></dl>
+      </article>
+    </li>
+    <li class="pila-item" data-duracion="70" data-frecuencia="quincenal">
+      <article class="tarjeta">
+        <div class="tarjeta-texto">
+          <p class="tarjeta-num">02</p>
+          <h3>Pareja</h3>
+          <p>Cuando la conversación de siempre acaba siempre igual. Venís los dos; nadie es el árbitro. A veces sirve para seguir, a veces para separarse con menos daño: no decidimos eso por vosotros.</p>
+          <p class="tarjeta-pie">Las dos personas, en la misma sesión</p>
+        </div>
+        <div class="tarjeta-dibujo">
+          <svg viewBox="0 0 320 240" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-width="3"><path class="trazo" pathLength="1" stroke="var(--rubia)" d="M10 120 C 50 60, 90 60, 130 120 S 210 180, 250 120 S 300 60, 315 80"/><path class="trazo" pathLength="1" stroke="var(--anil)" d="M10 120 C 50 180, 90 180, 130 120 S 210 60, 250 120 S 300 180, 315 160"/></g></svg>
+        </div>
+        <dl class="tarjeta-datos"><div><dt>Sesión</dt><dd><b>70</b> min</dd></div><div><dt>Ritmo habitual</dt><dd>quincenal</dd></div><div><dt>Formato</dt><dd>mejor presencial</dd></div></dl>
+      </article>
+    </li>
+    <li class="pila-item" data-duracion="50" data-frecuencia="semanal">
+      <article class="tarjeta">
+        <div class="tarjeta-texto">
+          <p class="tarjeta-num">03</p>
+          <h3>Adolescentes</h3>
+          <p>De 13 a 17 años. Su espacio es suyo: lo que cuenta queda en la consulta, con los límites que la ley marca y que explicamos el primer día a todos. Por debajo de 16 años, con el consentimiento de quien tenga la patria potestad.</p>
+          <p class="tarjeta-pie">13–17 años · la primera sesión, con la familia</p>
+        </div>
+        <div class="tarjeta-dibujo">
+          <svg viewBox="0 0 320 240" aria-hidden="true"><g fill="none" stroke-linecap="round"><path stroke="var(--tinta)" stroke-width="3" d="M160 20 V 200"/><ellipse cx="160" cy="176" rx="34" ry="10" fill="var(--gualda)" stroke="var(--tinta)" stroke-width="2.5"/><path class="trazo" pathLength="1" stroke="var(--rubia)" stroke-width="3" d="M160 60 C 140 66, 140 80, 160 86 C 180 92, 180 106, 160 112 C 140 118, 140 132, 160 138 C 220 150, 250 120, 300 140"/></g></svg>
+        </div>
+        <dl class="tarjeta-datos"><div><dt>Sesión</dt><dd><b>50</b> min</dd></div><div><dt>Ritmo habitual</dt><dd>semanal</dd></div><div><dt>Edad</dt><dd>13 a 17 años</dd></div></dl>
+      </article>
+    </li>
+    <li class="pila-item" data-duracion="60" data-frecuencia="mensual">
+      <article class="tarjeta">
+        <div class="tarjeta-texto">
+          <p class="tarjeta-num">04</p>
+          <h3>Orientación a familias</h3>
+          <p>Para madres, padres o tutores que no saben cómo acompañar una época difícil en casa. Sesiones sin el hijo o la hija delante, para pensar con calma qué hacer y qué no.</p>
+          <p class="tarjeta-pie">Adultos de la familia · sin el menor</p>
+        </div>
+        <div class="tarjeta-dibujo">
+          <svg viewBox="0 0 320 240" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-width="3"><path class="trazo" pathLength="1" stroke="var(--anil)" d="M10 40 C 90 40, 120 120, 160 120"/><path class="trazo" pathLength="1" stroke="var(--rubia)" d="M10 200 C 90 200, 120 120, 160 120"/><path class="trazo" pathLength="1" stroke="var(--tinta)" d="M160 120 C 210 120, 240 100, 310 110"/><circle cx="160" cy="120" r="7" fill="var(--gualda)" stroke="var(--tinta)" stroke-width="2"/></g></svg>
+        </div>
+        <dl class="tarjeta-datos"><div><dt>Sesión</dt><dd><b>60</b> min</dd></div><div><dt>Ritmo habitual</dt><dd>mensual</dd></div><div><dt>Formato</dt><dd>presencial o en línea</dd></div></dl>
+      </article>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ CONSULTA: presencial / en línea ============ -->
+<section class="consulta" id="consulta" aria-labelledby="consulta-titulo">
+  <div class="consulta-texto">
+    <p class="antetitulo">Dónde</p>
+    <h2 id="consulta-titulo" class="titulo-seccion" data-letras>Una habitación con luz, o tu propia casa</h2>
+    <div class="conmutador" role="tablist" aria-label="Formato de la sesión">
+      <button type="button" role="tab" id="tab-presencial" aria-controls="panel-presencial" aria-selected="true">Presencial</button>
+      <button type="button" role="tab" id="tab-linea" aria-controls="panel-linea" aria-selected="false" tabindex="-1">En línea</button>
+      <span class="conmutador-marca" aria-hidden="true"></span>
+    </div>
+    <div class="consulta-paneles">
+      <div class="consulta-panel" role="tabpanel" id="panel-presencial" aria-labelledby="tab-presencial">
+        <p>Un primer piso con ventana a la muralla, dos butacas que no están enfrentadas y una puerta que no da a la sala de espera: entras y sales sin cruzarte con nadie.</p>
+        <ul class="lista-fina">
+          <li>Rúa das Fiadeiras, 14, 1.º · a cinco minutos de la Porta de San Pedro</li>
+          <li>Ascensor y baño accesible</li>
+          <li>Té, agua y pañuelos, sin preguntar</li>
+        </ul>
+      </div>
+      <div class="consulta-panel" role="tabpanel" id="panel-linea" aria-labelledby="tab-linea" hidden>
+        <p>La misma sesión, la misma persona y la misma duración, por videollamada. Te mandamos un enlace; no hace falta instalar nada ni crear una cuenta.</p>
+        <ul class="lista-fina">
+          <li>Busca un sitio donde nadie te oiga; unos auriculares ayudan</li>
+          <li>Si se corta, te llamamos por teléfono y seguimos</li>
+          <li>Mismo precio que en la consulta</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <figure class="consulta-dibujo mascara" data-formato="presencial">
+    <svg viewBox="0 0 560 460" role="img" aria-labelledby="consulta-dibujo-t">
+      <title id="consulta-dibujo-t">Dibujo de la consulta: dos butacas, una lámpara y una ventana a la muralla de Lugo; en la versión en línea, un portátil sobre una mesa con una taza.</title>
+      <rect x="0" y="0" width="560" height="460" fill="var(--panel)"/>
+      <rect x="0" y="360" width="560" height="100" fill="var(--panel-2)"/>
+      <g class="escena-presencial">
+        <!-- ventana con la muralla -->
+        <rect x="300" y="60" width="200" height="190" rx="4" fill="var(--crema)" stroke="var(--tinta)" stroke-width="3"/>
+        <path d="M300 200 H 330 V 186 H 346 V 200 H 372 V 186 H 388 V 200 H 404 V 170 a 30 30 0 0 1 60 0 V 200 H 500 V 250 H 300 Z" fill="var(--piedra)" stroke="var(--tinta)" stroke-width="2.5"/>
+        <path d="M400 60 V 250 M300 155 H 500" stroke="var(--tinta)" stroke-width="2"/>
+        <!-- lámpara -->
+        <path d="M80 360 V 150" stroke="var(--tinta)" stroke-width="3"/>
+        <path d="M50 150 L 110 150 L 96 104 L 64 104 Z" fill="var(--gualda)" stroke="var(--tinta)" stroke-width="2.5"/>
+        <!-- butacas -->
+        <path d="M130 360 V 290 C 130 260, 150 250, 170 250 H 230 C 250 250, 262 262, 262 290 V 360" fill="var(--anil)" stroke="var(--tinta)" stroke-width="3"/>
+        <rect x="120" y="300" width="152" height="40" rx="14" fill="var(--anil-claro)" stroke="var(--tinta)" stroke-width="3"/>
+        <path d="M330 360 V 300 C 330 276, 346 268, 366 268 H 430 C 450 268, 462 280, 462 300 V 360" fill="var(--rubia)" stroke="var(--tinta)" stroke-width="3"/>
+        <rect x="322" y="306" width="148" height="38" rx="14" fill="var(--rubia-claro)" stroke="var(--tinta)" stroke-width="3"/>
+        <!-- planta -->
+        <path d="M520 360 v-30 h-34 v30 Z" fill="var(--rubia-claro)" stroke="var(--tinta)" stroke-width="2.5"/>
+        <path d="M503 330 C 490 300, 470 290, 476 270 M503 330 C 506 296, 520 280, 532 270 M503 330 C 500 310, 500 296, 504 284" fill="none" stroke="var(--musgo-fijo)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <g class="escena-linea">
+        <rect x="70" y="330" width="420" height="16" rx="3" fill="var(--tinta)"/>
+        <path d="M150 330 L 170 190 H 390 L 410 330 Z" fill="var(--tinta)"/>
+        <rect x="180" y="200" width="200" height="120" rx="3" fill="var(--crema)"/>
+        <path d="M230 320 V 282 C 230 266, 242 260, 254 260 H 306 C 318 260, 330 266, 330 282 V 320" fill="var(--rubia)" stroke="var(--tinta)" stroke-width="2.5"/>
+        <rect x="222" y="288" width="116" height="28" rx="10" fill="var(--rubia-claro)" stroke="var(--tinta)" stroke-width="2.5"/>
+        <path d="M440 330 v-36 h34 v36 Z" fill="var(--crema)" stroke="var(--tinta)" stroke-width="2.5"/>
+        <path d="M474 302 c 14 0, 14 18, 0 18" fill="none" stroke="var(--tinta)" stroke-width="2.5"/>
+        <path class="vapor" d="M450 284 c -6 -10, 6 -16, 0 -26 M462 284 c -6 -10, 6 -16, 0 -26" fill="none" stroke="var(--tinta-apagada)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <path class="hilo-escena" d="M0 410 C 120 380, 200 440, 300 410 S 460 380, 560 400" fill="none" stroke="var(--rubia)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </figure>
+  <!-- Solo en la versión sobria: la primera sesión, minuto a minuto (ver README) -->
+  <figure class="minutos" aria-labelledby="minutos-t">
+    <figcaption id="minutos-t"><b>La primera sesión, minuto a minuto</b> (orientativo)</figcaption>
+    <ol class="minutos-barras">
+      <li style="--ini:0;--min:5"><span>Llegar y sentarse</span><b>5 min</b></li>
+      <li style="--ini:5;--min:25"><span>Lo que te trae, contado a tu manera</span><b>25 min</b></li>
+      <li style="--ini:30;--min:10"><span>Cómo trabajamos y qué podemos ofrecerte</span><b>10 min</b></li>
+      <li style="--ini:40;--min:10"><span>Tus preguntas, precio y siguiente paso</span><b>10 min</b></li>
+    </ol>
+  </figure>
+</section>
+
+<!-- ============ EQUIPO ============ -->
+<section class="equipo" id="equipo" aria-labelledby="equipo-titulo">
+  <header class="equipo-cabeza">
+    <p class="antetitulo">Quiénes</p>
+    <h2 id="equipo-titulo" class="titulo-seccion" data-letras>Dos personas, siempre las mismas</h2>
+  </header>
+  <article class="persona persona-a">
+    <svg class="persona-ovillo" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke-linecap="round"><circle cx="100" cy="100" r="70" stroke="var(--rubia)" stroke-width="2"/><path class="trazo" pathLength="1" stroke="var(--rubia)" stroke-width="2" d="M100 30 C 160 40, 170 140, 100 170 C 40 160, 30 60, 100 30 M 40 70 C 90 100, 120 60, 168 110 M 50 140 C 90 110, 130 150, 160 130"/></g><text x="100" y="114" text-anchor="middle">S</text></svg>
+    <div class="persona-texto">
+      <h3>Sabela Toimil Corral</h3>
+      <p class="persona-cargo">Psicóloga general sanitaria · adultos y pareja</p>
+      <p>Abrió Debandoira en 2014 después de diez años en un servicio municipal de atención a familias. Trabaja desde un enfoque integrador, con base cognitivo-conductual, y en pareja desde la terapia sistémica. Habla poco en la primera sesión, a propósito.</p>
+      <p class="colegiacion">Colegiada G-00000 <span class="muestra">n.º de muestra</span></p>
+    </div>
+  </article>
+  <article class="persona persona-b">
+    <svg class="persona-ovillo" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke-linecap="round"><circle cx="100" cy="100" r="70" stroke="var(--anil)" stroke-width="2"/><path class="trazo" pathLength="1" stroke="var(--anil)" stroke-width="2" d="M30 100 C 40 40, 150 30, 170 100 C 160 160, 60 170, 30 100 M 70 36 C 100 90, 60 120, 110 168 M 130 34 C 110 80, 160 120, 140 164"/></g><text x="100" y="114" text-anchor="middle">B</text></svg>
+    <div class="persona-texto">
+      <h3>Breixo Leis Andión</h3>
+      <p class="persona-cargo">Psicólogo general sanitario · adolescentes y familias</p>
+      <p>Llegó en 2019. Antes, seis años en un equipo de orientación de secundaria, que es donde aprendió que con un adolescente la primera tarea es que quiera volver la semana siguiente. Atiende también en galego.</p>
+      <p class="colegiacion">Colegiado G-00001 <span class="muestra">n.º de muestra</span></p>
+    </div>
+  </article>
+  <dl class="equipo-cifras">
+    <div><dt>sesiones de</dt><dd><span class="contador" data-hasta="50">50</span> min</dd></div>
+    <div><dt>revisión cada</dt><dd><span class="contador" data-hasta="6">6</span>–8 sesiones</dd></div>
+    <div><dt>abiertos desde</dt><dd><span class="contador" data-hasta="2014" data-desde="1990">2014</span></dd></div>
+  </dl>
+</section>
+
+<!-- ============ TARIFAS + PREGUNTAS ============ -->
+<section class="tarifas-preguntas" aria-label="Tarifas y preguntas frecuentes">
+  <div class="tarifas" id="tarifas">
+    <p class="antetitulo">Tarifas <span class="sello-muestra">de muestra</span></p>
+    <h2 class="titulo-seccion" data-letras>Lo que cuesta</h2>
+    <dl class="tarifas-lista">
+      <div><dt>Primera sesión <small>50 min</small></dt><dd>55 €</dd></div>
+      <div><dt>Sesión individual <small>50 min</small></dt><dd>60 €</dd></div>
+      <div><dt>Pareja <small>70 min</small></dt><dd>80 €</dd></div>
+      <div><dt>Adolescentes <small>50 min</small></dt><dd>60 €</dd></div>
+      <div><dt>Orientación a familias <small>60 min</small></dt><dd>65 €</dd></div>
+    </dl>
+    <p class="tarifas-nota"><sup>*</sup>Precios ficticios de demostración. En línea, lo mismo. Exento de IVA por ser servicio sanitario. Si no puedes venir, avisa con 24 horas y no se cobra.</p>
+  </div>
+  <div class="preguntas" id="preguntas">
+    <p class="antetitulo">Preguntas que nos hacen</p>
+    <h2 class="titulo-seccion" data-letras>Antes de llamar</h2>
+    <details>
+      <summary>¿Necesito un informe médico o que me derive alguien?</summary>
+      <p>No. Puedes llamar directamente. Si tienes informes y quieres traerlos, bien; si no, también.</p>
+    </details>
+    <details>
+      <summary>¿Cuántas sesiones voy a necesitar?</summary>
+      <p>No lo sabemos el primer día y desconfía de quien te lo diga. Lo que sí hacemos es revisar cada seis u ocho sesiones si tiene sentido seguir, y decidirlo contigo.</p>
+    </details>
+    <details>
+      <summary>¿Lo que cuente sale de la consulta?</summary>
+      <p>No. Estamos obligados al secreto profesional. Las únicas excepciones son las que marca la ley —por ejemplo, un riesgo grave para ti o para otra persona— y te las explicamos en la primera sesión, por escrito.</p>
+    </details>
+    <details>
+      <summary>¿En línea es lo mismo?</summary>
+      <p>Es la misma persona, el mismo tiempo y el mismo precio. A mucha gente le resulta cómodo; a otra no. Si no te convence, pasamos a presencial cuando quieras.</p>
+    </details>
+    <details>
+      <summary>¿Atendéis urgencias?</summary>
+      <p>No. Trabajamos con cita. Si estás en crisis o piensas en hacerte daño, llama al <a href="tel:024">024</a> (gratuito, a cualquier hora). Si hay peligro inmediato, al <a href="tel:112">112</a> o ve a urgencias del hospital más cercano.</p>
+    </details>
+    <details>
+      <summary>¿Hacéis informes o peritajes?</summary>
+      <p>Informes de asistencia, sí, a petición tuya. Peritajes para juicios, no: preferimos no ser a la vez quien te acompaña y quien te evalúa.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contacto-cabeza">
+    <p class="antetitulo antetitulo-claro">Contacto</p>
+    <h2 id="contacto-titulo" class="titulo-contacto" data-letras>Llama cuando puedas. <em>Contestamos nosotros.</em></h2>
+  </div>
+  <aside class="crisis" aria-labelledby="crisis-t">
+    <p id="crisis-t" class="crisis-titulo">Si estás en crisis, no esperes a una cita</p>
+    <p>Llama al <a class="crisis-numero" href="tel:024">024</a> <span>Línea de atención a la conducta suicida · gratuita, confidencial, 24 horas, todos los días.</span></p>
+    <p class="crisis-pie">Si hay peligro inmediato, llama al <a href="tel:112">112</a>.</p>
+  </aside>
+  <div class="contacto-datos">
+    <dl>
+      <div><dt>Teléfono</dt><dd><a href="tel:+34982000000">982 00 00 00</a></dd></div>
+      <div><dt>Correo</dt><dd><a href="mailto:ola@debandoira.example">ola@debandoira.example</a></dd></div>
+      <div><dt>Consulta</dt><dd>Rúa das Fiadeiras, 14, 1.º<br>27001 Lugo</dd></div>
+    </dl>
+    <div class="horario">
+      <p class="horario-estado" aria-live="polite"><span class="horario-punto" aria-hidden="true"></span><span class="horario-texto">Horario de atención</span></p>
+      <table>
+        <caption class="sr">Horario de atención telefónica y de consulta</caption>
+        <tbody>
+          <tr data-dia="1"><th scope="row">Lunes</th><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr data-dia="2"><th scope="row">Martes</th><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr data-dia="3"><th scope="row">Miércoles</th><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr data-dia="4"><th scope="row">Jueves</th><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr data-dia="5"><th scope="row">Viernes</th><td>9:00–15:00</td></tr>
+          <tr data-dia="6"><th scope="row">Sábado</th><td>cerrado</td></tr>
+          <tr data-dia="0"><th scope="row">Domingo</th><td>cerrado</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mapa" data-cursor="mapa">
+      <div class="mapa-dibujo" aria-hidden="true">
+        <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--panel)"/><path d="M60 40 C 140 10, 300 20, 350 80 C 380 140, 330 220, 220 226 C 110 230, 30 180, 34 110 C 36 70, 46 50, 60 40 Z" fill="none" stroke="var(--tinta-apagada)" stroke-width="10" stroke-dasharray="2 14" stroke-linecap="round"/><path d="M0 150 H 400 M 180 0 V 240 M 260 240 L 330 0" stroke="var(--crema)" stroke-width="12"/><circle cx="215" cy="135" r="11" fill="var(--rubia)" stroke="var(--tinta)" stroke-width="3"/></svg>
+      </div>
+      <button class="boton boton-claro mapa-boton" type="button">Ver el mapa <small>(carga Google Maps)</small></button>
+    </div>
+  </div>
+  <form class="formulario" action="#" novalidate>
+    <p class="formulario-aviso">Formulario de muestra: no envía nada.</p>
+    <label>Cómo te llamas <input name="nombre" autocomplete="given-name" required></label>
+    <label>Teléfono o correo <input name="contacto" autocomplete="email" required></label>
+    <fieldset>
+      <legend>Prefieres</legend>
+      <label class="opcion"><input type="radio" name="formato" value="presencial" checked> Presencial</label>
+      <label class="opcion"><input type="radio" name="formato" value="linea"> En línea</label>
+      <label class="opcion"><input type="radio" name="formato" value="igual"> Me da igual</label>
+    </fieldset>
+    <label>Algo que quieras decirnos <small>(no hace falta contar nada aquí)</small><textarea name="mensaje" rows="3"></textarea></label>
+    <button class="boton iman" type="submit"><span>Que me llaméis</span></button>
+    <p class="formulario-estado" role="status"></p>
+  </form>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-fila">
+    <img src="img/logo.svg" alt="Debandoira" width="56" height="56">
+    <p class="pie-lema">Tirar del hilo, sin prisa.</p>
+    <nav aria-label="Legal"><a href="legal.html">Aviso legal y privacidad</a> · <a href="legal.html#cookies">Cookies</a></nav>
+  </div>
+  <p class="pie-legal">Centro sanitario inscrito con el n.º C-27-000000 <span class="muestra">de muestra</span> · Sabela Toimil Corral, colegiada G-00000 <span class="muestra">de muestra</span> · Breixo Leis Andión, colegiado G-00001 <span class="muestra">de muestra</span>. Si estás en crisis, llama al <a href="tel:024">024</a>.</p>
+  <p class="sello"><strong>Sitio de demostración.</strong> Debandoira es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</footer>
+
+<div class="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies de terceros. Solo guarda en tu navegador que has cerrado este aviso (y, en modo revisión, la versión y el color elegidos). El mapa de Google no se carga hasta que lo pides. <a href="legal.html#cookies">Más</a></p>
+  <button class="boton boton-pequeno" type="button">Entendido</button>
+</div>
+
+<!-- MANDO DE DEMOSTRACIÓN — NO viaja al sitio de un cliente. Ver README, «Borrar los mandos». -->
+<div class="mandos" role="group" aria-label="Mandos de demostración" hidden>
+  <div class="mando" role="group" aria-label="Densidad visual">
+    <span class="mando-etiqueta">Versión</span>
+    <button type="button" data-maqueta="ovillo" aria-pressed="true">Ovillo</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <div class="mando" role="group" aria-label="Color de marca">
+    <span class="mando-etiqueta">Color</span>
+    <button type="button" data-paleta="rubia" aria-pressed="true"><i class="muestra-color" style="background:#B4533F"></i>Rubia</button>
+    <button type="button" data-paleta="brezo" aria-pressed="false"><i class="muestra-color" style="background:#855FB3"></i>Brezo</button>
+    <button type="button" data-paleta="musgo" aria-pressed="false"><i class="muestra-color" style="background:#328946"></i>Musgo</button>
+  </div>
+</div>
+<!-- FIN DEL MANDO DE DEMOSTRACIÓN -->
+
+<div class="cursor" aria-hidden="true"><span class="cursor-aro"><span class="cursor-texto"></span></span><span class="cursor-punto"></span><svg class="cursor-cola"><polyline/></svg></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

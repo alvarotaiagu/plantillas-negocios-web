@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="56" height="56" role="img" aria-labelledby="t">
+  <title id="t">Debandoira, gabinete de psicología</title>
+  <defs><clipPath id="o"><circle cx="24" cy="33" r="17"/></clipPath></defs>
+  <g fill="none" stroke="#1E2235" stroke-linecap="round">
+    <g clip-path="url(#o)" stroke-width="1.7">
+      <ellipse cx="24" cy="33" rx="17" ry="6.5" transform="rotate(-32 24 33)"/>
+      <ellipse cx="24" cy="33" rx="17" ry="10.5" transform="rotate(48 24 33)"/>
+      <ellipse cx="24" cy="33" rx="17" ry="3.2" transform="rotate(8 24 33)"/>
+      <ellipse cx="24" cy="33" rx="5.5" ry="17" transform="rotate(-14 24 33)"/>
+      <ellipse cx="24" cy="33" rx="17" ry="13.5" transform="rotate(-70 24 33)"/>
+    </g>
+    <circle cx="24" cy="33" r="17" stroke-width="2.6"/>
+  </g>
+  <path d="M41 33 C41.6 25 41 15 41.4 9.5 C41.7 5.6 45.4 3.6 48.6 5.4 C50.8 6.6 51 9.4 49.3 10.6" fill="none" stroke="#B4533F" stroke-width="2.8" stroke-linecap="round"/>
+</svg>
