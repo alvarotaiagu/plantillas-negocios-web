@@ -1,0 +1,621 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Ferraxaría Paso Fino es un negocio ficticio: el nombre,
+  la dirección, los teléfonos, los precios y las opiniones son de muestra y no
+  corresponden a ningún negocio real. Plantilla para reskinear (ver README.md).
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paso Fino · Ferretería de barrio en Narón</title>
+  <meta name="description" content="Ferretería de barrio en Narón: tornillería suelta, copia de llaves y mandos, afilado, alquiler de herramienta y encargos en 24 horas. Lo que no encuentras, te lo pedimos.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0E1411">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Paso Fino · Ferretería de barrio en Narón">
+  <meta property="og:description" content="Tornillería suelta, llaves, afilado, alquiler de herramienta y encargos en 24 h. Sitio de demostración.">
+  <meta property="og:image" content="img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Script bloqueante: marca JS y resuelve las dos preferencias del mando de
+       demostración ANTES del primer pintado, para que no salte de versión.
+       MANDO DE DEMOSTRACIÓN: no viaja al sitio de un cliente (ver README, «Quitar el mando»). -->
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.add('js');
+      h.classList.add('d-rosca');
+      h.classList.add('p-minio');
+      try {
+        if (/[?&]revision\b/.test(location.search)) {
+          h.classList.add('es-revision');
+          var d = localStorage.getItem('pasofino-maqueta');
+          if (d === 'sobria') { h.classList.remove('d-rosca'); h.classList.add('d-sobria'); }
+          var p = localStorage.getItem('pasofino-paleta');
+          if (p === 'cobalto' || p === 'cardenillo') { h.classList.remove('p-minio'); h.classList.add('p-' + p); }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600&family=Mona+Sans:wdth,wght@75..125,300..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HardwareStore",
+    "name": "Ferraxaría Paso Fino",
+    "description": "Ferretería de barrio ficticia (sitio de demostración).",
+    "telephone": "+34 981 00 00 00",
+    "email": "hola@pasofino.example",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rúa do Parafuso, 7",
+      "postalCode": "15570",
+      "addressLocality": "Narón",
+      "addressRegion": "A Coruña",
+      "addressCountry": "ES"
+    },
+    "openingHours": ["Mo-Fr 09:00-13:30", "Mo-Fr 16:30-20:00", "Sa 09:30-13:30"],
+    "priceRange": "€"
+  }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <!-- Cortina de entrada: una tuerca que se desenrosca y una chapa de minio
+       con el filete de rosca en el canto. Retirada garantizada (ver main.js y CSS). -->
+  <div class="cortina" id="cortina" aria-hidden="true">
+    <div class="cortina-chapa">
+      <svg class="cortina-tuerca" viewBox="-60 -60 120 120" width="120" height="120">
+        <path d="M0-52 45-26V26L0 52-45 26V-26Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+        <circle r="22" fill="none" stroke="currentColor" stroke-width="5"/>
+        <path d="M22 0A22 22 0 0 1-8 20.5M14 0A14 14 0 0 0-6 -12.6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <p class="cortina-texto"><span>M10</span> × <span class="cortina-paso">1,50</span></p>
+      <svg class="cortina-filete" viewBox="0 0 1600 90" preserveAspectRatio="none" width="1600" height="90">
+        <path class="cortina-dientes" d="M-80 0H1680V40Q800 92-80 40Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <header class="cabecera" id="cabecera">
+    <a class="marca" href="#inicio" aria-label="Paso Fino, ferretería en Narón. Ir al inicio">
+      <svg class="marca-signo" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true">
+        <path d="M24 3.5 41.8 13.75v20.5L24 44.5 6.2 34.25v-20.5Z" fill="none" stroke="#EDF0EA" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="24" cy="24" r="10.5" fill="#E2552B"/>
+        <path d="M24 13.5a10.5 10.5 0 0 1 9.6 14.7M24 18a6 6 0 0 0-5.6 8.2" fill="none" stroke="#0E1411" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="2.2" fill="#0E1411"/>
+      </svg>
+      <span class="marca-nombre">Paso Fino<span class="marca-sub">ferraxaría · Narón</span></span>
+    </a>
+    <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu">
+      <span class="menu-boton-texto">Menú</span>
+      <span class="menu-boton-rayas" aria-hidden="true"><i></i><i></i></span>
+    </button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="#llave">Llaves</a></li>
+        <li><a href="#cajones">Catálogo</a></li>
+        <li><a href="#panel">Alquiler</a></li>
+        <li><a href="#galga">La galga</a></li>
+        <li><a href="#tarifa">Tarifa</a></li>
+        <li><a href="#visita">Dónde</a></li>
+      </ul>
+      <p class="menu-estado"><span class="estado-punto" aria-hidden="true"></span><span data-estado-corto>Horario L–V 9:00–13:30 y 16:30–20:00 · S 9:30–13:30</span></p>
+    </nav>
+  </header>
+
+  <main id="principal">
+
+    <!-- ============ PORTADA ============ -->
+    <section class="portada" id="inicio" aria-labelledby="portada-titulo">
+      <div class="portada-lienzo" id="portada-lienzo">
+        <canvas id="tornillo" aria-hidden="true"></canvas>
+        <img class="portada-respaldo" src="img/tornillo.svg" width="520" height="900" alt="" aria-hidden="true">
+      </div>
+      <div class="portada-regla" aria-hidden="true"></div>
+
+      <div class="portada-texto">
+        <p class="etiqueta">Ferretería de barrio · Narón · desde 1979</p>
+        <h1 class="portada-titulo" id="portada-titulo">
+          <span class="linea" data-reveal>Paso</span>
+          <span class="linea linea-sangra" data-reveal>Fino</span>
+        </h1>
+        <p class="portada-lema">Tráenos la pieza rota en el bolsillo. Salimos del mostrador con la que encaja. Y si no la tenemos, <strong>mañana a mediodía está aquí.</strong></p>
+        <div class="portada-acciones">
+          <a class="boton boton-lleno" href="#encargo" data-iman>Pídenos una pieza</a>
+          <a class="boton boton-hueco" href="#visita" data-iman><span class="estado-punto" aria-hidden="true"></span><span data-estado-corto>Ver horario</span></a>
+        </div>
+      </div>
+
+      <dl class="portada-lectura" aria-label="Lectura del tornillo de la portada">
+        <div><dt>Rosca</dt><dd>M10 × <span>1,50</span></dd></div>
+        <div><dt>Vueltas</dt><dd><span id="lect-vueltas">0,0</span></dd></div>
+        <div><dt>Avance</dt><dd><span id="lect-avance">0,0</span> mm</dd></div>
+      </dl>
+      <p class="portada-pista" aria-hidden="true">Baja para apretar</p>
+    </section>
+
+    <div class="filete" aria-hidden="true"></div>
+
+    <!-- ============ M3 · EL MOSTRADOR ============ -->
+    <section class="mostrador seccion" id="mostrador" aria-labelledby="mostrador-titulo">
+      <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M3</span> El mostrador</p>
+      <h2 class="titulo-xl" id="mostrador-titulo" data-reveal>Aquí no nos pasamos de rosca.</h2>
+      <div class="mostrador-cuerpo entra">
+        <p class="entradilla">Somos la ferretería de la Rúa do Parafuso desde que el padre de Celia abrió con dos estanterías y una cajonera de cien cajones. Seguimos vendiendo el tornillo suelto, la arandela de a uno y la junta del grifo que ya no fabrican. No te vamos a vender un estuche de cuarenta piezas para que uses una.</p>
+        <ol class="promesas">
+          <li class="promesa">
+            <span class="promesa-dato"><b data-cuenta="5">5</b><small>min</small></span>
+            <p><strong>Copia de llave al momento.</strong> Plana, de puntos, de gorja o de candado. Las de seguridad con tarjeta, en 48 h.</p>
+          </li>
+          <li class="promesa">
+            <span class="promesa-dato"><b data-cuenta="24">24</b><small>h</small></span>
+            <p><strong>Encargo en un día laborable.</strong> Si lo pides antes de las 13:30, al día siguiente a mediodía está en el mostrador.</p>
+          </li>
+          <li class="promesa">
+            <span class="promesa-dato"><b data-cuenta="3200">3200</b><small>refs.</small></span>
+            <p><strong>Referencias en la tienda,</strong> sin contar los cajones de tornillería, que no hay quien los cuente.</p>
+          </li>
+          <li class="promesa">
+            <span class="promesa-dato"><b data-cuenta="1">1</b><small>unidad</small></span>
+            <p><strong>Lo mínimo que te vendemos.</strong> Un tornillo, una brida, un metro de cadena.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="filete" aria-hidden="true"></div>
+
+    <!-- ============ M4 · LA LLAVE (anclada con scrub) ============ -->
+    <section class="llave" id="llave" aria-labelledby="llave-titulo">
+      <div class="llave-fija">
+        <div class="llave-cabeza">
+          <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M4</span> Copia de llaves</p>
+          <h2 class="titulo-l" id="llave-titulo" data-reveal>Una llave, en cinco pasos y cuatro minutos y medio.</h2>
+        </div>
+        <figure class="llave-escena">
+          <svg class="copiadora" id="copiadora" viewBox="0 0 800 440" role="img" aria-labelledby="copiadora-tit">
+            <title id="copiadora-tit">Esquema de la copiadora: la llave original arriba, la llave virgen abajo; el palpador recorre el dentado de la original y la fresa lo corta en la virgen.</title>
+            <defs>
+              <pattern id="trama-banco" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="10" height="10" fill="#151D19"/><path d="M0 0v10" stroke="#1C2621" stroke-width="4"/>
+              </pattern>
+              <linearGradient id="laton" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#E7C877"/><stop offset=".55" stop-color="#C79A3C"/><stop offset="1" stop-color="#8E6A22"/>
+              </linearGradient>
+              <linearGradient id="laton-virgen" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F0D48A"/><stop offset=".6" stop-color="#D3A64A"/><stop offset="1" stop-color="#9C762A"/>
+              </linearGradient>
+              <clipPath id="clip-sobrante"><rect id="clip-sobrante-rect" x="300" y="0" width="500" height="440"/></clipPath>
+              <clipPath id="clip-rebaba"><rect id="clip-rebaba-rect" x="300" y="0" width="500" height="440"/></clipPath>
+            </defs>
+            <!-- bancada -->
+            <rect x="20" y="20" width="760" height="400" rx="18" fill="url(#trama-banco)" stroke="#2C3832" stroke-width="2"/>
+            <rect x="40" y="200" width="720" height="10" rx="5" fill="#2C3832"/>
+            <!-- llave original (arriba) -->
+            <g id="llave-original">
+              <circle cx="128" cy="92" r="58" fill="#9EA9A2"/>
+              <circle cx="106" cy="92" r="15" fill="#151D19"/>
+              <rect x="186" y="80" width="26" height="24" fill="#B7C1BB"/>
+              <path id="perfil-original" fill="#B7C1BB" d=""/>
+              <text x="128" y="160" class="svg-nota" text-anchor="middle">ORIGINAL</text>
+            </g>
+            <!-- llave virgen (abajo) -->
+            <g id="llave-virgen">
+              <circle cx="128" cy="300" r="58" fill="url(#laton-virgen)"/>
+              <circle cx="106" cy="300" r="15" fill="#151D19"/>
+              <path id="perfil-virgen" fill="url(#laton)" d=""/>
+              <path id="sobrante" fill="url(#laton-virgen)" clip-path="url(#clip-sobrante)" d=""/>
+              <path id="rebaba" fill="none" stroke="#F6E3A8" stroke-width="2.4" stroke-dasharray="2 3" clip-path="url(#clip-rebaba)" d=""/>
+              <text x="128" y="384" class="svg-nota" text-anchor="middle">VIRGEN TE-6</text>
+            </g>
+            <!-- mordazas -->
+            <g id="mordazas">
+              <rect class="mordaza" id="mordaza-a" x="196" y="38" width="44" height="22" rx="4"/>
+              <rect class="mordaza" id="mordaza-b" x="196" y="246" width="44" height="22" rx="4"/>
+            </g>
+            <!-- carro: palpador arriba, fresa abajo -->
+            <g id="carro">
+              <rect x="-6" y="0" width="12" height="440" fill="#2C3832" opacity=".55"/>
+              <path id="palpador" d="M-12 18h24v40l-12 18-12-18Z" fill="#EDF0EA"/>
+              <g id="fresa">
+                <circle r="34" fill="#4A5951"/>
+                <path id="fresa-dientes" d="" fill="#A4B1A9"/>
+                <circle r="8" fill="#151D19"/>
+              </g>
+            </g>
+            <!-- cepillo de desbarbar -->
+            <g id="cepillo" transform="translate(860 300)">
+              <circle r="30" fill="none" stroke="#A4B1A9" stroke-width="10" stroke-dasharray="2 3"/>
+              <circle r="12" fill="#4A5951"/>
+            </g>
+            <!-- virutas -->
+            <g id="virutas"></g>
+            <!-- bombín de prueba -->
+            <g id="bombin" transform="translate(690 330)" opacity="0">
+              <circle r="44" fill="#1C2621" stroke="#A4B1A9" stroke-width="3"/>
+              <circle r="28" fill="#2C3832"/>
+              <rect id="bombin-ranura" x="-4" y="-22" width="8" height="44" rx="2" fill="#EDF0EA"/>
+            </g>
+            <text id="crono" x="760" y="62" text-anchor="end" class="svg-crono">00:00</text>
+          </svg>
+          <figcaption class="llave-paso" aria-live="polite"><span id="llave-paso-num">01</span> / 05</figcaption>
+        </figure>
+        <ol class="pasos" id="pasos">
+          <li class="paso es-activo" data-paso="0"><h3>Buscamos la virgen</h3><p>Entre los trescientos perfiles del mural, el que tiene la misma guía que tu llave. Si no está, se pide: llega en 24 h.</p></li>
+          <li class="paso" data-paso="1"><h3>Mordazas</h3><p>Original arriba, virgen abajo, las dos apoyadas en el mismo tope. Medio milímetro de desvío aquí es una llave que no entra.</p></li>
+          <li class="paso" data-paso="2"><h3>Palpador y fresa</h3><p>El palpador lee cada valle del dentado y la fresa lo repite en la virgen, a la vez y en el mismo sitio.</p></li>
+          <li class="paso" data-paso="3"><h3>Desbarbado</h3><p>El cepillo quita la rebaba. Sin esta pasada la llave entra áspera y acaba rayando el bombín.</p></li>
+          <li class="paso" data-paso="4"><h3>Probada en el bombín</h3><p>Antes de cobrarla la probamos en el bombín de muestra. Si en tu puerta no gira suave, se rehace sin coste.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="filete" aria-hidden="true"></div>
+
+    <!-- ============ M5 · LOS CAJONES (pila sticky) ============ -->
+    <section class="cajones seccion" id="cajones" aria-labelledby="cajones-titulo">
+      <div class="cajones-intro">
+        <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M5</span> Catálogo por familias</p>
+        <h2 class="titulo-xl" id="cajones-titulo" data-reveal>Seis cajones. Abre el tuyo.</h2>
+        <p class="entradilla entra">Lo de siempre, ordenado como en la tienda: por familias y con el precio a la vista. Los precios de esta página son <strong>de muestra</strong>, como el resto del sitio.</p>
+      </div>
+
+      <ol class="pila" id="pila">
+        <li class="pila-item" data-ahorro-suelto="0.06" data-ahorro-blister="0.21">
+          <article class="cajon">
+            <header class="cajon-frente">
+              <span class="cajon-portaetiqueta"><span class="rotulador">Tornillería</span></span>
+              <span class="cajon-num">01 / 06</span>
+            </header>
+            <div class="cajon-dentro">
+              <p class="cajon-lema">Suelto, por unidad o a peso. Métrica de M3 a M16, rosca chapa, madera, autotaladrante y la tornillería inox A2 y A4 para la costa.</p>
+              <ul class="precios">
+                <li><span>Tornillo DIN 933 M8×40 zincado</span><b>0,18 €</b></li>
+                <li><span>Taco nailon 8 mm, la unidad</span><b>0,05 €</b></li>
+                <li><span>Varilla roscada M10, metro</span><b>2,40 €</b></li>
+                <li><span>Tirafondo inox A4 6×60</span><b>0,42 €</b></li>
+              </ul>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item">
+          <article class="cajon">
+            <header class="cajon-frente">
+              <span class="cajon-portaetiqueta"><span class="rotulador">Pintura</span></span>
+              <span class="cajon-num">02 / 06</span>
+            </header>
+            <div class="cajon-dentro">
+              <p class="cajon-lema">Tintamos al momento en la máquina: dinos el color de la carta o tráenos un trozo de pared. Esmaltes, minio, barnices de barco y todo lo de la brocha.</p>
+              <ul class="precios">
+                <li><span>Plástica mate interior, 4 L tintada</span><b>24,90 €</b></li>
+                <li><span>Imprimación antioxidante, 750 ml</span><b>11,50 €</b></li>
+                <li><span>Brocha de cerda natural, n.º 20</span><b>4,80 €</b></li>
+                <li><span>Cinta de carrocero 36 mm × 45 m</span><b>2,20 €</b></li>
+              </ul>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item">
+          <article class="cajon">
+            <header class="cajon-frente">
+              <span class="cajon-portaetiqueta"><span class="rotulador">Fontanería</span></span>
+              <span class="cajon-num">03 / 06</span>
+            </header>
+            <div class="cajon-dentro">
+              <p class="cajon-lema">La junta, el latiguillo, el cartucho del monomando. Trae el viejo: casi todos tienen número y casi todos tienen recambio.</p>
+              <ul class="precios">
+                <li><span>Cartucho cerámico 35 mm</span><b>9,40 €</b></li>
+                <li><span>Latiguillo flexible ⅜″ × 40 cm</span><b>3,60 €</b></li>
+                <li><span>Surtido de juntas tóricas (1 ud.)</span><b>0,30 €</b></li>
+                <li><span>Cinta de teflón 12 mm</span><b>0,90 €</b></li>
+              </ul>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item">
+          <article class="cajon">
+            <header class="cajon-frente">
+              <span class="cajon-portaetiqueta"><span class="rotulador">Electricidad</span></span>
+              <span class="cajon-num">04 / 06</span>
+            </header>
+            <div class="cajon-dentro">
+              <p class="cajon-lema">Lo del día a día: bombillas, regletas, enchufes, cable por metros. Para la instalación, te pasamos con un electricista autorizado del barrio.</p>
+              <ul class="precios">
+                <li><span>Cable H07V-K 2,5 mm², metro</span><b>0,55 €</b></li>
+                <li><span>Bombilla LED E27 cálida 9 W</span><b>2,95 €</b></li>
+                <li><span>Base de enchufe empotrable</span><b>3,40 €</b></li>
+                <li><span>Regleta de 4 con interruptor</span><b>7,80 €</b></li>
+              </ul>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item">
+          <article class="cajon">
+            <header class="cajon-frente">
+              <span class="cajon-portaetiqueta"><span class="rotulador">Jardín</span></span>
+              <span class="cajon-num">05 / 06</span>
+            </header>
+            <div class="cajon-dentro">
+              <p class="cajon-lema">Para la huerta de detrás de casa y para el balcón. Semilla a granel en temporada, manguera por metros y el hilo de la desbrozadora.</p>
+              <ul class="precios">
+                <li><span>Manguera ¾″, metro</span><b>1,70 €</b></li>
+                <li><span>Hilo de desbrozadora 2,4 mm, metro</span><b>0,35 €</b></li>
+                <li><span>Semilla de grelos, 100 g</span><b>2,60 €</b></li>
+                <li><span>Tijera de podar de yunque</span><b>16,50 €</b></li>
+              </ul>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item">
+          <article class="cajon">
+            <header class="cajon-frente">
+              <span class="cajon-portaetiqueta"><span class="rotulador">Herramienta</span></span>
+              <span class="cajon-num">06 / 06</span>
+            </header>
+            <div class="cajon-dentro">
+              <p class="cajon-lema">De mano y eléctrica, de marcas que se reparan. Si se te rompe, aquí mismo te decimos si tiene arreglo antes de venderte otra.</p>
+              <ul class="precios">
+                <li><span>Martillo de carpintero 500 g</span><b>14,90 €</b></li>
+                <li><span>Juego de llaves combinadas 8–19</span><b>32,00 €</b></li>
+                <li><span>Flexómetro 5 m</span><b>8,50 €</b></li>
+                <li><span>Nivel de burbuja 60 cm</span><b>12,40 €</b></li>
+              </ul>
+            </div>
+          </article>
+        </li>
+      </ol>
+
+      <!-- Solo en la versión «Sobria»: el dato que la densa no enseña -->
+      <figure class="granel" aria-labelledby="granel-tit">
+        <figcaption id="granel-tit"><strong>Lo que cuesta un tornillo según cómo lo compres.</strong> Precio por unidad de un M8×40 zincado (precios de muestra).</figcaption>
+        <ul class="granel-barras">
+          <li style="--v:1"><span>Blíster de 6 en gran superficie</span><i></i><b>0,58 €</b></li>
+          <li style="--v:.53"><span>Caja de 25</span><i></i><b>0,31 €</b></li>
+          <li style="--v:.31" class="es-nuestro"><span>Suelto en Paso Fino</span><i></i><b>0,18 €</b></li>
+          <li style="--v:.21"><span>Caja de 200, si te sirve</span><i></i><b>0,12 €</b></li>
+        </ul>
+      </figure>
+    </section>
+
+    <!-- ============ CINTA DE ENCARGOS ============ -->
+    <section class="cinta" aria-labelledby="cinta-titulo">
+      <h2 class="cinta-titulo" id="cinta-titulo">Lo que nos pidieron esta semana <span>(y llegó al día siguiente)</span></h2>
+      <div class="cinta-pista" aria-hidden="true">
+        <p class="cinta-fila" id="cinta-fila">
+          <span>Cartucho termostático 1/2″</span><span>Bisagra de cazoleta 35 mm, acodada</span><span>Junta tórica 18 × 2</span><span>Mando de garaje de 433 MHz</span><span>Rueda de carretilla 3.50-8</span><span>Pomo de latón viejo, el gemelo</span><span>Cadena 3/8″ para motosierra</span><span>Tirador de persiana de cinta</span><span>Llave de buzón Ojmar</span><span>Varilla roscada inox M12</span>
+        </p>
+      </div>
+      <p class="sr-only">Ejemplos de encargos: cartucho termostático, bisagra de cazoleta, junta tórica, mando de garaje, rueda de carretilla, pomo de latón, cadena de motosierra, tirador de persiana, llave de buzón y varilla roscada.</p>
+    </section>
+
+    <!-- ============ M6 · EL PANEL DE ALQUILER ============ -->
+    <section class="panel seccion" id="panel" aria-labelledby="panel-titulo">
+      <div class="panel-cabeza">
+        <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M6</span> Alquiler de herramienta</p>
+        <h2 class="titulo-xl" id="panel-titulo" data-reveal>Si solo está la silueta, está alquilada.</h2>
+        <p class="entradilla entra">La herramienta de alquiler cuelga del panel de detrás del mostrador, cada una sobre su sombra pintada. Toca una para ver precio, fianza y qué lleva.</p>
+      </div>
+
+      <div class="panel-cuerpo">
+        <div class="tablero" id="tablero" role="group" aria-label="Panel de herramienta de alquiler">
+          <!-- Cada herramienta: un botón con su silueta pintada detrás. -->
+        </div>
+        <aside class="ficha" id="ficha" aria-live="polite">
+          <p class="ficha-estado" id="ficha-estado">Disponible</p>
+          <h3 class="ficha-nombre" id="ficha-nombre">Taladro percutor</h3>
+          <dl class="ficha-datos">
+            <div><dt>Media jornada</dt><dd id="ficha-medio">8 €</dd></div>
+            <div><dt>Día</dt><dd id="ficha-dia">12 €</dd></div>
+            <div><dt>Fin de semana</dt><dd id="ficha-finde">20 €</dd></div>
+            <div><dt>Fianza</dt><dd id="ficha-fianza">50 €</dd></div>
+          </dl>
+          <p class="ficha-lleva" id="ficha-lleva">Lleva maletín, juego de brocas de pared y gafas.</p>
+          <p class="nota">Precios de muestra. Se alquila con DNI y la fianza se devuelve al traerla.</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="filete" aria-hidden="true"></div>
+
+    <!-- ============ M8 · LA GALGA ============ -->
+    <section class="galga seccion" id="galga" aria-labelledby="galga-titulo">
+      <div class="galga-texto">
+        <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M8</span> La galga</p>
+        <h2 class="titulo-l" id="galga-titulo" data-reveal>¿Qué tornillo es? Ponlo contra la pantalla.</h2>
+        <p class="entradilla">Primero ajusta la regla con una tarjeta del banco contra el cristal: todas miden 85,6 mm. Luego elige métrica y largo; el dibujo sale a tamaño real y te dice qué llave le va.</p>
+
+        <div class="galga-mandos">
+          <label class="campo-rango" for="calibre">
+            <span>1 · Ajusta hasta que la tarjeta coincida</span>
+            <input type="range" id="calibre" min="2.6" max="7" step="0.01" value="3.78">
+          </label>
+          <fieldset class="galga-metricas">
+            <legend>2 · Métrica</legend>
+            <div class="galga-chips" id="galga-m"></div>
+          </fieldset>
+          <label class="campo-rango" for="largo">
+            <span>3 · Largo: <b id="largo-valor">40</b> mm</span>
+            <input type="range" id="largo" min="10" max="80" step="5" value="40">
+          </label>
+        </div>
+        <dl class="galga-lectura" aria-live="polite">
+          <div><dt>Paso de rosca</dt><dd id="galga-paso">1,25 mm</dd></div>
+          <div><dt>Llave</dt><dd id="galga-llave">del 13</dd></div>
+          <div><dt>Broca para taco</dt><dd id="galga-broca">10 mm</dd></div>
+        </dl>
+      </div>
+      <div class="galga-mesa" id="galga-mesa">
+        <svg id="galga-svg" role="img" aria-labelledby="galga-svg-tit" width="600" height="420" viewBox="0 0 600 420">
+          <title id="galga-svg-tit">Dibujo a escala del tornillo elegido y de una tarjeta de 85,6 mm para calibrar.</title>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============ M10 · TARIFA DE MOSTRADOR ============ -->
+    <section class="tarifa seccion" id="tarifa" aria-labelledby="tarifa-titulo">
+      <div class="tarifa-texto">
+        <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M10</span> Llaves, mandos y afilado</p>
+        <h2 class="titulo-xl" id="tarifa-titulo" data-reveal>Lo de detrás del mostrador.</h2>
+        <p class="entradilla entra">Los oficios pequeños que ya casi nadie hace: copiar, programar y afilar. Precio cerrado y a la vista, antes de empezar.</p>
+        <ul class="oficios">
+          <li><strong>Mandos de garaje.</strong> Trae el que funciona: lo leemos y te programamos el nuevo. Si es de código variable, necesitamos el receptor o al administrador.</li>
+          <li><strong>Afilado.</strong> Cuchillos de cocina, tijeras, cadena de motosierra y cuchilla de cortacésped. Lo dejas por la mañana y lo recoges por la tarde.</li>
+          <li><strong>Llaves de coche.</strong> Con chip, solo con la documentación del coche a tu nombre.</li>
+        </ul>
+      </div>
+      <div class="ticket" id="ticket">
+        <div class="ticket-papel">
+          <p class="ticket-cab">PASO FINO · FERRAXARÍA<br>RÚA DO PARAFUSO, 7 · NARÓN<br>— TARIFA DE MOSTRADOR —</p>
+          <table>
+            <caption class="sr-only">Tarifa de servicios (precios de muestra)</caption>
+            <thead><tr><th scope="col">Servicio</th><th scope="col">Precio</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Copia llave plana</th><td>2,50 €</td></tr>
+              <tr><th scope="row">Copia llave de puntos</th><td>9,00 €</td></tr>
+              <tr><th scope="row">Llave de seguridad con tarjeta</th><td>desde 18,00 €</td></tr>
+              <tr><th scope="row">Llave de coche con chip</th><td>desde 45,00 €</td></tr>
+              <tr><th scope="row">Mando de garaje copiado</th><td>desde 25,00 €</td></tr>
+              <tr><th scope="row">Afilado cuchillo</th><td>3,00 €</td></tr>
+              <tr><th scope="row">Afilado tijera</th><td>4,00 €</td></tr>
+              <tr><th scope="row">Cadena de motosierra</th><td>9,00 €</td></tr>
+              <tr><th scope="row">Cuchilla de cortacésped</th><td>8,00 €</td></tr>
+              <tr><th scope="row">Encargo en 24 h</th><td>sin recargo</td></tr>
+            </tbody>
+          </table>
+          <p class="ticket-pie">* PRECIOS DE MUESTRA · IVA INCLUIDO<br>SITIO DE DEMOSTRACIÓN</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="filete" aria-hidden="true"></div>
+
+    <!-- ============ M12 · VISITA, ENCARGO Y CONTACTO ============ -->
+    <section class="visita seccion" id="visita" aria-labelledby="visita-titulo">
+      <p class="metrica"><span class="metrica-cabeza" aria-hidden="true"></span><span class="metrica-num">M12</span> Dónde estamos</p>
+      <h2 class="titulo-xl" id="visita-titulo" data-reveal>Rúa do Parafuso, 7. Narón.</h2>
+
+      <div class="visita-rejilla">
+        <div class="horario">
+          <p class="horario-estado" id="horario-estado"><span class="estado-punto" aria-hidden="true"></span><span data-estado-largo>Horario de la tienda</span></p>
+          <table class="horario-tabla">
+            <caption class="sr-only">Horario de apertura</caption>
+            <tbody>
+              <tr data-dia="1"><th scope="row">Lunes</th><td>9:00–13:30 · 16:30–20:00</td></tr>
+              <tr data-dia="2"><th scope="row">Martes</th><td>9:00–13:30 · 16:30–20:00</td></tr>
+              <tr data-dia="3"><th scope="row">Miércoles</th><td>9:00–13:30 · 16:30–20:00</td></tr>
+              <tr data-dia="4"><th scope="row">Jueves</th><td>9:00–13:30 · 16:30–20:00</td></tr>
+              <tr data-dia="5"><th scope="row">Viernes</th><td>9:00–13:30 · 16:30–20:00</td></tr>
+              <tr data-dia="6"><th scope="row">Sábado</th><td>9:30–13:30</td></tr>
+              <tr data-dia="0"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+            </tbody>
+          </table>
+          <address class="datos">
+            <a href="tel:+34981000000" data-cursor="enlace">981 00 00 00</a>
+            <a href="https://wa.me/34600000000" data-cursor="enlace">WhatsApp 600 00 00 00</a>
+            <a href="mailto:hola@pasofino.example" data-cursor="enlace">hola@pasofino.example</a>
+            <span>Rúa do Parafuso, 7 · 15570 Narón (A Coruña)</span>
+            <span>Aparcamiento en la explanada de enfrente · se carga en la puerta</span>
+          </address>
+        </div>
+
+        <div class="mapa" id="mapa" data-cursor="mapa">
+          <svg class="mapa-dibujo" viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" fill="#151D19"/>
+            <path d="M-10 210C80 190 150 230 240 200S360 150 410 160" stroke="#2C3832" stroke-width="26" fill="none"/>
+            <path d="M120-10 150 310M300-10 270 310M-10 90H410" stroke="#2C3832" stroke-width="14" fill="none"/>
+            <path d="M-10 210C80 190 150 230 240 200S360 150 410 160" stroke="#4A5951" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>
+            <g transform="translate(213 120)"><path d="M0-30 26-15v30L0 30-26 15v-30Z" fill="var(--acento)"/><circle r="9" fill="#0E1411"/></g>
+          </svg>
+          <p class="mapa-texto">El mapa de Google no se carga hasta que lo pides: así no entran cookies de terceros.</p>
+          <button class="boton boton-lleno" id="mapa-boton" type="button" data-iman>Cargar el mapa</button>
+        </div>
+
+        <form class="encargo" id="encargo" novalidate aria-labelledby="encargo-titulo">
+          <h3 id="encargo-titulo" class="encargo-titulo">Lo que no encuentras, te lo pedimos.</h3>
+          <p class="nota">Formulario de demostración: no se envía a ninguna parte.</p>
+          <label class="campo"><span>¿Qué buscas?</span><input name="pieza" required placeholder="Junta del grifo de la cocina, la de 18 mm"></label>
+          <label class="campo"><span>Medida o referencia, si la tienes</span><input name="medida" placeholder="Viene grabado: 35 / K-12"></label>
+          <div class="campo-doble">
+            <label class="campo"><span>Nombre</span><input name="nombre" required autocomplete="given-name"></label>
+            <label class="campo"><span>Teléfono</span><input name="tel" required type="tel" autocomplete="tel" inputmode="tel"></label>
+          </div>
+          <button class="boton boton-lleno" type="submit" data-iman>Encargar</button>
+          <p class="encargo-respuesta" id="encargo-respuesta" role="status"></p>
+        </form>
+
+        <div class="voces">
+          <h3 class="voces-titulo">Dicho en el mostrador <small>(opiniones de muestra)</small></h3>
+          <blockquote><p>«Fui con media bisagra en la mano y salí con la bisagra entera y el tornillo que le faltaba.»</p><footer>— Maruxa, vecina de O Alto</footer></blockquote>
+          <blockquote><p>«Alquilé el martillo perforador un sábado y el lunes me devolvieron la fianza sin mirarme mal por el polvo.»</p><footer>— Iago, reforma de baño</footer></blockquote>
+          <blockquote><p>«Me afilaron la cadena de la motosierra de mi padre, que ya daba por perdida.»</p><footer>— Sabela, Pedroso</footer></blockquote>
+        </div>
+
+        <div class="equipo">
+          <h3 class="voces-titulo">Al otro lado del mostrador</h3>
+          <p><strong>Celia Fraga Lamas</strong> lleva la tienda desde 2011, segunda generación. Pintura, fontanería y lo que haga falta pedir.</p>
+          <p><strong>Xurxo Pita Seoane</strong> es el de las llaves, los mandos y el afilado. Si tu llave no gira, él va a tu puerta.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="pie-marca">
+      <svg viewBox="0 0 48 48" width="56" height="56" aria-hidden="true">
+        <path d="M24 3.5 41.8 13.75v20.5L24 44.5 6.2 34.25v-20.5Z" fill="none" stroke="#EDF0EA" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="24" cy="24" r="10.5" fill="#E2552B"/>
+        <path d="M24 13.5a10.5 10.5 0 0 1 9.6 14.7M24 18a6 6 0 0 0-5.6 8.2" fill="none" stroke="#0E1411" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="2.2" fill="#0E1411"/>
+      </svg>
+      <p class="pie-lema">Paso Fino.<br>Ni más, ni menos.</p>
+    </div>
+    <div class="pie-datos">
+      <p>Ferraxaría Paso Fino · Rúa do Parafuso, 7 · 15570 Narón (A Coruña)<br>981 00 00 00 · hola@pasofino.example</p>
+      <p><a href="legal.html">Aviso legal y privacidad</a> · <button class="enlace-boton" type="button" id="cookies-reabrir">Aviso de cookies</button></p>
+      <p class="sello">Sitio de demostración. Paso Fino es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+    </div>
+  </footer>
+
+  <!-- Aviso de cookies -->
+  <div class="cookies" id="cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <p>Este sitio no usa cookies propias de seguimiento. Guarda en tu navegador que has cerrado este aviso y, solo en el modo revisión, la versión y el color elegidos en el mando. El mapa de Google solo se carga si pulsas su botón.</p>
+    <button class="boton boton-lleno" id="cookies-ok" type="button">Entendido</button>
+  </div>
+
+  <!-- MANDO DE DEMOSTRACIÓN (densidad y paleta). NO viaja al sitio de un cliente:
+       ver README, «Quitar el mando». Solo aparece con ?revision en la dirección. -->
+  <div class="mando" id="mando" role="group" aria-label="Mando de demostración" hidden>
+    <div class="mando-grupo" role="group" aria-label="Densidad visual">
+      <span class="mando-tit">Maqueta</span>
+      <button type="button" data-maqueta="rosca" aria-pressed="true">Rosca</button>
+      <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+    </div>
+    <div class="mando-grupo" role="group" aria-label="Color de marca">
+      <span class="mando-tit">Color</span>
+      <button type="button" data-paleta="minio" aria-pressed="true"><i style="background:#E2552B"></i>Minio</button>
+      <button type="button" data-paleta="cobalto" aria-pressed="false"><i style="background:#0A8BF4"></i>Cobalto</button>
+      <button type="button" data-paleta="cardenillo" aria-pressed="false"><i style="background:#06A36F"></i>Cardenillo</button>
+    </div>
+  </div>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor-aro"></span><span class="cursor-punto"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
