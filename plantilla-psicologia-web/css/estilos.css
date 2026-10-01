@@ -43,7 +43,7 @@
 /* Control de paleta: dos alternativas derivadas rotando el matiz en OKLCH
    (scripts/color.js). Tinta, papel, grises y logo NO cambian. */
 html.paleta-brezo { --rubia: #855FB3; --rubia-hondo: #61428A; --rubia-claro: #C6B0E2; }
-html.paleta-musgo { --rubia: #328946; --rubia-hondo: #1A6529; --rubia-claro: #A9D3AE; }
+html.paleta-musgo { --rubia: #328946; --rubia-hondo: #0F5D22; --rubia-claro: #A9D3AE; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { overflow-x: clip; -webkit-text-size-adjust: 100%; }

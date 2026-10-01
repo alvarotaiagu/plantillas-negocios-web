@@ -1,0 +1,489 @@
+[
+  {
+    "nombre": "[escritorio] la escena anclada llega al paso 06 con los seis nudos encendidos",
+    "ok": true,
+    "detalle": [
+      "06",
+      6
+    ]
+  },
+  {
+    "nombre": "[escritorio] sin desbordamiento horizontal",
+    "ok": true,
+    "detalle": [
+      1440,
+      1440
+    ]
+  },
+  {
+    "nombre": "[escritorio] consola limpia y sin 404",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "[movil] la escena anclada llega al paso 06 con los seis nudos encendidos",
+    "ok": true,
+    "detalle": [
+      "06",
+      6
+    ]
+  },
+  {
+    "nombre": "[movil] sin desbordamiento horizontal",
+    "ok": true,
+    "detalle": [
+      390,
+      390
+    ]
+  },
+  {
+    "nombre": "[movil] consola limpia y sin 404",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cortina: acaba en display:none (normal)",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "cortina: color distinto del fondo",
+    "ok": true,
+    "detalle": [
+      "rgb(40, 52, 99)",
+      "rgb(244, 233, 225)"
+    ]
+  },
+  {
+    "nombre": "cortina: display:none sin GSAP",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "sinGsap: sin has-motion, los seis pasos y todos los titulares visibles",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "letrasOcultas": 0,
+      "hoy": 1,
+      "horario": "Cerrado · abrimos mañana a las 9:00",
+      "contador": "1990"
+    }
+  },
+  {
+    "nombre": "sinGsap: el contenido vivo sigue cambiando (hoy, abierto/cerrado, contador)",
+    "ok": false,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "letrasOcultas": 0,
+      "hoy": 1,
+      "horario": "Cerrado · abrimos mañana a las 9:00",
+      "contador": "1990"
+    }
+  },
+  {
+    "nombre": "sinGsap: el conmutador presencial/en línea funciona",
+    "ok": true,
+    "detalle": [
+      "linea",
+      false
+    ]
+  },
+  {
+    "nombre": "sinGsap: consola limpia (salvo el CDN tumbado a propósito)",
+    "ok": false,
+    "detalle": [
+      "Failed to load resource: net::ERR_FAILED",
+      "Failed to load resource: net::ERR_FAILED",
+      "Failed to load resource: net::ERR_FAILED"
+    ]
+  },
+  {
+    "nombre": "cortina: display:none con movimiento reducido",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "reducido: sin has-motion, los seis pasos y todos los titulares visibles",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "letrasOcultas": 0,
+      "hoy": 1,
+      "horario": "Cerrado · abrimos mañana a las 9:00",
+      "contador": "2014"
+    }
+  },
+  {
+    "nombre": "reducido: el contenido vivo sigue cambiando (hoy, abierto/cerrado, contador)",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "letrasOcultas": 0,
+      "hoy": 1,
+      "horario": "Cerrado · abrimos mañana a las 9:00",
+      "contador": "2014"
+    }
+  },
+  {
+    "nombre": "reducido: el conmutador presencial/en línea funciona",
+    "ok": true,
+    "detalle": [
+      "linea",
+      false
+    ]
+  },
+  {
+    "nombre": "reducido: consola limpia (salvo el CDN tumbado a propósito)",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cookies visible al entrar y mando apartado mientras tanto",
+    "ok": true,
+    "detalle": [
+      false,
+      true,
+      "flex"
+    ]
+  },
+  {
+    "nombre": "el botón de cookies cierra de verdad y aparece el mando",
+    "ok": true,
+    "detalle": [
+      true,
+      "none",
+      false,
+      "flex",
+      "ok"
+    ]
+  },
+  {
+    "nombre": "Ovillo: cuatro dibujos, sin datos ni gráfico de minutos",
+    "ok": true,
+    "detalle": {
+      "dibujos": 4,
+      "datos": 0,
+      "minutos": "none",
+      "barras": 4,
+      "hilo": "block",
+      "ovillos": 2,
+      "ancho": true,
+      "pulsado": "false"
+    }
+  },
+  {
+    "nombre": "Sobria: fuera los dibujos y el hilo del margen, dentro los datos y el gráfico de minutos",
+    "ok": true,
+    "detalle": {
+      "dibujos": 0,
+      "datos": 4,
+      "minutos": "block",
+      "barras": 4,
+      "hilo": "none",
+      "ovillos": 0,
+      "ancho": true,
+      "pulsado": "true"
+    }
+  },
+  {
+    "nombre": "Sobria: sin desbordamiento horizontal nuevo",
+    "ok": true,
+    "detalle": true
+  },
+  {
+    "nombre": "se puede volver a Ovillo",
+    "ok": true,
+    "detalle": {
+      "dibujos": 4,
+      "datos": 0,
+      "minutos": "none",
+      "barras": 4,
+      "hilo": "block",
+      "ovillos": 2,
+      "ancho": true,
+      "pulsado": "false"
+    }
+  },
+  {
+    "nombre": "paleta brezo: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": {
+      "boton": "rgb(97, 66, 138)",
+      "em": "rgb(97, 66, 138)",
+      "logo": "img/logo.svg",
+      "pulsado": "brezo",
+      "guardado": "brezo"
+    }
+  },
+  {
+    "nombre": "paleta musgo: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": {
+      "boton": "rgb(15, 93, 34)",
+      "em": "rgb(15, 93, 34)",
+      "logo": "img/logo.svg",
+      "pulsado": "musgo",
+      "guardado": "musgo"
+    }
+  },
+  {
+    "nombre": "paleta rubia: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": {
+      "boton": "rgb(138, 54, 40)",
+      "em": "rgb(138, 54, 40)",
+      "logo": "img/logo.svg",
+      "pulsado": "rubia",
+      "guardado": "rubia"
+    }
+  },
+  {
+    "nombre": "las tres paletas cambian el color computado del botón",
+    "ok": true,
+    "detalle": {
+      "brezo": "rgb(97, 66, 138)",
+      "musgo": "rgb(15, 93, 34)",
+      "rubia": "rgb(138, 54, 40)"
+    }
+  },
+  {
+    "nombre": "el logo no cambia con la paleta (es un SVG con colores fijos)",
+    "ok": true
+  },
+  {
+    "nombre": "al recargar, la paleta guardada se aplica sin parpadeo",
+    "ok": true,
+    "detalle": [
+      true,
+      "#0F5D22"
+    ]
+  },
+  {
+    "nombre": "sin ?revision el mando no se ve",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "el iframe del mapa no existe hasta pulsar, y aparece al pulsar",
+    "ok": true,
+    "detalle": [
+      "https://www.google.com/maps?q=R%C3%BAa%20das%20Fiadeiras%2014%2C%20Lugo&output=embed"
+    ]
+  },
+  {
+    "nombre": "formulario: avisa si falta algo y dice que es de muestra",
+    "ok": true,
+    "detalle": [
+      "Falta tu nombre y un teléfono o correo para poder llamarte.",
+      "Es un formulario de muestra: no se ha enviado nada. En el sitio real, te llamaríamos en un día laborable."
+    ]
+  },
+  {
+    "nombre": "consola limpia en la pasada de mandos",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cursor: el nativo se oculta solo tras el primer pointermove de ratón (cursor:none + punto y aro)",
+    "ok": true,
+    "detalle": {
+      "antes": false,
+      "despues": [
+        true,
+        "none",
+        "block"
+      ]
+    }
+  },
+  {
+    "nombre": "cursor: cambia sobre enlaces y botones",
+    "ok": true
+  },
+  {
+    "nombre": "cursor: sobre el ovillo dice «tira»",
+    "ok": true,
+    "detalle": [
+      true,
+      "tira"
+    ]
+  },
+  {
+    "nombre": "cursor: nada en táctil",
+    "ok": true,
+    "detalle": [
+      false,
+      "none"
+    ]
+  },
+  {
+    "nombre": "menú móvil: abre, aria-expanded=true y ocupa el alto entero (100dvh, no inset:0)",
+    "ok": true,
+    "detalle": [
+      "true",
+      0,
+      844,
+      844,
+      "visible"
+    ]
+  },
+  {
+    "nombre": "menú móvil: el mismo botón lo cierra (no queda debajo de la cortina del menú)",
+    "ok": true,
+    "detalle": [
+      "false",
+      "hidden"
+    ]
+  },
+  {
+    "nombre": "portada 360×640: sin solapes entre ovillo, cabecera y textos",
+    "ok": true,
+    "detalle": "ninguno"
+  },
+  {
+    "nombre": "portada 375×667: sin solapes entre ovillo, cabecera y textos",
+    "ok": true,
+    "detalle": "ninguno"
+  },
+  {
+    "nombre": "[escritorio] pila: <li> sticky, todos del mismo alto (el de la más alta) y mismo margin-bottom",
+    "ok": true,
+    "detalle": {
+      "altos": [
+        337,
+        337,
+        337,
+        337
+      ],
+      "margenes": [
+        "81px",
+        "81px",
+        "81px",
+        "81px"
+      ],
+      "tarjetas": [
+        335,
+        335,
+        335,
+        335
+      ],
+      "posicion": "sticky",
+      "despues": "198px",
+      "vh": 900
+    }
+  },
+  {
+    "nombre": "[escritorio] pila: en 40 pasos de 90 px ninguna tarjeta queda por encima de la anterior",
+    "ok": true,
+    "detalle": {
+      "pasos": 40,
+      "malos": 0,
+      "ultimo": [
+        -1793,
+        -1793,
+        -1793,
+        -1793
+      ]
+    }
+  },
+  {
+    "nombre": "[movil] pila: <li> sticky, todos del mismo alto (el de la más alta) y mismo margin-bottom",
+    "ok": true,
+    "detalle": {
+      "altos": [
+        360,
+        360,
+        360,
+        360
+      ],
+      "margenes": [
+        "75.96px",
+        "75.96px",
+        "75.96px",
+        "75.96px"
+      ],
+      "tarjetas": [
+        358,
+        358,
+        358,
+        358
+      ],
+      "posicion": "sticky",
+      "despues": "185.672px",
+      "vh": 844
+    }
+  },
+  {
+    "nombre": "[movil] pila: en 40 pasos de 90 px ninguna tarjeta queda por encima de la anterior",
+    "ok": true,
+    "detalle": {
+      "pasos": 40,
+      "malos": 0,
+      "ultimo": [
+        -1878,
+        -1878,
+        -1878,
+        -1878
+      ]
+    }
+  },
+  {
+    "nombre": "index.html: noindex, sello, comentario arriba, 024 visible, sin marcadores, modo estándar",
+    "ok": false,
+    "detalle": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "marcadores": [
+        "todo"
+      ],
+      "comentario": true,
+      "crisis": true,
+      "modo": "CSS1Compat"
+    }
+  },
+  {
+    "nombre": "index.html: consola limpia",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "legal.html: noindex, sello, comentario arriba, 024 visible, sin marcadores, modo estándar",
+    "ok": true,
+    "detalle": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "marcadores": [],
+      "comentario": true,
+      "crisis": true,
+      "modo": "CSS1Compat"
+    }
+  },
+  {
+    "nombre": "legal.html: consola limpia",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "no-existe-esta-ruta: noindex, sello, comentario arriba, 024 visible, sin marcadores, modo estándar",
+    "ok": true,
+    "detalle": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "marcadores": [],
+      "comentario": true,
+      "crisis": true,
+      "modo": "CSS1Compat"
+    }
+  },
+  {
+    "nombre": "no-existe-esta-ruta: consola limpia (salvo el propio 404)",
+    "ok": false,
+    "detalle": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ]
+  }
+]

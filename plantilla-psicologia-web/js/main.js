@@ -75,21 +75,23 @@
     if (!c) { cortinaLista = Promise.resolve(); return; }
     if (!motion) { fin(); cortinaLista = Promise.resolve(); return; }
     cortinaLista = new Promise(function (resolve) {
-      var listo = function () { fin(); resolve(); };
       var fuentes = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1200); })]) : Promise.resolve();
       fuentes.then(function () {
         if (gsapReady) {
           var borde = $('.cortina-borde path');
-          var tl = gsap.timeline({ onComplete: listo });
+          var tl = gsap.timeline({ onComplete: fin });
           tl.fromTo('.cortina-marca', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .6, ease: 'power2.out', immediateRender: false })
             .fromTo('.cortina-hilo path', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1, ease: 'power2.inOut', autoRound: false, immediateRender: false }, '<.1')
             .to('.cortina-marca, .cortina-hilo', { opacity: 0, duration: .35, ease: 'power1.in' }, '+=.1')
             .to('.cortina-telon', { yPercent: -118, duration: 1.15, ease: 'expo.inOut' }, '<.05')
             .to(borde, { attr: { d: 'M0 0 H1440 V0 Q720 120 0 0 Z' }, duration: .55, ease: 'power2.in' }, '<')
-            .to(borde, { attr: { d: 'M0 0 H1440 V0 Q720 0 0 0 Z' }, duration: .6, ease: 'power2.out' }, '>');
+            .to(borde, { attr: { d: 'M0 0 H1440 V0 Q720 0 0 0 Z' }, duration: .6, ease: 'power2.out' }, '>')
+            // Entrega al hero: el titular empieza a entrar con el telón a media subida
+            .add(resolve, '-=.75');
         } else {
           root.classList.add('cortina-css');
-          setTimeout(listo, 1700);
+          setTimeout(resolve, 900);
+          setTimeout(fin, 1700);
         }
       });
     });
@@ -252,13 +254,11 @@
   if (proceso && root.classList.contains('has-motion')) {
     proceso.classList.add('es-anclado');
     var pasos = $$('.paso', proceso), num = $('.proceso-num', proceso);
-    var nudos = $$('.ph-nudos circle', proceso), hilo = $('.ph-avance', proceso), guia = $('.ph-fondo', proceso);
-    // Dónde cae cada nudo a lo largo del hilo (fracción de su longitud)
-    var total = guia.getTotalLength(), fr = nudos.map(function (n) {
-      var x = +n.getAttribute('cx'), mejor = 0, d = 1e9;
-      for (var l = 0; l <= total; l += 4) { var pt = guia.getPointAtLength(l); var dd = Math.abs(pt.x - x) + Math.abs(pt.y - 62); if (dd < d) { d = dd; mejor = l; } }
-      return mejor / total;
-    });
+    var nudos = $$('.ph-nudos circle', proceso), hilo = $('.ph-avance', proceso);
+    // Dónde cae cada nudo a lo largo del hilo (fracción de su longitud).
+    // Precalculado en data-fr: medirlo aquí con getPointAtLength costaba
+    // una tarea larga de 2,1 s al cargar (9,7 s con la CPU a ×4).
+    var fr = nudos.map(function (n) { return +n.dataset.fr; });
     var activo = -1;
     var ponerPaso = function (i) {
       if (i === activo) return;
@@ -491,7 +491,10 @@
     var rnd = function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
     // Un ovillo de verdad no son círculos sueltos: son HACES de vueltas casi
     // paralelas, cada haz en una dirección. 11 haces × 7 vueltas.
-    var HACES = 11, POR = 7, M = 64, vueltas = [];
+    // En pantalla pequeña, menos vueltas y menos puntos: el ojo no los distingue
+    // a 300 px y el móvil de gama media lo agradece.
+    var peque = innerWidth < 700;
+    var HACES = 11, POR = peque ? 5 : 7, M = peque ? 44 : 64, vueltas = [];
     for (var hz = 0; hz < HACES; hz++) {
       var u1 = rnd() * 2 - 1, th = rnd() * Math.PI * 2, rr = Math.sqrt(1 - u1 * u1);
       var n0 = [rr * Math.cos(th), rr * Math.sin(th), u1];
