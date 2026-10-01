@@ -376,7 +376,7 @@
       { manoI: [95, 42, 10], manoD: [145, 42, 10], rodI: [102, 250, 25], rodD: [138, 250, 25], pieI: [104, 345, 15], pieD: [136, 345, 15] }
     ];
     var seg = {}; $$('[data-seg]', svg).forEach(function (p) { seg[p.dataset.seg] = p; });
-    var cabeza = $('.cabeza', svg), mono = $('.mono', svg), contactos = $('.figura-contactos', svg);
+    var esterillaLado = $('.figura-esterilla', svg), cabeza = $('.cabeza', svg), mono = $('.mono', svg), contactos = $('.figura-contactos', svg);
     var SUELO = 372, ns = 'http://www.w3.org/2000/svg';
     var grupoApoyos = $('.mapa-apoyos');
     var huellas = {};
@@ -413,7 +413,7 @@
       var pts = [[munC, 12], [munL, 11], [rodC, 12], [rodL, 11], [tobC, 12], [tobL, 11], [punC, 12], [punL, 11], [cab, 23], [cad, 20], [hom, 20], [codoC, 12]];
       var maxY = -1e9, minX = 1e9, maxX = -1e9;
       pts.forEach(function (p) { maxY = Math.max(maxY, p[0][1] + p[1]); minX = Math.min(minX, p[0][0] - p[1]); maxX = Math.max(maxX, p[0][0] + p[1]); });
-      var dx = 320 - (minX + maxX) / 2, dy = SUELO - maxY;
+      var dx = 320 - (minX + maxX) / 2, dy = SUELO + 4 - maxY; // se hunde 4 px: la esterilla cede
       var T = function (p) { return (p[0] + dx).toFixed(1) + ' ' + (p[1] + dy).toFixed(1); };
       var linea = function (s, a, b) { seg[s].setAttribute('d', 'M' + T(a) + 'L' + T(b)); };
       // El tronco se dibuja un poco más corto para que la cadera y el hombro queden redondos, no cuadrados.
@@ -427,9 +427,9 @@
       var mo = suma(cab, dir(q.cu + 205, 21));
       mono.setAttribute('cx', (mo[0] + dx).toFixed(1)); mono.setAttribute('cy', (mo[1] + dy).toFixed(1));
       // Puntos de contacto con el suelo, en coral.
-      var cont = '';
-      [[munC, 12], [munL, 11], [rodC, 12], [rodL, 11], [tobC, 12], [punC, 12], [punL, 11]].forEach(function (p) {
-        if (SUELO - (p[0][1] + dy + p[1]) < 5) cont += '<circle cx="' + (p[0][0] + dx).toFixed(1) + '" cy="' + (SUELO + 6) + '" r="5"/>';
+      var cont = '', tocan = [];
+      [[munC, 12, 'manos'], [munL, 11, 'manos'], [rodC, 12, 'rodillas'], [rodL, 11, 'rodillas'], [tobC, 12, 'pies'], [punC, 12, 'pies'], [punL, 11, 'pies']].forEach(function (p) {
+        if (SUELO + 4 - (p[0][1] + dy + p[1]) < 5) { cont += '<circle cx="' + (p[0][0] + dx).toFixed(1) + '" cy="' + (SUELO + 11) + '" r="4.5"/>'; tocan.push([p[0][0] + dx, p[2]]); }
       });
       contactos.innerHTML = cont;
 
@@ -451,6 +451,16 @@
         h.t.setAttribute('y', (r * ry + 15).toFixed(1));
         h.t.textContent = w > 4 ? Math.round(w) + '%' : '';
       });
+      // La esterilla cede bajo cada apoyo, más cuanto más peso carga esa zona.
+      var cuenta0 = { manos: 0, rodillas: 0, pies: 0 };
+      tocan.forEach(function (t) { cuenta0[t[1]]++; });
+      var borde = 'M40 ' + SUELO;
+      for (var xs = 40; xs <= 600; xs += 8) {
+        var hund = 0;
+        tocan.forEach(function (t) { var d = (xs - t[0]) / 26; hund += (1.5 + 9 * zonas[t[1]] / 100 / cuenta0[t[1]]) * Math.exp(-d * d); });
+        borde += 'L' + xs + ' ' + (SUELO + Math.min(hund, 7)).toFixed(1);
+      }
+      esterillaLado.setAttribute('d', borde + 'L600 ' + (SUELO + 12) + 'Q600 ' + (SUELO + 18) + ' 594 ' + (SUELO + 18) + 'L46 ' + (SUELO + 18) + 'Q40 ' + (SUELO + 18) + ' 40 ' + (SUELO + 12) + 'Z');
       for (var z in zonas) {
         reparto[z].barra.style.setProperty('--v', (zonas[z] / 100).toFixed(3));
         reparto[z].valor.textContent = Math.round(zonas[z]) + ' %';
@@ -752,8 +762,8 @@
     var marcadas = {};
     function marcaPostura(cual) {
       if (marcadas[cual]) return; marcadas[cual] = true;
-      var r = cssRect(), k = Math.max(0.9, Math.min(1.6, r.w / 950));
-      var cx = movil ? r.w * 0.66 : r.w * 0.72, cy = movil ? r.h * 0.2 : r.h * 0.6;
+      var r = cssRect(), k = movil ? 0.72 : Math.max(0.9, Math.min(1.6, r.w / 950));
+      var cx = movil ? r.w * 0.74 : r.w * 0.72, cy = movil ? r.h * 0.17 : r.h * 0.6;
       if (cual === 'pies') { huellaPie(cx - 26 * k, cy, k, true, 0.2); huellaPie(cx + 26 * k, cy, k, false, 0.2); }
       if (cual === 'manos') { huellaMano(cx - 70 * k, cy - 120 * k, k * 0.95, true, 0.2, -0.15); huellaMano(cx + 70 * k, cy - 120 * k, k * 0.95, false, 0.2, 0.15); }
     }
@@ -848,7 +858,7 @@
 
     // Retratos del equipo: suben con parallax suave, distinto en cada uno.
     $$('.persona-retrato').forEach(function (r, i) {
-      gsap.fromTo(r, { y: 40 + i * 12 }, { y: -20, ease: 'none', immediateRender: false, scrollTrigger: { trigger: r, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.fromTo(r, { y: 18 + (i % 2) * 14 }, { y: -18 - (i % 2) * 14, ease: 'none', immediateRender: false, scrollTrigger: { trigger: r, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
 
     // Vale: se inclina con el scroll como un papel apoyado
