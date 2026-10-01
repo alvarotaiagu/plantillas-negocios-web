@@ -347,6 +347,14 @@
     hc.style.strokeDashoffset = (1 - clamp(scrollY / max, 0, 1)).toFixed(4);
   }
 
+  /* ---------- Cabecera: se vuelve añil sobre las secciones oscuras ---------- */
+  var cabecera = $('.cabecera'), oscuras = $$('.proceso, .cinta, .contacto, .pie');
+  function cabeceraTono() {
+    if (!cabecera) return;
+    var y = cabecera.offsetHeight - 2, sobre = oscuras.some(function (o) { var r = o.getBoundingClientRect(); return r.top <= y && r.bottom > y; });
+    cabecera.classList.toggle('es-oscura', sobre);
+  }
+
   /* ---------- Bucle común ligado al scroll ---------- */
   var pendiente = true, tPrev = performance.now();
   function alScroll() { pendiente = true; }
@@ -355,7 +363,7 @@
   (function bucle(t) {
     var dt = Math.min(0.05, (t - tPrev) / 1000); tPrev = t;
     var y = scrollY; vel = vel * 0.9 + ((y - ultimoY) / Math.max(dt, 0.001)) * 0.1; ultimoY = y;
-    if (pendiente) { pendiente = false; tintar(); ondular(); apilar(); conducir(); }
+    if (pendiente) { pendiente = false; tintar(); ondular(); apilar(); conducir(); cabeceraTono(); }
     moverCinta(dt);
     requestAnimationFrame(bucle);
   })(tPrev);
@@ -481,16 +489,34 @@
     // Generador con semilla: el ovillo es siempre el mismo
     var s = 7;
     var rnd = function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
-    var K = 34, M = 72, vueltas = [];
-    for (var k = 0; k < K; k++) {
+    // Un ovillo de verdad no son círculos sueltos: son HACES de vueltas casi
+    // paralelas, cada haz en una dirección. 11 haces × 7 vueltas.
+    var HACES = 11, POR = 7, M = 64, vueltas = [];
+    for (var hz = 0; hz < HACES; hz++) {
       var u1 = rnd() * 2 - 1, th = rnd() * Math.PI * 2, rr = Math.sqrt(1 - u1 * u1);
-      var n = [rr * Math.cos(th), rr * Math.sin(th), u1];
-      var a = Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
-      var u = norm(cross(n, a)), v = cross(n, u);
-      var pts = [];
-      for (var j = 0; j <= M; j++) { var t = j / M * Math.PI * 2; pts.push([u[0] * Math.cos(t) + v[0] * Math.sin(t), u[1] * Math.cos(t) + v[1] * Math.sin(t), u[2] * Math.cos(t) + v[2] * Math.sin(t)]); }
-      vueltas.push({ pts: pts, color: k % 7 === 3 ? 2 : (k % 5 === 1 ? 1 : 0) });
+      var n0 = [rr * Math.cos(th), rr * Math.sin(th), u1];
+      var color = hz === 2 || hz === 7 ? 1 : hz === 9 ? 2 : 0;
+      for (var l = 0; l < POR; l++) {
+        var n = norm([n0[0] + (rnd() - .5) * .07, n0[1] + (rnd() - .5) * .07, n0[2] + (rnd() - .5) * .07]);
+        var h = (l - (POR - 1) / 2) * 0.075 + (rnd() - .5) * .02, rad = Math.sqrt(1 - h * h);
+        var a = Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
+        var u = norm(cross(n, a)), v = cross(n, u), pts = [];
+        for (var j = 0; j <= M; j++) {
+          var t = j / M * Math.PI * 2, c = Math.cos(t) * rad, sn = Math.sin(t) * rad;
+          pts.push([n[0] * h + u[0] * c + v[0] * sn, n[1] * h + u[1] * c + v[1] * sn, n[2] * h + u[2] * c + v[2] * sn]);
+        }
+        vueltas.push({ pts: pts, color: color });
+      }
     }
+    var K = vueltas.length;
+    // Sombra del ovillo: sprite pintado UNA vez, luego solo drawImage
+    var sombra = document.createElement('canvas');
+    (function () {
+      sombra.width = 256; sombra.height = 64;
+      var g = sombra.getContext('2d'), gr = g.createRadialGradient(128, 32, 4, 128, 32, 128);
+      gr.addColorStop(0, 'rgba(30,34,53,.22)'); gr.addColorStop(1, 'rgba(30,34,53,0)');
+      g.setTransform(1, 0, 0, .25, 0, 24); g.fillStyle = gr; g.beginPath(); g.arc(128, 32, 128, 0, Math.PI * 2); g.fill();
+    })();
     function cross(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
     function norm(a) { var l = Math.hypot(a[0], a[1], a[2]); return [a[0] / l, a[1] / l, a[2] / l]; }
 
@@ -503,12 +529,13 @@
     }
 
     // Cuerda (el cabo suelto)
-    var NC = 30, cuerda = [], extra = 0;
+    var NC = 30, cuerda = [], extra = 0, apaisado = false;
     function medir() {
       var r = fig.getBoundingClientRect();
       W = r.width; H = r.height; dpr = Math.min(2, devicePixelRatio || 1);
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      R = Math.min(W, H) * 0.3; cx = W * 0.46; cy = H * 0.44;
+      apaisado = W > H * 1.25;
+      R = Math.min(W, H) * (apaisado ? 0.36 : 0.3); cx = W * (apaisado ? 0.4 : 0.46); cy = H * (apaisado ? 0.46 : 0.44);
       var an = ancla();
       cuerda = [];
       for (var i = 0; i < NC; i++) cuerda.push({ x: an.x + i * 3, y: an.y + i * 6, px: an.x + i * 3, py: an.y + i * 6 });
@@ -526,9 +553,15 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
       var cY = Math.cos(rotY), sY = Math.sin(rotY), cX = Math.cos(rotX), sX = Math.sin(rotX), f = 3.2;
-      var visibles = Math.round(K * (1 - 0.5 * devanado));
-      // 3 colores × 3 capas de profundidad = 9 trazos
+      var visibles = Math.round(K * (1 - 0.45 * devanado));
+      ctx.drawImage(sombra, cx - r * 1.1, cy + r * 0.92, r * 2.2, r * 0.55);
+      // 3 colores × 3 capas de profundidad = 9 trazos, y entre la capa del
+      // fondo y las de delante, un velo de papel que hace de cuerpo del ovillo
       for (var capa = 0; capa < 3; capa++) {
+        if (capa === 1) {
+          ctx.beginPath(); ctx.arc(cx, cy, r * 0.995, 0, Math.PI * 2);
+          ctx.fillStyle = papel; ctx.globalAlpha = 0.62; ctx.fill(); ctx.globalAlpha = 1;
+        }
         for (var col = 0; col < 3; col++) {
           ctx.beginPath();
           var hay = false;
@@ -540,7 +573,7 @@
               var x1 = p[0] * cY + p[2] * sY, z1 = -p[0] * sY + p[2] * cY;
               var y2 = p[1] * cX - z1 * sX, z2 = p[1] * sX + z1 * cX;
               var esc = f / (f - z2), X = cx + x1 * r * esc, Y = cy + y2 * r * esc;
-              var cp = z2 < -0.33 ? 0 : z2 < 0.33 ? 1 : 2;
+              var cp = z2 < 0 ? 0 : z2 < 0.45 ? 1 : 2;
               if (cp === capa) {
                 if (!prevIn) ctx.moveTo(px || X, py || Y);
                 ctx.lineTo(X, Y); hay = true; prevIn = true;
@@ -550,15 +583,15 @@
           }
           if (!hay) continue;
           ctx.strokeStyle = colores[col];
-          ctx.globalAlpha = capa === 0 ? 0.22 : capa === 1 ? 0.55 : 0.95;
-          ctx.lineWidth = capa === 0 ? 0.9 : capa === 1 ? 1.2 : 1.6;
+          ctx.globalAlpha = capa === 0 ? 0.5 : capa === 1 ? 0.7 : 1;
+          ctx.lineWidth = capa === 0 ? 0.8 : capa === 1 ? 1.15 : 1.7;
           ctx.stroke();
         }
       }
       ctx.globalAlpha = 1;
       // contorno
       ctx.beginPath(); ctx.arc(cx, cy, r * 1.003, 0, Math.PI * 2);
-      ctx.strokeStyle = colores[0]; ctx.globalAlpha = 0.35; ctx.lineWidth = 1; ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = colores[0]; ctx.globalAlpha = 0.5; ctx.lineWidth = 1.2; ctx.stroke(); ctx.globalAlpha = 1;
       // cabo
       ctx.beginPath(); ctx.moveTo(cuerda[0].x, cuerda[0].y);
       for (var i = 1; i < NC - 1; i++) { var mx = (cuerda[i].x + cuerda[i + 1].x) / 2, my = (cuerda[i].y + cuerda[i + 1].y) / 2; ctx.quadraticCurveTo(cuerda[i].x, cuerda[i].y, mx, my); }
@@ -572,6 +605,7 @@
       var largo = R * (1.5 + 2.2 * devanado) + extra, seg = largo / (NC - 1);
       var objetivo;
       if (puntero.dentro) objetivo = { x: puntero.x, y: puntero.y };
+      else if (apaisado) objetivo = { x: Math.min(W - 12, an.x + largo * 0.75), y: an.y + R * 0.5 + Math.sin(t * 0.0006) * R * 0.15 };
       else objetivo = { x: an.x + R * 0.35 + Math.sin(t * 0.0006) * R * 0.18, y: an.y + largo * 0.72 };
       for (var i = 1; i < NC; i++) {
         var p = cuerda[i], vx = (p.x - p.px) * 0.96, vy = (p.y - p.py) * 0.96;
