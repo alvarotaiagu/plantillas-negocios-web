@@ -56,6 +56,9 @@
       var p = localStorage.getItem('abaneo-paleta');
       if (p === 'pino' || p === 'malva') html.classList.add('paleta-' + p);
     } catch (e) {}
+    /* Red de seguridad de la cortina: aunque main.js no llegue a correr,
+       a los 5 s se retira. */
+    setTimeout(function () { var c = document.getElementById('cortina'); if (c) c.classList.add('es-retirada'); }, 5000);
   })();
 </script>
 
@@ -221,8 +224,7 @@
           <!-- la silla de la familia -->
           <g class="aula-silla"><g class="aula-silla-in">
             <path d="M0 0h54v8H0z" fill="#23264A"/><path d="M4 8v60M50 8v60" stroke="#23264A" stroke-width="6"/><path d="M50 0V-62" stroke="#23264A" stroke-width="6"/><path d="M50-62h-8" stroke="#23264A" stroke-width="6" stroke-linecap="round"/>
-            <path d="M8 -6c8-30 34-30 40 0" fill="var(--acento-sup)" opacity=".0"/>
-            <rect x="-10" y="-40" width="44" height="34" rx="6" fill="#23264A" class="aula-bolso"/>
+            <path d="M-2 -4h58" stroke="var(--acento-sup)" stroke-width="7" stroke-linecap="round"/>
           </g></g>
         </svg>
         <div class="adapta-reloj">

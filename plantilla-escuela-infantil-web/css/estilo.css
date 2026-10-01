@@ -287,7 +287,7 @@ html.has-motion .manifiesto.es-visible .manifiesto-manta { clip-path: ellipse(14
 .aula { display: block; width: 100%; height: auto; border-radius: var(--radio); background: var(--panel); overflow: hidden; }
 .aula-rotulo { font: 700 15px var(--sans); letter-spacing: .14em; text-transform: uppercase; fill: var(--apagado); }
 .aula g { transform-box: fill-box; }
-.aula-silla { transform: translate(var(--x, 330px), 330px); transition: transform 1.1s var(--e-mece); }
+.aula-silla { transform: translate(var(--x, 330px), 318px) scale(1.45); transition: transform 1.1s var(--e-mece); }
 .aula-movil { transform-origin: 50% 0; }
 .aula-abrigo, .aula-apego, .aula-mesa, .aula-cuna { transform-origin: 50% 100%; transition: transform .8s var(--e-mece), opacity .4s; }
 .aula-abrigo, .aula-apego, .aula-mesa { opacity: 0; transform: translateY(-30px) rotate(-8deg); }
@@ -297,8 +297,6 @@ html.has-motion .manifiesto.es-visible .manifiesto-manta { clip-path: ellipse(14
 .aula[data-paso="3"] .aula-apego,  .aula[data-paso="4"] .aula-apego,  .aula[data-paso="5"] .aula-apego,
 .aula[data-paso="4"] .aula-mesa,   .aula[data-paso="5"] .aula-mesa { opacity: 1; transform: none; }
 .aula[data-paso="5"] .aula-cuna { opacity: 1; }
-.aula[data-paso="0"] .aula-bolso { opacity: 1; }
-.aula-bolso { opacity: 0; transition: opacity .4s; }
 html.has-motion .aula-movil { animation: mece-lento 5s ease-in-out infinite; }
 
 .adapta-reloj { margin-top: 18px; display: grid; grid-template-columns: auto 1fr; grid-template-areas: "dia barra" "dia horas"; column-gap: 22px; align-items: center; }
