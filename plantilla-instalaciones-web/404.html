@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- SITIO DE DEMOSTRACIÓN. «Ida e Retorno · Instalacións» es un negocio ficticio. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aquí no pasa ningún tubo · Ida e Retorno</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#12100E">
+<!-- Rutas absolutas: el 404 de una project page se sirve desde cualquier ruta -->
+<link rel="icon" href="/plantilla-instalaciones-web/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Mona+Sans:wdth,wght@75..125,200..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/plantilla-instalaciones-web/css/styles.css">
+<style>
+  .p404 { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; gap: 3rem; padding: 6rem var(--margen) 4rem; }
+  .p404 h1 { font-size: clamp(3rem, 9vw, 9rem); font-weight: 800; font-stretch: 120%; line-height: .88; margin: 1rem 0 1.5rem; }
+  .p404 h1 em { font-style: normal; color: var(--quente); font-weight: 300; }
+  .p404 p { color: var(--humo); max-width: 30rem; margin-bottom: 2rem; }
+  .p404 .rota { width: 100%; max-width: 26rem; justify-self: center; overflow: visible; }
+  .rota path { fill: none; stroke-linecap: round; }
+  .rota .gota { fill: var(--fria); animation: gotear 2.2s cubic-bezier(.87,0,.13,1) infinite; transform-box: fill-box; }
+  @media (max-width: 760px) { .p404 { grid-template-columns: 1fr; padding-top: 3rem; } .p404 .rota { max-width: 14rem; grid-row: 1; } }
+</style>
+</head>
+<body>
+<main class="p404">
+  <div>
+    <p class="indice"><span>404</span> Circuito abierto</p>
+    <h1>Aquí no pasa <em>ningún tubo.</em></h1>
+    <p>La página que buscas no existe o la hemos movido. Como con las fugas: mejor volver a la llave general y empezar desde ahí.</p>
+    <a class="boton boton-quente" href="/plantilla-instalaciones-web/">Volver al inicio</a>
+  </div>
+  <svg class="rota" viewBox="0 0 300 300" aria-hidden="true">
+    <path d="M20 90h110" stroke="#FF7654" stroke-width="18"/>
+    <path d="M20 130h90" stroke="#4DB8F0" stroke-width="18"/>
+    <path d="M170 90h110M190 130h90" stroke="#5A5047" stroke-width="18"/>
+    <path d="M136 80l10 20-10 20M118 120l12 20-12 20" stroke="#F2ECE3" stroke-width="3"/>
+    <path class="gota" d="M120 160c-9 13-9 22 0 24 9-2 9-11 0-24z"/>
+    <path d="M60 250c40-12 140-12 180 0" stroke="#332D27" stroke-width="8"/>
+  </svg>
+</main>
+<footer class="pie">
+  <p class="sello">Sitio de demostración. Ida e Retorno es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</footer>
+</body>
+</html>

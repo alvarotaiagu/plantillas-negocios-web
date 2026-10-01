@@ -281,7 +281,8 @@
       var r = canvas.getBoundingClientRect();
       var nW = Math.max(1, Math.round(r.width)), nH = Math.max(1, Math.round(r.height));
       if (nW === W && Math.abs(nH - H) < 2 && datos) return;
-      W = nW; H = nH; dpr = Math.min(window.devicePixelRatio || 1, mqMovil.matches ? 1.25 : 1.5);
+      // la imagen térmica es blanda por naturaleza: el búfer va a 0,75 px por px CSS y el navegador lo escala
+      W = nW; H = nH; dpr = 0.75;
       canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
       pintarTextura();
       if (gl) {
@@ -387,7 +388,8 @@
       colores: function () { leerColores(); if (!gl && datos) pintar2D(); pedir(); }
     };
   })();
-  termo.iniciar();
+  // en su propia tarea: la compilación del shader no se suma al arranque del resto del script
+  setTimeout(termo.iniciar, 0);
   (function () {
     var portada = $('.portada');
     function alScroll() { var h = portada.offsetHeight || 1; termo.scroll(Math.max(0, Math.min(1, scrollY / h))); }
@@ -410,9 +412,12 @@
     var presiones = pasos.map(function (p) { return parseFloat(p.getAttribute('data-presion')); });
     var MAX = 8;
     // fracción del tubo en la que está cada nodo: el llenado llega a cada válvula justo en su paso
-    var largo = tubo.getTotalLength(), fr = nodos.map(function (nd) {
+    // (una sola pasada de 160 muestras para todos los nodos: getPointAtLength es caro)
+    var largo = tubo.getTotalLength(), muestras = [];
+    for (var k = 0; k <= 160; k++) muestras.push(tubo.getPointAtLength(largo * k / 160));
+    var fr = nodos.map(function (nd) {
       var m = /translate\(([\d.]+)[ ,]+([\d.]+)\)/.exec(nd.getAttribute('transform')), mejor = 0, dmin = 1e9;
-      for (var k = 0; k <= 600; k++) { var pt = tubo.getPointAtLength(largo * k / 600), dd = Math.hypot(pt.x - m[1], pt.y - m[2]); if (dd < dmin) { dmin = dd; mejor = k / 600; } }
+      muestras.forEach(function (pt, k) { var dd = Math.hypot(pt.x - m[1], pt.y - m[2]); if (dd < dmin) { dmin = dd; mejor = k / 160; } });
       return mejor;
     });
     fr.push(1);
