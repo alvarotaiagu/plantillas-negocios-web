@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- SITIO DE DEMOSTRACIÓN. Carnicería Mouriscal es un negocio ficticio. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Esta pieza no está en el mostrador · Mouriscal (demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Onest:wght@300..700&family=Red+Hat+Mono:wght@400;500&display=swap">
+<!-- Estilos en línea: en una project page de GitHub la 404 se sirve desde cualquier ruta -->
+<style>
+  :root { --tinta: #241013; --hueso: #F3EADF; --hueso-2: #BFD0C7; --acento-claro: #F49A7F; --boton: #8E2A17; }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body { margin: 0; min-height: 100svh; background: var(--tinta); color: var(--hueso); font-family: "Onest", system-ui, sans-serif; display: grid; place-items: center; padding: 2rem 1rem; }
+  main { max-width: 40rem; display: grid; gap: 1.4rem; justify-items: start; }
+  svg { width: min(20rem, 80vw); height: auto; }
+  .num { font-family: "Red Hat Mono", monospace; letter-spacing: .14em; color: var(--acento-claro); margin: 0; }
+  h1 { font-family: "Bodoni Moda", Georgia, serif; font-weight: 600; font-style: italic; font-size: clamp(2.4rem, 8vw, 4.6rem); line-height: .95; letter-spacing: -.03em; margin: 0; }
+  p { margin: 0; color: var(--hueso); max-width: 44ch; }
+  a.boton { display: inline-block; background: var(--boton); color: #F8F9F5; text-decoration: none; padding: .9rem 1.4rem; border-radius: 99px; font-weight: 600; }
+  a:focus-visible { outline: 3px solid var(--acento-claro); outline-offset: 3px; }
+  small { color: var(--hueso-2); }
+</style>
+</head>
+<body>
+<main>
+  <svg viewBox="0 0 320 120" aria-hidden="true">
+    <path d="M10 40 H300 M6 60 H310 M12 80 H296" stroke="#F3EADF" stroke-width="3" stroke-linecap="round" stroke-dasharray="14 10"/>
+    <path d="M120 6 L170 114" stroke="#F49A7F" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <p class="num">404</p>
+  <h1>Esta pieza no está en el mostrador.</h1>
+  <p>La página que buscas no existe o se la ha llevado otro cliente. Vuelve al mostrador: hay más.</p>
+  <a class="boton" id="volver" href="index.html">Volver al mostrador</a>
+  <small>Sitio de demostración. Carnicería Mouriscal es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</small>
+</main>
+<script>
+  // En github.io la portada vive bajo /<repo>/: se calcula para que el enlace no dé otra 404.
+  (function () { var s = location.pathname.split('/').filter(Boolean); if (/github\.io$/.test(location.hostname) && s.length) document.getElementById('volver').href = '/' + s[0] + '/'; })();
+</script>
+</body>
+</html>

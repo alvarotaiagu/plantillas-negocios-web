@@ -65,15 +65,16 @@ button { cursor: pointer; }
 .etiqueta::before { content: ""; width: 2.4rem; height: 2px; background: currentColor; }
 .etiqueta-clara { color: var(--acento-claro); }
 .titulo-grande, .titulo-medio {
-  font-family: var(--f-display); font-weight: 520; font-variation-settings: "opsz" 96;
+  font-family: var(--f-display); font-weight: 520;
   line-height: .96; letter-spacing: -.025em; margin: 0; text-wrap: balance;
 }
 .titulo-grande { font-size: clamp(2.5rem, 1.2rem + 5.6vw, 7.4rem); max-width: 15ch; }
 .titulo-medio { font-size: clamp(2.1rem, 1.2rem + 3.4vw, 4.6rem); max-width: 18ch; }
 .titulo-claro { color: var(--hueso); }
 /* Char-reveal: la palabra en bloque o parte «se / mana» */
-.palabra { display: inline-block; white-space: nowrap; overflow: clip; padding-bottom: .08em; margin-bottom: -.08em; vertical-align: top; }
-.letra { display: inline-block; will-change: transform; }
+.palabra { display: inline-block; white-space: nowrap; overflow: clip; padding: 0 .12em .1em; margin: 0 -.12em -.1em; vertical-align: top; }
+/* Sin will-change: una capa por letra recorta la tinta que sale de su caja (el asta de la «t» de Bodoni) */
+.letra { display: inline-block; padding-inline: .06em; margin-inline: -.06em; }
 
 .seccion { padding: clamp(5rem, 11vw, 10rem) var(--margen); position: relative; }
 
@@ -135,7 +136,7 @@ button { cursor: pointer; }
 .marca-sello { flex: none; transition: transform var(--t-lento) var(--ease-out); }
 .marca:hover .marca-sello { transform: rotate(-18deg); }
 .marca-texto { display: grid; line-height: 1.05; }
-.marca-nombre { font-family: var(--f-display); font-size: 1.45rem; font-weight: 700; font-style: italic; letter-spacing: -.02em; font-variation-settings: "opsz" 40; }
+.marca-nombre { font-family: var(--f-display); font-size: 1.45rem; font-weight: 700; font-style: italic; letter-spacing: -.02em; }
 .marca-sub { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
 .menu ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(.8rem, 2vw, 2rem); }
 .menu a { text-decoration: none; font-weight: 500; font-size: .95rem; position: relative; padding-block: .3rem; }
@@ -199,7 +200,8 @@ button { cursor: pointer; }
 @keyframes latido { 0% { box-shadow: 0 0 0 0 rgba(244, 154, 127, .7); } 70%, 100% { box-shadow: 0 0 0 .7rem rgba(244, 154, 127, 0); } }
 .portada-titulo {
   grid-area: titulo; margin: 0;
-  font-family: var(--f-display); font-weight: var(--wght, 560); font-variation-settings: "opsz" 96;
+  /* opsz bajo a propósito: a 96 los perfiles finos de la cursiva se pierden sobre la veta (la «t» y la «v» se leían «l» y «r») */
+  font-family: var(--f-display); font-weight: var(--wght, 560); font-variation-settings: "opsz" 28;
   font-size: clamp(3.3rem, 1rem + 12.5vw, 15.5rem); line-height: .84; letter-spacing: -.045em;
 }
 .t-linea { display: block; }
@@ -318,7 +320,7 @@ button { cursor: pointer; }
   min-height: 100svh; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 5rem);
   align-items: center; padding: calc(var(--cab-h) + 2rem) var(--margen) 3rem; position: relative;
 }
-.oficio-titulo { font-family: var(--f-display); font-weight: 500; font-variation-settings: "opsz" 96; font-size: clamp(2.2rem, 1.2rem + 3.2vw, 4.6rem); line-height: .98; letter-spacing: -.025em; margin: 0 0 1.5rem; max-width: 13ch; }
+.oficio-titulo { font-family: var(--f-display); font-weight: 500; font-size: clamp(2.2rem, 1.2rem + 3.2vw, 4.6rem); line-height: .98; letter-spacing: -.025em; margin: 0 0 1.5rem; max-width: 13ch; }
 .oficio-contador { margin: 0 0 1rem; font-family: var(--f-display); font-size: clamp(3rem, 2rem + 4vw, 6rem); line-height: 1; font-style: italic; color: var(--acento-claro); font-variant-numeric: lining-nums; }
 .oficio-de { font-size: .4em; color: var(--hueso-2); font-style: normal; font-family: var(--f-mono); margin-left: .3em; }
 .oficio-pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; }
@@ -599,6 +601,8 @@ html.cursor-on, html.cursor-on * { cursor: none !important; }
   .pie { grid-template-columns: minmax(0, 1fr); }
   .pie-nav { justify-items: start; }
   .cookies { flex-direction: column; align-items: stretch; }
+  .portada-titulo { font-size: 14.5vw; }
+  .t-cursiva { padding-left: .45em; }
   .portada-entradilla { font-size: .98rem; margin-bottom: 1.1rem; }
   .portada-botones .boton { width: 100%; min-height: 3rem; padding-block: .7rem; }
   .portada-dentro { row-gap: .9rem; padding-bottom: 1.4rem; padding-top: calc(var(--cab-h) + 1.5rem); }

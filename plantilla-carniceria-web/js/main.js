@@ -67,7 +67,7 @@
     heroEntregado = true;
     if (!motion) return;
     var letras = $$('.portada-titulo .letra');
-    gsap.fromTo(letras, { yPercent: 110 }, { yPercent: 0, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.03, immediateRender: false });
+    gsap.fromTo(letras, { yPercent: 110 }, { yPercent: 0, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.03, immediateRender: false, clearProps: 'transform' });
     gsap.fromTo('.portada-antetitulo, .portada-lado, .portada-pista', { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: 'expo.out', stagger: 0.08, delay: 0.35, immediateRender: false });
     gsap.fromTo('.portada-ticket', { yPercent: -160, rotate: -10 }, { yPercent: 0, rotate: 3, duration: 1.4, ease: 'elastic.out(1, .55)', delay: 0.5, immediateRender: false, clearProps: 'transform' });
   }
@@ -115,7 +115,7 @@
       ent.forEach(function (e) {
         if (!e.isIntersecting) return;
         ioTit.unobserve(e.target);
-        gsap.to($$('.letra', e.target), { yPercent: 0, y: 0, duration: 1, ease: 'expo.out', stagger: 0.045 });
+        gsap.to($$('.letra', e.target), { yPercent: 0, y: 0, duration: 1, ease: 'expo.out', stagger: 0.045, clearProps: 'transform' });
       });
     }, { rootMargin: '0px 0px -12% 0px' });
     titulos.forEach(function (el) { gsap.set(partir(el, false), { yPercent: 105, y: 0 }); ioTit.observe(el); });

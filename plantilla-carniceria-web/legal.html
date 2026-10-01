@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- SITIO DE DEMOSTRACIÓN. Carnicería Mouriscal es un negocio ficticio. -->
+<html lang="es" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aviso legal y privacidad · Mouriscal (demo)</title>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<script>
+  // AVISO: mando de DEMOSTRACIÓN de paleta; nunca viaja al sitio de un cliente.
+  (function () { var h = document.documentElement; h.classList.remove('no-js'); h.classList.add('js');
+    try { var p = localStorage.getItem('mouriscal-paleta'); if (p === 'azafran' || p === 'ciruela') h.classList.add('paleta-' + p); } catch (e) {} })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Onest:wght@300..700&family=Red+Hat+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+<style>
+  .legal { max-width: 46rem; margin: 0 auto; padding: calc(var(--cab-h) + 4rem) var(--margen) 6rem; }
+  .legal h1 { margin-bottom: 2.5rem; }
+  .legal h2 { font-family: var(--f-mono); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--acento-texto); margin: 2.5rem 0 .6rem; }
+  .legal p, .legal li { max-width: 62ch; }
+  .legal code { font-family: var(--f-mono); font-size: .9em; }
+</style>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+  <a class="marca" href="index.html" aria-label="Carnicería Mouriscal, volver al inicio">
+    <svg class="marca-sello" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#241013"/><g stroke="#F3EADF" stroke-width="2.2" stroke-linecap="round"><path d="M12 24 H52 M9 32 H55 M11 40 H53"/></g><path d="M22 9 L42 55" stroke="#D8573F" stroke-width="4.5" stroke-linecap="round"/></svg>
+    <span class="marca-texto"><span class="marca-nombre">Mouriscal</span><span class="marca-sub">Carnicería · charcutería · 1971</span></span>
+  </a>
+  <a href="index.html" class="boton boton-lleno">Volver</a>
+</header>
+<main id="contenido" class="legal">
+  <h1 class="titulo-medio">Aviso legal y privacidad</h1>
+
+  <h2>Qué es esta web</h2>
+  <p>Es un <strong>sitio de demostración</strong>. Carnicería Mouriscal es un negocio <strong>ficticio</strong>: no existe ningún local en la Rúa dos Coiteleiros de Vilalba, ni las personas que se nombran, ni los productos con esos precios. Los datos, los precios, las opiniones y las ilustraciones son de muestra y sirven para enseñar cómo quedaría la web de una carnicería real.</p>
+
+  <h2>Titular</h2>
+  <p>Al ser una demostración, no hay titular comercial ni NIF. Una web real pondría aquí la razón social, el NIF, el domicilio y el <strong>número de registro sanitario</strong> del establecimiento. Ese número es una inscripción en un registro público real y por eso aquí no se inventa.</p>
+
+  <h2>Precios y productos</h2>
+  <p>Todos los precios por kilo y por unidad son ficticios. La calculadora de cocido da cantidades orientativas. El formulario de encargo no envía nada: muestra un mensaje en la propia página y se queda ahí.</p>
+
+  <h2>Cookies y almacenamiento</h2>
+  <p>Esta web no instala cookies propias ni de terceros. Guarda en el <code>localStorage</code> de tu navegador:</p>
+  <ul>
+    <li><code>mouriscal-cookies</code>: que has cerrado el aviso de cookies.</li>
+    <li><code>mouriscal-maqueta</code> y <code>mouriscal-paleta</code>: solo si usas los mandos de demostración (densidad y color), que no forman parte de una web real.</li>
+  </ul>
+  <p>Puedes borrarlos desde los ajustes de tu navegador. El mapa de Google <strong>no se carga</strong> hasta que pulsas el botón; si lo pulsas, Google puede tratar datos según su propia política.</p>
+
+  <h2>Datos personales</h2>
+  <p>El formulario de encargo no transmite ni guarda lo que escribes. Una web real explicaría aquí quién trata los datos, para qué (gestionar el encargo), durante cuánto tiempo y cómo ejercer los derechos de acceso, rectificación y supresión.</p>
+
+  <h2>Ilustraciones</h2>
+  <p>Todas las ilustraciones son SVG propios de la plantilla. No se usa ninguna fotografía.</p>
+</main>
+<footer class="pie">
+  <div class="pie-marca"><span class="pie-nombre">Mouriscal</span><span>Carnicería y charcutería · Vilalba · desde 1971</span></div>
+  <nav class="pie-nav" aria-label="Pie"><a href="index.html">Inicio</a></nav>
+  <p class="pie-sello"><strong>Sitio de demostración.</strong> Carnicería Mouriscal es un negocio ficticio; los datos, fotografías y opiniones son de muestra. Precios ficticios.</p>
+</footer>
+</body>
+</html>
