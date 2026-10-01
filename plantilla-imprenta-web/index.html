@@ -1,0 +1,434 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Tres Milímetros es un negocio ficticio: el nombre, la
+  dirección, los teléfonos, los precios y las opiniones son de muestra y no
+  corresponden a ningún negocio real. Plantilla para reskinear (ver README.md).
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tres Milímetros · Imprenta y copistería en Pontevedra</title>
+  <meta name="description" content="Imprenta y copistería en Pontevedra: tarjetas, flyers, carteles, encuadernación de TFG y copias al momento. Revisamos tu archivo antes de imprimir.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#F4F1EA">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tres Milímetros · Imprenta y copistería en Pontevedra">
+  <meta property="og:description" content="Imprenta y copistería. Revisamos tu archivo antes de imprimir. Sitio de demostración.">
+  <meta property="og:image" content="img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Script bloqueante: marca JS y resuelve las preferencias del mando de
+       demostración ANTES del primer pintado.
+       MANDO DE DEMOSTRACIÓN: no viaja al sitio de un cliente (ver README, «Quitar el mando»). -->
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.add('js');
+      h.classList.add('d-registro');
+      h.classList.add('p-magenta');
+      try {
+        if (/[?&]revision\b/.test(location.search)) {
+          h.classList.add('es-revision');
+          var d = localStorage.getItem('tresmm-maqueta');
+          if (d === 'sobria') { h.classList.remove('d-registro'); h.classList.add('d-sobria'); }
+          var p = localStorage.getItem('tresmm-paleta');
+          if (p === 'cian' || p === 'bermellon') { h.classList.remove('p-magenta'); h.classList.add('p-' + p); }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..800&family=Instrument+Serif:ital@0;1&family=Red+Hat+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Tres Milímetros · imprenta e copistería",
+    "description": "Imprenta y copistería ficticia (sitio de demostración).",
+    "telephone": "+34 986 00 00 00",
+    "email": "ola@tresmilimetros.example",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rúa do Prelo, 14",
+      "postalCode": "36001",
+      "addressLocality": "Pontevedra",
+      "addressCountry": "ES"
+    },
+    "openingHours": ["Mo-Fr 09:00-14:00", "Mo-Fr 16:00-20:00", "Sa 10:00-13:30"],
+    "priceRange": "€"
+  }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <!-- Cortina: las cuatro planchas (C, M, Y, K) llegan desregistradas, casan y el
+       pliego sale de la máquina. Retirada garantizada (ver main.js y CSS). -->
+  <div class="cortina" id="cortina" aria-hidden="true">
+    <div class="cortina-pliego">
+      <div class="cortina-planchas">
+        <span class="plancha plancha-c">3</span><span class="plancha plancha-m">3</span><span class="plancha plancha-y">3</span><span class="plancha plancha-k">3</span>
+      </div>
+      <p class="cortina-texto">en registro</p>
+      <span class="corte corte-1"></span><span class="corte corte-2"></span><span class="corte corte-3"></span><span class="corte corte-4"></span>
+    </div>
+  </div>
+
+  <header class="cabecera">
+    <a class="marca" href="#inicio" aria-label="Tres Milímetros, imprenta y copistería en Pontevedra. Ir al inicio">
+      <svg class="marca-signo" viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
+        <path d="M2 10V2h8M38 2h8v8M46 38v8h-8M10 46H2v-8" fill="none" stroke="#16161A" stroke-width="2.4"/>
+        <g fill="none" stroke-width="5.2" stroke-linecap="square" stroke-linejoin="miter">
+          <path d="M15 11.5h17.5l-8.5 9.5c6.5-.5 10 3.5 10 8.5 0 6-4.8 10-11 10-4.6 0-8.2-2-9.8-5.4" stroke="#00A0E3" transform="translate(1.6 .8)" opacity=".9"/>
+          <path d="M15 11.5h17.5l-8.5 9.5c6.5-.5 10 3.5 10 8.5 0 6-4.8 10-11 10-4.6 0-8.2-2-9.8-5.4" stroke="#E6007E" transform="translate(-1.2 -.6)" opacity=".9"/>
+          <path d="M15 11.5h17.5l-8.5 9.5c6.5-.5 10 3.5 10 8.5 0 6-4.8 10-11 10-4.6 0-8.2-2-9.8-5.4" stroke="#16161A"/>
+        </g>
+      </svg>
+      <span class="marca-nombre">Tres Milímetros<span class="marca-sub">imprenta e copistería · Pontevedra</span></span>
+    </a>
+    <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu">
+      <span>Menú</span><span class="menu-boton-rayas" aria-hidden="true"><i></i><i></i></span>
+    </button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="#presupuesto">Presupuesto</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a href="#papeles">Papeles</a></li>
+        <li><a href="#copias">Copistería</a></li>
+        <li><a href="#mostrador">Dónde</a></li>
+      </ul>
+      <p class="menu-estado"><span class="estado-punto" aria-hidden="true"></span><span data-estado-corto>L–V 9:00–14:00 y 16:00–20:00 · S 10:00–13:30</span></p>
+    </nav>
+  </header>
+
+  <main id="principal">
+
+    <!-- ============ PORTADA ============ -->
+    <section class="portada" id="inicio" aria-labelledby="portada-titulo">
+      <div class="portada-texto">
+        <p class="etiqueta">Imprenta y copistería · Pontevedra · desde 1996</p>
+        <h1 class="portada-titulo" id="portada-titulo">
+          <span class="linea" data-reveal>Tres</span>
+          <span class="linea" data-reveal>Milímetros</span>
+        </h1>
+        <p class="portada-lema">Los tres milímetros de <em>sangrado</em> que te pedimos son la diferencia entre un corte limpio y un filo blanco. Revisamos tu archivo antes de imprimir, <strong>siempre y sin cobrarlo.</strong></p>
+        <div class="portada-acciones">
+          <a class="boton boton-lleno" href="#presupuesto" data-iman>Calcula tu presupuesto</a>
+          <a class="boton boton-hueco" href="#copias" data-iman>Copias al momento</a>
+        </div>
+      </div>
+
+      <figure class="pliego" id="pliego">
+        <div class="pliego-hoja">
+          <canvas id="trama" aria-hidden="true"></canvas>
+          <img class="pliego-respaldo" src="img/cartel.svg" width="600" height="800" alt="">
+          <span class="pliego-lupa" aria-hidden="true"></span>
+        </div>
+        <span class="marca-corte mc-1" aria-hidden="true"></span><span class="marca-corte mc-2" aria-hidden="true"></span><span class="marca-corte mc-3" aria-hidden="true"></span><span class="marca-corte mc-4" aria-hidden="true"></span>
+        <span class="tira-control" aria-hidden="true"><i class="tc-c"></i><i class="tc-m"></i><i class="tc-y"></i><i class="tc-k"></i><i class="tc-c50"></i><i class="tc-m50"></i><i class="tc-y50"></i><i class="tc-k50"></i></span>
+        <figcaption class="pliego-pie"><span>Cartel A3 · cuatricromía · lineatura <b id="lineatura">150</b> lpi</span><span>Pasa el cuentahílos por encima</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ 01 · PRESUPUESTO ============ -->
+    <section class="presupuesto seccion" id="presupuesto" aria-labelledby="presupuesto-titulo">
+      <div class="seccion-cabeza">
+        <p class="folio"><span class="folio-num">01</span><span class="folio-reg" aria-hidden="true"></span> Presupuesto al momento</p>
+        <h2 class="titulo-xl" id="presupuesto-titulo" data-reveal>Dinos qué y cuántos.</h2>
+        <p class="entradilla">Precio cerrado antes de empezar, con el plazo al lado. Los precios de esta página son <strong>de muestra</strong>.</p>
+      </div>
+
+      <div class="calc" id="calc">
+        <fieldset class="calc-productos">
+          <legend>Qué imprimimos</legend>
+          <div class="chips" id="calc-productos"></div>
+        </fieldset>
+        <label class="campo-rango" for="calc-cantidad">
+          <span>Cantidad: <b id="calc-cantidad-valor">250</b> <span id="calc-unidad">unidades</span></span>
+          <input type="range" id="calc-cantidad" min="0" max="7" step="1" value="2">
+        </label>
+        <fieldset class="calc-acabado">
+          <legend>Papel</legend>
+          <div class="chips" id="calc-papeles"></div>
+        </fieldset>
+
+        <div class="calc-resultado" aria-live="polite">
+          <p class="calc-total"><span id="calc-total">42,00 €</span><small>IVA incluido · de muestra</small></p>
+          <dl class="calc-datos">
+            <div><dt>Por unidad</dt><dd id="calc-unitario">0,17 €</dd></div>
+            <div><dt>Listo</dt><dd id="calc-plazo">en 48 h</dd></div>
+            <div><dt>Formato</dt><dd id="calc-formato">85 × 55 mm</dd></div>
+          </dl>
+        </div>
+
+        <figure class="calc-escala" aria-labelledby="calc-escala-pie">
+          <svg id="calc-svg" viewBox="0 0 420 300" role="img" aria-labelledby="calc-escala-pie"></svg>
+          <figcaption id="calc-escala-pie">Los formatos a la misma escala; en color, el que has elegido.</figcaption>
+        </figure>
+
+        <!-- Solo en «Sobria»: el dato que la versión cargada no enseña -->
+        <figure class="curva" aria-labelledby="curva-pie">
+          <svg id="curva-svg" viewBox="0 0 420 200" role="img" aria-labelledby="curva-pie"></svg>
+          <figcaption id="curva-pie"><strong>Lo que baja el precio por unidad con la cantidad</strong> (producto elegido, precios de muestra). El punto es tu pedido.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 02 · DEL ARCHIVO AL PLIEGO (anclada, horizontal) ============ -->
+    <section class="proceso" id="proceso" aria-labelledby="proceso-titulo">
+      <div class="proceso-fijo">
+        <div class="proceso-cabeza">
+          <p class="folio"><span class="folio-num">02</span><span class="folio-reg" aria-hidden="true"></span> Cómo trabajamos</p>
+          <h2 class="titulo-l" id="proceso-titulo" data-reveal>Del archivo al pliego, en seis pasadas.</h2>
+          <div class="proceso-tira" aria-hidden="true"><i id="proceso-avance"></i></div>
+        </div>
+        <div class="proceso-pista" id="proceso-pista" role="group" aria-label="Seis pasos del proceso, en horizontal">
+          <ol class="proceso-fila" id="proceso-fila">
+            <li class="etapa">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <rect x="60" y="20" width="180" height="150" fill="#FBFAF6" stroke="#16161A" stroke-width="2"/>
+                <rect x="72" y="32" width="156" height="126" fill="none" stroke="#E6007E" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <rect x="84" y="44" width="132" height="102" fill="none" stroke="#00A0E3" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <text x="150" y="190" text-anchor="middle" class="etapa-nota">sangrado 3 mm · margen seguro 5 mm</text>
+                <path d="M226 36l10 10M236 36l-10 10" stroke="#E6007E" stroke-width="2.4"/>
+              </svg>
+              <h3><span>01</span>Revisión del archivo</h3>
+              <p>Sangrado, resolución, CMYK, tipografías incrustadas. Si algo falla te llamamos antes, no después. Gratis siempre.</p>
+            </li>
+            <li class="etapa">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <rect x="20" y="20" width="260" height="160" fill="#FBFAF6" stroke="#16161A" stroke-width="2"/>
+                <g fill="#E9E4D8" stroke="#16161A" stroke-width="1">
+                  <rect x="34" y="32" width="54" height="64"/><rect x="96" y="32" width="54" height="64"/><rect x="158" y="32" width="54" height="64"/><rect x="220" y="32" width="54" height="64"/>
+                  <rect x="34" y="104" width="54" height="64"/><rect x="96" y="104" width="54" height="64"/><rect x="158" y="104" width="54" height="64"/><rect x="220" y="104" width="54" height="64"/>
+                </g>
+                <g class="etapa-num" text-anchor="middle"><text x="61" y="70">8</text><text x="123" y="70">1</text><text x="185" y="70">4</text><text x="247" y="70">5</text><text x="61" y="142">7</text><text x="123" y="142">2</text><text x="185" y="142">3</text><text x="247" y="142">6</text></g>
+              </svg>
+              <h3><span>02</span>Imposición</h3>
+              <p>Colocamos las páginas en el pliego para que, al plegar y cortar, salgan en orden. Ocho tarjetas o dieciséis páginas por hoja: menos papel, menos precio.</p>
+            </li>
+            <li class="etapa etapa-color">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <rect x="40" y="20" width="220" height="160" fill="#FBFAF6" stroke="#16161A" stroke-width="2"/>
+                <circle class="capa capa-c" cx="125" cy="88" r="46" fill="#00A0E3"/>
+                <circle class="capa capa-m" cx="170" cy="88" r="46" fill="#E6007E"/>
+                <circle class="capa capa-y" cx="148" cy="122" r="46" fill="#FFE500"/>
+                <rect class="capa capa-k" x="70" y="150" width="160" height="12" fill="#16161A"/>
+              </svg>
+              <h3><span>03</span>Cuatro pasadas de color</h3>
+              <p>Cian, magenta, amarillo y negro, uno encima de otro. Cada plancha tiene que caer en su sitio con una décima de milímetro de margen: eso es estar en registro.</p>
+            </li>
+            <li class="etapa">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <rect x="40" y="40" width="220" height="140" fill="#FBFAF6" stroke="#16161A" stroke-width="2"/>
+                <path d="M60 30v-14M240 30v-14M30 60H16M30 160H16M60 190v-6M240 190v-6M270 60h14M270 160h14" stroke="#16161A" stroke-width="1.5"/>
+                <rect class="cuchilla" x="10" y="8" width="280" height="22" fill="#55545C"/>
+                <path d="M10 30h280" stroke="#E6007E" stroke-width="2"/>
+              </svg>
+              <h3><span>04</span>Guillotina</h3>
+              <p>Cortamos por las marcas de corte. Por eso los tres milímetros: la cuchilla nunca cae exactamente en la línea, y el sangrado es lo que evita el filo blanco.</p>
+            </li>
+            <li class="etapa">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <path d="M60 40h90v130H60z" fill="#FBFAF6" stroke="#16161A" stroke-width="2"/>
+                <path d="M150 40l80 14v130l-80-14z" fill="#E9E4D8" stroke="#16161A" stroke-width="2"/>
+                <path d="M150 60v6M150 100v6M150 140v6" stroke="#55545C" stroke-width="4"/>
+                <path d="M84 72h44M84 86h44M84 100h30" stroke="#55545C" stroke-width="3"/>
+              </svg>
+              <h3><span>05</span>Plegado y encuadernado</h3>
+              <p>Grapa, espiral, térmica o tapa dura. Los trabajos de fin de grado, con lomo rotulado y en el día si llegas antes de las doce.</p>
+            </li>
+            <li class="etapa">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <rect x="70" y="60" width="160" height="110" fill="#E9E4D8" stroke="#16161A" stroke-width="2"/>
+                <path d="M70 60l80 40 80-40" fill="none" stroke="#16161A" stroke-width="2"/>
+                <rect x="96" y="120" width="108" height="30" fill="#FBFAF6" stroke="#16161A"/>
+                <text x="150" y="140" text-anchor="middle" class="etapa-nota">LISTO · 48 h</text>
+              </svg>
+              <h3><span>06</span>Entrega</h3>
+              <p>En el mostrador, en caja, con una prueba aparte para que la revises. O te lo llevamos dentro de Pontevedra por 4 €.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CINTA ============ -->
+    <section class="cinta" aria-labelledby="cinta-titulo">
+      <h2 class="cinta-titulo" id="cinta-titulo">En máquina hoy</h2>
+      <div class="cinta-pista" aria-hidden="true">
+        <p class="cinta-fila" id="cinta-fila"><span>500 tarjetas, estucado mate 350 g</span><span>Dos TFG en tapa dura</span><span>120 carteles A3 para unas fiestas</span><span>Menú de un bar del casco vello</span><span>3000 flyers A5</span><span>Planos A1 de un estudio</span><span>Invitaciones de boda en verjurado</span><span>Talonarios numerados</span></p>
+      </div>
+      <p class="sr-only">Trabajos de ejemplo en máquina: tarjetas, trabajos de fin de grado, carteles, cartas de bar, flyers, planos, invitaciones y talonarios.</p>
+    </section>
+
+    <!-- ============ 03 · PAPELES (abanico) ============ -->
+    <section class="papeles seccion" id="papeles" aria-labelledby="papeles-titulo">
+      <div class="papeles-texto">
+        <p class="folio"><span class="folio-num">03</span><span class="folio-reg" aria-hidden="true"></span> Muestrario</p>
+        <h2 class="titulo-xl" id="papeles-titulo" data-reveal>El papel también se lee.</h2>
+        <p class="entradilla">Siete papeles de la casa, del de fotocopia a la cartulina de invitación. Toca uno: en la tienda tienes el muestrario de verdad para tocarlo con los dedos.</p>
+        <div class="papel-ficha" id="papel-ficha" aria-live="polite">
+          <p class="papel-gramaje" id="papel-gramaje">350 g</p>
+          <h3 id="papel-nombre">Estucado mate</h3>
+          <p id="papel-uso">Tarjetas de visita y portadas. No brilla, no marca huellas y se escribe encima.</p>
+          <p class="nota" id="papel-grosor">Grosor aproximado: 0,36 mm</p>
+        </div>
+      </div>
+      <div class="abanico" id="abanico" role="group" aria-label="Muestrario de papeles"></div>
+    </section>
+
+    <!-- ============ 04 · COPISTERÍA ============ -->
+    <section class="copias seccion" id="copias" aria-labelledby="copias-titulo">
+      <div class="copias-texto">
+        <p class="folio"><span class="folio-num">04</span><span class="folio-reg" aria-hidden="true"></span> Copistería exprés</p>
+        <h2 class="titulo-xl" id="copias-titulo" data-reveal>Copias mientras esperas.</h2>
+        <p class="entradilla">Trae el USB, mándalo por correo o desde el móvil al mostrador. Lo que no lleva acabado, en el momento; lo encuadernado, en el día.</p>
+        <ul class="copias-cifras">
+          <li><b data-cuenta="5">5</b><span>céntimos la copia en blanco y negro</span></li>
+          <li><b data-cuenta="12">12</b><span>del mediodía: hora límite para el TFG en el día</span></li>
+        </ul>
+      </div>
+      <div class="tarifa">
+        <table>
+          <caption>Tarifa de copistería <small>(precios de muestra, IVA incluido)</small></caption>
+          <thead><tr><th scope="col">Trabajo</th><th scope="col">1–99</th><th scope="col">100 o más</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Copia A4 blanco y negro</th><td>0,05 €</td><td>0,04 €</td></tr>
+            <tr><th scope="row">Copia A4 color</th><td>0,25 €</td><td>0,18 €</td></tr>
+            <tr><th scope="row">Copia A3 color</th><td>0,50 €</td><td>0,38 €</td></tr>
+            <tr><th scope="row">Escaneado a PDF, página</th><td>0,10 €</td><td>0,06 €</td></tr>
+            <tr><th scope="row">Plano A1 (plotter)</th><td>3,00 €</td><td>2,40 €</td></tr>
+            <tr><th scope="row">Plastificado A4</th><td>1,00 €</td><td>0,80 €</td></tr>
+            <tr><th scope="row">Encuadernación espiral</th><td>2,50 €</td><td>2,00 €</td></tr>
+            <tr><th scope="row">Encuadernación térmica</th><td>3,50 €</td><td>3,00 €</td></tr>
+            <tr><th scope="row">TFG tapa dura con lomo rotulado</th><td>22,00 €</td><td>19,00 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 05 · MOSTRADOR ============ -->
+    <section class="mostrador seccion" id="mostrador" aria-labelledby="mostrador-titulo">
+      <p class="folio"><span class="folio-num">05</span><span class="folio-reg" aria-hidden="true"></span> Dónde estamos</p>
+      <h2 class="titulo-xl" id="mostrador-titulo" data-reveal>Rúa do Prelo, 14. Pontevedra.</h2>
+
+      <div class="mostrador-rejilla">
+        <form class="archivo" id="archivo" novalidate aria-labelledby="archivo-titulo">
+          <h3 id="archivo-titulo" class="archivo-titulo">Mándanos el archivo y te decimos si está listo.</h3>
+          <p class="nota">Formulario de demostración: no se envía nada ni se sube ningún archivo.</p>
+          <label class="campo"><span>Qué quieres imprimir</span><input name="trabajo" required placeholder="200 flyers A5 a dos caras"></label>
+          <div class="campo-doble">
+            <label class="campo"><span>Nombre</span><input name="nombre" required autocomplete="given-name"></label>
+            <label class="campo"><span>Correo o teléfono</span><input name="contacto" required autocomplete="email"></label>
+          </div>
+          <label class="casilla"><input type="checkbox" name="sangrado"> <span>Mi archivo ya lleva los 3 mm de sangrado</span></label>
+          <button class="boton boton-lleno" type="submit" data-iman>Enviar para revisar</button>
+          <p class="archivo-respuesta" id="archivo-respuesta" role="status"></p>
+        </form>
+
+        <div class="horario">
+          <p class="horario-estado"><span class="estado-punto" aria-hidden="true"></span><span data-estado-largo>Horario</span></p>
+          <table class="horario-tabla">
+            <caption class="sr-only">Horario de apertura</caption>
+            <tbody>
+              <tr data-dia="1"><th scope="row">Lunes</th><td>9:00–14:00 · 16:00–20:00</td></tr>
+              <tr data-dia="2"><th scope="row">Martes</th><td>9:00–14:00 · 16:00–20:00</td></tr>
+              <tr data-dia="3"><th scope="row">Miércoles</th><td>9:00–14:00 · 16:00–20:00</td></tr>
+              <tr data-dia="4"><th scope="row">Jueves</th><td>9:00–14:00 · 16:00–20:00</td></tr>
+              <tr data-dia="5"><th scope="row">Viernes</th><td>9:00–14:00 · 16:00–20:00</td></tr>
+              <tr data-dia="6"><th scope="row">Sábado</th><td>10:00–13:30</td></tr>
+              <tr data-dia="0"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+            </tbody>
+          </table>
+          <address class="datos">
+            <a href="tel:+34986000000">986 00 00 00</a>
+            <a href="mailto:ola@tresmilimetros.example">ola@tresmilimetros.example</a>
+            <span>Rúa do Prelo, 14 · 36001 Pontevedra</span>
+          </address>
+        </div>
+
+        <div class="mapa" id="mapa">
+          <svg class="mapa-dibujo" viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" fill="#E9E4D8"/>
+            <path d="M-10 230C90 200 180 250 260 210S370 150 410 170" stroke="#D3CCBC" stroke-width="30" fill="none"/>
+            <path d="M110-10 150 310M290-10 260 310M-10 100H410" stroke="#FBFAF6" stroke-width="14" fill="none"/>
+            <g transform="translate(205 128)"><path d="M-14-20h28M-20-14v28M14 20h-28M20 14v-28" stroke="#16161A" stroke-width="3"/><circle r="9" fill="var(--marca)"/></g>
+          </svg>
+          <p class="mapa-texto">El mapa de Google no se carga hasta que lo pides: así no entran cookies de terceros.</p>
+          <button class="boton boton-lleno" id="mapa-boton" type="button" data-iman>Cargar el mapa</button>
+        </div>
+
+        <div class="voces">
+          <h3 class="voces-titulo">Recogido en el mostrador <small>(opiniones de muestra)</small></h3>
+          <blockquote><p>«Me llamaron porque el logo estaba en RGB y salía apagado. Lo arreglaron ellos y la tarjeta salió como en la pantalla.»</p><footer>— Antía, estudio de diseño</footer></blockquote>
+          <blockquote><p>«Entregué el TFG a las once y media y a las siete lo tenía en tapa dura con el lomo bien escrito.»</p><footer>— Brais, Bellas Artes</footer></blockquote>
+        </div>
+
+        <div class="equipo">
+          <h3 class="voces-titulo">En la máquina</h3>
+          <p><strong>Rosa Quintáns Vidal</strong> abrió la imprenta en 1996 con una offset de un cuerpo. Preimpresión y color: si tu archivo tiene un problema, te llama ella.</p>
+          <p><strong>Iago Barreiro Outón</strong> lleva la copistería, la guillotina y la encuadernación. Los TFG pasan por sus manos.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="pie-marca">
+      <svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true">
+        <path d="M2 10V2h8M38 2h8v8M46 38v8h-8M10 46H2v-8" fill="none" stroke="#16161A" stroke-width="2.4"/>
+        <g fill="none" stroke-width="5.2" stroke-linecap="square" stroke-linejoin="miter">
+          <path d="M15 11.5h17.5l-8.5 9.5c6.5-.5 10 3.5 10 8.5 0 6-4.8 10-11 10-4.6 0-8.2-2-9.8-5.4" stroke="#00A0E3" transform="translate(1.6 .8)" opacity=".9"/>
+          <path d="M15 11.5h17.5l-8.5 9.5c6.5-.5 10 3.5 10 8.5 0 6-4.8 10-11 10-4.6 0-8.2-2-9.8-5.4" stroke="#E6007E" transform="translate(-1.2 -.6)" opacity=".9"/>
+          <path d="M15 11.5h17.5l-8.5 9.5c6.5-.5 10 3.5 10 8.5 0 6-4.8 10-11 10-4.6 0-8.2-2-9.8-5.4" stroke="#16161A"/>
+        </g>
+      </svg>
+      <p class="pie-lema">Tres milímetros<br><em>de margen, y ni uno más.</em></p>
+    </div>
+    <div class="pie-datos">
+      <p>Tres Milímetros · imprenta e copistería · Rúa do Prelo, 14 · 36001 Pontevedra<br>986 00 00 00 · ola@tresmilimetros.example</p>
+      <p><a href="legal.html">Aviso legal y privacidad</a> · <button class="enlace-boton" type="button" id="cookies-reabrir">Aviso de cookies</button></p>
+      <p class="sello">Sitio de demostración. Tres Milímetros es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+    </div>
+  </footer>
+
+  <div class="cookies" id="cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <p>Sin cookies de seguimiento. Solo guardamos en tu navegador que has cerrado este aviso (y, en modo revisión, la versión elegida en el mando). El mapa de Google se carga solo si lo pides.</p>
+    <button class="boton boton-lleno" id="cookies-ok" type="button">Entendido</button>
+  </div>
+
+  <!-- MANDO DE DEMOSTRACIÓN (densidad y paleta). NO viaja al sitio de un cliente:
+       ver README, «Quitar el mando». Solo aparece con ?revision en la dirección. -->
+  <div class="mando" id="mando" role="group" aria-label="Mando de demostración" hidden>
+    <div class="mando-grupo" role="group" aria-label="Densidad visual">
+      <span class="mando-tit">Maqueta</span>
+      <button type="button" data-maqueta="registro" aria-pressed="true">Registro</button>
+      <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+    </div>
+    <div class="mando-grupo" role="group" aria-label="Color de marca">
+      <span class="mando-tit">Color</span>
+      <button type="button" data-paleta="magenta" aria-pressed="true"><i style="background:#E6007E"></i>Magenta</button>
+      <button type="button" data-paleta="cian" aria-pressed="false"><i style="background:#018FAC"></i>Cian</button>
+      <button type="button" data-paleta="bermellon" aria-pressed="false"><i style="background:#EC1C01"></i>Bermellón</button>
+    </div>
+  </div>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor-aro"></span><span class="cursor-punto"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
