@@ -24,7 +24,8 @@ async function nueva(b, vp, opts = {}) {
   if (opts.cookies !== false) await ctx.addInitScript(() => { try { localStorage.setItem('pegada-cookies', '1'); } catch (e) {} });
   const page = await ctx.newPage();
   const log = { errores: [], peticiones: [] };
-  page.on('console', m => { if (m.type() === 'error') log.errores.push(m.text()); });
+  // Con el CDN tumbado a propósito, Chromium anota un ERR_FAILED por cada script bloqueado: eso es la prueba, no un fallo.
+  page.on('console', m => { if (m.type() === 'error' && !(opts.sinCdn && /ERR_FAILED/.test(m.text()))) log.errores.push(m.text()); });
   page.on('pageerror', e => log.errores.push('pageerror: ' + e.message));
   page.on('response', r => { if (r.status() >= 400) log.errores.push(r.status() + ' ' + r.url()); });
   page.on('requestfailed', r => { if (!(opts.sinCdn && r.url().includes('jsdelivr'))) log.errores.push('falla ' + r.url()); });
@@ -134,7 +135,7 @@ async function pruebas(b) {
     const colores = {};
     for (const p of ['mar', 'granate', 'musgo']) {
       await page.click('[data-paleta="' + p + '"]');
-      await page.waitForTimeout(200);
+      await page.waitForTimeout(700); // el botón lleva transición de color de .35 s
       colores[p] = await page.evaluate(() => ({ boton: getComputedStyle(document.querySelector('.nav-cta')).backgroundColor, pres: [...document.querySelectorAll('[data-paleta]')].map(b => b.getAttribute('aria-pressed')).join(','), ls: localStorage.getItem('pegada-paleta'), logo: getComputedStyle(document.querySelector('.logo-marca')).getPropertyValue('--marca-fondo') }));
     }
     ok('las tres paletas cambian el color computado de un botón real', new Set(Object.values(colores).map(c => c.boton)).size === 3, colores);
@@ -256,7 +257,7 @@ async function pruebas(b) {
       await page.goto(BASE + u); await page.waitForTimeout(400);
       const t = await page.evaluate(() => document.body.textContent);
       const robots = await page.evaluate(() => (document.querySelector('meta[name=robots]') || {}).content);
-      ok(u + ': sin [PENDIENTE], TODO ni lorem; noindex, nofollow; sello', !/\[PENDIENTE\]|\bTODO\b|lorem ipsum/i.test(t) && robots === 'noindex, nofollow' && /Sitio de demostración/.test(t), robots);
+      ok(u + ': sin [PENDIENTE], TODO ni lorem; noindex, nofollow; sello', !/\[PENDIENTE\]|\bTODO\b/.test(t) && !/lorem ipsum/i.test(t) && robots === 'noindex, nofollow' && /Sitio de demostración/.test(t), robots);
     }
     await ctx.close();
   }
