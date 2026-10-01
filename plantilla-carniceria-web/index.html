@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Mouriscal · Carnicería y charcutería en Vilalba (demo)</title>
-<meta name="description" content="Carnicería y charcutería ficticia en Vilalba: ternera gallega, cerdo y aves, embutido curado en casa, encargos de cocido y mostrador del día. Sitio de demostración.">
+<meta name="description" content="Carnicería y charcutería ficticia en Vilalba: ternera de rubia gallega, cerdo y aves, embutido curado en casa, encargos de cocido y mostrador del día. Sitio de demostración.">
 <meta name="theme-color" content="#241013">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
@@ -20,17 +20,18 @@
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <script>
-  // Bloqueante a propósito: aplica densidad y paleta antes del primer pintado.
-  // AVISO: el mando de maqueta y el de paleta son de DEMOSTRACIÓN y NUNCA viajan
-  // al sitio de un cliente. Receta de borrado en el README («Quitar los mandos»).
+  // Bloqueante a propósito: aplica las clases antes del primer pintado.
   (function () {
     var h = document.documentElement;
     h.classList.remove('no-js'); h.classList.add('js');
     try {
+      // mandos: densidad y color de la DEMOSTRACIÓN. AVISO: NUNCA viajan al sitio
+      // de un cliente; receta de borrado en el README («Quitar los mandos»).
       var m = localStorage.getItem('mouriscal-maqueta');
       if (m === 'sobria') h.classList.add('maqueta-sobria');
       var p = localStorage.getItem('mouriscal-paleta');
       if (p === 'azafran' || p === 'ciruela') h.classList.add('paleta-' + p);
+      // /mandos
     } catch (e) {}
   })();
 </script>
@@ -113,7 +114,7 @@
       <span class="t-linea t-cursiva" data-revelar>a contraveta.</span>
     </h1>
     <div class="portada-lado">
-      <p class="portada-entradilla">Ternera gallega, cerdo de cebo y aves de corral de granjas a menos de treinta kilómetros. Embutido curado en el sobrado de casa. Y un cuchillo que va siempre de través a la fibra, porque así la carne se deja masticar.</p>
+      <p class="portada-entradilla">Ternera de raza rubia gallega, cerdo de cebo y aves de corral de granjas a menos de treinta kilómetros. Embutido curado en el sobrado de casa. Y un cuchillo que va siempre de través a la fibra, porque así la carne se deja masticar.</p>
       <div class="portada-botones">
         <a class="boton boton-lleno" data-iman href="#mostrador">Ver el mostrador de hoy</a>
         <a class="boton boton-linea" data-iman href="#encargos">Encargar para el cocido</a>
@@ -695,6 +696,7 @@
     <button type="button" data-paleta="ciruela" aria-pressed="false"><i style="background:#D2588F"></i>Ciruela</button>
   </div>
 </div>
+<!-- /mandos -->
 
 <div class="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"><span class="cursor-texto"></span></span></div>
 

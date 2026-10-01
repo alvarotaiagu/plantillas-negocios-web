@@ -1,0 +1,167 @@
+{
+  "normal: la cortina acaba en display:none": {
+    "ok": true,
+    "info": "none"
+  },
+  "la cortina es de otro color que el fondo": {
+    "ok": true,
+    "info": [
+      "rgb(23, 63, 53)",
+      "rgb(228, 235, 229)"
+    ]
+  },
+  "cookies: visible al entrar y el mando se aparta": {
+    "ok": true,
+    "info": {
+      "cookies": "flex",
+      "mandos": "none"
+    }
+  },
+  "cookies: el botón lo cierra de verdad y aparece el mando": {
+    "ok": true,
+    "info": {
+      "cookies": "none",
+      "mandos": "flex",
+      "ls": "1"
+    }
+  },
+  "menú móvil: abre, aria-expanded y alto de pantalla entera": {
+    "ok": true,
+    "info": {
+      "exp": "true",
+      "h": 844,
+      "top": 0,
+      "ih": 844
+    }
+  },
+  "menú móvil: el mismo botón lo cierra": {
+    "ok": true
+  },
+  "menú móvil: un enlace navega y cierra": {
+    "ok": true
+  },
+  "mapa: no existe hasta el clic y luego sí": {
+    "ok": true,
+    "info": "https://www.google.com/maps?q=R%C3%BAa%20dos%20Coiteleiros%209%2C%2027800%20Vilalba%2C%20Lugo&output=embed"
+  },
+  "cursor propio: nunca en táctil": {
+    "ok": false
+  },
+  "cursor propio: aparece con el primer movimiento de ratón y oculta el nativo": {
+    "ok": true,
+    "info": {
+      "on": true,
+      "nativo": "none",
+      "clase": "cursor es-cuchillo"
+    }
+  },
+  "cursor propio: sobre la portada es el cuchillo": {
+    "ok": true,
+    "info": "cursor es-cuchillo"
+  },
+  "sobria: retira los dibujos de curados y pone el dato en grande": {
+    "ok": true,
+    "info": {
+      "clase": true,
+      "dibujos": 0,
+      "num": 104,
+      "comparador": "block",
+      "filas": 18,
+      "sw": 1440,
+      "ls": "sobria",
+      "pressed": "true"
+    }
+  },
+  "sobria: añade el comparador de precios (18 filas)": {
+    "ok": true,
+    "info": 18
+  },
+  "sobria: sin desbordamiento nuevo, aria-pressed y localStorage": {
+    "ok": true,
+    "info": {
+      "clase": true,
+      "dibujos": 0,
+      "num": 104,
+      "comparador": "block",
+      "filas": 18,
+      "sw": 1440,
+      "ls": "sobria",
+      "pressed": "true"
+    }
+  },
+  "sobria: se puede volver a Contraveta": {
+    "ok": true
+  },
+  "paleta azafran: cambia el color real, aria-pressed y localStorage": {
+    "ok": true,
+    "info": {
+      "precio": "rgb(127, 86, 8)",
+      "boton": "rgb(110, 74, 5)",
+      "logo": "rgb(216, 87, 63)",
+      "pressed": "true",
+      "ls": "azafran"
+    }
+  },
+  "paleta azafran: el logo no cambia": {
+    "ok": true
+  },
+  "paleta ciruela: cambia el color real, aria-pressed y localStorage": {
+    "ok": true,
+    "info": {
+      "precio": "rgb(154, 44, 94)",
+      "boton": "rgb(134, 36, 79)",
+      "logo": "rgb(216, 87, 63)",
+      "pressed": "true",
+      "ls": "ciruela"
+    }
+  },
+  "paleta ciruela: el logo no cambia": {
+    "ok": true
+  },
+  "paletas: contraste ≥4,5 en texto y ≥7 en botón": {
+    "ok": true,
+    "info": {
+      "lomo": {
+        "textoAzulejo": 5.83,
+        "textoPanel": 5.18,
+        "boton": 7.96,
+        "claroMostrador": 4.58
+      },
+      "paleta-azafran": {
+        "textoAzulejo": 5.35,
+        "textoPanel": 4.75,
+        "boton": 7.51,
+        "claroMostrador": 5.78
+      },
+      "paleta-ciruela": {
+        "textoAzulejo": 5.98,
+        "textoPanel": 5.31,
+        "boton": 8.35,
+        "claroMostrador": 4.75
+      }
+    }
+  },
+  "contrastePaletas": {
+    "lomo": {
+      "textoAzulejo": 5.83,
+      "textoPanel": 5.18,
+      "boton": 7.96,
+      "claroMostrador": 4.58
+    },
+    "paleta-azafran": {
+      "textoAzulejo": 5.35,
+      "textoPanel": 4.75,
+      "boton": 7.51,
+      "claroMostrador": 5.78
+    },
+    "paleta-ciruela": {
+      "textoAzulejo": 5.98,
+      "textoPanel": 5.31,
+      "boton": 8.35,
+      "claroMostrador": 4.75
+    }
+  },
+  "paleta: al recargar se aplica antes del load (sin parpadeo)": {
+    "ok": true
+  }
+}

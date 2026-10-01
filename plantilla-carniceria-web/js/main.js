@@ -719,6 +719,7 @@
     });
     marcar();
   })();
+  /* /mandos */
 
   /* ---------- Imán ---------- */
   if (motion && ratonFino) {
@@ -735,7 +736,7 @@
   /* ---------- Cursor propio: punto + aro, solo con ratón y nunca en táctil ---------- */
   (function () {
     var cur = $('.cursor');
-    if (!cur || reducido) return;
+    if (!cur || reducido || !ratonFino) return; // en táctil nunca, aunque llegue un evento «mouse» sintético
     var punto = $('.cursor-punto'), aro = $('.cursor-aro'), txt = $('.cursor-texto');
     var ax = 0, ay = 0, mx = 0, my = 0, encendido = false;
     window.addEventListener('pointermove', function (e) {

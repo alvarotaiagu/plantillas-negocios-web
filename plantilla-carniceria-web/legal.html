@@ -10,7 +10,11 @@
 <script>
   // AVISO: mando de DEMOSTRACIÓN de paleta; nunca viaja al sitio de un cliente.
   (function () { var h = document.documentElement; h.classList.remove('no-js'); h.classList.add('js');
-    try { var p = localStorage.getItem('mouriscal-paleta'); if (p === 'azafran' || p === 'ciruela') h.classList.add('paleta-' + p); } catch (e) {} })();
+    try {
+      // mandos: color de la demostración
+      var p = localStorage.getItem('mouriscal-paleta'); if (p === 'azafran' || p === 'ciruela') h.classList.add('paleta-' + p);
+      // /mandos
+    } catch (e) {} })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +45,7 @@
 
   <h2>Titular</h2>
   <p>Al ser una demostración, no hay titular comercial ni NIF. Una web real pondría aquí la razón social, el NIF, el domicilio y el <strong>número de registro sanitario</strong> del establecimiento. Ese número es una inscripción en un registro público real y por eso aquí no se inventa.</p>
+  <p>Tampoco se atribuye ninguna indicación geográfica protegida ni marca de garantía (como la IGP Ternera Gallega): «rubia gallega» es el nombre de una raza. Una carnicería real solo puede usar esos sellos si está acreditada.</p>
 
   <h2>Precios y productos</h2>
   <p>Todos los precios por kilo y por unidad son ficticios. La calculadora de cocido da cantidades orientativas. El formulario de encargo no envía nada: muestra un mensaje en la propia página y se queda ahí.</p>
