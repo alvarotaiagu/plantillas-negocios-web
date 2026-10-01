@@ -1,0 +1,48 @@
+<!--
+  SITIO DE DEMOSTRACIÓN. Treboada · Escola de Surf es un negocio FICTICIO.
+  Rutas absolutas a propósito: GitHub Pages sirve este 404 en cualquier
+  profundidad de ruta. Si el repositorio cambia de nombre, cambiar el prefijo.
+-->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esta ola no llegó · Treboada (demo)</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#07141A">
+<link rel="icon" href="/plantilla-escuela-surf-web/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500;600&family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&display=swap">
+<link rel="stylesheet" href="/plantilla-escuela-surf-web/css/estilos.css">
+<style>
+  .error { min-height: 100svh; display: grid; align-content: end; padding: var(--lado); position: relative; overflow: hidden; background: var(--abismo); }
+  .error svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .error-cifra { font-family: var(--m); color: var(--vidrio); margin: 0 0 1rem; position: relative; }
+  .error h1 { position: relative; font-size: clamp(3.2rem, 13vw, 12rem); text-transform: uppercase; font-variation-settings: "wdth" 25, "wght" 900, "opsz" 144; line-height: .82; margin-bottom: 1.6rem; }
+  .error p { position: relative; max-width: 34rem; }
+  .error .boton { position: relative; justify-self: start; margin-top: 1rem; }
+  .error path { animation: deriva 7s ease-in-out infinite alternate; }
+  .error path:nth-child(2n) { animation-delay: -3s; }
+  @keyframes deriva { to { transform: translateY(18px); } }
+</style>
+</head>
+<body>
+<main class="error">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#1E3843" stroke-width="2">
+      <path d="M0 160 C360 146 760 148 1440 162"/><path d="M0 230 C360 214 760 220 1440 234"/>
+      <path d="M0 320 C380 304 820 318 1440 326"/><path d="M0 430 C400 410 860 440 1440 440"/>
+      <path d="M0 560 C420 536 900 586 1440 572"/>
+    </g>
+    <circle cx="1000" cy="300" r="34" fill="#040B0F" stroke="#3D5965" stroke-width="2"/>
+  </svg>
+  <p class="error-cifra">Error 404 · página no encontrada</p>
+  <h1>Esta ola no llegó a la orilla</h1>
+  <p>Se quedó por el camino, o nunca existió. Vuelve a la portada y mira qué está entrando hoy.</p>
+  <a class="boton boton-lleno" href="/plantilla-escuela-surf-web/">Volver a la portada</a>
+  <p class="sello" style="margin-top:2rem;border:0;padding:0">Sitio de demostración. Treboada es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</main>
+</body>
+</html>
