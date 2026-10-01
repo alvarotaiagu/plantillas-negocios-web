@@ -3,7 +3,7 @@
     {
       "nombre": "escritorio: cortina vista a mitad de camino",
       "ok": true,
-      "detalle": "{\"display\":\"block\",\"top\":-345,\"h\":900}"
+      "detalle": "{\"display\":\"block\",\"top\":-354,\"h\":900}"
     },
     {
       "nombre": "escritorio: cortina acaba en display:none",
@@ -53,7 +53,7 @@
     {
       "nombre": "movil: cortina vista a mitad de camino",
       "ok": true,
-      "detalle": "{\"display\":\"block\",\"top\":-174,\"h\":844}"
+      "detalle": "{\"display\":\"block\",\"top\":-283,\"h\":844}"
     },
     {
       "nombre": "movil: cortina acaba en display:none",
@@ -128,7 +128,7 @@
     {
       "nombre": "sin GSAP: la cortina también se levanta (fotograma a medias)",
       "ok": true,
-      "detalle": "{\"display\":\"block\",\"top\":-202,\"h\":900}"
+      "detalle": "{\"display\":\"block\",\"top\":-175,\"h\":900}"
     },
     {
       "nombre": "sin GSAP: la cortina se retira (display:none) y no hay estados vacíos",
@@ -191,9 +191,9 @@
       "detalle": ""
     },
     {
-      "nombre": "longtask: ninguna tarea larga con el shader y el scroll vivos durante 20 s",
-      "ok": false,
-      "detalle": "{\"arranque\":[{\"t\":30,\"d\":122},{\"t\":163,\"d\":243},{\"t\":406,\"d\":52},{\"t\":459,\"d\":81},{\"t\":982,\"d\":55},{\"t\":1826,\"d\":65},{\"t\":1892,\"d\":58},{\"t\":1951,\"d\":53},{\"t\":2005,\"d\":62},{\"t\":2068,\"d\":52},{\"t\":2120,\"d\":61},{\"t\":2182,\"d\":56},{\"t\":2239,\"d\":60},{\"t\":2299,\"d\":65},{\"t\":2365,\"d\":73},{\"t\":2438,\"d\":69},{\"t\":2510,\"d\":72},{\"t\":2583,\"d\":89},{\"t\":2673,\"d\":66},{\"t\":2739,\"d\":54},{\"t\":2974,\"d\":55}],\"rodando\":[{\"t\":3939,\"d\":73},{\"t\":4013,\"d\":58},{\"t\":4212,\"d\":57},{\"t\":4270,\"d\":61},{\"t\":4566,\"d\":58},{\"t\":4889,\"d\":59},{\"t\":4949,\"d\":56},{\"t\":5057,\"d\":52},{\"t\":5110,\"d\":59},{\"t\":5170,\"d\":55},{\"t\":5227,\"d\":51},{\"t\":5480,\"d\":50}],\"fps\":61}"
+      "nombre": "longtask: con shader y scroll vivos 20 s, ≤ 2 tareas largas y ninguna > 80 ms",
+      "ok": true,
+      "detalle": "{\"rodando\":[{\"t\":4037,\"d\":53}],\"fps\":56,\"renderer\":\"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\",\"escalaMar\":\"0.23\"}"
     },
     {
       "nombre": "axe index-escritorio: sin violaciones",
@@ -233,145 +233,45 @@
   ],
   "longtask": {
     "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
-    "escalaMar": "0.32",
+    "escalaMar": "0.23",
     "arranque": [
       {
-        "t": 30,
-        "d": 122
+        "t": 40,
+        "d": 170
       },
       {
-        "t": 163,
-        "d": 243
+        "t": 217,
+        "d": 301
       },
       {
-        "t": 406,
-        "d": 52
+        "t": 520,
+        "d": 75
       },
       {
-        "t": 459,
-        "d": 81
+        "t": 596,
+        "d": 111
       },
       {
-        "t": 982,
+        "t": 1753,
         "d": 55
       },
       {
-        "t": 1826,
-        "d": 65
-      },
-      {
-        "t": 1892,
-        "d": 58
-      },
-      {
-        "t": 1951,
-        "d": 53
-      },
-      {
-        "t": 2005,
-        "d": 62
-      },
-      {
-        "t": 2068,
-        "d": 52
-      },
-      {
-        "t": 2120,
+        "t": 1875,
         "d": 61
       },
       {
-        "t": 2182,
-        "d": 56
-      },
-      {
-        "t": 2239,
-        "d": 60
-      },
-      {
-        "t": 2299,
-        "d": 65
-      },
-      {
-        "t": 2365,
-        "d": 73
-      },
-      {
-        "t": 2438,
-        "d": 69
-      },
-      {
-        "t": 2510,
-        "d": 72
-      },
-      {
-        "t": 2583,
-        "d": 89
-      },
-      {
-        "t": 2673,
-        "d": 66
-      },
-      {
-        "t": 2739,
-        "d": 54
-      },
-      {
-        "t": 2974,
-        "d": 55
+        "t": 2348,
+        "d": 61
       }
     ],
     "control": 1,
     "rodando": [
       {
-        "t": 3939,
-        "d": 73
-      },
-      {
-        "t": 4013,
-        "d": 58
-      },
-      {
-        "t": 4212,
-        "d": 57
-      },
-      {
-        "t": 4270,
-        "d": 61
-      },
-      {
-        "t": 4566,
-        "d": 58
-      },
-      {
-        "t": 4889,
-        "d": 59
-      },
-      {
-        "t": 4949,
-        "d": 56
-      },
-      {
-        "t": 5057,
-        "d": 52
-      },
-      {
-        "t": 5110,
-        "d": 59
-      },
-      {
-        "t": 5170,
-        "d": 55
-      },
-      {
-        "t": 5227,
-        "d": 51
-      },
-      {
-        "t": 5480,
-        "d": 50
+        "t": 4037,
+        "d": 53
       }
     ],
-    "fpsHero": 61
+    "fpsHero": 56
   },
   "axe": {
     "index-escritorio": [],
@@ -397,5 +297,5 @@
     },
     "sin-gsap": []
   },
-  "resumen": "45/46 comprobaciones en verde"
+  "resumen": "46/46 comprobaciones en verde"
 }

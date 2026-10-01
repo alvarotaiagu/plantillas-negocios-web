@@ -474,13 +474,16 @@ void main(){
     if (sv > 0) {
       const sx = xc + ancho * 0.55, sy = sup(sx);
       const pend = Math.atan2(sup(sx + 6) - sup(sx - 6), 12) * 180 / Math.PI;
-      surfista.setAttribute('transform', `translate(${sx.toFixed(1)} ${(sy - 2).toFixed(1)}) rotate(${pend.toFixed(1)}) scale(1.15)`);
+      // el surfista vive fuera del grupo exagerado: se lleva su punto a la misma escala
+      const pendV = Math.atan(Math.tan(pend * Math.PI / 180) * 1.6) * 180 / Math.PI;
+      surfista.setAttribute('transform', `translate(${sx.toFixed(1)} ${(sy * 1.6 - 180 - 3).toFixed(1)}) rotate(${pendV.toFixed(1)}) scale(1.25)`);
     }
     surfista.setAttribute('opacity', sv.toFixed(2));
     surfista.classList.toggle('de-pie', p > 0.88);
     const bv = 1 - smooth(0.18, 0.32, p);
     borrasca.setAttribute('opacity', bv.toFixed(2));
-    borrasca.setAttribute('transform', `translate(170 150) rotate(${(-tiempo * 12 - p * 200).toFixed(1)})`);
+    $('#borrasca-rotulo').setAttribute('opacity', bv.toFixed(2));
+    borrasca.setAttribute('transform', `translate(190 215) rotate(${(-tiempo * 12 - p * 200).toFixed(1)})`);
     marca.setAttribute('x1', xc.toFixed(1)); marca.setAttribute('x2', xc.toFixed(1));
     marca.setAttribute('y1', yc.toFixed(1)); marca.setAttribute('y2', lecho(xc).toFixed(1));
     dProf.textContent = h >= 100 ? fmt(Math.round(h / 10) * 10) + ' m' : h >= 10 ? fmt(h) + ' m' : fmt(h, 1) + ' m';
@@ -691,14 +694,16 @@ void main(){
     reserva.reset();
   });
 
-  /* ————————————————— Cookies + mandos de demostración ————————————————— */
-  const cookies = $('#cookies'), mandos = $('#mandos');
-  const mostrarMandos = () => { if (revision) mandos.hidden = false; };
-  if (store.get('treboada-cookies') === 'ok') mostrarMandos();
-  else cookies.hidden = false;
+  /* ————————————————— Aviso de cookies ————————————————— */
+  const cookies = $('#cookies');
+  let mostrarMandos = () => {};
+  if (store.get('treboada-cookies') !== 'ok') cookies.hidden = false;
   $('#cookies-ok').addEventListener('click', () => { store.set('treboada-cookies', 'ok'); cookies.hidden = true; mostrarMandos(); });
 
-  // MANDOS DE DEMOSTRACIÓN — NO VIAJAN AL SITIO DE UN CLIENTE (ver README).
+  /* MANDOS:INICIO — mandos de demostración. NO VIAJAN AL SITIO DE UN CLIENTE (ver README). */
+  const mandos = $('#mandos');
+  mostrarMandos = () => { if (revision) mandos.hidden = false; };
+  if (store.get('treboada-cookies') === 'ok') mostrarMandos();
   const refrescar = () => { medirPila(); if (gsapReady) ScrollTrigger.refresh(); };
   const marcar = () => {
     $$('[data-maqueta]', mandos).forEach(b => b.setAttribute('aria-pressed', String((b.dataset.maqueta === 'sobria') === sobria())));
@@ -717,7 +722,7 @@ void main(){
     marcar(); html.dispatchEvent(new Event('paleta'));
   }));
   marcar();
-  // FIN MANDOS DE DEMOSTRACIÓN
+  /* MANDOS:FIN */
 
   /* ————————————————— Cursor propio y botones magnéticos (solo ratón) ————————————————— */
   const cursor = $('.cursor'), aro = $('.cursor-aro'), punto = $('.cursor-punto'), texto = $('.cursor-texto');

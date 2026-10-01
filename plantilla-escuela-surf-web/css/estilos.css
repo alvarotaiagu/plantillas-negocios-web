@@ -25,10 +25,11 @@
   --cab: 72px;
   --lado: clamp(16px, 4vw, 56px);
 }
-/* Paletas alternativas del mando de demostración: solo cambia el acento.
+/* MANDOS:INICIO — paletas alternativas del mando de demostración: solo cambia el acento.
    NO VIAJAN AL SITIO DE UN CLIENTE (ver README, «Borrar los mandos»). */
 html.paleta-xeo { --vidrio: #B8D4EC; }
 html.paleta-liquen { --vidrio: #C7D974; }
+/* MANDOS:FIN */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { overflow-x: clip; -webkit-text-size-adjust: 100%; background: var(--fondo); }
@@ -242,11 +243,11 @@ html.webgl-si .portada-respaldo { display: none; }
 .corte-rotulo, .corte-zonas text { font-family: var(--m); font-size: 18px; fill: var(--humo); }
 .corte-rotulo { fill: var(--vidrio); }
 #corte-ola { stroke: var(--espuma); }
-.viaje-datos { position: absolute; right: 0; top: 0; font-size: .78rem; background: rgba(4,11,15,.7); padding: .6rem .8rem; border: 1px solid var(--linea); }
-.viaje-datos dl { margin: 0; display: grid; gap: .2rem; }
-.viaje-datos dl div { display: flex; justify-content: space-between; gap: 1.2rem; }
+.viaje-datos { font-size: .78rem; margin-top: .8rem; border-top: 1px solid var(--linea); padding-top: .7rem; }
+.viaje-datos dl { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .2rem 1.2rem; }
+.viaje-datos dl div { display: grid; gap: .1rem; }
 .viaje-datos dt { color: var(--humo); }
-.viaje-datos dd { margin: 0; color: var(--vidrio); font-weight: 600; min-width: 6.5ch; text-align: right; }
+.viaje-datos dd { margin: 0; color: var(--vidrio); font-weight: 600; font-size: 1.15rem; }
 .viaje-pasos { grid-column: 3; grid-row: 1 / 4; align-self: center; list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
 .paso { border-top: 1px solid var(--linea); padding: .7rem 0 .4rem; }
 .paso-boton { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; display: grid; gap: .2rem; width: 100%; }
@@ -267,10 +268,8 @@ html.viaje-vivo .paso.es-activo .paso-titulo { color: var(--espuma); font-variat
   .viaje-pin { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: .8rem; padding-top: calc(var(--cab) + 1rem); }
   .viaje-cab, .viaje-escena, .viaje-pasos { grid-column: 1; grid-row: auto; }
   .viaje-intro { display: none; }
-  .viaje-datos { position: static; margin-top: .6rem; }
   .viaje-datos dl { grid-template-columns: 1fr 1fr; column-gap: 1rem; }
-  .viaje-datos dl div { display: grid; gap: 0; }
-  .viaje-datos dd { text-align: left; }
+  .viaje-datos dd { font-size: 1rem; }
   .viaje-escena { overflow: hidden; margin-inline: calc(var(--lado) * -1); }
   #corte { width: 260%; max-width: none; will-change: transform; }
   .corte-zonas text { font-size: 20px; }
@@ -608,7 +607,7 @@ address a { color: var(--vidrio); text-decoration: none; border-bottom: 1px soli
   .cookies .boton { min-height: 40px; justify-content: center; }
 }
 
-/* ——— Mandos de demostración — NO VIAJAN AL SITIO DE UN CLIENTE ——— */
+/* MANDOS:INICIO — mandos de demostración. NO VIAJAN AL SITIO DE UN CLIENTE */
 .mandos { position: fixed; z-index: 190; left: 1rem; bottom: 1rem; background: rgba(4, 11, 15, .92); border: 1px solid var(--pizarra); border-radius: 14px; padding: .7rem; gap: .35rem; max-width: calc(100vw - 2rem); }
 .mandos:not([hidden]) { display: grid; }
 .mandos-titulo { margin: 0; font-size: .66rem; color: var(--humo); text-transform: uppercase; letter-spacing: .12em; }
@@ -616,6 +615,7 @@ address a { color: var(--vidrio); text-decoration: none; border-bottom: 1px soli
 .mandos button { background: var(--panel2); border: 1px solid var(--linea); border-radius: 99px; padding: .35rem .8rem; font-size: .8rem; cursor: pointer; display: inline-flex; gap: .4rem; align-items: center; min-height: 32px; }
 .mandos button[aria-pressed="true"] { background: var(--espuma); color: var(--fondo); border-color: var(--espuma); }
 .mandos i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+/* MANDOS:FIN */
 
 /* ——— Cursor propio: punto + aro. Nada en táctil. ——— */
 .cursor { position: fixed; left: 0; top: 0; z-index: 2000; pointer-events: none; display: none; }
