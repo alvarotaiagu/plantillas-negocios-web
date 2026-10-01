@@ -1,0 +1,222 @@
+[
+ {
+  "nombre": "Cortina: fotogramas a medias capturados (hilo y manta)",
+  "ok": true,
+  "detalle": "fotos: hilo true, manta true"
+ },
+ {
+  "nombre": "Cortina: el hilo pasa por valores intermedios (autoRound:false)",
+  "ok": true,
+  "detalle": "0.922, 0.889, 0.848, 0.774, 0.705, 0.643"
+ },
+ {
+  "nombre": "Cortina: la manta se levanta con borde curvo en varios fotogramas",
+  "ok": true,
+  "detalle": "52 fotogramas intermedios, p. ej. M0 0H1000V642.488Q500 1101.3615 0 642.488Z"
+ },
+ {
+  "nombre": "Cortina: acaba en display:none (normal)",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Cortina de color distinto al fondo",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Cursor propio: aparece al primer pointermove de ratón y oculta el nativo",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
+  "ok": true,
+  "detalle": "[{\"t\":3925,\"d\":118},{\"t\":4045,\"d\":69},{\"t\":15565,\"d\":120}]"
+ },
+ {
+  "nombre": "Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo",
+  "ok": true,
+  "detalle": "paso 0 → 2, top 0.234375"
+ },
+ {
+  "nombre": "Tareas largas con el canvas vivo y la página recorrida (frío, sin caché)",
+  "ok": true,
+  "detalle": "arranque: [{\"t\":4045,\"d\":69}] · recorriendo: []"
+ },
+ {
+  "nombre": "Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Escritorio sin desbordamiento horizontal",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Mapa: sin iframe antes del clic",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Mapa: iframe de Google tras el clic",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Calculadora: jornada completa + mañana = 370",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Formulario de muestra: responde sin enviar nada",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Menú: una pestaña marcada es-hoy en laborable o el lunes en fin de semana",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Consola limpia y sin 404 en escritorio (fuera del iframe de Google)",
+  "ok": true,
+  "detalle": "[] · Google: 2"
+ },
+ {
+  "nombre": "Pila: todos los <li> con el mismo alto (el de la tarjeta más alta)",
+  "ok": true,
+  "detalle": "{\"altos\":[454,454,454],\"mb\":[\"126px\",\"126px\",\"126px\"],\"maxT\":454,\"after\":\"306px\"}"
+ },
+ {
+  "nombre": "Pila: mismo margin-bottom en todos, incluido el último; reposo por ::after",
+  "ok": true,
+  "detalle": "126px 126px 126px / after 306px"
+ },
+ {
+  "nombre": "Pila en pasos de 90 px: nunca una tarjeta posterior por encima de la anterior",
+  "ok": true,
+  "detalle": "[[813,1393,1973],[408,988,1568],[92,583,1163],[92,178,758],[92,114,353],[92,114,136],[-151,-151,-151],[-556,-556,-556]]"
+ },
+ {
+  "nombre": "Pila: las tres llegan a apilarse en su sitio (reposo antes de soltarse)",
+  "ok": true,
+  "detalle": "tops sticky [92,114,136]"
+ },
+ {
+  "nombre": "Táctil: sin cursor propio",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Menú móvil: abre, aria-expanded=true y ocupa 100dvh pese al backdrop-filter",
+  "ok": true,
+  "detalle": "{\"exp\":\"true\",\"h\":844,\"ih\":844,\"top\":0}"
+ },
+ {
+  "nombre": "Menú móvil: el mismo botón lo cierra",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Menú móvil: un enlace cierra el menú y lleva a la sección",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Móvil sin desbordamiento horizontal",
+  "ok": true,
+  "detalle": "390 / 390"
+ },
+ {
+  "nombre": "Consola limpia y sin 404 en móvil",
+  "ok": false,
+  "detalle": "[\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\"]"
+ },
+ {
+  "nombre": "Portada 360×640: sin solapes entre bloques ni con el móvil",
+  "ok": true,
+  "detalle": "{\"choques\":[],\"movilAbajo\":294,\"anteArriba\":294,\"sw\":360,\"iw\":360}"
+ },
+ {
+  "nombre": "Portada 375×667: sin solapes entre bloques ni con el móvil",
+  "ok": true,
+  "detalle": "{\"choques\":[],\"movilAbajo\":304,\"anteArriba\":304,\"sw\":375,\"iw\":375}"
+ },
+ {
+  "nombre": "Sin GSAP: cortina fuera, sin has-motion y ninguna palabra oculta",
+  "ok": true,
+  "detalle": "{\"motion\":false,\"cortina\":\"none\",\"ocultas\":0}"
+ },
+ {
+  "nombre": "Sin GSAP: la adaptación cambia de paso con IntersectionObserver",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Sin GSAP: sin errores de JS propios",
+  "ok": true,
+  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\"]"
+ },
+ {
+  "nombre": "Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo",
+  "ok": true,
+  "detalle": "{\"motion\":false,\"cortina\":\"none\",\"estado\":\"Cerrado · abre hoy a las 7:30\",\"lenis\":false}"
+ },
+ {
+  "nombre": "Reducido: la adaptación sigue cambiando de paso",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Reducido: los contadores muestran su cifra final",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Cookies: visible con display:flex y los mandos apartados mientras tanto",
+  "ok": true,
+  "detalle": "{\"cookies\":\"flex\",\"mandos\":true}"
+ },
+ {
+  "nombre": "Cookies: el botón la cierra de verdad (display:none) y aparecen los mandos",
+  "ok": true,
+  "detalle": "{\"cookies\":\"none\",\"mandos\":false,\"ls\":\"1\"}"
+ },
+ {
+  "nombre": "Mandos ocultos sin ?revision",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Maqueta sobria: fuera piezas y dibujos, entra el gráfico de ratio y el dato",
+  "ok": true,
+  "detalle": "{\"clase\":true,\"ratio\":\"block\",\"svg\":\"none\",\"dato\":\"\\\"8\\\"\",\"piezas\":0,\"ls\":\"sobria\",\"sw\":1440,\"iw\":1440,\"pressed\":\"true\"}"
+ },
+ {
+  "nombre": "Maqueta: se puede volver a «Móvil»",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Paleta: cada botón cambia el color computado de verdad",
+  "ok": true,
+  "detalle": "rgb(159, 52, 27) | rgb(0, 99, 88) | rgb(132, 58, 139)"
+ },
+ {
+  "nombre": "Paleta: aria-pressed y localStorage correctos",
+  "ok": true,
+  "detalle": "{\"ls\":\"malva\",\"pressed\":\"true\",\"otro\":\"false\"}"
+ },
+ {
+  "nombre": "Paleta guardada aplicada antes de pintar (script bloqueante del head)",
+  "ok": true,
+  "detalle": "js es-revision paleta-malva has-motion lenis"
+ },
+ {
+  "nombre": "Sin marcadores pendientes; noindex y sello en las tres páginas",
+  "ok": true,
+  "detalle": ""
+ }
+]

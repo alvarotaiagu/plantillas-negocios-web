@@ -101,10 +101,15 @@
     var lua = $('.cortina-lua', cortina);
     var pespunte = $('.cortina-pespunte', cortina);
     var texto = $('.cortina-texto', cortina);
+    var hilo = $('.cortina-hilo path', cortina);
     var tl = gsap.timeline({ onComplete: retirarCortina });
-    tl.fromTo(pespunte, { scaleX: 0 }, { scaleX: 1, transformOrigin: '0% 50%', duration: .7, ease: 'power2.inOut', immediateRender: false })
-      .fromTo(lua, { rotation: -24 }, { rotation: 0, duration: 1.1, ease: 'elastic.out(1, .35)', immediateRender: false }, 0)
-      .to([texto, lua, pespunte], { y: -40, opacity: 0, duration: .45, ease: 'power2.in', stagger: .04 }, .85)
+    /* El hilo baja la lúa: trazo con pathLength=1, así que autoRound:false
+       o GSAP redondea el dashoffset a 0/1 y el trazo salta en vez de crecer */
+    tl.fromTo(hilo, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .6, ease: 'power2.out', autoRound: false, immediateRender: true }, 0)
+      .fromTo(lua, { y: -60 }, { y: 0, duration: .6, ease: 'power2.out', immediateRender: false }, 0)
+      .fromTo(pespunte, { scaleX: 0 }, { scaleX: 1, transformOrigin: '0% 50%', duration: .7, ease: 'power2.inOut', immediateRender: true }, .25)
+      .fromTo(lua, { rotation: -24 }, { rotation: 0, duration: 1.1, ease: 'elastic.out(1, .35)', immediateRender: false }, .3)
+      .to([texto, lua, pespunte, hilo.parentNode], { y: -40, opacity: 0, duration: .45, ease: 'power2.in', stagger: .04 }, .85)
       /* Se levanta por las esquinas primero, el centro cuelga: borde curvo */
       .to(tela, { attr: { d: 'M0 0H1000V420Q500 1180 0 420Z' }, duration: .55, ease: 'power2.in' }, 1)
       .to(tela, { attr: { d: 'M0 0H1000V0Q500 0 0 0Z' }, duration: .85, ease: 'expo.inOut' }, 1.45)
@@ -302,6 +307,32 @@
         gsap.to(el, { x: 0, y: 0, duration: 1.1, ease: 'elastic.out(1, .32)', overwrite: true });
       });
     });
+  }
+
+  /* El titular respira con el cursor: el eje de peso de Playfair (variable)
+     engorda las letras que tiene cerca, como el fieltro que se hincha. */
+  if (conMovimiento && ratonFino) {
+    var letrasPortada = $$('.portada-titulo .letra');
+    var centros = [], pendiente = false, mx = -9999, my = -9999;
+    var medirLetras = function () {
+      centros = letrasPortada.map(function (l) { var r = l.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 + window.scrollY }; });
+    };
+    var respirar = function () {
+      pendiente = false;
+      if (!centros.length) medirLetras();
+      letrasPortada.forEach(function (l, i) {
+        var c = centros[i], dx = c.x - mx, dy = c.y - window.scrollY - my;
+        var k = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 280);
+        var base = l.closest('.t2') ? 400 : 600;
+        l.style.fontWeight = k > 0.01 ? Math.round(base + k * k * 300) : '';
+      });
+    };
+    $('.portada').addEventListener('pointermove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      if (!pendiente) { pendiente = true; requestAnimationFrame(respirar); }
+    });
+    $('.portada').addEventListener('pointerleave', function () { mx = my = -9999; requestAnimationFrame(respirar); });
+    window.addEventListener('resize', function () { centros = []; });
   }
 
   /* ---------------------------------------------------------------------
