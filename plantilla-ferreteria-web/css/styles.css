@@ -140,7 +140,8 @@ html.js .cortina.es-fuera { display: none; }
 @keyframes cortina-red { to { visibility: hidden; opacity: 0; } }
 .cortina-chapa {
   position: absolute; left: 0; right: 0; top: 0; height: calc(100% + 90px);
-  background: var(--acento); color: var(--fondo);
+  /* el fondo no llega a la franja del filete: los dientes los pinta el SVG */
+  background: linear-gradient(var(--acento), var(--acento)) top / 100% calc(100% - 89px) no-repeat; color: var(--fondo);
   display: grid; place-content: center; justify-items: center; gap: 1rem;
   will-change: transform;
 }

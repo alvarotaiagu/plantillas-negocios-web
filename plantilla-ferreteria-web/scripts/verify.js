@@ -47,16 +47,22 @@ async function irA(p, sel, desfase = 0) {
     const { ctx, p } = await abrir(nav, { antes: async (pg) => {
       const cdp = await pg.context().newCDPSession(pg); await cdp.send('Network.enable'); await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
     } });
-    await espera(1150);
+    // primer fotograma: en cuanto la chapa ha empezado a subir (caché fría: no se fía de un tiempo fijo)
+    await p.waitForFunction(() => document.querySelector('.cortina-chapa').getBoundingClientRect().top < -20, null, { polling: 16, timeout: 8000 }).catch(() => {});
+    const medio = await p.evaluate(() => { const c = document.querySelector('.cortina-chapa'); const r = c.getBoundingClientRect(); return { top: Math.round(r.top), fondoCortina: getComputedStyle(c).backgroundImage, fondoBody: getComputedStyle(document.body).backgroundColor }; });
     await p.screenshot({ path: path.join(SHOTS, 'cortina-a-medias-escritorio.png') });
-    const medio = await p.evaluate(() => { const c = document.querySelector('.cortina-chapa'); const r = c.getBoundingClientRect(); return { top: Math.round(r.top), fondoCortina: getComputedStyle(c).backgroundColor, fondoBody: getComputedStyle(document.body).backgroundColor }; });
-    ok('Cortina: fotograma a medias capturado con la chapa en movimiento', medio.top < -20 && medio.top > -1000, medio);
-    ok('Cortina de color distinto al fondo', medio.fondoCortina !== medio.fondoBody, medio);
-    // segundo fotograma: se espera a que el canto dentado esté en mitad de la pantalla
-    await p.waitForFunction(() => { const b = document.querySelector('.cortina-chapa').getBoundingClientRect().bottom; return b < 650; }, null, { polling: 16, timeout: 5000 }).catch(() => {});
-    const medio2 = await p.evaluate(() => Math.round(document.querySelector('.cortina-chapa').getBoundingClientRect().bottom));
-    await p.screenshot({ path: path.join(SHOTS, 'cortina-a-medias-escritorio-2.png') });
-    ok('Cortina: segundo fotograma con el canto dentado a la vista', medio2 > 0 && medio2 < 900, medio2);
+    ok('Cortina: fotograma a medias capturado con la chapa en movimiento', medio.top < -20 && medio.top > -1100, medio);
+    ok('Cortina de color distinto al fondo', medio.fondoCortina.indexOf(medio.fondoBody) < 0 && /rgb\(226, 85, 43\)/.test(medio.fondoCortina), medio);
+    // segundo fotograma: en otra carga, para que la captura anterior no se lo coma
+    {
+      const c2 = await contexto(nav, { ctx: { viewport: { width: 1440, height: 900 } } });
+      const p2 = await c2.newPage(); await p2.goto(URL, { waitUntil: 'load' });
+      await p2.waitForFunction(() => { const b = document.querySelector('.cortina-chapa').getBoundingClientRect().bottom; return b < 650; }, null, { polling: 16, timeout: 8000 }).catch(() => {});
+      const medio2 = await p2.evaluate(() => Math.round(document.querySelector('.cortina-chapa').getBoundingClientRect().bottom));
+      await p2.screenshot({ path: path.join(SHOTS, 'cortina-a-medias-escritorio-2.png') });
+      ok('Cortina: segundo fotograma con el canto dentado a la vista', medio2 > 0 && medio2 < 900, medio2);
+      await c2.close();
+    }
     await espera(2600);
     const cort = await p.evaluate(() => getComputedStyle(document.getElementById('cortina')).display);
     ok('Cortina acaba en display:none (normal)', cort === 'none', cort);
@@ -198,7 +204,8 @@ async function irA(p, sel, desfase = 0) {
   /* ---------- 2. Móvil 390×844: menú, hero, secciones ---------- */
   {
     const { ctx, p } = await abrir(nav, { vp: { width: 390, height: 844 }, movil: true });
-    await espera(1150); await p.screenshot({ path: path.join(SHOTS, 'cortina-a-medias-movil.png') });
+    await p.waitForFunction(() => { const b = document.querySelector('.cortina-chapa').getBoundingClientRect().bottom; return b < 600; }, null, { polling: 16, timeout: 8000 }).catch(() => {});
+    await p.screenshot({ path: path.join(SHOTS, 'cortina-a-medias-movil.png') });
     await espera(2600);
     await p.screenshot({ path: path.join(SHOTS, 'movil-01-portada-con-cookies.png') });
     // Mando no tapa las cookies; cerrar

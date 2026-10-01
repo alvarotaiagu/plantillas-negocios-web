@@ -3,8 +3,8 @@
   "nombre": "Cortina: fotograma a medias capturado con la chapa en movimiento",
   "ok": true,
   "detalle": {
-   "top": -709,
-   "fondoCortina": "rgb(226, 85, 43)",
+   "top": -27,
+   "fondoCortina": "linear-gradient(rgb(226, 85, 43), rgb(226, 85, 43))",
    "fondoBody": "rgb(14, 20, 17)"
   }
  },
@@ -12,15 +12,15 @@
   "nombre": "Cortina de color distinto al fondo",
   "ok": true,
   "detalle": {
-   "top": -709,
-   "fondoCortina": "rgb(226, 85, 43)",
+   "top": -27,
+   "fondoCortina": "linear-gradient(rgb(226, 85, 43), rgb(226, 85, 43))",
    "fondoBody": "rgb(14, 20, 17)"
   }
  },
  {
   "nombre": "Cortina: segundo fotograma con el canto dentado a la vista",
-  "ok": false,
-  "detalle": 0
+  "ok": true,
+  "detalle": 433
  },
  {
   "nombre": "Cortina acaba en display:none (normal)",
@@ -144,15 +144,15 @@
    132,
    148,
    164,
-   598
+   605
   ]
  },
  {
   "nombre": "Marquesina en movimiento",
   "ok": true,
   "detalle": [
-   "translate3d(-2600.3px, 0px, 0px)",
-   "translate3d(-2630.3px, 0px, 0px)"
+   "translate3d(-2472.8px, 0px, 0px)",
+   "translate3d(-2502.8px, 0px, 0px)"
   ]
  },
  {
@@ -173,8 +173,8 @@
   "ok": true,
   "detalle": {
    "llave": "del 19",
-   "ancho": "366",
-   "css": 366
+   "ancho": "403",
+   "css": 403
   }
  },
  {
@@ -225,17 +225,17 @@
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
   "detalle": {
-   "antes": 8,
-   "despues": 9
+   "antes": 14,
+   "despues": 15
   }
  },
  {
   "nombre": "longtasks escritorio (carga en frío + recorrido completo)",
   "ok": true,
   "detalle": {
-   "n": 8,
-   "total": 767,
-   "max": 283
+   "n": 14,
+   "total": 1447,
+   "max": 332
   }
  },
  {
@@ -288,9 +288,9 @@
   "nombre": "longtasks móvil 390 (recorrido completo)",
   "ok": true,
   "detalle": {
-   "n": 9,
-   "total": 744,
-   "max": 182
+   "n": 13,
+   "total": 973,
+   "max": 166
   }
  },
  {

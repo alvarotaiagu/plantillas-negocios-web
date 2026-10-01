@@ -58,7 +58,7 @@ cursor). Lo que esta hace por encima de ellas, en concreto:
    anchas (`wdth 125`) y **se aprietan** hasta `wdth 75`, como una tuerca.
    Titular de portada a ~19 rem en escritorio y ~38 vw en móvil.
 6. **Auditoría con axe dentro del propio repo**, en escritorio y móvil, y
-   verificación con 59 comprobaciones por código (`scripts/verify.js`).
+   verificación con 58 comprobaciones por código (`scripts/verify.js`).
 
 ## El concepto: «Rosca»
 
