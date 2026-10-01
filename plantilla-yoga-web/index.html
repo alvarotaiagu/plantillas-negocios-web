@@ -1,0 +1,713 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Pegada es un negocio ficticio; los datos, ilustraciones
+  y opiniones son de muestra. Rúa do Cascallo, 9 (Sanxenxo) es una dirección
+  inventada y los teléfonos son números de ejemplo.
+-->
+<html lang="es" class="sin-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pegada · yoga e pilates en Sanxenxo</title>
+  <meta name="description" content="Estudio de yoga y pilates en Sanxenxo: grupos pequeños, esterillas de caucho natural, bloques de corcho y seis reformers. Cuadro de clases, bonos y primera clase. (Sitio de demostración)">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#16475A">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:title" content="Pegada · yoga e pilates en Sanxenxo">
+  <meta property="og:description" content="Lo primero es dónde apoyas. Sitio de demostración de un estudio ficticio.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <script>
+    // Script bloqueante: se ejecuta antes de pintar para que nada salte.
+    (function () {
+      var h = document.documentElement;
+      h.classList.remove('sin-js'); h.classList.add('js');
+      // Medición de tareas largas desde el primer momento (se lee en window.__longtasks).
+      window.__longtasks = [];
+      try {
+        new PerformanceObserver(function (l) {
+          l.getEntries().forEach(function (e) { window.__longtasks.push({ t: Math.round(e.startTime), d: Math.round(e.duration) }); });
+        }).observe({ type: 'longtask', buffered: true });
+      } catch (e) {}
+      // Retirada garantizada de la cortina: pase lo que pase con GSAP o con main.js.
+      setTimeout(function () { h.classList.add('cortina-fuera'); }, 4200);
+      // ── MANDOS DE DEMOSTRACIÓN (maqueta y paleta) · NO VIAJAN AL SITIO DE UN CLIENTE ──
+      // Solo se aplican con ?revision en la URL. Receta de borrado en el README.
+      try {
+        if (/[?&]revision\b/.test(location.search)) {
+          h.classList.add('en-revision');
+          var d = localStorage.getItem('pegada-densidad');
+          var p = localStorage.getItem('pegada-paleta');
+          if (d === 'sobria') h.classList.add('densidad-sobria');
+          if (p === 'granate' || p === 'musgo') h.classList.add('paleta-' + p);
+        }
+      } catch (e) {}
+      // ── FIN MANDOS DE DEMOSTRACIÓN ──
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Red+Hat+Mono:wght@400;500&family=Roboto+Serif:ital,opsz,wdth,wght@0,8..144,50..150,200..800;1,8..144,50..150,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Pegada · yoga e pilates (sitio de demostración)",
+    "description": "Estudio ficticio de yoga y pilates. Sitio de demostración.",
+    "address": { "@type": "PostalAddress", "streetAddress": "Rúa do Cascallo, 9, baixo", "postalCode": "36960", "addressLocality": "Sanxenxo", "addressRegion": "Pontevedra", "addressCountry": "ES" },
+    "telephone": "+34 986 00 00 00",
+    "email": "hola@pegada.example",
+    "openingHours": ["Mo-Fr 07:15-21:45", "Sa 09:15-13:45"]
+  }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cortina de entrada: la esterilla se enrolla y deja ver el estudio. -->
+  <div class="cortina" aria-hidden="true">
+    <div class="cortina-lamina">
+      <svg class="cortina-marca" viewBox="0 0 64 64" width="88" height="88"><use href="#marca"/></svg>
+      <p class="cortina-texto">inhala</p>
+    </div>
+    <div class="cortina-rollo"></div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Marca: una esterilla vista desde arriba con dos huellas y sus curvas de presión. -->
+      <symbol id="marca" viewBox="0 0 64 64">
+        <rect x="9" y="3" width="46" height="58" rx="12" fill="var(--marca-fondo, #16475A)"/>
+        <g fill="none" stroke="var(--marca-trazo, #F3ECE2)" stroke-width="2.4">
+          <ellipse cx="24" cy="22" rx="8.5" ry="11"/>
+          <ellipse cx="24" cy="23.5" rx="4.6" ry="6.4"/>
+          <ellipse cx="40" cy="41" rx="8.5" ry="11"/>
+          <ellipse cx="40" cy="42.5" rx="4.6" ry="6.4"/>
+        </g>
+        <circle cx="24" cy="25" r="1.8" fill="var(--marca-trazo, #F3ECE2)"/>
+        <circle cx="40" cy="44" r="1.8" fill="var(--marca-trazo, #F3ECE2)"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="cabecera">
+    <a class="logo" href="#inicio" aria-label="Pegada, yoga e pilates — inicio">
+      <svg class="logo-marca" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><use href="#marca"/></svg>
+      <span class="logo-nombre">pegada</span>
+      <span class="logo-sub">yoga e pilates · Sanxenxo</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-boton" type="button" aria-expanded="false" aria-controls="nav-lista">
+        <span class="nav-boton-texto">Menú</span><span class="nav-boton-icono" aria-hidden="true"></span>
+      </button>
+      <div class="nav-panel" id="nav-lista">
+        <ul class="nav-lista">
+          <li><a href="#postura">La postura</a></li>
+          <li><a href="#clases">Clases</a></li>
+          <li><a href="#cuadro">Cuadro</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#bonos">Bonos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a class="boton boton-mar nav-cta iman" href="#bonos">Primera clase · 8&nbsp;€</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ═════════ 1 · PORTADA: la esterilla que recuerda ═════════ -->
+    <section class="portada" id="inicio" aria-labelledby="portada-titulo">
+      <canvas class="portada-lienzo" aria-hidden="true"></canvas>
+      <div class="portada-respaldo" aria-hidden="true"></div>
+      <div class="portada-contenido">
+        <p class="portada-antetitulo">Estudio de yoga y pilates · Rúa do Cascallo, 9 · Sanxenxo</p>
+        <h1 class="portada-titulo" id="portada-titulo">
+          <span class="linea">Lo primero</span>
+          <span class="linea">es dónde</span>
+          <span class="linea linea-acento">apoyas.</span>
+        </h1>
+        <p class="portada-entrada">Grupos de doce en esterilla y de seis en reformer. Caucho natural, bloques de corcho y alguien que mira tus apoyos antes que tu forma. Sin promesas: con práctica.</p>
+        <div class="portada-acciones">
+          <a class="boton boton-espuma iman" href="#cuadro">Ver el cuadro de hoy</a>
+          <a class="enlace-flecha" href="#postura">Cómo trabajamos <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <aside class="portada-vivo" aria-label="Ahora en el estudio">
+        <p class="vivo-etiqueta"><span class="vivo-punto" aria-hidden="true"></span> <span class="vivo-dia">Hoy</span></p>
+        <p class="vivo-clase">Consultando el cuadro…</p>
+        <p class="vivo-detalle"></p>
+      </aside>
+
+      <div class="respira" aria-hidden="true">
+        <span class="respira-fase">inhala</span>
+        <span class="respira-barra"><span class="respira-relleno"></span></span>
+        <span class="respira-ciclo">4 · 6</span>
+      </div>
+      <p class="portada-pista" aria-hidden="true">Presiona la esterilla</p>
+    </section>
+
+    <!-- ═════════ 2 · LA POSTURA, APOYO A APOYO (secuencia anclada) ═════════ -->
+    <section class="postura" id="postura" aria-labelledby="postura-titulo">
+      <div class="postura-fijo">
+        <header class="postura-cabeza">
+          <p class="seccion-numero">01 · Método</p>
+          <h2 class="titular revela" id="postura-titulo">Una postura, apoyo a apoyo</h2>
+        </header>
+
+        <div class="postura-escena">
+          <figure class="postura-figura">
+            <svg class="figura" viewBox="0 0 640 420" role="img" aria-labelledby="figura-desc">
+              <title id="figura-desc">Figura dibujada que pasa de estar de pie a la postura del niño, pasando por cuadrupedia y perro boca abajo.</title>
+              <rect class="figura-esterilla" x="40" y="372" width="560" height="12" rx="6"/>
+              <g class="figura-lejos">
+                <path class="miembro" data-seg="brazoL"/>
+                <path class="miembro" data-seg="piernaL"/>
+              </g>
+              <g class="figura-cerca">
+                <path class="tronco" data-seg="tronco"/>
+                <path class="miembro" data-seg="piernaC"/>
+                <path class="miembro" data-seg="brazoC"/>
+                <circle class="cabeza" r="23"/>
+              </g>
+              <g class="figura-contactos"></g>
+            </svg>
+          </figure>
+
+          <div class="postura-mapa">
+            <svg class="mapa" viewBox="0 0 240 420" role="img" aria-labelledby="mapa-desc">
+              <title id="mapa-desc">La esterilla vista desde arriba, con cada apoyo y su porcentaje de peso.</title>
+              <rect class="mapa-esterilla" x="30" y="10" width="180" height="400" rx="22"/>
+              <g class="mapa-apoyos"></g>
+            </svg>
+            <ul class="reparto" aria-label="Reparto del peso">
+              <li data-zona="manos"><span class="reparto-nombre">Manos</span><span class="reparto-barra"><span></span></span><span class="reparto-valor">0&nbsp;%</span></li>
+              <li data-zona="rodillas"><span class="reparto-nombre">Rodillas</span><span class="reparto-barra"><span></span></span><span class="reparto-valor">0&nbsp;%</span></li>
+              <li data-zona="pies"><span class="reparto-nombre">Pies</span><span class="reparto-barra"><span></span></span><span class="reparto-valor">100&nbsp;%</span></li>
+            </ul>
+          </div>
+
+          <ol class="pasos" aria-label="Los cinco pasos">
+            <li class="paso es-activo" data-paso="0">
+              <p class="paso-num">1 / 5 · De pie</p>
+              <h3 class="paso-titulo">Dos pies, el peso repartido</h3>
+              <p>Antes de moverte, te pedimos que notes dónde cae el peso: talón, borde externo, base de los dedos. Si no sabes dónde estás de pie, no sabrás dónde estás boca abajo.</p>
+            </li>
+            <li class="paso" data-paso="1">
+              <p class="paso-num">2 / 5 · Cuadrupedia</p>
+              <h3 class="paso-titulo">Cuatro apoyos, casi todo en las manos</h3>
+              <p>Manos bajo hombros, rodillas bajo caderas. Abre los dedos: la esterilla tiene que notar toda la palma, no solo la muñeca.</p>
+            </li>
+            <li class="paso" data-paso="2">
+              <p class="paso-num">3 / 5 · Perro boca abajo</p>
+              <h3 class="paso-titulo">Las caderas suben, el peso vuelve a los pies</h3>
+              <p>Los talones no tienen que tocar el suelo. Lo que buscamos es que las manos dejen de cargar con todo: si te duelen las muñecas, el peso está mal repartido, no eres tú.</p>
+            </li>
+            <li class="paso" data-paso="3">
+              <p class="paso-num">4 / 5 · Tres apoyos</p>
+              <h3 class="paso-titulo">Quitar un apoyo sin que se note</h3>
+              <p>Una pierna se eleva y las otras tres reparten lo que cargaba. Aquí se ve si la postura de antes era firme o solo lo parecía.</p>
+            </li>
+            <li class="paso" data-paso="4">
+              <p class="paso-num">5 / 5 · Postura del niño</p>
+              <h3 class="paso-titulo">Todo el cuerpo en el suelo</h3>
+              <p>El apoyo más amplio de la clase. Es donde vuelves cuando quieras, sin pedir permiso: parar también es practicar.</p>
+            </li>
+          </ol>
+          <div class="pasos-mando" role="group" aria-label="Recorrer los pasos">
+            <button class="pasos-boton" type="button" data-dir="-1" aria-label="Paso anterior">←</button>
+            <span class="pasos-cuenta" aria-live="polite">Paso 1 de 5</span>
+            <button class="pasos-boton" type="button" data-dir="1" aria-label="Paso siguiente">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ 3 · CINTA DE RESPIRACIÓN ═════════ -->
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>inhala</span><i></i><span>sostén</span><i></i><span>exhala</span><i></i><span>apoya</span><i></i>
+        <span>inhala</span><i></i><span>sostén</span><i></i><span>exhala</span><i></i><span>apoya</span><i></i>
+      </div>
+    </div>
+
+    <!-- ═════════ 4 · CLASES: por el material con el que se trabaja ═════════ -->
+    <section class="clases" id="clases" aria-labelledby="clases-titulo">
+      <div class="clases-cabeza">
+        <p class="seccion-numero">02 · Clases</p>
+        <h2 class="titular revela" id="clases-titulo">Cada clase tiene su material</h2>
+        <p class="clases-entrada">No las ordenamos por lo que prometen, sino por lo que tocas. El material dice mucho de la clase: cuánto te sujeta, cuánto te deja solo, cuánto ritmo pide.</p>
+
+        <div class="niveles" aria-labelledby="niveles-titulo">
+          <h3 class="niveles-titulo" id="niveles-titulo">Tres niveles, contados en apoyos</h3>
+          <ol class="niveles-lista">
+            <li><span class="nivel-dibujo" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>Nivel 1 · Muchos apoyos</b><span>Para empezar o volver. Casi todo en el suelo, con bloque y manta a mano.</span></li>
+            <li><span class="nivel-dibujo" aria-hidden="true"><i></i><i></i><i></i></span><b>Nivel 2 · Apoyo firme</b><span>Ya sabes dónde cae el peso. Encadenamos posturas y quitamos ayudas.</span></li>
+            <li><span class="nivel-dibujo" aria-hidden="true"><i></i></span><b>Nivel 3 · Un solo apoyo</b><span>Equilibrios, inversiones preparadas y series largas en el reformer.</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <ul class="pila" data-pila>
+        <li class="pila-item" data-tipo="hatha" data-intensidad="2" data-quietud="3">
+          <article class="tarjeta">
+            <div class="tarjeta-dibujo" aria-hidden="true">
+              <svg viewBox="0 0 240 180" class="prop">
+                <ellipse cx="120" cy="158" rx="96" ry="10" class="prop-sombra"/>
+                <rect x="34" y="62" width="172" height="78" rx="39" class="prop-mar"/>
+                <rect x="34" y="62" width="172" height="20" rx="10" class="prop-brillo"/>
+                <ellipse cx="190" cy="101" rx="26" ry="39" class="prop-mar-osc"/>
+                <path d="M190 72a24 29 0 1 1-1 58a18 22 0 1 1 1-44a12 15 0 1 1-1 30a6 8 0 1 1 1-16" class="prop-espiral"/>
+                <path d="M60 140 l-16 18" class="prop-cinta"/><path d="M150 140 l16 18" class="prop-cinta"/>
+              </svg>
+            </div>
+            <div class="tarjeta-dato" aria-hidden="true"><b>60</b><span>min</span></div>
+            <div class="tarjeta-texto">
+              <p class="tarjeta-material">Esterilla de caucho natural · 4 mm</p>
+              <h3 class="tarjeta-nombre">Hatha</h3>
+              <p>Posturas sostenidas, una a una, con tiempo para colocar cada apoyo. La clase donde se aprende el idioma del resto.</p>
+              <dl class="tarjeta-ficha"><div><dt>Duración</dt><dd>60 min</dd></div><div><dt>Niveles</dt><dd>1 y 2</dd></div><div><dt>Plazas</dt><dd>12</dd></div></dl>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item" data-tipo="vinyasa" data-intensidad="3" data-quietud="1">
+          <article class="tarjeta">
+            <div class="tarjeta-dibujo" aria-hidden="true">
+              <svg viewBox="0 0 240 180" class="prop">
+                <ellipse cx="120" cy="160" rx="104" ry="9" class="prop-sombra"/>
+                <path d="M18 150 L222 150 L210 124 L30 124 Z" class="prop-mar"/>
+                <path d="M30 124 L210 124 L206 116 L34 116Z" class="prop-brillo"/>
+                <g class="prop-huellas">
+                  <ellipse cx="62" cy="136" rx="9" ry="5"/><ellipse cx="84" cy="138" rx="9" ry="5"/>
+                  <ellipse cx="160" cy="135" rx="7" ry="4"/><ellipse cx="180" cy="137" rx="7" ry="4"/>
+                </g>
+                <path d="M40 90 C80 40 160 40 200 90" class="prop-arco"/>
+                <path d="M190 78 l12 13 l-17 3" class="prop-arco"/>
+              </svg>
+            </div>
+            <div class="tarjeta-dato" aria-hidden="true"><b>60</b><span>min</span></div>
+            <div class="tarjeta-texto">
+              <p class="tarjeta-material">La misma esterilla, con ritmo</p>
+              <h3 class="tarjeta-nombre">Vinyasa</h3>
+              <p>Las posturas se enlazan con la respiración: una inhalación, un movimiento. Sudas, pero nadie cuenta repeticiones.</p>
+              <dl class="tarjeta-ficha"><div><dt>Duración</dt><dd>60 min</dd></div><div><dt>Niveles</dt><dd>2 y 3</dd></div><div><dt>Plazas</dt><dd>12</dd></div></dl>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item" data-tipo="yin" data-intensidad="1" data-quietud="5">
+          <article class="tarjeta">
+            <div class="tarjeta-dibujo" aria-hidden="true">
+              <svg viewBox="0 0 240 180" class="prop">
+                <ellipse cx="120" cy="160" rx="92" ry="9" class="prop-sombra"/>
+                <path d="M44 150 L44 110 L120 92 L196 110 L196 150 L120 168 Z" class="prop-corcho"/>
+                <path d="M44 110 L120 92 L196 110 L120 128 Z" class="prop-corcho-luz"/>
+                <path d="M120 128 L196 110 L196 150 L120 168Z" class="prop-corcho-osc"/>
+                <g class="prop-grano"><circle cx="70" cy="132" r="1.6"/><circle cx="88" cy="141" r="1.2"/><circle cx="100" cy="124" r="1.4"/><circle cx="60" cy="122" r="1"/><circle cx="104" cy="152" r="1.5"/><circle cx="140" cy="140" r="1.3"/><circle cx="160" cy="128" r="1.6"/><circle cx="178" cy="142" r="1.1"/><circle cx="150" cy="156" r="1.4"/><circle cx="118" cy="106" r="1.2"/><circle cx="96" cy="110" r="1.5"/><circle cx="146" cy="108" r="1.3"/><circle cx="170" cy="114" r="1"/></g>
+                <path d="M66 86 C66 50 174 50 174 86 L174 92 L66 92 Z" class="prop-manta"/>
+                <path d="M66 70 L174 70 M66 80 L174 80" class="prop-manta-raya"/>
+              </svg>
+            </div>
+            <div class="tarjeta-dato" aria-hidden="true"><b>75</b><span>min</span></div>
+            <div class="tarjeta-texto">
+              <p class="tarjeta-material">Bloque de corcho y manta de lana</p>
+              <h3 class="tarjeta-nombre">Yin</h3>
+              <p>Pocas posturas, mucho tiempo en cada una, todo apoyado en material. La clase más quieta del cuadro, y la que más cuesta.</p>
+              <dl class="tarjeta-ficha"><div><dt>Duración</dt><dd>75 min</dd></div><div><dt>Niveles</dt><dd>1</dd></div><div><dt>Plazas</dt><dd>10</dd></div></dl>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item" data-tipo="suelo" data-intensidad="2" data-quietud="2">
+          <article class="tarjeta">
+            <div class="tarjeta-dibujo" aria-hidden="true">
+              <svg viewBox="0 0 240 180" class="prop">
+                <ellipse cx="120" cy="162" rx="70" ry="8" class="prop-sombra"/>
+                <circle cx="120" cy="90" r="64" class="prop-aro"/>
+                <circle cx="120" cy="90" r="64" class="prop-aro-luz"/>
+                <rect x="40" y="70" width="26" height="40" rx="10" class="prop-almohadilla"/>
+                <rect x="174" y="70" width="26" height="40" rx="10" class="prop-almohadilla"/>
+              </svg>
+            </div>
+            <div class="tarjeta-dato" aria-hidden="true"><b>50</b><span>min</span></div>
+            <div class="tarjeta-texto">
+              <p class="tarjeta-material">Aro, pelota blanda y esterilla gruesa</p>
+              <h3 class="tarjeta-nombre">Pilates suelo</h3>
+              <p>Control del centro, columna articulada vértebra a vértebra y mucha atención a la respiración lateral. El aro da una referencia: sabes cuánto aprietas.</p>
+              <dl class="tarjeta-ficha"><div><dt>Duración</dt><dd>50 min</dd></div><div><dt>Niveles</dt><dd>1, 2 y 3</dd></div><div><dt>Plazas</dt><dd>12</dd></div></dl>
+            </div>
+          </article>
+        </li>
+        <li class="pila-item" data-tipo="reformer" data-intensidad="3" data-quietud="2">
+          <article class="tarjeta">
+            <div class="tarjeta-dibujo" aria-hidden="true">
+              <svg viewBox="0 0 240 180" class="prop">
+                <ellipse cx="120" cy="160" rx="100" ry="8" class="prop-sombra"/>
+                <rect x="20" y="112" width="200" height="14" rx="7" class="prop-caucho"/>
+                <rect x="120" y="96" width="70" height="18" rx="6" class="prop-mar"/>
+                <path d="M30 104 L44 104 L50 92 L58 116 L66 92 L74 116 L82 92 L90 116 L98 92 L104 104 L120 104" class="prop-muelle"/>
+                <circle cx="30" cy="104" r="5" class="prop-gancho"/>
+                <rect x="24" y="60" width="10" height="52" rx="5" class="prop-caucho"/>
+                <rect x="206" y="72" width="10" height="40" rx="5" class="prop-caucho"/>
+              </svg>
+            </div>
+            <div class="tarjeta-dato" aria-hidden="true"><b>50</b><span>min</span></div>
+            <div class="tarjeta-texto">
+              <p class="tarjeta-material">Reformer de madera con cinco muelles</p>
+              <h3 class="tarjeta-nombre">Pilates reformer</h3>
+              <p>La máquina te ayuda o te pone resistencia según el muelle que enganches. Seis reformers, seis personas: nunca esperas turno.</p>
+              <dl class="tarjeta-ficha"><div><dt>Duración</dt><dd>50 min</dd></div><div><dt>Niveles</dt><dd>1, 2 y 3</dd></div><div><dt>Plazas</dt><dd>6</dd></div></dl>
+            </div>
+          </article>
+        </li>
+      </ul>
+
+      <!-- Solo en la versión sobria: el dato que en la cargada no se ve. -->
+      <figure class="comparativa" aria-labelledby="comparativa-titulo">
+        <figcaption id="comparativa-titulo"><b>Ritmo frente a quietud</b>, en una escala de 1 a 5, para elegir clase sin leer cinco fichas.</figcaption>
+        <ul class="comparativa-lista"></ul>
+      </figure>
+    </section>
+
+    <!-- ═════════ 5 · CUADRO SEMANAL ═════════ -->
+    <section class="cuadro" id="cuadro" aria-labelledby="cuadro-titulo">
+      <div class="cuadro-cabeza">
+        <p class="seccion-numero">03 · Cuadro</p>
+        <h2 class="titular revela" id="cuadro-titulo">Esta semana en el estudio</h2>
+        <p class="cuadro-resumen"><b class="contador" data-hasta="41">41</b> clases a la semana, de lunes a sábado, en dos salas: <em>Area</em> (suelo, doce esterillas) y <em>Muelle</em> (seis reformers).</p>
+        <div class="cuadro-vivo" aria-live="polite">
+          <span class="cuadro-vivo-chip">En vivo</span>
+          <span class="cuadro-vivo-texto">Calculando la siguiente clase…</span>
+        </div>
+      </div>
+
+      <div class="cuadro-filtros" role="group" aria-label="Filtrar por tipo de clase">
+        <button type="button" class="filtro" aria-pressed="true" data-filtro="todas">Todas</button>
+        <button type="button" class="filtro" aria-pressed="false" data-filtro="hatha">Hatha</button>
+        <button type="button" class="filtro" aria-pressed="false" data-filtro="vinyasa">Vinyasa</button>
+        <button type="button" class="filtro" aria-pressed="false" data-filtro="yin">Yin</button>
+        <button type="button" class="filtro" aria-pressed="false" data-filtro="suelo">Pilates suelo</button>
+        <button type="button" class="filtro" aria-pressed="false" data-filtro="reformer">Reformer</button>
+      </div>
+
+      <div class="cuadro-marco" role="group" aria-label="Cuadro semanal de clases">
+        <ol class="cuadro-semana">
+<!--CUADRO:inicio (generado por scripts/cuadro.js)-->
+          <li class="cuadro-dia" data-dia="1">
+            <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Lunes</span><span class="cuadro-dia-corto" aria-hidden="true">Lun</span><span class="cuadro-hoy-marca">hoy</span></h3>
+            <ol class="cuadro-sesiones">
+              <li class="sesion" data-tipo="vinyasa" data-inicio="07:30" data-fin="08:30" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="suelo" data-inicio="09:30" data-fin="10:20" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="13:30" data-fin="14:20" data-nivel="2"><span class="sesion-hora">13:30<span class="sesion-fin">–14:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="18:00" data-fin="19:00" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–19:00</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="2"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="suelo" data-inicio="19:30" data-fin="20:20" data-nivel="2"><span class="sesion-hora">19:30<span class="sesion-fin">–20:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="yin" data-inicio="20:30" data-fin="21:45" data-nivel="1"><span class="sesion-hora">20:30<span class="sesion-fin">–21:45</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+            </ol>
+          </li>
+          <li class="cuadro-dia" data-dia="2">
+            <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Martes</span><span class="cuadro-dia-corto" aria-hidden="true">Mar</span><span class="cuadro-hoy-marca">hoy</span></h3>
+            <ol class="cuadro-sesiones">
+              <li class="sesion" data-tipo="suelo" data-inicio="07:30" data-fin="08:20" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="09:30" data-fin="10:30" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:30</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="18:00" data-fin="18:50" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–18:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="vinyasa" data-inicio="18:30" data-fin="19:30" data-nivel="2"><span class="sesion-hora">18:30<span class="sesion-fin">–19:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="3"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="19:45" data-fin="20:45" data-nivel="2"><span class="sesion-hora">19:45<span class="sesion-fin">–20:45</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+            </ol>
+          </li>
+          <li class="cuadro-dia" data-dia="3">
+            <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Miércoles</span><span class="cuadro-dia-corto" aria-hidden="true">Mié</span><span class="cuadro-hoy-marca">hoy</span></h3>
+            <ol class="cuadro-sesiones">
+              <li class="sesion" data-tipo="vinyasa" data-inicio="07:30" data-fin="08:30" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="suelo" data-inicio="09:30" data-fin="10:20" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="2"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="13:30" data-fin="14:20" data-nivel="1"><span class="sesion-hora">13:30<span class="sesion-fin">–14:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="18:00" data-fin="19:00" data-nivel="1"><span class="sesion-hora">18:00<span class="sesion-fin">–19:00</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="2"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="suelo" data-inicio="19:30" data-fin="20:20" data-nivel="3"><span class="sesion-hora">19:30<span class="sesion-fin">–20:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="yin" data-inicio="20:30" data-fin="21:45" data-nivel="1"><span class="sesion-hora">20:30<span class="sesion-fin">–21:45</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+            </ol>
+          </li>
+          <li class="cuadro-dia" data-dia="4">
+            <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Jueves</span><span class="cuadro-dia-corto" aria-hidden="true">Jue</span><span class="cuadro-hoy-marca">hoy</span></h3>
+            <ol class="cuadro-sesiones">
+              <li class="sesion" data-tipo="suelo" data-inicio="07:30" data-fin="08:20" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="09:30" data-fin="10:30" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:30</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="18:00" data-fin="18:50" data-nivel="2"><span class="sesion-hora">18:00<span class="sesion-fin">–18:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="vinyasa" data-inicio="18:30" data-fin="19:30" data-nivel="3"><span class="sesion-hora">18:30<span class="sesion-fin">–19:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 3</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="19:15" data-fin="20:05" data-nivel="1"><span class="sesion-hora">19:15<span class="sesion-fin">–20:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="19:45" data-fin="20:45" data-nivel="2"><span class="sesion-hora">19:45<span class="sesion-fin">–20:45</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+            </ol>
+          </li>
+          <li class="cuadro-dia" data-dia="5">
+            <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Viernes</span><span class="cuadro-dia-corto" aria-hidden="true">Vie</span><span class="cuadro-hoy-marca">hoy</span></h3>
+            <ol class="cuadro-sesiones">
+              <li class="sesion" data-tipo="vinyasa" data-inicio="07:30" data-fin="08:30" data-nivel="2"><span class="sesion-hora">07:30<span class="sesion-fin">–08:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="suelo" data-inicio="09:30" data-fin="10:20" data-nivel="1"><span class="sesion-hora">09:30<span class="sesion-fin">–10:20</span></span><span class="sesion-nombre">Pilates suelo</span><span class="sesion-datos">Sabela · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="17:30" data-fin="18:20" data-nivel="2"><span class="sesion-hora">17:30<span class="sesion-fin">–18:20</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="18:30" data-fin="19:30" data-nivel="1"><span class="sesion-hora">18:30<span class="sesion-fin">–19:30</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="yin" data-inicio="19:45" data-fin="21:00" data-nivel="1"><span class="sesion-hora">19:45<span class="sesion-fin">–21:00</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+            </ol>
+          </li>
+          <li class="cuadro-dia" data-dia="6">
+            <h3 class="cuadro-dia-nombre"><span class="cuadro-dia-largo">Sábado</span><span class="cuadro-dia-corto" aria-hidden="true">Sáb</span><span class="cuadro-hoy-marca">hoy</span></h3>
+            <ol class="cuadro-sesiones">
+              <li class="sesion" data-tipo="vinyasa" data-inicio="09:30" data-fin="10:30" data-nivel="2"><span class="sesion-hora">09:30<span class="sesion-fin">–10:30</span></span><span class="sesion-nombre">Vinyasa</span><span class="sesion-datos">Martín · Sala Area · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="10:00" data-fin="10:50" data-nivel="1"><span class="sesion-hora">10:00<span class="sesion-fin">–10:50</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="hatha" data-inicio="11:15" data-fin="12:15" data-nivel="1"><span class="sesion-hora">11:15<span class="sesion-fin">–12:15</span></span><span class="sesion-nombre">Hatha</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="reformer" data-inicio="11:15" data-fin="12:05" data-nivel="2"><span class="sesion-hora">11:15<span class="sesion-fin">–12:05</span></span><span class="sesion-nombre">Pilates reformer</span><span class="sesion-datos">Iago · Sala Muelle · nivel 2</span><span class="sesion-estado" aria-live="off"></span></li>
+              <li class="sesion" data-tipo="yin" data-inicio="12:30" data-fin="13:45" data-nivel="1"><span class="sesion-hora">12:30<span class="sesion-fin">–13:45</span></span><span class="sesion-nombre">Yin</span><span class="sesion-datos">Antía · Sala Area · nivel 1</span><span class="sesion-estado" aria-live="off"></span></li>
+            </ol>
+          </li>
+<!--CUADRO:fin-->
+        </ol>
+      </div>
+      <p class="cuadro-nota">Domingo cerrado. Reserva por WhatsApp o en recepción; cancelación libre hasta cuatro horas antes.</p>
+    </section>
+
+    <!-- ═════════ 6 · EQUIPO (ilustración) ═════════ -->
+    <section class="equipo" id="equipo" aria-labelledby="equipo-titulo">
+      <div class="equipo-cabeza">
+        <p class="seccion-numero">04 · Equipo</p>
+        <h2 class="titular revela" id="equipo-titulo">Cuatro personas que miran tus apoyos</h2>
+      </div>
+      <ul class="equipo-lista">
+        <li class="persona">
+          <svg class="persona-retrato" viewBox="0 0 240 280" role="img" aria-label="Ilustración de Antía: pelo largo recogido en una trenza, jersey de punto color mostaza.">
+            <path d="M20 280 V120 a100 100 0 0 1 200 0 V280Z" class="r-fondo"/>
+            <path d="M120 40 c-46 0 -62 34 -60 74 c2 30 -4 66 -14 96 l40 -8 l2 -80Z" class="r-pelo-osc"/>
+            <path d="M58 280 c4 -50 26 -72 62 -72 s58 22 62 72Z" class="r-ropa-a"/>
+            <path d="M58 280 c4 -50 26 -72 62 -72 s58 22 62 72Z" class="r-punto"/>
+            <rect x="106" y="160" width="28" height="52" rx="12" class="r-piel-b"/>
+            <ellipse cx="120" cy="124" rx="40" ry="48" class="r-piel-b"/>
+            <path d="M80 118 c0 -42 20 -64 44 -64 c26 0 40 22 38 52 c-14 -18 -40 -26 -82 12Z" class="r-pelo-osc"/>
+            <path d="M102 128 q7 5 14 0 M126 128 q7 5 14 0" class="r-trazo"/><path d="M121 134 l-3 14 h6" class="r-trazo"/><path d="M110 156 q10 6 20 0" class="r-trazo"/>
+          </svg>
+          <div class="persona-texto">
+            <h3>Antía Lourido</h3>
+            <p class="persona-rol">Hatha y yin · fundó Pegada</p>
+            <p>Llegó al yoga por una espalda rígida de diez años de surf de invierno, y se quedó por la paciencia que pide. En clase habla poco y corrige con la mano en el suelo, no en tu cuerpo.</p>
+          </div>
+        </li>
+        <li class="persona">
+          <svg class="persona-retrato" viewBox="0 0 240 280" role="img" aria-label="Ilustración de Iago: pelo corto rizado, barba corta, camiseta azul marino.">
+            <path d="M20 280 V120 a100 100 0 0 1 200 0 V280Z" class="r-fondo"/>
+            <path d="M54 280 c4 -52 28 -74 66 -74 s62 22 66 74Z" class="r-ropa-b"/>
+            <rect x="104" y="160" width="32" height="50" rx="12" class="r-piel-c"/>
+            <ellipse cx="120" cy="122" rx="42" ry="48" class="r-piel-c"/>
+            <path d="M80 140 c4 30 20 42 40 42 s36 -12 40 -42 c-8 10 -20 12 -40 12 s-32 -2 -40 -12Z" class="r-pelo"/>
+            <g class="r-pelo"><circle cx="88" cy="92" r="14"/><circle cx="104" cy="78" r="15"/><circle cx="124" cy="74" r="15"/><circle cx="144" cy="80" r="14"/><circle cx="156" cy="96" r="12"/><circle cx="82" cy="108" r="10"/></g>
+            <path d="M102 124 h12 M128 124 h12" class="r-trazo"/><path d="M121 130 l-3 14 h6" class="r-trazo-claro"/>
+          </svg>
+          <div class="persona-texto">
+            <h3>Iago Castiñeiras</h3>
+            <p class="persona-rol">Pilates reformer</p>
+            <p>Bailarín de formación, cuenta los muelles como otros cuentan compases. Es el que te dirá que quites resistencia, no que pongas más.</p>
+          </div>
+        </li>
+        <li class="persona">
+          <svg class="persona-retrato" viewBox="0 0 240 280" role="img" aria-label="Ilustración de Sabela: melena corta lisa con flequillo, gafas redondas, blusa color teja.">
+            <path d="M20 280 V120 a100 100 0 0 1 200 0 V280Z" class="r-fondo"/>
+            <path d="M56 280 c4 -50 28 -72 64 -72 s60 22 64 72Z" class="r-ropa-c"/>
+            <path d="M74 120 c-2 -46 18 -70 46 -70 s48 24 46 70 l2 52 h-96Z" class="r-pelo-gris"/>
+            <rect x="106" y="160" width="28" height="50" rx="12" class="r-piel-a"/>
+            <ellipse cx="120" cy="126" rx="38" ry="46" class="r-piel-a"/>
+            <path d="M80 112 c4 -36 20 -52 40 -52 s38 16 40 52 c-20 -10 -56 -10 -80 0Z" class="r-pelo-gris"/>
+            <g class="r-trazo"><circle cx="106" cy="128" r="10"/><circle cx="136" cy="128" r="10"/><path d="M116 128 h10"/></g>
+            <path d="M110 156 q10 5 20 0" class="r-trazo"/>
+          </svg>
+          <div class="persona-texto">
+            <h3>Sabela Pazos</h3>
+            <p class="persona-rol">Pilates suelo</p>
+            <p>Profesora de educación física durante veinte años. Sus clases de las 9:30 tienen la media de edad más alta del cuadro y la lista de espera más larga.</p>
+          </div>
+        </li>
+        <li class="persona">
+          <svg class="persona-retrato" viewBox="0 0 240 280" role="img" aria-label="Ilustración de Martín: pelo largo suelto por los hombros, sudadera verde oliva.">
+            <path d="M20 280 V120 a100 100 0 0 1 200 0 V280Z" class="r-fondo"/>
+            <path d="M74 110 c0 -40 20 -62 46 -62 s46 22 46 62 l4 96 h-100Z" class="r-pelo"/>
+            <path d="M54 280 c4 -52 28 -74 66 -74 s62 22 66 74Z" class="r-ropa-d"/>
+            <path d="M96 210 q24 18 48 0" class="r-cordon"/>
+            <rect x="106" y="160" width="28" height="50" rx="12" class="r-piel-d"/>
+            <ellipse cx="120" cy="124" rx="38" ry="47" class="r-piel-d"/>
+            <path d="M82 116 c2 -40 20 -58 38 -58 s36 18 38 58 c-6 -20 -20 -30 -38 -30 s-32 10 -38 30Z" class="r-pelo"/>
+            <path d="M102 126 q7 5 14 0 M126 126 q7 5 14 0" class="r-trazo"/><path d="M121 132 l-3 13 h6" class="r-trazo"/><path d="M112 154 q8 4 16 0" class="r-trazo"/>
+          </svg>
+          <div class="persona-texto">
+            <h3>Martín Oubiña</h3>
+            <p class="persona-rol">Vinyasa · la de las 7:30</p>
+            <p>Abre el estudio cada mañana. Su vinyasa temprano es la clase con más ritmo de la semana y la única en la que se oye el mar si alguien abre la ventana.</p>
+          </div>
+        </li>
+      </ul>
+      <blockquote class="cita">
+        <p>«Vine por la espalda y me quedé porque nadie me miró raro por no tocarme los pies.»</p>
+        <footer>— Lucía, alumna de hatha <span class="cita-nota">(opinión de muestra)</span></footer>
+      </blockquote>
+    </section>
+
+    <!-- ═════════ 7 · BONOS ═════════ -->
+    <section class="bonos" id="bonos" aria-labelledby="bonos-titulo">
+      <div class="bonos-primera">
+        <p class="seccion-numero">05 · Bonos</p>
+        <h2 class="titular revela" id="bonos-titulo">Empieza por una</h2>
+        <div class="vale">
+          <p class="vale-etiqueta">Primera clase</p>
+          <p class="vale-precio"><b>8</b><span>€</span></p>
+          <p class="vale-texto">Cualquier clase del cuadro, incluido el reformer. Te prestamos todo: solo trae ropa cómoda.</p>
+          <a class="boton boton-mar iman" href="#contacto">Reservar por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="tarifas">
+        <div class="tarifas-mando" role="group" aria-label="Tipo de tarifa">
+          <button type="button" class="tarifas-boton" aria-pressed="true" data-tarifa="suelo">Esterilla</button>
+          <button type="button" class="tarifas-boton" aria-pressed="false" data-tarifa="reformer">Reformer</button>
+        </div>
+        <ul class="tarifas-lista" data-lista="suelo">
+          <li><span class="t-nombre">Clase suelta</span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">16&nbsp;€</span></li>
+          <li><span class="t-nombre">Bono 5 clases <small>· 2 meses</small></span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">70&nbsp;€</span></li>
+          <li><span class="t-nombre">Bono 10 clases <small>· 3 meses</small></span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">125&nbsp;€</span></li>
+          <li class="t-destacada"><span class="t-nombre">Mensual sin límite <small>· esterilla</small></span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">69&nbsp;€<small>/mes</small></span></li>
+        </ul>
+        <ul class="tarifas-lista" data-lista="reformer" hidden>
+          <li><span class="t-nombre">Clase suelta</span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">24&nbsp;€</span></li>
+          <li><span class="t-nombre">Bono 4 clases <small>· 1 mes</small></span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">88&nbsp;€</span></li>
+          <li><span class="t-nombre">Bono 8 clases <small>· 2 meses</small></span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">168&nbsp;€</span></li>
+          <li class="t-destacada"><span class="t-nombre">Mixto: 4 reformer + esterilla sin límite</span><span class="t-guia" aria-hidden="true"></span><span class="t-precio">129&nbsp;€<small>/mes</small></span></li>
+        </ul>
+        <p class="tarifas-nota"><b>Precios de muestra, ficticios.</b> Sin matrícula. Los bonos son personales y se pueden congelar un mes al año.</p>
+      </div>
+    </section>
+
+    <!-- ═════════ 8 · ANTES DE VENIR ═════════ -->
+    <section class="antes" aria-labelledby="antes-titulo">
+      <div class="antes-cabeza">
+        <p class="seccion-numero">06 · Antes de venir</p>
+        <h2 class="titular revela" id="antes-titulo">Lo que conviene saber</h2>
+        <aside class="no-prometemos">
+          <h3>Lo que no prometemos</h3>
+          <p>No somos un centro sanitario ni hacemos terapia. No te vamos a decir que el yoga cura nada, ni que el pilates te quita el dolor de espalda. Si tienes una lesión o estás en tratamiento, consúltalo antes con tu médico o fisioterapeuta: nosotros adaptamos apoyos, no tratamos.</p>
+        </aside>
+      </div>
+      <div class="preguntas">
+        <details>
+          <summary>¿Necesito experiencia?</summary>
+          <p>No. Todas las clases de nivel 1 están pensadas para quien llega por primera vez. Avísanos al reservar y te guardamos un sitio cerca de quien da la clase.</p>
+        </details>
+        <details>
+          <summary>¿Qué tengo que traer?</summary>
+          <p>Ropa cómoda y nada más. Esterillas, bloques, mantas y aros son del estudio, y se limpian después de cada clase. Si prefieres tu esterilla, tráela.</p>
+        </details>
+        <details>
+          <summary>¿Hay edad mínima?</summary>
+          <p>Las clases son para mayores de 16 años. No hay edad máxima: la alumna más veterana de Sabela tiene 81.</p>
+        </details>
+        <details>
+          <summary>¿Y si no puedo ir a una clase reservada?</summary>
+          <p>Cancela hasta cuatro horas antes por WhatsApp y la clase vuelve a tu bono. Si avisas más tarde, la perdemos los dos: tú la clase y otra persona el sitio.</p>
+        </details>
+        <details>
+          <summary>¿Hay vestuario y ducha?</summary>
+          <p>Vestuario con taquillas y dos duchas. Toallas no, que estamos a dos calles del mar y todo el mundo lleva una en el coche.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ═════════ 9 · CONTACTO ═════════ -->
+    <section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+      <div class="contacto-datos">
+        <p class="seccion-numero">07 · Contacto</p>
+        <h2 class="titular revela" id="contacto-titulo">Ven a pisar la esterilla</h2>
+        <address>
+          <p class="contacto-linea"><b>Rúa do Cascallo, 9, baixo</b><br>36960 Sanxenxo (Pontevedra)</p>
+          <p class="contacto-linea"><a href="tel:+34986000000">986 00 00 00</a> · WhatsApp <a href="https://wa.me/34600000000">600 00 00 00</a><br><a href="mailto:hola@pegada.example">hola@pegada.example</a></p>
+        </address>
+        <dl class="horario">
+          <div><dt>Lunes a viernes</dt><dd>7:15 – 21:45</dd></div>
+          <div><dt>Sábado</dt><dd>9:15 – 13:45</dd></div>
+          <div><dt>Domingo</dt><dd>cerrado</dd></div>
+        </dl>
+        <p class="horario-nota">Horario de recepción. Las clases, en el <a href="#cuadro">cuadro</a>.</p>
+      </div>
+
+      <div class="contacto-mapa">
+        <div class="mapa-caja" data-mapa>
+          <svg class="mapa-dibujo" viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" class="md-mar"/>
+            <path d="M0 120 C60 110 90 140 140 130 S220 90 260 110 S340 150 400 130 V300 H0Z" class="md-tierra"/>
+            <path d="M0 132 C60 122 90 152 140 142 S220 102 260 122 S340 162 400 142" class="md-arena"/>
+            <path d="M40 200 H360 M120 150 V300 M250 140 L230 300 M60 250 H340" class="md-calle"/>
+            <path d="M120 200 H250" class="md-calle-nuestra"/>
+            <g transform="translate(186 200)"><circle r="16" class="md-pin"/><circle r="6" class="md-pin-centro"/></g>
+            <text x="200" y="232" text-anchor="middle" class="md-texto">Rúa do Cascallo</text>
+            <text x="70" y="80" class="md-texto md-texto-mar">ría de Pontevedra</text>
+          </svg>
+          <button class="boton boton-espuma mapa-boton" type="button">Cargar el mapa de Google</button>
+          <p class="mapa-aviso">Al pulsar se carga Google Maps, que puede instalar sus propias cookies.</p>
+        </div>
+      </div>
+
+      <form class="formulario" novalidate>
+        <h3>¿Dudas antes de la primera clase?</h3>
+        <label>Nombre<input name="nombre" autocomplete="given-name" required></label>
+        <label>Teléfono o correo<input name="contacto" autocomplete="email" required></label>
+        <label>Qué te gustaría probar
+          <select name="clase"><option>Aún no lo sé</option><option>Hatha</option><option>Vinyasa</option><option>Yin</option><option>Pilates suelo</option><option>Pilates reformer</option></select>
+        </label>
+        <button class="boton boton-mar iman" type="submit">Enviar</button>
+        <p class="formulario-estado" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="pie-marca">
+      <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><use href="#marca"/></svg>
+      <p class="pie-nombre">pegada</p>
+    </div>
+    <p class="pie-sello"><b>Sitio de demostración.</b> Pegada es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+    <ul class="pie-enlaces">
+      <li><a href="legal.html">Aviso legal y privacidad</a></li>
+      <li><button type="button" class="pie-cookies">Preferencias de cookies</button></li>
+    </ul>
+    <p class="pie-pequeno">© 2026 Pegada · yoga e pilates · Sanxenxo</p>
+  </footer>
+
+  <div class="cookies" role="dialog" aria-label="Aviso de cookies" hidden>
+    <p>Esta web no usa cookies de seguimiento. Guarda en tu navegador que has cerrado este aviso<span class="cookies-revision"> y, en modo revisión, la maqueta y el color elegidos</span>. El mapa de Google solo se carga si lo pides.</p>
+    <button type="button" class="boton boton-espuma cookies-aceptar">Entendido</button>
+  </div>
+
+  <!-- ── MANDO DE DEMOSTRACIÓN · NO VIAJA AL SITIO DE UN CLIENTE (ver README) ── -->
+  <div class="mando" hidden>
+    <div class="mando-grupo" role="group" aria-label="Densidad de la maqueta">
+      <span class="mando-titulo">Maqueta</span>
+      <button type="button" data-densidad="apoyos" aria-pressed="true">Apoyos</button>
+      <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+    </div>
+    <div class="mando-grupo" role="group" aria-label="Color de marca">
+      <span class="mando-titulo">Color</span>
+      <button type="button" data-paleta="mar" aria-pressed="true"><i style="background:#16475A"></i>Mar</button>
+      <button type="button" data-paleta="granate" aria-pressed="false"><i style="background:#6A2A35"></i>Granate</button>
+      <button type="button" data-paleta="musgo" aria-pressed="false"><i style="background:#33491F"></i>Musgo</button>
+    </div>
+  </div>
+  <!-- ── FIN MANDO DE DEMOSTRACIÓN ── -->
+
+  <div class="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
