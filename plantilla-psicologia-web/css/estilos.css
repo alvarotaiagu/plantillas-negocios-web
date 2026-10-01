@@ -40,10 +40,11 @@
   --ancho: 1440px;
 }
 
-/* Control de paleta: dos alternativas derivadas rotando el matiz en OKLCH
-   (scripts/color.js). Tinta, papel, grises y logo NO cambian. */
+/* MANDO-INICIO · Control de paleta: dos alternativas derivadas rotando el
+   matiz en OKLCH (scripts/color.js). Tinta, papel, grises y logo NO cambian. */
 html.paleta-brezo { --rubia: #855FB3; --rubia-hondo: #61428A; --rubia-claro: #C6B0E2; }
 html.paleta-musgo { --rubia: #328946; --rubia-hondo: #0F5D22; --rubia-claro: #A9D3AE; }
+/* MANDO-FIN */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { overflow-x: clip; -webkit-text-size-adjust: 100%; }
@@ -436,6 +437,10 @@ summary::after, summary::before { content: ""; position: absolute; right: .6rem;
 summary::before { transform: rotate(90deg); }
 details[open] summary::before { transform: rotate(0); }
 details p { margin: 0 0 1.4rem; color: var(--tinta-apagada); max-width: 38em; }
+details[open] p { animation: respuesta .6s var(--ease) both; }
+@keyframes respuesta { from { transform: translate3d(0, -8px, 0); clip-path: inset(0 0 100% 0); } to { transform: none; clip-path: inset(0 0 -10% 0); } }
+summary { transition: color .3s, padding-left .45s var(--ease); }
+summary:hover { color: var(--rubia-hondo); padding-left: .4rem; }
 @media (max-width: 860px) {
   .tarifas, .preguntas { grid-column: 1 / -1; position: static; padding-top: 0; }
   .preguntas { padding: 0; }
@@ -522,7 +527,7 @@ details p { margin: 0 0 1.4rem; color: var(--tinta-apagada); max-width: 38em; }
 .cookies .boton:hover { color: var(--crema); }
 @media (max-width: 600px) { .cookies { left: .6rem; right: .6rem; bottom: .6rem; max-width: none; flex-direction: column; align-items: stretch; } }
 
-/* ---------- MANDO DE DEMOSTRACIÓN — NO viaja al sitio de un cliente ---------- */
+/* MANDO-INICIO · MANDO DE DEMOSTRACIÓN — NO viaja al sitio de un cliente */
 .mandos { position: fixed; left: 1rem; bottom: 1rem; z-index: 95; display: none; flex-direction: column; gap: .4rem; font-size: .78rem; }
 html.es-revision .mandos:not([hidden]) { display: flex; }
 .mando { display: flex; align-items: center; gap: .25rem; background: var(--tinta); color: var(--crema); border-radius: 99px; padding: .3rem; box-shadow: 0 10px 30px -14px rgba(0,0,0,.5); }
@@ -530,8 +535,9 @@ html.es-revision .mandos:not([hidden]) { display: flex; }
 .mando button { font: 600 .78rem/1 var(--f-texto); color: var(--crema); background: transparent; border: 0; padding: .55rem .8rem; border-radius: 99px; cursor: pointer; display: inline-flex; align-items: center; gap: .35rem; }
 .mando button[aria-pressed="true"] { background: var(--crema); color: var(--tinta); }
 .muestra-color { width: .7rem; height: .7rem; border-radius: 50%; display: inline-block; }
+/* MANDO-FIN */
 
-/* Versión SOBRIA: el hilo solo donde significa algo (logo, cortina, portada,
+/* SOBRIA-INICIO · Versión SOBRIA: el hilo solo donde significa algo (logo, cortina, portada,
    proceso). Fuera el hilo conductor del margen, los dibujos de las tarjetas,
    la cola del cursor y los ovillos de las personas; en su sitio, el dato.
    Y añade lo que la otra no tiene: la primera sesión minuto a minuto. */
@@ -557,6 +563,7 @@ html.maqueta-sobria .minutos { display: block; grid-column: 7 / -1; margin: 1rem
 .minutos-barras li::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(var(--ini) / 50 * 100%); width: calc(var(--min) / 50 * 100%); background: var(--rubia-claro); }
 .minutos-barras b { font-variant-numeric: tabular-nums; }
 @media (max-width: 760px) { html.maqueta-sobria .tarjeta-datos dd b { font-size: 2.6rem; } html.maqueta-sobria .tarjeta-datos { gap: .6rem 1.2rem; } }
+/* SOBRIA-FIN */
 
 /* ---------- Cursor propio (solo ratón) ---------- */
 .cursor { display: none; }

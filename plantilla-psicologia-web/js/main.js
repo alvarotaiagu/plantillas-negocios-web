@@ -99,22 +99,24 @@
 
   /* ---------- Cookies ---------- */
   var cookies = $('.cookies');
+  /* MANDO-INICIO */
   var mandos = $('.mandos');
   function colocarMandos() {
     if (!mandos) return;
     var revision = root.classList.contains('es-revision');
     mandos.hidden = !revision || (cookies && !cookies.hidden);
   }
+  /* MANDO-FIN */
   if (cookies) {
     if (store.get('debandoira-cookies') !== 'ok') cookies.hidden = false;
     $('button', cookies).addEventListener('click', function () {
       store.set('debandoira-cookies', 'ok');
       cookies.hidden = true;
-      colocarMandos();
+      colocarMandos(); // MANDO
     });
   }
 
-  /* ---------- MANDO DE DEMOSTRACIÓN (no viaja al sitio de un cliente) ---------- */
+  /* MANDO-INICIO · MANDO DE DEMOSTRACIÓN (no viaja al sitio de un cliente) */
   if (mandos) {
     var pintarMandos = function () {
       var sobria = root.classList.contains('maqueta-sobria');
@@ -143,6 +145,7 @@
     pintarMandos();
     colocarMandos();
   }
+  /* MANDO-FIN */
 
   /* ---------- Menú móvil ---------- */
   var menuBoton = $('.menu-boton'), menu = $('#menu');
@@ -550,6 +553,7 @@
     var rotY = 0.6, rotX = -0.35, velY = 0.16, inclX = -0.35, devanado = 0;
     var puntero = { x: 0, y: 0, dentro: false, abajo: false };
     var vivo = false, visible = true, t0 = performance.now();
+    var titular = $('.titulo-portada'), tensionSuave = 0, tensionPintada = 0;
 
     function dibujar(t) {
       var r = radioActual();
@@ -605,11 +609,11 @@
 
     function fisica(dt, t) {
       var an = ancla();
-      var largo = R * (1.5 + 2.2 * devanado) + extra, seg = largo / (NC - 1);
+      var largo = R * (1.15 + 2.4 * devanado) + extra, seg = largo / (NC - 1);
       var objetivo;
       if (puntero.dentro) objetivo = { x: puntero.x, y: puntero.y };
       else if (apaisado) objetivo = { x: Math.min(W - 12, an.x + largo * 0.75), y: an.y + R * 0.5 + Math.sin(t * 0.0006) * R * 0.15 };
-      else objetivo = { x: an.x + R * 0.35 + Math.sin(t * 0.0006) * R * 0.18, y: an.y + largo * 0.72 };
+      else objetivo = { x: Math.min(W - 10, an.x + R * 0.35 + largo * 0.25 + Math.sin(t * 0.0006) * R * 0.18), y: an.y + largo * 0.72 };
       for (var i = 1; i < NC; i++) {
         var p = cuerda[i], vx = (p.x - p.px) * 0.96, vy = (p.y - p.py) * 0.96;
         p.px = p.x; p.py = p.y;
@@ -629,12 +633,19 @@
         }
         cuerda[0].x = an.x; cuerda[0].y = an.y;
       }
+      // El suelo: el hilo suelto se amontona en la mesa, a la altura de la sombra
+      var suelo = Math.min(H - 6, cy + R * 1.12);
+      for (var q = 1; q < NC; q++) {
+        var pq = cuerda[q];
+        if (pq.y > suelo) { pq.y = suelo; pq.px = pq.x - (pq.x - pq.px) * 0.6; }
+        if (pq.x > W - 4) pq.x = W - 4;
+      }
       // Tirar: si el extremo se aleja más que el largo, el ovillo gira y suelta hilo
       var dist = Math.hypot(objetivo.x - an.x, objetivo.y - an.y);
-      if (puntero.dentro && dist > largo * 0.92) {
-        tension = clamp((dist - largo * 0.92) / R, 0, 1);
+      if (puntero.dentro && dist > largo * 0.85) {
+        tension = clamp((dist - largo * 0.85) / (R * 0.6), 0, 1);
         velY += tension * 2.2 * dt;
-        extra = Math.min(R * 1.6, extra + tension * R * 0.5 * dt);
+        extra = Math.min(R * 1.2, extra + tension * R * 0.25 * dt);
       }
       return tension;
     }
@@ -650,7 +661,13 @@
       rotX = inclX;
       var r = fig.getBoundingClientRect();
       devanado = clamp(-r.top / (r.height * 0.9), 0, 1);
-      fisica(dt, t);
+      var ten = fisica(dt, t);
+      // El titular se tensa con el hilo: el eje wght de Literata sigue a la tensión
+      tensionSuave += (ten - tensionSuave) * Math.min(1, dt * 3);
+      if (titular && Math.abs(tensionSuave - tensionPintada) > 0.015) {
+        tensionPintada = tensionSuave < 0.01 ? 0 : tensionSuave;
+        titular.style.fontVariationSettings = '"opsz" 72, "wght" ' + Math.round(250 + 230 * tensionPintada);
+      }
       dibujar(t);
       requestAnimationFrame(frame);
     }
@@ -660,7 +677,7 @@
     function local(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top, r: r }; }
     addEventListener('pointermove', function (e) {
       if (e.pointerType !== 'mouse' && !puntero.abajo) return;
-      var l = local(e), m = 80;
+      var l = local(e), m = 180;
       puntero.dentro = l.x > -m && l.y > -m && l.x < l.r.width + m && l.y < l.r.height + m;
       puntero.x = l.x; puntero.y = l.y;
     }, { passive: true });
@@ -681,6 +698,7 @@
       for (var i = 0; i < 240; i++) fisica(1 / 60, i * 16);
       dibujar(0);
     }
-    ovillo = { leerColores: leerColores };
+    ovillo = { leerColores: leerColores, estado: function () { return { tension: +tensionSuave.toFixed(3), extra: Math.round(extra), R: Math.round(R), devanado: +devanado.toFixed(3), puntero: puntero.dentro, fin: [Math.round(cuerda[NC - 1].x), Math.round(cuerda[NC - 1].y)], ancla: [Math.round(ancla().x), Math.round(ancla().y)] }; } };
+    window.__ovillo = ovillo; // para el arnés de verificación
   })();
 })();

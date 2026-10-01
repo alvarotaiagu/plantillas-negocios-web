@@ -30,12 +30,14 @@
   (function () {
     var d = document.documentElement;
     d.classList.add('js');
+    /* MANDO-INICIO */
     try {
       if (localStorage.getItem('debandoira-maqueta') === 'sobria') d.classList.add('maqueta-sobria');
       var p = localStorage.getItem('debandoira-paleta');
       if (p === 'brezo' || p === 'musgo') d.classList.add('paleta-' + p);
     } catch (e) {}
     if (/[?&]revision(=|&|$)/.test(location.search)) d.classList.add('es-revision');
+    /* MANDO-FIN */
     /* Retirada garantizada de la cortina: pase lo que pase con los scripts. */
     setTimeout(function () { d.classList.add('cortina-fuera'); }, 4200);
   })();
@@ -342,7 +344,7 @@
       <path class="hilo-escena" d="M0 410 C 120 380, 200 440, 300 410 S 460 380, 560 400" fill="none" stroke="var(--rubia)" stroke-width="3" stroke-linecap="round"/>
     </svg>
   </figure>
-  <!-- Solo en la versión sobria: la primera sesión, minuto a minuto (ver README) -->
+  <!-- SOBRIA-INICIO · solo en la versión sobria: la primera sesión, minuto a minuto (ver README) -->
   <figure class="minutos" aria-labelledby="minutos-t">
     <figcaption id="minutos-t"><b>La primera sesión, minuto a minuto</b> (orientativo)</figcaption>
     <ol class="minutos-barras">
@@ -352,6 +354,7 @@
       <li style="--ini:40;--min:10"><span>Tus preguntas, precio y siguiente paso</span><b>10 min</b></li>
     </ol>
   </figure>
+  <!-- SOBRIA-FIN -->
 </section>
 
 <!-- ============ EQUIPO ============ -->
@@ -497,11 +500,11 @@
 </footer>
 
 <div class="cookies" role="region" aria-label="Aviso de cookies" hidden>
-  <p>Esta web no usa cookies de terceros. Solo guarda en tu navegador que has cerrado este aviso (y, en modo revisión, la versión y el color elegidos). El mapa de Google no se carga hasta que lo pides. <a href="legal.html#cookies">Más</a></p>
+  <p>Esta web no usa cookies de terceros. Solo guarda en tu navegador que has cerrado este aviso<!-- MANDO-INICIO --> (y, en modo revisión, la versión y el color elegidos)<!-- MANDO-FIN -->. El mapa de Google no se carga hasta que lo pides. <a href="legal.html#cookies">Más</a></p>
   <button class="boton boton-pequeno" type="button">Entendido</button>
 </div>
 
-<!-- MANDO DE DEMOSTRACIÓN — NO viaja al sitio de un cliente. Ver README, «Borrar los mandos». -->
+<!-- MANDO-INICIO · MANDO DE DEMOSTRACIÓN — NO viaja al sitio de un cliente. Ver README, «Borrar los mandos». -->
 <div class="mandos" role="group" aria-label="Mandos de demostración" hidden>
   <div class="mando" role="group" aria-label="Densidad visual">
     <span class="mando-etiqueta">Versión</span>
@@ -515,7 +518,7 @@
     <button type="button" data-paleta="musgo" aria-pressed="false"><i class="muestra-color" style="background:#328946"></i>Musgo</button>
   </div>
 </div>
-<!-- FIN DEL MANDO DE DEMOSTRACIÓN -->
+<!-- MANDO-FIN -->
 
 <div class="cursor" aria-hidden="true"><span class="cursor-aro"><span class="cursor-texto"></span></span><span class="cursor-punto"></span><svg class="cursor-cola"><polyline/></svg></div>
 
