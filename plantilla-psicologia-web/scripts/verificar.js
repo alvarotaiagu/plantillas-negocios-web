@@ -82,7 +82,7 @@ const solapan = (a, b) => a && b && a.x < b.x + b.width && b.x < a.x + a.width &
     await page.waitForTimeout(caso === 'reducido' ? 400 : 2600);
     const d = await page.evaluate(() => getComputedStyle(document.querySelector('.cortina')).display);
     ok(`cortina: display:none ${caso === 'sinGsap' ? 'sin GSAP' : 'con movimiento reducido'}`, d === 'none', d);
-    await ir(page, '#equipo', 100);
+    await ir(page, '.equipo-cifras', -300);
     await page.waitForTimeout(1800);
     const estado = await page.evaluate(() => ({
       hasMotion: document.documentElement.classList.contains('has-motion'),
@@ -211,6 +211,12 @@ const solapan = (a, b) => a && b && a.x < b.x + b.width && b.x < a.x + a.width &
     const fig = await page.locator('.portada-ovillo').boundingBox();
     for (let i = 0; i < 25; i++) { await page.mouse.move(fig.x + fig.width * 0.95, fig.y + fig.height * (0.2 + i * 0.02)); await page.waitForTimeout(25); }
     await page.waitForTimeout(400);
+    // Tirar de verdad: el ovillo se tensa y el titular gana peso (eje wght)
+    for (let i = 0; i < 40; i++) { await page.mouse.move(Math.min(1430, fig.x + fig.width * (0.75 + i * 0.006)), Math.min(890, fig.y + fig.height * (0.55 + i * 0.01))); await page.waitForTimeout(30); }
+    await page.waitForTimeout(300);
+    const tens = await page.evaluate(() => [document.querySelector('.titulo-portada').style.fontVariationSettings, window.__ovillo.estado().tension]);
+    const wght = +(/wght" (\d+)/.exec(tens[0]) || [0, 0])[1];
+    ok('ovillo: al tirar del cabo el titular se tensa (wght > 330)', wght > 330, tens);
     await foto(page, 'portada-tirando-del-cabo');
     const et = await page.evaluate(() => [document.querySelector('.cursor').classList.contains('es-etiqueta'), document.querySelector('.cursor-texto').textContent]);
     ok('cursor: sobre el ovillo dice «tira»', et[0] && et[1] === 'tira', et);

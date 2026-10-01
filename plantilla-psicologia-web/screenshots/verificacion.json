@@ -68,19 +68,19 @@
       "letrasOcultas": 0,
       "hoy": 1,
       "horario": "Cerrado · abrimos mañana a las 9:00",
-      "contador": "1990"
+      "contador": "2014"
     }
   },
   {
     "nombre": "sinGsap: el contenido vivo sigue cambiando (hoy, abierto/cerrado, contador)",
-    "ok": false,
+    "ok": true,
     "detalle": {
       "hasMotion": false,
       "pasosVisibles": 6,
       "letrasOcultas": 0,
       "hoy": 1,
       "horario": "Cerrado · abrimos mañana a las 9:00",
-      "contador": "1990"
+      "contador": "2014"
     }
   },
   {
@@ -92,13 +92,14 @@
     ]
   },
   {
+    "nombre": "sinGsap: exactamente los 3 scripts del CDN abortados",
+    "ok": true,
+    "detalle": 3
+  },
+  {
     "nombre": "sinGsap: consola limpia (salvo el CDN tumbado a propósito)",
-    "ok": false,
-    "detalle": [
-      "Failed to load resource: net::ERR_FAILED",
-      "Failed to load resource: net::ERR_FAILED",
-      "Failed to load resource: net::ERR_FAILED"
-    ]
+    "ok": true,
+    "detalle": []
   },
   {
     "nombre": "cortina: display:none con movimiento reducido",
@@ -305,6 +306,14 @@
     "ok": true
   },
   {
+    "nombre": "ovillo: al tirar del cabo el titular se tensa (wght > 330)",
+    "ok": true,
+    "detalle": [
+      "\"opsz\" 72, \"wght\" 402",
+      0.667
+    ]
+  },
+  {
     "nombre": "cursor: sobre el ovillo dice «tira»",
     "ok": true,
     "detalle": [
@@ -383,10 +392,10 @@
       "pasos": 40,
       "malos": 0,
       "ultimo": [
-        -1793,
-        -1793,
-        -1793,
-        -1793
+        -1788,
+        -1788,
+        -1788,
+        -1788
       ]
     }
   },
@@ -424,22 +433,20 @@
       "pasos": 40,
       "malos": 0,
       "ultimo": [
-        -1878,
-        -1878,
-        -1878,
-        -1878
+        -1882,
+        -1882,
+        -1882,
+        -1882
       ]
     }
   },
   {
     "nombre": "index.html: noindex, sello, comentario arriba, 024 visible, sin marcadores, modo estándar",
-    "ok": false,
+    "ok": true,
     "detalle": {
       "robots": "noindex, nofollow",
       "sello": true,
-      "marcadores": [
-        "todo"
-      ],
+      "marcadores": [],
       "comentario": true,
       "crisis": true,
       "modo": "CSS1Compat"
@@ -481,9 +488,7 @@
   },
   {
     "nombre": "no-existe-esta-ruta: consola limpia (salvo el propio 404)",
-    "ok": false,
-    "detalle": [
-      "Failed to load resource: the server responded with a status of 404 (Not Found)"
-    ]
+    "ok": true,
+    "detalle": []
   }
 ]
