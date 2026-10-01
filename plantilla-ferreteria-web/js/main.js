@@ -527,7 +527,7 @@
       // 4 · desbarbado: la rebaba vive entre el cepillo y la fresa
       var t4 = suave(tramo(p, 0.72, 0.85));
       var bx = lerp(HOMBRO - 40, 720, t4);
-      el.cep.setAttribute('transform', 'translate(' + (p < 0.71 ? 860 : bx).toFixed(1) + ' ' + (TOP + DY + 8) + ') rotate(' + (p * -3000).toFixed(0) + ')');
+      el.cep.setAttribute('transform', 'translate(' + (p < 0.71 || p > 0.86 ? 860 : bx).toFixed(1) + ' ' + (TOP + DY + 8) + ') rotate(' + (p * -3000).toFixed(0) + ')');
       var desde = p < 0.71 ? HOMBRO : bx;
       el.clipR.setAttribute('x', desde.toFixed(1));
       el.clipR.setAttribute('width', Math.max(0, Math.min(x, PUNTA + 10) - desde).toFixed(1));

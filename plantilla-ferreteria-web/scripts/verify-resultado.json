@@ -1,0 +1,478 @@
+[
+ {
+  "nombre": "Cortina: fotograma a medias capturado con la chapa en movimiento",
+  "ok": true,
+  "detalle": {
+   "top": -361,
+   "fondoCortina": "rgb(226, 85, 43)",
+   "fondoBody": "rgb(14, 20, 17)"
+  }
+ },
+ {
+  "nombre": "Cortina de color distinto al fondo",
+  "ok": true,
+  "detalle": {
+   "top": -361,
+   "fondoCortina": "rgb(226, 85, 43)",
+   "fondoBody": "rgb(14, 20, 17)"
+  }
+ },
+ {
+  "nombre": "Cortina acaba en display:none (normal)",
+  "ok": true,
+  "detalle": "none"
+ },
+ {
+  "nombre": "Mando oculto sin ?revision",
+  "ok": true
+ },
+ {
+  "nombre": "Cookies: visible y el botón lo cierra de verdad",
+  "ok": true,
+  "detalle": {
+   "antes": "flex",
+   "despues": {
+    "d": "none",
+    "ls": "ok"
+   }
+  }
+ },
+ {
+  "nombre": "Cursor propio: nativo oculto (cursor:none !important) y punto+aro visibles",
+  "ok": true,
+  "detalle": {
+   "clase": true,
+   "cursor": "none",
+   "cursorEnlace": "none",
+   "visible": "block"
+  }
+ },
+ {
+  "nombre": "Cursor contextual sobre enlace",
+  "ok": true
+ },
+ {
+  "nombre": "Hero WebGL activo (canvas con búfer)",
+  "ok": true
+ },
+ {
+  "nombre": "El scroll da vueltas al tornillo (lectura en vivo)",
+  "ok": true,
+  "detalle": {
+   "antes": "0,0",
+   "despues": "1,3"
+  }
+ },
+ {
+  "nombre": "Llave: secuencia anclada (pin) con ScrollTrigger",
+  "ok": true,
+  "detalle": {
+   "pinned": true,
+   "top": 1
+  }
+ },
+ {
+  "nombre": "Llave: el scrub avanza paso y cronómetro",
+  "ok": true,
+  "detalle": [
+   {
+    "paso": "1",
+    "crono": "01:08"
+   },
+   {
+    "paso": "2",
+    "crono": "02:29"
+   },
+   {
+    "paso": "4",
+    "crono": "04:17"
+   }
+  ]
+ },
+ {
+  "nombre": "Pila: <li> sticky, todos del alto de la más alta (no 100vh)",
+  "ok": false,
+  "detalle": {
+   "alturas": [
+    400,
+    400,
+    400,
+    400,
+    400,
+    400
+   ],
+   "mb": [
+    "72px",
+    "72px",
+    "72px",
+    "72px",
+    "72px",
+    "72px"
+   ],
+   "max": 398,
+   "vh": 900,
+   "after": "162px",
+   "sticky": "sticky"
+  }
+ },
+ {
+  "nombre": "Pila: mismo margin-bottom en todos, incluido el último, y ::after de reposo",
+  "ok": true,
+  "detalle": {
+   "mb": [
+    "72px",
+    "72px",
+    "72px",
+    "72px",
+    "72px",
+    "72px"
+   ],
+   "after": "162px"
+  }
+ },
+ {
+  "nombre": "Pila en pasos de 90 px: el orden de apilado se mantiene en las 40 muestras",
+  "ok": true,
+  "detalle": [
+   100,
+   116,
+   132,
+   148,
+   164,
+   598
+  ]
+ },
+ {
+  "nombre": "Marquesina en movimiento",
+  "ok": true,
+  "detalle": [
+   "translate3d(-2597.4px, 0px, 0px)",
+   "translate3d(-2627.4px, 0px, 0px)"
+  ]
+ },
+ {
+  "nombre": "Panel de alquiler: la ficha cambia y marca la alquilada",
+  "ok": true,
+  "detalle": {
+   "estado": "Alquilada · Vuelve el jueves",
+   "nombre": "Martillo perforador",
+   "pressed": "true"
+  }
+ },
+ {
+  "nombre": "Cursor tuerca sobre la herramienta",
+  "ok": true
+ },
+ {
+  "nombre": "Galga: M12 → llave del 19 y SVG a escala 1:1 (atributo = px CSS)",
+  "ok": true,
+  "detalle": {
+   "llave": "del 19",
+   "ancho": "366",
+   "css": 366
+  }
+ },
+ {
+  "nombre": "Horario: fila de hoy con clase prefijada es-hoy y estado calculado",
+  "ok": true,
+  "detalle": {
+   "filas": 1,
+   "estado": "Cerrado ahora · abre hoy a las 9:00"
+  }
+ },
+ {
+  "nombre": "Mapa: sin iframe hasta el clic, con iframe después",
+  "ok": true,
+  "detalle": {
+   "antes": 0,
+   "despues": "https://www.google.com/maps?q=Nar%C3%B3n%2C%20A%20Coru%C3%B1a&output=embed"
+  }
+ },
+ {
+  "nombre": "Formulario de encargo: valida y responde (sin enviar)",
+  "ok": true,
+  "detalle": {
+   "inval": 3,
+   "resp": "Anotado (de muestra): Junta tórica 18×2. En un sitio real te llamaríamos al 600 00 00 00 con el precio y el día. No se ha enviado nada."
+  }
+ },
+ {
+  "nombre": "Sin desbordamiento horizontal (escritorio)",
+  "ok": true,
+  "detalle": {
+   "sw": 1440,
+   "iw": 1440
+  }
+ },
+ {
+  "nombre": "Sin [PENDIENTE], TODO ni lorem",
+  "ok": false
+ },
+ {
+  "nombre": "noindex, nofollow en la portada",
+  "ok": true
+ },
+ {
+  "nombre": "Sello de demo en el pie",
+  "ok": true
+ },
+ {
+  "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
+  "ok": true,
+  "detalle": {
+   "antes": 13,
+   "despues": 14
+  }
+ },
+ {
+  "nombre": "longtasks escritorio (carga en frío + recorrido completo)",
+  "ok": true,
+  "detalle": {
+   "n": 13,
+   "total": 872,
+   "max": 200
+  }
+ },
+ {
+  "nombre": "Consola limpia y cero 404 (escritorio)",
+  "ok": true,
+  "detalle": []
+ },
+ {
+  "nombre": "axe (WCAG 2.1 AA + buenas prácticas) en portada de escritorio: 0 violaciones",
+  "ok": false,
+  "detalle": [
+   {
+    "id": "landmark-complementary-is-top-level",
+    "impacto": "moderate",
+    "n": 1,
+    "ej": [
+     "#ficha"
+    ]
+   }
+  ]
+ },
+ {
+  "nombre": "Táctil: sin cursor propio",
+  "ok": true
+ },
+ {
+  "nombre": "Menú móvil: abre, aria-expanded y ocupa la pantalla (100dvh, no inset:0)",
+  "ok": true,
+  "detalle": {
+   "exp": "true",
+   "alto": 844,
+   "vh": 844,
+   "vis": "visible",
+   "inset": "-777px"
+  }
+ },
+ {
+  "nombre": "Menú móvil: el botón queda por encima y cierra",
+  "ok": true,
+  "detalle": "false"
+ },
+ {
+  "nombre": "Menú móvil: un enlace cierra el menú y lleva a la sección",
+  "ok": true,
+  "detalle": {
+   "exp": "false",
+   "top": 60
+  }
+ },
+ {
+  "nombre": "Sin desbordamiento horizontal (móvil 390)",
+  "ok": true,
+  "detalle": {
+   "sw": 390,
+   "iw": 390
+  }
+ },
+ {
+  "nombre": "longtasks móvil 390 (recorrido completo)",
+  "ok": true,
+  "detalle": {
+   "n": 9,
+   "total": 666,
+   "max": 99
+  }
+ },
+ {
+  "nombre": "Consola limpia (móvil)",
+  "ok": true,
+  "detalle": []
+ },
+ {
+  "nombre": "axe en móvil: 0 violaciones",
+  "ok": true,
+  "detalle": []
+ },
+ {
+  "nombre": "Hero 360×640: sin solapes y todo dentro de pantalla",
+  "ok": true,
+  "detalle": {
+   "solapes": [],
+   "cajas": [
+    ".portada-titulo 197-376",
+    ".portada-lema 392-477",
+    ".portada-acciones 496-605",
+    ".portada-lectura 84-172",
+    ".cabecera 0-68"
+   ]
+  }
+ },
+ {
+  "nombre": "Hero 375×667: sin solapes y todo dentro de pantalla",
+  "ok": true,
+  "detalle": {
+   "solapes": [],
+   "cajas": [
+    ".portada-titulo 215-401",
+    ".portada-lema 417-502",
+    ".portada-acciones 522-630",
+    ".portada-lectura 84-172",
+    ".cabecera 0-68"
+   ]
+  }
+ },
+ {
+  "nombre": "Sin GSAP: cortina en display:none y contenido visible",
+  "ok": true,
+  "detalle": {
+   "cort": "none",
+   "motion": false,
+   "letras": "1",
+   "entra": "none"
+  }
+ },
+ {
+  "nombre": "Sin GSAP: sin errores de JS propios",
+  "ok": true,
+  "detalle": []
+ },
+ {
+  "nombre": "Reducido: cortina en display:none, sin Lenis y sin estados vacíos",
+  "ok": true,
+  "detalle": {
+   "cort": "none",
+   "lenis": false,
+   "motion": false
+  }
+ },
+ {
+  "nombre": "Reducido: el contenido cambia (lectura, paso de la llave, contador)",
+  "ok": true,
+  "detalle": {
+   "v": "1,7",
+   "a": {
+    "paso": "1",
+    "crono": "01:25"
+   },
+   "c": "3200"
+  }
+ },
+ {
+  "nombre": "Mando: se aparta con el aviso de cookies y aparece al cerrarlo",
+  "ok": true,
+  "detalle": {
+   "conCookies": true,
+   "sinCookies": false
+  }
+ },
+ {
+  "nombre": "Sobria: fuera filetes y cabezas, entra el gráfico de granel y la métrica en grande, sin desbordar",
+  "ok": true,
+  "detalle": {
+   "antes": {
+    "filete": "block",
+    "granel": "none",
+    "cabeza": "block"
+   },
+   "desp": {
+    "filete": "none",
+    "granel": "block",
+    "cabeza": "none",
+    "num": "75.2px",
+    "sw": 1440,
+    "iw": 1440,
+    "ls": "sobria",
+    "pressed": "true"
+   }
+  }
+ },
+ {
+  "nombre": "Mando: se puede volver a «Rosca»",
+  "ok": true
+ },
+ {
+  "nombre": "Paletas: cada botón cambia el color computado (botón y cinta) y el logo NO cambia",
+  "ok": true,
+  "detalle": {
+   "c0": {
+    "boton": "rgb(255, 140, 102)",
+    "cinta": "rgb(226, 85, 43)",
+    "logo": "rgb(226, 85, 43)"
+   },
+   "c1": {
+    "boton": "rgb(118, 180, 254)",
+    "cinta": "rgb(10, 139, 244)",
+    "logo": "rgb(226, 85, 43)"
+   },
+   "c2": {
+    "boton": "rgb(50, 205, 151)",
+    "cinta": "rgb(6, 163, 111)",
+    "logo": "rgb(226, 85, 43)"
+   }
+  }
+ },
+ {
+  "nombre": "Paletas: aria-pressed y localStorage",
+  "ok": true,
+  "detalle": {
+   "ls": "cobalto",
+   "pressed": "true",
+   "otro": "false"
+  }
+ },
+ {
+  "nombre": "Recarga: la paleta guardada está en <html> desde el script bloqueante",
+  "ok": true,
+  "detalle": "js d-rosca es-revision p-cardenillo has-motion  has-pin lenis lenis-scrolling"
+ },
+ {
+  "nombre": "Aviso legal: noindex, sello y menciona las claves de localStorage",
+  "ok": true
+ },
+ {
+  "nombre": "Aviso legal: consola limpia",
+  "ok": true,
+  "detalle": [
+   "404 http://127.0.0.1:8765/plantilla-ferreteria-web/no-existe",
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ {
+  "nombre": "404 con el mismo lenguaje visual y noindex",
+  "ok": true
+ },
+ {
+  "nombre": "Canvas/WebGL: sin ctx.filter ni shadowBlur",
+  "ok": true
+ },
+ {
+  "nombre": "Cookies: display:flex solo en :not([hidden])",
+  "ok": true
+ },
+ {
+  "nombre": "Lenis desde jsDelivr, nunca cdnjs",
+  "ok": true
+ },
+ {
+  "nombre": "Menú móvil con height:100dvh",
+  "ok": true
+ },
+ {
+  "nombre": "Clases de estado con prefijo es-",
+  "ok": true
+ }
+]
