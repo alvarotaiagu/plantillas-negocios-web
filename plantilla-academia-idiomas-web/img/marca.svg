@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Desenredo">
+  <!-- Isotipo de Desenredo: un hilo enredado que sale recto y se convierte en
+       subrayado. Colores fijos: no cambian con el control de paleta. -->
+  <path d="M6 22c4-10 16-12 18-3 2 9-12 12-10 3 2-9 18-8 17 2-1 9-13 9-11 1 2-6 10-6 12 2" fill="none" stroke="#1A1C1F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 27c4 6 10 9 26 9" fill="none" stroke="#1A1C1F" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M8 46h50" stroke="#E0402B" stroke-width="5" stroke-linecap="round"/>
+  <path d="M8 54h34" stroke="#F5E35A" stroke-width="5" stroke-linecap="round"/>
+</svg>

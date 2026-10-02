@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--
+  Sitio de demostración. Desenredo es una academia de idiomas FICTICIA,
+  creada como plantilla de muestra para la biblioteca de webs de negocio.
+  El nombre, la dirección, los teléfonos, los precios, las personas y las
+  opiniones son inventados: no corresponden a ninguna academia real de
+  Ourense ni de ningún otro lugar. Los precios están marcados como ficticios.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desenredo — Academia de idiomas en Ourense</title>
+<meta name="description" content="Academia de idiomas en Ourense: inglés, francés, alemán, portugués y español para extranjeros, en grupos de ocho como máximo, con prueba de nivel gratuita. Sitio de demostración ficticio.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F3F2EC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Desenredo — Academia de idiomas · Ourense">
+<meta property="og:description" content="Hasta que deje de sonar a ruido. Sitio de demostración ficticio.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icono-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Onest:wght@300..800&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+<script>
+  /* Script bloqueante: decide antes de pintar. No depende de ningún CDN. */
+  (function () {
+    var html = document.documentElement;
+    html.classList.add('js');
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) html.classList.add('reduce');
+    window.__tareasLargas = [];
+    try {
+      new PerformanceObserver(function (l) {
+        l.getEntries().forEach(function (e) { window.__tareasLargas.push({ t: Math.round(e.startTime), d: Math.round(e.duration) }); });
+      }).observe({ type: 'longtask', buffered: true });
+    } catch (e) {}
+    /* MANDOS-INICIO */
+    /* CONTROLES DE DEMOSTRACIÓN (maqueta y paleta): ver README. */
+    try {
+      if (/[?&]revision\b/.test(location.search)) html.classList.add('es-revision');
+      if (localStorage.getItem('desenredo-maqueta') === 'sobria') html.classList.add('maqueta-sobria');
+      var p = localStorage.getItem('desenredo-paleta');
+      if (p === 'azul' || p === 'verde') html.classList.add('paleta-' + p);
+    } catch (e) {}
+    /* MANDOS-FIN */
+    window.__cortinaSegura = setTimeout(function () { var c = document.getElementById('cortina'); if (c) c.classList.add('es-retirada'); }, 6000);
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LanguageSchool",
+  "name": "Desenredo · academia de idiomas",
+  "description": "Academia de idiomas con grupos reducidos. Negocio ficticio de demostración.",
+  "address": { "@type": "PostalAddress", "streetAddress": "Rúa do Tinteiro, 9, baixo", "addressLocality": "Ourense", "postalCode": "32005", "addressCountry": "ES" },
+  "telephone": "+34988000000",
+  "email": "ola@desenredo.example"
+}
+</script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- CORTINA: una hoja de libreta. El bolígrafo rojo subraya el nombre y la
+     hoja pasa con el canto curvo. Retirada garantizada (main.js y <head>). -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <svg class="cortina-hoja" viewBox="0 0 1000 1000" preserveAspectRatio="none"><path class="cortina-papel" d="M0 0H1000Q1000 500 1000 1000H0Z"/></svg>
+  <div class="cortina-centro">
+    <p class="cortina-texto">Desenredo</p>
+    <svg class="cortina-subrayado" viewBox="0 0 400 30" width="400" height="30" preserveAspectRatio="none"><path d="M6 18C90 8 200 26 394 12" pathLength="1"/></svg>
+  </div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"><span class="cursor-txt"></span></span></div>
+
+<header class="cab" id="cab">
+  <a class="cab-marca" href="#inicio" aria-label="Desenredo, ir al inicio">
+    <img src="img/marca.svg" width="40" height="40" alt="">
+    <span class="cab-nombre">Desenredo<small>academia de idiomas · Ourense</small></span>
+  </a>
+  <button class="cab-boton" id="menu-boton" type="button" aria-expanded="false" aria-controls="menu"><span>Menú</span><span class="cab-boton-ico" aria-hidden="true"><i></i><i></i></span></button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ul>
+      <li><a href="#descifrar">Cómo se aprende</a></li>
+      <li><a href="#idiomas">Idiomas</a></li>
+      <li><a href="#prueba">Prueba de nivel</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <a class="cab-cta iman" href="#prueba">Haz la prueba</a>
+</header>
+
+<main id="contenido">
+  <!-- 1 · PORTADA -->
+  <section class="portada" id="inicio" aria-labelledby="titulo-portada">
+    <div class="portada-lienzo" aria-hidden="true"><canvas id="saludo"></canvas></div>
+    <div class="portada-texto">
+      <p class="antetitulo">Academia de idiomas · Ourense · grupos de 8 como máximo</p>
+      <h1 class="portada-titulo" id="titulo-portada" data-descifra>Hasta que deje de sonar a ruido.</h1>
+      <p class="portada-entradilla">Un idioma nuevo empieza siendo ruido: sonidos sueltos, palabras que se parecen a otras y no son. Aquí lo vamos desenredando, hilo a hilo, en grupos pequeños y con la misma profesora todo el curso.</p>
+      <div class="portada-acciones">
+        <a class="boton boton-lleno iman" href="#prueba"><span>Prueba de nivel gratuita</span></a>
+        <a class="boton boton-linea iman" href="#precios"><span>Ver precios</span></a>
+      </div>
+      <p class="portada-idioma" aria-live="off"><span class="portada-idioma-lbl">Ahora dice</span> <span id="saludo-texto">«Bos días», en gallego</span></p>
+    </div>
+  </section>
+
+  <!-- 2 · DESCIFRAR (anclada con scrub) -->
+  <section class="descifrar" id="descifrar" aria-labelledby="titulo-descifrar">
+    <div class="descifrar-marco">
+      <header class="descifrar-cab">
+        <p class="etiqueta">Cómo se aprende un idioma</p>
+        <h2 class="h2" id="titulo-descifrar" data-descifra>El mismo texto, <em>de A1 a C1.</em></h2>
+        <p class="descifrar-intro">Baja despacio. Cada nivel desenreda las palabras que se entienden en ese punto del curso. Lo que sigue revuelto es lo que todavía suena a ruido.</p>
+      </header>
+      <div class="descifrar-hoja">
+        <div class="descifrar-nivel"><span class="nivel-lbl">Nivel</span> <span class="nivel" id="nivel">A1</span> <span class="porcentaje"><span id="porcentaje">0</span>&nbsp;% entendido</span></div>
+        <p class="oculto">Texto de ejemplo en inglés: Last Saturday I went to the hot springs by the river. Actually, I was a bit embarrassed: I forgot my towel, so I asked a lady if she could lend me one. She laughed and said it happens all the time. Then we talked for an hour about bread, rain and the best way to cook octopus.</p>
+        <p class="texto-ingles" id="texto-ingles" aria-hidden="true"><span data-n="1">Last</span> <span data-n="1">Saturday</span> <span data-n="1">I</span> <span data-n="1">went</span> <span data-n="1">to</span> <span data-n="1">the</span> <span data-n="2">hot</span> <span data-n="3">springs</span> <span data-n="2">by</span> <span data-n="1">the</span> <span data-n="1">river.</span> <span data-n="4">Actually,</span> <span data-n="1">I</span> <span data-n="1">was</span> <span data-n="2">a</span> <span data-n="2">bit</span> <span data-n="4">embarrassed:</span> <span data-n="1">I</span> <span data-n="2">forgot</span> <span data-n="1">my</span> <span data-n="2">towel,</span> <span data-n="2">so</span> <span data-n="1">I</span> <span data-n="2">asked</span> <span data-n="1">a</span> <span data-n="2">lady</span> <span data-n="2">if</span> <span data-n="1">she</span> <span data-n="2">could</span> <span data-n="3">lend</span> <span data-n="1">me</span> <span data-n="1">one.</span> <span data-n="1">She</span> <span data-n="2">laughed</span> <span data-n="1">and</span> <span data-n="1">said</span> <span data-n="3">it</span> <span data-n="3">happens</span> <span data-n="5">all</span> <span data-n="5">the</span> <span data-n="5">time.</span> <span data-n="2">Then</span> <span data-n="1">we</span> <span data-n="2">talked</span> <span data-n="1">for</span> <span data-n="1">an</span> <span data-n="1">hour</span> <span data-n="1">about</span> <span data-n="1">bread,</span> <span data-n="1">rain</span> <span data-n="1">and</span> <span data-n="1">the</span> <span data-n="1">best</span> <span data-n="3">way</span> <span data-n="1">to</span> <span data-n="2">cook</span> <span data-n="3">octopus.</span></p>
+        <ol class="notas" id="notas">
+          <li data-n="1"><b>A1</b> Los nombres, los verbos de siempre y el pasado de <i>go</i>. Ya sabes que es sábado, que hay un río y que se habla de pan.</li>
+          <li data-n="2"><b>A2</b> Pasado simple regular e irregular: <i>forgot</i>, <i>asked</i>, <i>laughed</i>. Ya hay historia.</li>
+          <li data-n="3"><b>B1</b> <i>Lend</i> no es <i>borrow</i>: cambia quién da. Y <i>it happens</i>: lo que pasa, no lo que «sucede» en un examen.</li>
+          <li data-n="4"><b>B2</b> Falsos amigos: <i>actually</i> no es «actualmente» y <i>embarrassed</i> no es «embarazada».</li>
+          <li data-n="5"><b>C1</b> <i>All the time</i>: frases hechas que no se traducen palabra a palabra. Ya lo lees sin traducir.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · IDIOMAS Y NIVELES (pauta) -->
+  <section class="idiomas" id="idiomas" aria-labelledby="titulo-idiomas">
+    <div class="idiomas-cab">
+      <p class="etiqueta">Idiomas y niveles</p>
+      <h2 class="h2" id="titulo-idiomas" data-descifra>Cinco idiomas, <em>en la misma pauta.</em></h2>
+    </div>
+    <div class="pauta-envoltorio" role="group" aria-label="Tabla de idiomas y niveles">
+      <table class="pauta">
+        <caption class="oculto">Niveles que se ofrecen en cada idioma (marco europeo)</caption>
+        <thead><tr><th scope="col">Idioma</th><th scope="col">A1</th><th scope="col">A2</th><th scope="col">B1</th><th scope="col">B2</th><th scope="col">C1</th><th scope="col">C2</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span class="idioma-hola" data-hola="Hello">Inglés</span></th><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td></tr>
+          <tr><th scope="row"><span class="idioma-hola" data-hola="Bonjour">Francés</span></th><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="no">no</td></tr>
+          <tr><th scope="row"><span class="idioma-hola" data-hola="Hallo">Alemán</span></th><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="no">no</td><td class="no">no</td></tr>
+          <tr><th scope="row"><span class="idioma-hola" data-hola="Olá">Portugués</span></th><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="no">no</td><td class="no">no</td></tr>
+          <tr><th scope="row"><span class="idioma-hola" data-hola="Hola">Español para extranjeros</span></th><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="si">sí</td><td class="no">no</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- MANDOS-INICIO -->
+    <!-- Versión sobria: el dato en lugar del efecto. Horas de clase
+         orientativas para alcanzar cada nivel. -->
+    <figure class="horas" aria-labelledby="horas-titulo">
+      <figcaption id="horas-titulo"><strong>Horas de clase guiada, acumuladas, para llegar a cada nivel.</strong> Cifras orientativas de referencia para el inglés; cada persona va a su ritmo.</figcaption>
+      <ul class="horas-filas">
+        <li><span>A2</span><span class="horas-barra" style="--v:.17"><b>~200 h</b></span></li>
+        <li><span>B1</span><span class="horas-barra" style="--v:.33"><b>~400 h</b></span></li>
+        <li><span>B2</span><span class="horas-barra" style="--v:.5"><b>~600 h</b></span></li>
+        <li><span>C1</span><span class="horas-barra" style="--v:.67"><b>~800 h</b></span></li>
+        <li><span>C2</span><span class="horas-barra" style="--v:1"><b>~1.200 h</b></span></li>
+      </ul>
+    </figure>
+    <!-- MANDOS-FIN -->
+    <ul class="reglas">
+      <li><b>8</b><span>alumnos por grupo, como mucho. Si se apunta el noveno, se abre otro grupo.</span></li>
+      <li><b>1</b><span>profesora todo el curso. Nada de rotar cada trimestre.</span></li>
+      <li><b>0</b><span>libros obligatorios que comprar en septiembre. El material va en la cuota.</span></li>
+      <li><b>2</b><span>tutorías al año para decirte, por escrito, dónde estás y qué te falta.</span></li>
+    </ul>
+  </section>
+
+  <!-- 4 · PRUEBA DE NIVEL (corrige con boli rojo) -->
+  <section class="prueba" id="prueba" aria-labelledby="titulo-prueba">
+    <div class="prueba-cab">
+      <p class="etiqueta etiqueta--clara">Prueba de nivel</p>
+      <h2 class="h2" id="titulo-prueba" data-descifra>Tres preguntas, <em>corregidas en rojo.</em></h2>
+      <p>Es una muestra de la prueba de verdad, que es oral, dura veinte minutos y es gratis. Esta solo orienta.</p>
+    </div>
+    <form class="test" id="test">
+      <fieldset data-correcta="b">
+        <legend>1. She ___ to Vigo every Friday.</legend>
+        <label><input type="radio" name="p1" value="a"> go</label>
+        <label><input type="radio" name="p1" value="b"> goes</label>
+        <label><input type="radio" name="p1" value="c"> going</label>
+        <p class="correccion" data-ok="Bien: tercera persona, -s." data-ko="Tercera persona del presente: goes."></p>
+      </fieldset>
+      <fieldset data-correcta="c">
+        <legend>2. I'm really ___ : I've got a test tomorrow.</legend>
+        <label><input type="radio" name="p2" value="a"> embarrassed</label>
+        <label><input type="radio" name="p2" value="b"> excited</label>
+        <label><input type="radio" name="p2" value="c"> nervous</label>
+        <p class="correccion" data-ok="Eso es: nervous." data-ko="Nervous. Embarrassed es «avergonzado», no «nervioso»."></p>
+      </fieldset>
+      <fieldset data-correcta="a">
+        <legend>3. If I ___ more time, I'd travel.</legend>
+        <label><input type="radio" name="p3" value="a"> had</label>
+        <label><input type="radio" name="p3" value="b"> have</label>
+        <label><input type="radio" name="p3" value="c"> would have</label>
+        <p class="correccion" data-ok="Segundo condicional, perfecto." data-ko="Segundo condicional: if + pasado (had)."></p>
+      </fieldset>
+      <button class="boton boton-claro iman" type="submit"><span>Corregir</span></button>
+      <p class="test-resultado" id="test-resultado" role="status"></p>
+    </form>
+  </section>
+
+  <!-- 5 · PRECIOS (ficticios) -->
+  <section class="precios" id="precios" aria-labelledby="titulo-precios">
+    <div class="precios-cab">
+      <p class="etiqueta">Precios</p>
+      <h2 class="h2" id="titulo-precios" data-descifra>Lo que cuesta, <em>en claro.</em></h2>
+      <p class="sello-ficticio" role="note"><strong>Precios de muestra, ficticios.</strong> No son tarifas reales de ninguna academia.</p>
+    </div>
+    <dl class="tarifas">
+      <div><dt>Grupo · 2 h a la semana</dt><dd>65 €<small>/mes</small></dd></div>
+      <div><dt>Grupo · 3 h a la semana</dt><dd>85 €<small>/mes</small></dd></div>
+      <div><dt>Preparación de examen oficial</dt><dd>95 €<small>/mes</small></dd></div>
+      <div><dt>Clase individual</dt><dd>26 €<small>/hora</small></dd></div>
+      <div><dt>Intensivo de julio</dt><dd>190 €<small>/4 semanas</small></dd></div>
+      <div><dt>Matrícula</dt><dd>30 €<small>una vez</small></dd></div>
+    </dl>
+    <p class="precios-nota">Preparamos los exámenes oficiales de cada idioma, pero no somos centro examinador: el examen se hace donde lo convoca cada institución.</p>
+  </section>
+
+  <!-- 6 · VOCES (de muestra) -->
+  <section class="voces" aria-labelledby="titulo-voces">
+    <h2 class="oculto" id="titulo-voces">Lo que dicen (opiniones de muestra)</h2>
+    <div class="cinta" aria-hidden="true"><div class="cinta-pista" id="cinta"><span>Hello</span><span>Bonjour</span><span>Hallo</span><span>Olá</span><span>Bos días</span><span>Hola</span><span>Ciao</span></div></div>
+    <div class="voces-lista">
+      <blockquote><p>«Llevaba diez años diciendo que mi inglés era de leer. En febrero hice mi primera llamada de trabajo sin escribirme el guion.»</p><footer>— Breixo, B2 de inglés</footer></blockquote>
+      <blockquote><p>«Vine de Caracas sin saber qué era un orballo. Ahora corrijo yo a mis compañeros de la oficina.»</p><footer>— Mariela, C1 de español</footer></blockquote>
+      <p class="voces-nota">Opiniones de muestra, escritas para esta demostración.</p>
+    </div>
+  </section>
+
+  <!-- 7 · PREGUNTAS -->
+  <section class="preguntas" aria-labelledby="titulo-preguntas">
+    <h2 class="h2" id="titulo-preguntas" data-descifra>Antes de <em>apuntarte.</em></h2>
+    <div class="preguntas-lista">
+      <details><summary>¿Cuándo empiezan los cursos?</summary><p>En la segunda semana de septiembre y en la primera de febrero. Si hay plaza en un grupo de tu nivel, puedes entrar cualquier mes.</p></details>
+      <details><summary>¿Y si no sé qué nivel tengo?</summary><p>Para eso está la prueba de nivel: veinte minutos de conversación, gratis y sin compromiso.</p></details>
+      <details><summary>¿Hay clases para niños?</summary><p>A partir de los doce años, en grupos propios. Para menores de doce no tenemos cursos.</p></details>
+      <details><summary>¿Puedo cambiar de grupo?</summary><p>Sí, si hay plaza en otro del mismo nivel. Sin coste.</p></details>
+    </div>
+  </section>
+
+  <!-- 8 · CONTACTO -->
+  <section class="contacto" id="contacto" aria-labelledby="titulo-contacto">
+    <div>
+      <h2 class="h2" id="titulo-contacto" data-descifra>Rúa do Tinteiro, 9. <em>Ourense.</em></h2>
+      <address>
+        <p>Rúa do Tinteiro, 9, baixo · 32005 Ourense</p>
+        <p><a href="tel:+34988000000">988 00 00 00</a> · <a href="https://wa.me/34600000000">WhatsApp 600 00 00 00</a></p>
+        <p><a href="mailto:ola@desenredo.example">ola@desenredo.example</a></p>
+        <p>Lunes a jueves, 9:30–13:30 y 16:00–21:30 · viernes, 9:30–14:00 · <span class="estado" data-estado></span></p>
+      </address>
+      <p class="contacto-equipo">Dirige <strong>Sabela Outeiro</strong> (inglés y francés). Con ella: Jonas (alemán), Inês (portugués) y Daniel (inglés y español para extranjeros).</p>
+    </div>
+    <div class="mapa" id="mapa">
+      <div class="mapa-tapa">
+        <p>El mapa es de Google y deja cookies suyas. Por eso no se carga hasta que lo pidas.</p>
+        <button class="boton boton-linea iman" type="button" id="mapa-boton"><span>Cargar el mapa</span></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <p class="pie-marca"><img src="img/marca.svg" width="48" height="48" alt=""> Desenredo</p>
+  <p class="pie-sello"><strong>Sitio de demostración.</strong> Desenredo es un negocio ficticio; los datos, ilustraciones, precios y opiniones son de muestra.</p>
+  <p class="pie-legal"><a href="aviso-legal.html">Aviso legal y privacidad</a> · <button type="button" class="enlace" id="cookies-reabrir">Aviso de cookies</button></p>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Sin cookies de seguimiento ni analítica. Tu navegador solo guarda que has visto este aviso<!-- MANDOS-INICIO --> (y, en la versión de revisión, la densidad y el color elegidos)<!-- MANDOS-FIN -->. El mapa de Google solo se carga si lo pides.</p>
+  <div class="cookies-acciones"><a href="aviso-legal.html#privacidad">Más detalle</a><button type="button" class="boton boton-lleno" id="cookies-ok"><span>Entendido</span></button></div>
+</div>
+
+<!-- MANDOS-INICIO -->
+<!-- MANDOS DE DEMOSTRACIÓN: solo con ?revision. No viajan al sitio de un cliente (README). -->
+<div class="mandos" id="mandos" role="region" aria-label="Mandos de demostración" hidden>
+  <div class="mando" role="group" aria-label="Maqueta: densidad visual">
+    <span class="mando-lbl">Maqueta</span>
+    <button type="button" data-maqueta="descifrar" aria-pressed="true">Descifrar</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <div class="mando" role="group" aria-label="Paleta: color de marca">
+    <span class="mando-lbl">Color</span>
+    <button type="button" data-paleta="rojo" aria-pressed="true"><i style="background:#E0402B"></i>Rojo</button>
+    <button type="button" data-paleta="azul" aria-pressed="false"><i style="background:#347AF7"></i>Azul</button>
+    <button type="button" data-paleta="verde" aria-pressed="false"><i style="background:#009B6E"></i>Verde</button>
+  </div>
+  <p class="mando-lt" id="mando-lt">tareas largas: —</p>
+</div>
+<!-- MANDOS-FIN -->
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
