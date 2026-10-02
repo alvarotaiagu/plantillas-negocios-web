@@ -1,0 +1,54 @@
+{
+ "webgl-swiftshader · escritorio": {
+  "webgl": true,
+  "carga": {
+   "n": 2,
+   "total": 354,
+   "max": 244
+  },
+  "recorrido": {
+   "n": 0,
+   "total": 0,
+   "max": 0
+  }
+ },
+ "webgl-swiftshader · movil": {
+  "webgl": true,
+  "carga": {
+   "n": 2,
+   "total": 342,
+   "max": 234
+  },
+  "recorrido": {
+   "n": 0,
+   "total": 0,
+   "max": 0
+  }
+ },
+ "sin-webgl · escritorio": {
+  "webgl": false,
+  "carga": {
+   "n": 2,
+   "total": 189,
+   "max": 120
+  },
+  "recorrido": {
+   "n": 0,
+   "total": 0,
+   "max": 0
+  }
+ },
+ "sin-webgl · movil": {
+  "webgl": false,
+  "carga": {
+   "n": 2,
+   "total": 174,
+   "max": 116
+  },
+  "recorrido": {
+   "n": 0,
+   "total": 0,
+   "max": 0
+  }
+ }
+}

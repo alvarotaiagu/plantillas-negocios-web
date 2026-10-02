@@ -122,6 +122,7 @@ html.js .cortina.es-css .cortina-pliego { transform: translate3d(0, -105%, 0); t
 .menu a:hover, .menu a:focus-visible { background-size: 100% 2px; }
 .menu-estado, .menu-boton { display: none; }
 @media (max-width: 860px) {
+  .marca-sub { display: none; }
   .menu-boton { display: inline-flex; align-items: center; gap: .7rem; position: relative; z-index: 2; min-height: 44px; padding: .5rem 1rem; background: var(--crema); border: 1.5px solid var(--tinta); border-radius: 2px; font-family: var(--mono); font-size: .8rem; text-transform: uppercase; cursor: pointer; }
   .menu-boton-rayas { display: grid; gap: 5px; width: 20px; }
   .menu-boton-rayas i { height: 2px; background: currentColor; display: block; transition: transform .4s var(--ease-sal); }

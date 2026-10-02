@@ -3,7 +3,7 @@
   "nombre": "Cortina: fotograma a medias capturado con la chapa en movimiento",
   "ok": true,
   "detalle": {
-   "top": -22,
+   "top": -24,
    "fondoCortina": "rgb(22, 22, 26)",
    "fondoBody": "rgb(244, 241, 234)"
   }
@@ -12,7 +12,7 @@
   "nombre": "Cortina de color distinto al fondo",
   "ok": true,
   "detalle": {
-   "top": -22,
+   "top": -24,
    "fondoCortina": "rgb(22, 22, 26)",
    "fondoBody": "rgb(244, 241, 234)"
   }
@@ -20,7 +20,7 @@
  {
   "nombre": "Cortina: segundo fotograma con el canto dentado a la vista",
   "ok": true,
-  "detalle": 435
+  "detalle": 505
  },
  {
   "nombre": "Cortina acaba en display:none (normal)",
@@ -109,8 +109,8 @@
   "nombre": "Marquesina en movimiento",
   "ok": true,
   "detalle": [
-   "translate3d(-1591.1px, 0px, 0px)",
-   "translate3d(-1616.1px, 0px, 0px)"
+   "translate3d(-1498.7px, 0px, 0px)",
+   "translate3d(-1524.5px, 0px, 0px)"
   ]
  },
  {
@@ -175,17 +175,17 @@
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
   "detalle": {
-   "antes": 2,
-   "despues": 3
+   "antes": 3,
+   "despues": 4
   }
  },
  {
   "nombre": "longtasks escritorio (carga en frío + recorrido completo)",
   "ok": true,
   "detalle": {
-   "n": 2,
-   "total": 406,
-   "max": 270
+   "n": 3,
+   "total": 451,
+   "max": 271
   }
  },
  {
@@ -239,8 +239,8 @@
   "ok": true,
   "detalle": {
    "n": 1,
-   "total": 171,
-   "max": 171
+   "total": 165,
+   "max": 165
   }
  },
  {
