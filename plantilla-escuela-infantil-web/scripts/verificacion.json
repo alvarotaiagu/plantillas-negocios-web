@@ -12,7 +12,7 @@
  {
   "nombre": "Cortina: la manta se levanta con borde curvo en varios fotogramas",
   "ok": true,
-  "detalle": "58 fotogramas intermedios, p. ej. M0 0H1000V418.9523Q500 1177.0565 0 418.9523Z"
+  "detalle": "59 fotogramas intermedios, p. ej. M0 0H1000V419.206Q500 1177.7693 0 419.206Z"
  },
  {
   "nombre": "Cortina: acaba en display:none (normal)",
@@ -32,7 +32,7 @@
  {
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
-  "detalle": "[{\"t\":9665,\"d\":120}]"
+  "detalle": "[{\"t\":6255,\"d\":65},{\"t\":12753,\"d\":120}]"
  },
  {
   "nombre": "Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo",
@@ -42,7 +42,7 @@
  {
   "nombre": "Tareas largas con el canvas vivo y la página recorrida (caché templada)",
   "ok": true,
-  "detalle": "arranque: [] · recorriendo: []"
+  "detalle": "arranque: [{\"t\":6255,\"d\":65}] · recorriendo: []"
  },
  {
   "nombre": "Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible",
@@ -87,7 +87,7 @@
  {
   "nombre": "Tareas largas en frío (caché deshabilitada): arranque y recorrido",
   "ok": true,
-  "detalle": "arranque: [{\"t\":2641,\"d\":89},{\"t\":2732,\"d\":67}] · recorriendo la página entera: []"
+  "detalle": "arranque: [{\"t\":2830,\"d\":84},{\"t\":2917,\"d\":80}] · recorriendo la página entera: []"
  },
  {
   "nombre": "Pila: todos los <li> con el mismo alto (el de la tarjeta más alta)",
@@ -137,7 +137,7 @@
  {
   "nombre": "Consola limpia y sin 404 en móvil (fuera de cortes del proxy en fuentes)",
   "ok": true,
-  "detalle": "[] · entorno: []"
+  "detalle": "[] · entorno: [\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\",\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\",\"FAILED https://fonts.gstatic.com/s/atkinsonhyperlegiblenext/v7/NaPNcYPdHfdVxJw0IfIP0lvYFqijb-UxCtm5_wdGseiJn3o.woff2 net::ERR_TOO_MANY_RETRIES\",\"FAILED https://fonts.gstatic.com/s/playfair/v10/0nktC9D7PO4KhmUJ59bafwPKpQ.woff2 net::ERR_TOO_MANY_RETRIES\"]"
  },
  {
   "nombre": "Portada 360×640: sin solapes entre bloques ni con el móvil",

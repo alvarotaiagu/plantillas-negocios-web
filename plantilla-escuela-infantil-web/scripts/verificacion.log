@@ -1,13 +1,13 @@
 == 1. Escritorio: cortina, consola, secciones
 OK    Cortina: fotogramas a medias capturados (hilo y manta) — manta congelada en M0 0H1000V392.6576Q500 1103.1808 0 392.6576Z
 OK    Cortina: el hilo pasa por valores intermedios (autoRound:false) — 0.125, 0.125, 0.125, 0.125, 0.125, 0.125
-OK    Cortina: la manta se levanta con borde curvo en varios fotogramas — 58 fotogramas intermedios, p. ej. M0 0H1000V418.9523Q500 1177.0565 0 418.9523Z
+OK    Cortina: la manta se levanta con borde curvo en varios fotogramas — 59 fotogramas intermedios, p. ej. M0 0H1000V419.206Q500 1177.7693 0 419.206Z
 OK    Cortina: acaba en display:none (normal)
 OK    Cortina de color distinto al fondo
 OK    Cursor propio: aparece al primer pointermove de ratón y oculta el nativo
-OK    PerformanceObserver de longtask vivo (control de 120 ms detectado) — [{"t":9665,"d":120}]
+OK    PerformanceObserver de longtask vivo (control de 120 ms detectado) — [{"t":6255,"d":65},{"t":12753,"d":120}]
 OK    Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo — paso 0 → 2, top -0.359375
-OK    Tareas largas con el canvas vivo y la página recorrida (caché templada) — arranque: [] · recorriendo: []
+OK    Tareas largas con el canvas vivo y la página recorrida (caché templada) — arranque: [{"t":6255,"d":65}] · recorriendo: []
 OK    Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible
 OK    Escritorio sin desbordamiento horizontal
 OK    Mapa: sin iframe antes del clic
@@ -17,7 +17,7 @@ OK    Formulario de muestra: responde sin enviar nada
 OK    Menú: una pestaña marcada es-hoy en laborable o el lunes en fin de semana
 OK    Consola limpia y sin 404 en escritorio (fuera del iframe de Google) — [] · Google: 9
 == 1b. Tareas largas en frío
-OK    Tareas largas en frío (caché deshabilitada): arranque y recorrido — arranque: [{"t":2641,"d":89},{"t":2732,"d":67}] · recorriendo la página entera: []
+OK    Tareas largas en frío (caché deshabilitada): arranque y recorrido — arranque: [{"t":2830,"d":84},{"t":2917,"d":80}] · recorriendo la página entera: []
 == 2. Pila sticky en pasos de ~90 px
 OK    Pila: todos los <li> con el mismo alto (el de la tarjeta más alta) — {"altos":[454,454,454],"mb":["126px","126px","126px"],"maxT":454,"after":"306px"}
 OK    Pila: mismo margin-bottom en todos, incluido el último; reposo por ::after — 126px 126px 126px / after 306px
@@ -29,7 +29,7 @@ OK    Menú móvil: abre, aria-expanded=true y ocupa 100dvh pese al backdrop-fil
 OK    Menú móvil: el mismo botón lo cierra
 OK    Menú móvil: un enlace cierra el menú y lleva a la sección
 OK    Móvil sin desbordamiento horizontal — 390 / 390
-OK    Consola limpia y sin 404 en móvil (fuera de cortes del proxy en fuentes) — [] · entorno: []
+OK    Consola limpia y sin 404 en móvil (fuera de cortes del proxy en fuentes) — [] · entorno: ["Failed to load resource: net::ERR_TOO_MANY_RETRIES","Failed to load resource: net::ERR_TOO_MANY_RETRIES","FAILED https://fonts.gstatic.com/s/atkinsonhyperlegiblenext/v7/NaPNcYPdHfdVxJw0IfIP0lvYFqijb-UxCtm5_wdGseiJn3o.woff2 net::ERR_TOO_MANY_RETRIES","FAILED https://fonts.gstatic.com/s/playfair/v10/0nktC9D7PO4KhmUJ59bafwPKpQ.woff2 net::ERR_TOO_MANY_RETRIES"]
 == 4. Portada en 360×640 y 375×667: sin solapes
 OK    Portada 360×640: sin solapes entre bloques ni con el móvil — {"choques":[],"movilAbajo":294,"anteArriba":294,"sw":360,"iw":360}
 OK    Portada 375×667: sin solapes entre bloques ni con el móvil — {"choques":[],"movilAbajo":304,"anteArriba":304,"sw":375,"iw":375}

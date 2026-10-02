@@ -73,7 +73,7 @@ Herramientas: **Playwright 1.56 + Chromium** (el del entorno), `axe-core`
   corregidos.
 - **Tareas largas** (`PerformanceObserver` desde el `<head>`, control de
   120 ms lanzado con `setTimeout` para demostrar que el observador está vivo):
-  en frío con la caché deshabilitada, **2 al arrancar (89 y 67 ms)** y **0
+  en frío con la caché deshabilitada, **2 al arrancar (84 y 80 ms en la última pasada; 89 y 67 en la anterior)** y **0
   recorriendo la página entera** con el canvas vivo; con caché templada, 0 y 0.
 - **Canvas**: un contador sobre `CanvasRenderingContext2D` confirma **0**
   asignaciones de `filter`/`shadowBlur` en el canvas visible durante todo el
