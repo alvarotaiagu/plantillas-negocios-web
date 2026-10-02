@@ -20,8 +20,10 @@ async function nueva(b, o = {}) {
   const ctx = await b.newContext({ viewport: o.vp || { width: 1440, height: 900 }, isMobile: !!o.movil, hasTouch: !!o.movil, reducedMotion: o.reducido ? 'reduce' : 'no-preference', ignoreHTTPSErrors: true });
   if (o.cookiesOk) await ctx.addInitScript(() => { try { localStorage.setItem('mouriscal-cookies', '1'); } catch (e) {} });
   const p = await ctx.newPage();
-  p.err = []; p.f404 = [];
-  p.on('console', m => { if (m.type() === 'error' && !/ERR_FAILED|jsdelivr/.test(m.text())) p.err.push(m.text()); });
+  p.err = []; p.f404 = []; p.externos = [];
+  // «Failed to load resource» no dice qué recurso: se mira en requestfailed, que sí lo dice
+  p.on('console', m => { if (m.type() === 'error' && !/^Failed to load resource/.test(m.text())) p.err.push(m.text()); });
+  p.on('requestfailed', r => { const u = r.url(); if (/jsdelivr|google\.com\/maps/.test(u)) return; (u.startsWith(BASE.split('/').slice(0, 3).join('/')) ? p.err : p.externos).push(u.slice(0, 120) + ' ' + (r.failure() || {}).errorText); });
   p.on('pageerror', e => p.err.push(e.message));
   p.on('response', r => { if (r.status() >= 400) p.f404.push(r.status() + ' ' + r.url()); });
   await p.route('https://cdn.jsdelivr.net/**', route => {
@@ -57,7 +59,8 @@ const shot = (p, n) => p.screenshot({ path: path.join(OUT, n + '.jpg'), type: 'j
     await rueda(p, 4000, 400, 40); await p.waitForTimeout(1500); await shot(p, `${nom}-99-pie`);
     const m = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth, largas: window.mouriscalLongtasks.slice() }));
     ok(`${nom}: sin desbordamiento horizontal`, m.sw === m.iw, m);
-    ok(`${nom}: consola limpia`, p.err.length === 0, p.err);
+    ok(`${nom}: consola limpia y ningún recurso propio fallido`, p.err.length === 0, p.err);
+    if (p.externos.length) R[`${nom}-externos-fallidos`] = p.externos;
     ok(`${nom}: cero 404`, p.f404.length === 0, p.f404);
     R[`${nom}-longtasks`] = m.largas;
     // Control del observador: una tarea larga lanzada con setTimeout (desde evaluate no cuenta)
@@ -258,8 +261,9 @@ const shot = (p, n) => p.screenshot({ path: path.join(OUT, n + '.jpg'), type: 'j
   // 8 · Marcadores pendientes (textContent, no innerText: «MÉTODO» lleva «TODO» dentro en mayúsculas)
   if (corre('marcadores')) {
     const txt = ['index.html', 'legal.html', '404.html', 'README.md'].map(f => fs.readFileSync(path.join(__dirname, '..', f), 'utf8')).join('\n');
-    const m = txt.match(/\[PENDIENTE\]|\bTODO\b|lorem ipsum/gi);
-    ok('sin [PENDIENTE], TODO ni lorem', !m, m);
+    // TODO en mayúsculas y sensible a caja: «todo» es castellano corriente
+    const m = (txt.match(/\[PENDIENTE\]|\bTODO\b/g) || []).concat(txt.match(/lorem ipsum/gi) || []);
+    ok('sin [PENDIENTE], TODO ni lorem', m.length === 0, m);
   }
 
   const prev = process.env.SOLO && fs.existsSync(path.join(OUT, 'verificacion.json')) ? JSON.parse(fs.readFileSync(path.join(OUT, 'verificacion.json'), 'utf8')) : {};

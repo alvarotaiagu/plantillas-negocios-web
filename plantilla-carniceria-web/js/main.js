@@ -425,8 +425,8 @@
       etiqueta.style.opacity = se;
       etiqueta.setAttribute('transform', 'rotate(' + (-8 * (1 - se)) + ' 515 320) translate(0 ' + (1 - se) * -20 + ')');
       filete.style.visibility = s5 >= 0.4 ? 'hidden' : 'visible';
-      var paso = Math.min(5, Math.floor(p + 0.0001) + 1);
-      if (p >= 5) paso = 5;
+      // el paso n se dibuja entre n-1 y n: el rótulo acompaña al dibujo que se está haciendo
+      var paso = clamp(Math.ceil(p - 0.02), 1, 5);
       if (paso !== pasoActual) {
         pasoActual = paso;
         pasos.forEach(function (li) { li.classList.toggle('es-activo', +li.dataset.paso === paso); });
@@ -443,11 +443,19 @@
       });
       pintar(0.0001);
     } else {
-      // Sin anclar: el paso que está a la vista manda, sin animación
+      // Sin anclar: manda el paso más cercano al centro de la pantalla, sin animación
+      var elegir = function () {
+        var c = window.innerHeight / 2, mejor = null, d = Infinity;
+        pasos.forEach(function (li) { var r = li.getBoundingClientRect(), x = Math.abs(r.top + r.height / 2 - c); if (x < d) { d = x; mejor = li; } });
+        if (mejor) pintar(+mejor.dataset.paso);
+      };
+      var pend = false;
       var io = new IntersectionObserver(function (ent) {
-        ent.forEach(function (e) { if (e.isIntersecting) pintar(+e.target.dataset.paso); });
-      }, { rootMargin: '-40% 0px -45% 0px' });
-      pasos.forEach(function (li) { io.observe(li); });
+        if (ent.some(function (e) { return e.isIntersecting; })) window.addEventListener('scroll', alMover, { passive: true });
+        else window.removeEventListener('scroll', alMover);
+      });
+      var alMover = function () { if (!pend) { pend = true; requestAnimationFrame(function () { pend = false; elegir(); }); } };
+      io.observe(sec);
       pintar(2);
     }
     return { pintar: pintar };

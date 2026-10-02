@@ -413,8 +413,14 @@ button { cursor: pointer; }
 /* Sobria: el dato en lugar del dibujo */
 .maqueta-sobria .curado { grid-template-columns: minmax(0, 1fr); }
 .maqueta-sobria .curado-dibujo { display: none; }
-.maqueta-sobria .curado-dias { display: flex; align-items: baseline; gap: .8rem; }
-.maqueta-sobria .curado-dias-num { font-family: var(--f-display); font-size: clamp(3.4rem, 2rem + 5vw, 6.5rem); line-height: .9; color: var(--acento-texto); font-style: italic; }
+.maqueta-sobria .curado-datos { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(1.5rem, 5vw, 5rem); align-items: center; }
+.maqueta-sobria .curado-datos > * { grid-column: 1; }
+.maqueta-sobria .curado-dias { grid-column: 2; grid-row: 1 / span 6; display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; margin: 0; }
+.maqueta-sobria .curado-dias-num { font-family: var(--f-display); font-size: clamp(4rem, 2rem + 7vw, 10rem); line-height: .85; color: var(--acento-texto); font-style: italic; font-variant-numeric: lining-nums; }
+@media (max-width: 640px) {
+  .maqueta-sobria .curado-datos { grid-template-columns: minmax(0, 1fr); }
+  .maqueta-sobria .curado-dias { grid-column: 1; grid-row: auto; flex-direction: row; align-items: baseline; gap: .8rem; }
+}
 .maqueta-sobria .curados::before, .maqueta-sobria .oficio::before { display: none; }
 
 /* ---------- 05 Preparados ---------- */
@@ -567,10 +573,10 @@ html.cursor-on, html.cursor-on * { cursor: none !important; }
   .portada-ticket { display: none; }
   .mostrador-cab, .curados-cab, .encargos-cab { grid-template-columns: minmax(0, 1fr); }
   .oficio-escena { grid-template-columns: minmax(0, 1fr); align-content: start; gap: 1.2rem; }
-  .oficio-anclado .oficio-escena { grid-template-rows: auto auto; height: 100svh; padding-top: calc(var(--cab-h) + 1rem); padding-bottom: 1.2rem; }
+  .oficio-anclado .oficio-escena { grid-template-rows: auto auto; height: 100svh; padding-top: calc(var(--cab-h) + 1rem); padding-bottom: 1.2rem; align-content: center; }
   .oficio-figura { order: -1; }
-  .oficio-anclado .oficio-figura { max-height: 40svh; display: grid; place-items: center; }
-  .oficio-anclado .oficio-svg { max-height: 40svh; width: auto; max-width: 100%; }
+  .oficio-anclado .oficio-figura { max-height: 48svh; display: grid; place-items: center; }
+  .oficio-anclado .oficio-svg { max-height: 48svh; width: auto; max-width: 100%; }
   .oficio-titulo { font-size: clamp(1.7rem, 1rem + 4vw, 2.6rem); margin-bottom: .6rem; }
   .oficio-contador { font-size: 2.4rem; margin-bottom: .4rem; }
   .oficio-anclado .oficio-titulo { display: none; }
