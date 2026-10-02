@@ -87,4 +87,33 @@ RESULTADOS
 
 ## Lo flojo
 
-LOFLOJO
+- **El entorno de esta noche no llega a jsDelivr** (el proxy de salida lo
+  bloquea). La web carga GSAP y Lenis desde jsDelivr, como pide el pliego, y
+  en las pruebas se sirvieron **los mismos paquetes de npm** (gsap 3.12.5,
+  lenis 1.1.13) interceptando esas URL. No he podido comprobar el CDN real:
+  conviene abrir la demo publicada y mirar la consola una vez.
+- **El mapa de Google no carga aquí** por el mismo proxy: se verifica que el
+  iframe no existe antes del clic y que aparece con la URL de embed después,
+  pero no he visto el mapa pintado.
+- **Las fuentes de Google llegan a trompicones por el proxy** (alguna descarga
+  corta con `ERR_TOO_MANY_RETRIES`, alguna captura tarda en salir porque
+  Playwright espera a las fuentes). Se separan en la verificación como fallo
+  del entorno; en una red normal no debería pasar.
+- **Solo Chromium**, sin Firefox ni Safari (`ctx.filter` para difuminar las
+  sombras del móvil una vez: Safari no lo soporta y pintaría la sombra nítida,
+  no rota). Sin dispositivo real ni lector de pantalla real.
+- **La escena del aula** de la adaptación es correcta pero sencilla; con más
+  tiempo le daría más oficio (textura de suelo, la puerta abriéndose de
+  verdad, la luz de la ventana cambiando con las horas).
+- **El dato de ratio legal** (Decreto 329/2005) está puesto de memoria y
+  marcado en las decisiones para revisarlo.
+- **No hice la segunda plantilla** (academia de idiomas). Ver abajo.
+
+## Por qué no hay segunda plantilla
+
+El encargo pedía hacerla solo si sobraba más de una hora con la primera ya
+verificada y excelente. Cada pasada completa de verificación tarda aquí unos
+20 minutos (CPU compartida, proxy lento con las fuentes) y la primera
+necesitó varias rondas para cazar fallos reales de la cortina. Con el margen
+que quedaba, una segunda habría salido a medias, y el encargo dice que mejor
+una excelente que dos a medias.

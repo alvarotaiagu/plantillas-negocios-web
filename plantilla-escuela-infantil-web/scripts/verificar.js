@@ -29,6 +29,11 @@ async function abrir(browser, o = {}) {
   });
   if (o.cookiesOk !== false) await ctx.addInitScript(() => { try { localStorage.setItem('abaneo-cookies', '1'); } catch (e) {} });
   if (o.init) await ctx.addInitScript(o.init);
+  /* La línea de tiempo de la cortina se congela en cuanto main.js la crea,
+     para fotografiarla a medias (la captura tarda más que la cortina). */
+  if (o.congelar) await ctx.addInitScript(() => {
+    Object.defineProperty(window, '__cortinaLinea', { configurable: true, set(v) { v.pause(); window.__tl = v; }, get() { return window.__tl; } });
+  });
   const page = await ctx.newPage();
   const errores = [], fallos = [];
   page.on('console', m => { if (m.type() === 'error') errores.push(m.text()); });
@@ -57,6 +62,14 @@ async function hasta(page, sel, extra = 0) {
    deja colgada una descarga de Google Fonts, la captura no vuelve nunca.
    Tope de 15 s y se anota. */
 const fotosFallidas = [];
+/* Captura inmediata por CDP: no espera a las fuentes, para los fotogramas de
+   la cortina, que dura menos que lo que tarda una captura normal aquí. */
+const fotoYa = async (page, nombre) => {
+  const cdp = await page.context().newCDPSession(page);
+  const { data } = await cdp.send('Page.captureScreenshot', { format: 'png' });
+  fs.writeFileSync(path.join(OUT, nombre + '.png'), Buffer.from(data, 'base64'));
+  await cdp.detach();
+};
 const foto = async (page, nombre, o = {}) => {
   try { await page.screenshot({ path: path.join(OUT, nombre + '.png'), timeout: 15000, ...o }); }
   catch (e) { fotosFallidas.push(nombre); console.log('  (captura ' + nombre + ' no salió: ' + e.message.split('\n')[0] + ')'); }
@@ -70,6 +83,7 @@ const foto = async (page, nombre, o = {}) => {
   console.log("== 1. Escritorio: cortina, consola, secciones");
   {
     const { page, errores, fallos, ctx } = await abrir(browser, {
+      congelar: true,
       init: () => {
         /* Contador de filtros/sombras puestos en el canvas visible (debe ser 0) */
         window.__filtrosMovil = 0;
@@ -80,8 +94,11 @@ const foto = async (page, nombre, o = {}) => {
         }
       }
     });
-    const cdp = await ctx.newCDPSession(page);
-    await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
+    /* Visita previa para templar la caché: la hoja de Google Fonts bloquea
+       la ejecución de main.js y, con el proxy de este entorno, a veces tarda
+       más que la red de seguridad de la cortina. La medición en frío va
+       aparte, en el bloque 1b. */
+    await page.goto(BASE); await espera(4000); await page.goto('about:blank');
     await page.goto(BASE, { waitUntil: 'domcontentloaded' });
     /* Muestreo de la cortina fotograma a fotograma, dentro de la página */
     await page.evaluate(() => {
@@ -97,14 +114,14 @@ const foto = async (page, nombre, o = {}) => {
     /* Fotos a medias: la latencia de una captura (~0,5 s) es del orden de la
        cortina entera, así que se congela la línea de tiempo en dos puntos,
        se fotografía y se suelta. La red de seguridad sigue corriendo. */
-    await page.waitForFunction(() => window.__cortinaLinea, null, { polling: 10, timeout: 8000 });
-    await page.evaluate(() => { window.__cortinaLinea.pause(); window.__cortinaLinea.time(.3); });
-    await foto(page, 'escritorio-00-cortina-hilo-bajando');
-    await page.evaluate(() => { window.__cortinaLinea.time(1.75); });
-    await foto(page, 'escritorio-00b-cortina-manta-a-medias');
+    await page.waitForFunction(() => !!window.__tl, null, { polling: 50, timeout: 10000 });
+    await page.evaluate(() => { window.__tl.time(.3); });
+    await fotoYa(page, 'escritorio-00-cortina-hilo-bajando');
+    await page.evaluate(() => { window.__tl.time(1.75); });
+    await fotoYa(page, 'escritorio-00b-cortina-manta-a-medias');
     const congelada = await page.evaluate(() => document.querySelector('.cortina-tela').getAttribute('d'));
     const visibleCongelada = await page.evaluate(() => getComputedStyle(document.getElementById('cortina')).display === 'block');
-    await page.evaluate(() => { window.__cortinaLinea.time(0).play(); });
+    await page.evaluate(() => { window.__tl.time(0).play(); });
     const fotoHilo = visibleCongelada, fotoManta = visibleCongelada && /V[1-9]/.test(congelada);
     await espera(2500);
     const muestras = await page.evaluate(() => window.__muestras);
@@ -141,7 +158,7 @@ const foto = async (page, nombre, o = {}) => {
     }
     const lt = await page.evaluate(() => window.__tareasLargas.slice());
     const rodando = lt.slice(nArranque);
-    ok('Tareas largas con el canvas vivo y la página recorrida (frío, sin caché)', rodando.length <= 2, 'arranque: ' + JSON.stringify(arranque) + ' · recorriendo: ' + JSON.stringify(rodando));
+    ok('Tareas largas con el canvas vivo y la página recorrida (caché templada)', rodando.length <= 2, 'arranque: ' + JSON.stringify(arranque) + ' · recorriendo: ' + JSON.stringify(rodando));
     ok('Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible', (await page.evaluate(() => window.__filtrosMovil)) === 0);
     ok('Escritorio sin desbordamiento horizontal', await page.evaluate(() => document.documentElement.scrollWidth === innerWidth));
     /* mapa bajo clic */
@@ -170,6 +187,23 @@ const foto = async (page, nombre, o = {}) => {
   }
 
   /* ---------- 2. Pila sticky en pasos de ~90 px ---------- */
+  console.log("== 1b. Tareas largas en frío");
+  {
+    const { page, ctx } = await abrir(browser);
+    const cdp = await ctx.newCDPSession(page);
+    await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
+    await page.goto(BASE); await espera(6000);
+    const arranque = await page.evaluate(() => window.__tareasLargas.slice());
+    await page.mouse.move(900, 300); await page.mouse.move(1200, 340, { steps: 20 });
+    const alto = await page.evaluate(() => document.documentElement.scrollHeight);
+    for (let y = 0; y < alto; y += 300) { await page.mouse.wheel(0, 300); await espera(70); }
+    await espera(2000);
+    const todo = await page.evaluate(() => window.__tareasLargas.slice());
+    const rodando = todo.slice(arranque.length);
+    ok('Tareas largas en frío (caché deshabilitada): arranque y recorrido', rodando.length <= 2, 'arranque: ' + JSON.stringify(arranque) + ' · recorriendo la página entera: ' + JSON.stringify(rodando));
+    await ctx.close();
+  }
+
   console.log("== 2. Pila sticky en pasos de ~90 px");
   {
     const { page, ctx } = await abrir(browser);
@@ -202,12 +236,12 @@ const foto = async (page, nombre, o = {}) => {
   /* ---------- 3. Móvil 390×844 + menú + táctil ---------- */
   console.log("== 3. Móvil 390×844 + menú + táctil");
   {
-    const { page, errores, fallos, ctx } = await abrir(browser, { vp: { width: 390, height: 844 }, movil: true });
+    const { page, errores, fallos, ctx } = await abrir(browser, { vp: { width: 390, height: 844 }, movil: true, congelar: true });
     await page.goto(BASE, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => window.__cortinaLinea, null, { polling: 10, timeout: 8000 });
-    await page.evaluate(() => { window.__cortinaLinea.pause(); window.__cortinaLinea.time(1.8); });
-    await foto(page, 'movil-00-cortina-media');
-    await page.evaluate(() => { window.__cortinaLinea.play(); });
+    await page.waitForFunction(() => !!window.__tl, null, { polling: 50, timeout: 10000 });
+    await page.evaluate(() => { window.__tl.time(1.8); });
+    await fotoYa(page, 'movil-00-cortina-media');
+    await page.evaluate(() => { window.__tl.play(); });
     await espera(3500);
     await page.tap('.portada-entradilla'); await espera(300);
     ok('Táctil: sin cursor propio', await page.evaluate(() => !document.documentElement.classList.contains('cursor-propio')));

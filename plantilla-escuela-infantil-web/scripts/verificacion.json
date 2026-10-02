@@ -1,18 +1,18 @@
 [
  {
   "nombre": "Cortina: fotogramas a medias capturados (hilo y manta)",
-  "ok": true,
-  "detalle": "manta congelada en M0 0H1000V609.3184Q500 1035.9413 0 609.3184Z"
+  "ok": false,
+  "detalle": "manta congelada en M0 0H1000V637.9088Q500 1027.0684 0 637.9088Z"
  },
  {
   "nombre": "Cortina: el hilo pasa por valores intermedios (autoRound:false)",
   "ok": true,
-  "detalle": "0.908, 0.857, 0.783, 0.713, 0.647, 0.589"
+  "detalle": "0.917, 0.844, 0.770, 0.705, 0.640, 0.579"
  },
  {
   "nombre": "Cortina: la manta se levanta con borde curvo en varios fotogramas",
   "ok": true,
-  "detalle": "115 fotogramas intermedios, p. ej. M0 0H1000V609.3184Q500 1035.9413 0 609.3184Z"
+  "detalle": "105 fotogramas intermedios, p. ej. M0 0H1000V637.9088Q500 1027.0684 0 637.9088Z"
  },
  {
   "nombre": "Cortina: acaba en display:none (normal)",
@@ -32,7 +32,7 @@
  {
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
-  "detalle": "[{\"t\":4912,\"d\":115},{\"t\":5029,\"d\":66},{\"t\":17731,\"d\":120}]"
+  "detalle": "[{\"t\":3007,\"d\":75},{\"t\":10669,\"d\":120}]"
  },
  {
   "nombre": "Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo",
@@ -40,9 +40,9 @@
   "detalle": "paso 0 → 2, top -0.359375"
  },
  {
-  "nombre": "Tareas largas con el canvas vivo y la página recorrida (frío, sin caché)",
+  "nombre": "Tareas largas con el canvas vivo y la página recorrida (caché templada)",
   "ok": true,
-  "detalle": "arranque: [{\"t\":5029,\"d\":66}] · recorriendo: []"
+  "detalle": "arranque: [{\"t\":3007,\"d\":75}] · recorriendo: []"
  },
  {
   "nombre": "Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible",
@@ -82,7 +82,12 @@
  {
   "nombre": "Consola limpia y sin 404 en escritorio (fuera del iframe de Google)",
   "ok": true,
-  "detalle": "[] · Google: 9"
+  "detalle": "[] · Google: 5"
+ },
+ {
+  "nombre": "Tareas largas en frío (caché deshabilitada): arranque y recorrido",
+  "ok": true,
+  "detalle": "arranque: [{\"t\":4059,\"d\":62},{\"t\":4124,\"d\":58}] · recorriendo la página entera: []"
  },
  {
   "nombre": "Pila: todos los <li> con el mismo alto (el de la tarjeta más alta)",
@@ -97,7 +102,7 @@
  {
   "nombre": "Pila en pasos de 90 px: nunca una tarjeta posterior por encima de la anterior",
   "ok": true,
-  "detalle": "[[813,1393,1973],[408,988,1568],[92,583,1163],[92,178,758],[92,114,353],[92,114,136],[-151,-151,-151],[-556,-556,-556]]"
+  "detalle": "[[812,1392,1972],[408,988,1568],[92,583,1163],[92,178,758],[92,114,353],[92,114,136],[-151,-151,-151],[-556,-556,-556]]"
  },
  {
   "nombre": "Pila: las tres llegan a apilarse en su sitio (reposo antes de soltarse)",
@@ -132,7 +137,7 @@
  {
   "nombre": "Consola limpia y sin 404 en móvil (fuera de cortes del proxy en fuentes)",
   "ok": true,
-  "detalle": "[] · entorno: [\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\",\"FAILED https://fonts.gstatic.com/s/atkinsonhyperlegiblenext/v7/NaPNcYPdHfdVxJw0IfIP0lvYFqijb-UxCtm5_wdGseiJn3o.woff2 net::ERR_TOO_MANY_RETRIES\"]"
+  "detalle": "[] · entorno: []"
  },
  {
   "nombre": "Portada 360×640: sin solapes entre bloques ni con el móvil",
@@ -157,7 +162,7 @@
  {
   "nombre": "Sin GSAP: sin errores de JS propios",
   "ok": true,
-  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\"]"
+  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\"]"
  },
  {
   "nombre": "Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo",

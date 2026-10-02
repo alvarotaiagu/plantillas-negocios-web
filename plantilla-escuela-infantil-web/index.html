@@ -388,11 +388,11 @@
           <button role="tab" type="button" id="tab-5" aria-controls="dia-5" data-dia="5">Vie</button>
         </div>
         <div class="menu-paneles">
-          <dl role="tabpanel" id="dia-1" aria-labelledby="tab-1" data-dia="1"><div><dt>Primero</dt><dd>Crema de calabacín y puerro</dd></div><div><dt>Segundo</dt><dd>Merluza al horno con patata cocida</dd></div><div><dt>Postre</dt><dd>Pera</dd></div></dl>
-          <dl role="tabpanel" id="dia-2" aria-labelledby="tab-2" data-dia="2"><div><dt>Primero</dt><dd>Lentejas estofadas con verduras</dd></div><div><dt>Segundo</dt><dd>Tortilla francesa con tomate</dd></div><div><dt>Postre</dt><dd>Yogur natural</dd></div></dl>
-          <dl role="tabpanel" id="dia-3" aria-labelledby="tab-3" data-dia="3"><div><dt>Primero</dt><dd>Arroz con tomate casero</dd></div><div><dt>Segundo</dt><dd>Pollo guisado con zanahoria</dd></div><div><dt>Postre</dt><dd>Manzana asada</dd></div></dl>
-          <dl role="tabpanel" id="dia-4" aria-labelledby="tab-4" data-dia="4"><div><dt>Primero</dt><dd>Caldo de grelos y alubias</dd></div><div><dt>Segundo</dt><dd>Albóndigas de ternera en salsa de verduras</dd></div><div><dt>Postre</dt><dd>Plátano</dd></div></dl>
-          <dl role="tabpanel" id="dia-5" aria-labelledby="tab-5" data-dia="5"><div><dt>Primero</dt><dd>Sopa de fideos con caldo de pollo</dd></div><div><dt>Segundo</dt><dd>Pescadilla rebozada con ensalada</dd></div><div><dt>Postre</dt><dd>Mandarina</dd></div></dl>
+          <div role="tabpanel" id="dia-1" aria-labelledby="tab-1" data-dia="1"><dl><div><dt>Primero</dt><dd>Crema de calabacín y puerro</dd></div><div><dt>Segundo</dt><dd>Merluza al horno con patata cocida</dd></div><div><dt>Postre</dt><dd>Pera</dd></div></dl></div>
+          <div role="tabpanel" id="dia-2" aria-labelledby="tab-2" data-dia="2"><dl><div><dt>Primero</dt><dd>Lentejas estofadas con verduras</dd></div><div><dt>Segundo</dt><dd>Tortilla francesa con tomate</dd></div><div><dt>Postre</dt><dd>Yogur natural</dd></div></dl></div>
+          <div role="tabpanel" id="dia-3" aria-labelledby="tab-3" data-dia="3"><dl><div><dt>Primero</dt><dd>Arroz con tomate casero</dd></div><div><dt>Segundo</dt><dd>Pollo guisado con zanahoria</dd></div><div><dt>Postre</dt><dd>Manzana asada</dd></div></dl></div>
+          <div role="tabpanel" id="dia-4" aria-labelledby="tab-4" data-dia="4"><dl><div><dt>Primero</dt><dd>Caldo de grelos y alubias</dd></div><div><dt>Segundo</dt><dd>Albóndigas de ternera en salsa de verduras</dd></div><div><dt>Postre</dt><dd>Plátano</dd></div></dl></div>
+          <div role="tabpanel" id="dia-5" aria-labelledby="tab-5" data-dia="5"><dl><div><dt>Primero</dt><dd>Sopa de fideos con caldo de pollo</dd></div><div><dt>Segundo</dt><dd>Pescadilla rebozada con ensalada</dd></div><div><dt>Postre</dt><dd>Mandarina</dd></div></dl></div>
         </div>
         <p class="menu-nota" id="menu-nota">Menú de muestra. Los bebés del aula Lúa lo toman en puré.</p>
       </div>
@@ -527,7 +527,7 @@
 <!-- MANDOS-INICIO -->
 <!-- MANDOS DE DEMOSTRACIÓN (maqueta + paleta). Solo con ?revision en la URL.
      NO VIAJAN AL SITIO DE UN CLIENTE: ver README, «Quitar los mandos». -->
-<div class="mandos" id="mandos" hidden>
+<div class="mandos" id="mandos" role="region" aria-label="Mandos de demostración" hidden>
   <div class="mando" role="group" aria-label="Maqueta: densidad visual">
     <span class="mando-lbl">Maqueta</span>
     <button type="button" data-maqueta="movil" aria-pressed="true">Móvil</button>

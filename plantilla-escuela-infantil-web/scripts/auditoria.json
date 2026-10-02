@@ -1,0 +1,122 @@
+[
+ {
+  "nombre": "index · 1440",
+  "violaciones": [
+   {
+    "id": "aria-allowed-role",
+    "impacto": "minor",
+    "nodos": 1,
+    "ejemplo": "#dia-5"
+   },
+   {
+    "id": "aria-prohibited-attr",
+    "impacto": "serious",
+    "nodos": 2,
+    "ejemplo": ".t1"
+   },
+   {
+    "id": "dlitem",
+    "impacto": "serious",
+    "nodos": 6,
+    "ejemplo": "#dia-5 > div:nth-child(1) > dt"
+   }
+  ]
+ },
+ {
+  "nombre": "aviso-legal.html · 1440",
+  "violaciones": []
+ },
+ {
+  "nombre": "404.html · 1440",
+  "violaciones": []
+ },
+ {
+  "nombre": "?revision (sobria) · 1440",
+  "violaciones": [
+   {
+    "id": "aria-allowed-role",
+    "impacto": "minor",
+    "nodos": 1,
+    "ejemplo": "#dia-5"
+   },
+   {
+    "id": "aria-prohibited-attr",
+    "impacto": "serious",
+    "nodos": 2,
+    "ejemplo": ".t1"
+   },
+   {
+    "id": "dlitem",
+    "impacto": "serious",
+    "nodos": 6,
+    "ejemplo": "#dia-5 > div:nth-child(1) > dt"
+   },
+   {
+    "id": "region",
+    "impacto": "moderate",
+    "nodos": 1,
+    "ejemplo": "#mandos"
+   }
+  ]
+ },
+ {
+  "nombre": "index · 390",
+  "violaciones": [
+   {
+    "id": "aria-allowed-role",
+    "impacto": "minor",
+    "nodos": 1,
+    "ejemplo": "#dia-5"
+   },
+   {
+    "id": "aria-prohibited-attr",
+    "impacto": "serious",
+    "nodos": 2,
+    "ejemplo": ".t1"
+   },
+   {
+    "id": "dlitem",
+    "impacto": "serious",
+    "nodos": 6,
+    "ejemplo": "#dia-5 > div:nth-child(1) > dt"
+   }
+  ]
+ },
+ {
+  "nombre": "aviso-legal.html · 390",
+  "violaciones": []
+ },
+ {
+  "nombre": "404.html · 390",
+  "violaciones": []
+ },
+ {
+  "nombre": "?revision (sobria) · 390",
+  "violaciones": [
+   {
+    "id": "aria-allowed-role",
+    "impacto": "minor",
+    "nodos": 1,
+    "ejemplo": "#dia-5"
+   },
+   {
+    "id": "aria-prohibited-attr",
+    "impacto": "serious",
+    "nodos": 2,
+    "ejemplo": ".t1"
+   },
+   {
+    "id": "dlitem",
+    "impacto": "serious",
+    "nodos": 6,
+    "ejemplo": "#dia-5 > div:nth-child(1) > dt"
+   },
+   {
+    "id": "region",
+    "impacto": "moderate",
+    "nodos": 1,
+    "ejemplo": "#mandos"
+   }
+  ]
+ }
+]

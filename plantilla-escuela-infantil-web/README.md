@@ -20,6 +20,7 @@ cual en GitHub Pages.
 - `scripts/paleta.js` — calcula las paletas derivadas y su contraste.
 - `scripts/verificar.js` — verificación con Playwright (PLIEGO §7).
 - `scripts/quitar-mandos.js` — quita los mandos de demostración en una copia.
+- `scripts/auditar.js` — auditoría de accesibilidad con axe-core (resultado en `scripts/auditoria.json`).
 
 ## Concepto: «Móvil»
 

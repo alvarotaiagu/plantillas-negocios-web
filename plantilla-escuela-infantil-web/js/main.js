@@ -128,8 +128,13 @@
   function partirLetras(el) {
     var i = 0;
     var palabras = el.textContent.trim().split(/\s+/);
-    el.setAttribute('aria-label', el.textContent.trim());
+    /* El texto entero, para lectores de pantalla; las letras, solo a la vista
+       (aria-label no está permitido en un <span> genérico) */
+    var paraLeer = document.createElement('span');
+    paraLeer.className = 'oculto';
+    paraLeer.textContent = el.textContent.trim();
     el.textContent = '';
+    el.appendChild(paraLeer);
     palabras.forEach(function (p, n) {
       var w = document.createElement('span');
       w.className = 'palabra-nw';

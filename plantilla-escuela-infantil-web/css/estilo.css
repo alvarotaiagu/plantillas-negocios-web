@@ -449,7 +449,7 @@ html.has-motion .vapor path:nth-child(3) { animation-delay: -2s; }
 .menu-pestanas button[aria-selected="true"] { background: var(--tinta); color: var(--papel); }
 .menu-pestanas button.es-hoy::after { content: "hoy"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; background: var(--boton); color: #fff; padding: 1px 7px; border-radius: 99px; }
 .menu-paneles dl { margin: 0; padding: 18px 16px 8px; display: grid; gap: 12px; }
-.menu-paneles dl[hidden] { display: none; }
+.menu-paneles [role="tabpanel"][hidden] { display: none; }
 .menu-paneles dt { font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--apagado); }
 .menu-paneles dd { margin: 0; font-family: var(--serif); font-size: clamp(1.3rem, 1.1rem + .8vw, 1.8rem); line-height: 1.15; font-variation-settings: "opsz" 120; }
 .menu-nota { margin: 4px 16px 10px; font-size: .9rem; color: var(--apagado); }
