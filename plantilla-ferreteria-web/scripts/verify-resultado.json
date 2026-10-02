@@ -20,7 +20,7 @@
  {
   "nombre": "Cortina: segundo fotograma con el canto dentado a la vista",
   "ok": true,
-  "detalle": 433
+  "detalle": 496
  },
  {
   "nombre": "Cortina acaba en display:none (normal)",
@@ -144,15 +144,15 @@
    132,
    148,
    164,
-   605
+   600
   ]
  },
  {
   "nombre": "Marquesina en movimiento",
   "ok": true,
   "detalle": [
-   "translate3d(-2472.8px, 0px, 0px)",
-   "translate3d(-2502.8px, 0px, 0px)"
+   "translate3d(-2580.8px, 0px, 0px)",
+   "translate3d(-2610.8px, 0px, 0px)"
   ]
  },
  {
@@ -225,17 +225,17 @@
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
   "detalle": {
-   "antes": 14,
-   "despues": 15
+   "antes": 9,
+   "despues": 10
   }
  },
  {
   "nombre": "longtasks escritorio (carga en frío + recorrido completo)",
   "ok": true,
   "detalle": {
-   "n": 14,
-   "total": 1447,
-   "max": 332
+   "n": 9,
+   "total": 873,
+   "max": 283
   }
  },
  {
@@ -290,7 +290,7 @@
   "detalle": {
    "n": 13,
    "total": 973,
-   "max": 166
+   "max": 104
   }
  },
  {

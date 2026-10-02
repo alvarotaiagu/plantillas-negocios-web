@@ -4,7 +4,10 @@
 > fotografías y opiniones son de muestra.
 
 Trabajo hecho sin supervisión. Rama `claude/noche-ferreteria`, carpeta
-`plantilla-ferreteria-web/`. **No** se ha creado repo, **no** se ha activado
+`plantilla-ferreteria-web/`. Terminada esta, sobraba más de una hora y se hizo una
+**segunda plantilla, imprenta y copistería «Tres Milímetros»**, en la rama
+`claude/noche-imprenta` (carpeta `plantilla-imprenta-web/`, con su propio
+`INFORME-NOCHE.md` y su ficha `registro/imprenta.md`). **No** se ha creado repo, **no** se ha activado
 Pages, **no** se ha tocado `main`, `REGISTRO.md` ni `SECTORES.md`. Ficha nueva
 en `registro/ferreteria.md` (con «Demo: pendiente de publicar»). Cada fase se
 empujó a la rama al acabarla.
