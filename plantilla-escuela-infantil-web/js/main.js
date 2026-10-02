@@ -274,7 +274,9 @@
     requestAnimationFrame(moverCursor);
   }
   window.addEventListener('pointermove', function (e) {
-    if (e.pointerType !== 'mouse') return;
+    /* Solo ratón de verdad: en táctil un toque también llega como «mouse»
+       en algunos navegadores, así que se exige además pointer: fine */
+    if (e.pointerType !== 'mouse' || !ratonFino) return;
     cx = e.clientX; cy = e.clientY;
     if (!cursorVivo) {
       cursorVivo = true; ax = cx; ay = cy;
