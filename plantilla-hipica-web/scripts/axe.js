@@ -9,8 +9,8 @@ const BASE = 'http://localhost:8765/';
 const casos = [
   ['Portada, escritorio 1440×900', 'index.html?ahora=2026-10-01T18:10', { width: 1440, height: 900 }],
   ['Portada, móvil 390×844', 'index.html?ahora=2026-10-01T18:10', { width: 390, height: 844 }],
-  ['Portada, versión sobria + paleta granate', 'index.html?revision&ahora=2026-10-01T18:10', { width: 1440, height: 900 }, true],
-  ['Portada, domingo (cerrado)', 'index.html?ahora=2026-10-04T11:00', { width: 1440, height: 900 }],
+  ['Portada, versión sobria + paleta azul', 'index.html?revision&ahora=2026-10-01T18:10', { width: 1440, height: 900 }, true],
+  ['Portada, lunes (descanso)', 'index.html?ahora=2026-10-05T11:00', { width: 1440, height: 900 }],
   ['Aviso legal', 'legal.html', { width: 1440, height: 900 }],
   ['404', '404.html', { width: 390, height: 844 }],
 ];
@@ -19,7 +19,7 @@ const casos = [
   const filas = []; let total = 0;
   for (const [nombre, url, vp, demo] of casos) {
     const ctx = await b.newContext({ viewport: vp, ignoreHTTPSErrors: true, isMobile: vp.width < 500, hasTouch: vp.width < 500 });
-    await ctx.addInitScript(d => { localStorage.setItem('branavella-cookies', '1'); if (d) { localStorage.setItem('branavella-densidad', 'sobria'); localStorage.setItem('branavella-paleta', 'granate'); } }, !!demo);
+    await ctx.addInitScript(d => { localStorage.setItem('branavella-cookies', '1'); if (d) { localStorage.setItem('branavella-densidad', 'sobria'); localStorage.setItem('branavella-paleta', 'azul'); } }, !!demo);
     const p = await ctx.newPage(); await rutas(p);
     await p.goto(BASE + url); await p.waitForTimeout(4500);
     const alto = await p.evaluate(() => document.documentElement.scrollHeight);

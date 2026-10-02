@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- Origen del og.png (1200×630). Se renderiza con scripts/og.js. -->
+<html lang="es"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Fragment+Mono&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; width: 1200px; height: 630px; overflow: hidden; font-family: "DM Sans"; background: linear-gradient(180deg, #F1ECDD 0%, #E2DAC0 58%, #8DA062 58.2%, #4A6634 80%, #2A3F22 100%); position: relative; }
+  .ante { position: absolute; left: 70px; top: 60px; font-family: "Fragment Mono"; font-size: 20px; letter-spacing: .1em; text-transform: uppercase; color: #4F4839; display: flex; gap: 16px; align-items: center; }
+  h1 { position: absolute; left: 66px; top: 128px; margin: 0; font-family: "Playfair Display"; font-weight: 400; font-size: 132px; line-height: .88; letter-spacing: -.03em; color: #1B1A14; }
+  h1 i { display: block; padding-left: 70px; font-weight: 800; color: #8A2923; }
+  .briznas { position: absolute; left: 0; bottom: 0; }
+  .demo { position: absolute; right: 60px; bottom: 40px; color: #F3EEE1; font-size: 18px; background: rgba(23,34,21,.75); padding: 8px 14px; border-radius: 4px; }
+</style></head><body>
+<p class="ante"><svg width="44" height="44" viewBox="0 0 64 64"><path d="M14 8 C10 30 12 50 32 56 C52 50 54 30 50 8 L41 8 C44 28 42 42 32 46 C22 42 20 28 23 8 Z" fill="#8A2923"/></svg> Picadeiro Brañavella · Vilalba</p>
+<h1>Tres aires,<i>una chaira.</i></h1>
+<svg class="briznas" width="1200" height="270" viewBox="0 0 1200 270" fill="none" stroke-linecap="round" id="b"></svg>
+<p class="demo">Sitio de demostración · negocio ficticio</p>
+<script>
+  var s = document.getElementById('b'), h = '', cols = ['#56733C', '#62803F', '#38522A', '#B9A766', '#43612F'];
+  for (var i = 0; i < 700; i++) { var x = (i * 7919) % 1200, d = ((i * 104729) % 100) / 100, y = 270 - d * 40, hh = 40 + d * 160, b = Math.sin(i) * 0.4; h += '<path d="M' + x + ' ' + y + ' Q' + (x + b * hh * .3) + ' ' + (y - hh * .55) + ' ' + (x + b * hh) + ' ' + (y - hh) + '" stroke="' + cols[i % 5] + '" stroke-width="' + (1.5 + d * 2.5) + '"/>'; }
+  s.innerHTML = h;
+</script>
+</body></html>
