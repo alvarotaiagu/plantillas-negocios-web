@@ -1,0 +1,310 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Estalo es un negocio ficticio; los datos,
+  ilustraciones y opiniones son de muestra. No corresponde a ninguna
+  chocolatería real. Plantilla «Templado» de la biblioteca de negocios ficticios.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estalo · Chocolatería e bombonería en Ribadeo</title>
+<meta name="description" content="Chocolatería y bombonería de obrador en Ribadeo: chocolate templado a mano en mármol, bombones pintados de la semana y cajas por encargo. Sitio de demostración.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1A0F0B">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<meta property="og:title" content="Estalo · Chocolatería e bombonería en Ribadeo">
+<meta property="og:description" content="Si cruje, está bien templado. Sitio de demostración de un negocio ficticio.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<script>
+  // Script bloqueante: se resuelve antes de pintar para que no haya salto.
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var q = new URLSearchParams(location.search);              // MANDO
+      if (q.has('revision')) {                                   // MANDO
+        d.classList.add('es-revision');                          // MANDO
+        if (localStorage.getItem('estalo-maqueta') === 'sobria') d.classList.add('maq-sobria'); // MANDO
+        var p = localStorage.getItem('estalo-paleta');           // MANDO
+        if (p === 'coral' || p === 'oro') d.classList.add('pal-' + p); // MANDO
+      }                                                          // MANDO
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Mona+Sans:wdth,wght@75..125,200..900&family=Red+Hat+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.css">
+<link rel="stylesheet" href="css/estilos.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Estalo · Chocolatería e bombonería",
+  "description": "Chocolatería ficticia (sitio de demostración).",
+  "telephone": "+34 982 00 00 00",
+  "email": "ola@estalo.example",
+  "address": { "@type": "PostalAddress", "streetAddress": "Rúa do Mármore Vello, 4", "postalCode": "27700", "addressLocality": "Ribadeo", "addressRegion": "Lugo", "addressCountry": "ES" },
+  "priceRange": "€€"
+}
+</script>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <!-- Logotipo: una onza partida con su grieta. Colores fijos: no cambian con la paleta. -->
+    <symbol id="logo" viewBox="0 0 64 64">
+      <path d="M8 10h22l-3 9 4 6-4 7 3 8-4 6 4 8H8z" fill="#7B4A2E"/>
+      <path d="M36 10h20v48H36l3-8-3-6 4-8-3-7 4-6-3-6z" fill="#7B4A2E" transform="translate(3 -2) rotate(6 46 34)"/>
+      <path d="M12 14h14v14H12zM12 32h13v13H12z" fill="#93603F"/>
+      <circle cx="49" cy="20" r="4" fill="#31B2A6" transform="translate(3 -2) rotate(6 46 34)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Cortina «Clac»: la tableta se parte por una grieta curva y cada mitad cae por su lado. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <svg class="cortina-mitad cortina-mitad--a" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0H100V38C82 44 70 36 58 46S36 60 24 56 6 62 0 66Z"/></svg>
+  <svg class="cortina-mitad cortina-mitad--b" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 66C6 62 12 52 24 56S46 56 58 46 82 44 100 38V100H0Z"/></svg>
+  <div class="cortina-rejilla" aria-hidden="true"></div>
+  <p class="cortina-marca"><svg viewBox="0 0 64 64"><use href="#logo"/></svg><span>Estalo</span></p>
+</div>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera" id="cabecera">
+  <a class="marca" href="#portada" aria-label="Estalo, chocolatería e bombonería. Inicio">
+    <svg class="marca-logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>
+    <span class="marca-nombre">Estalo</span>
+  </a>
+  <button class="menu-boton" id="menu-boton" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-boton-texto">Menú</span><span class="menu-boton-rayas" aria-hidden="true"></span></button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ul>
+      <li><a href="#curva">La curva</a></li>
+      <li><a href="#bombones">Bombones</a></li>
+      <li><a href="#cajas">Cajas</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#visita">Visita</a></li>
+    </ul>
+    <a class="boton boton--relleno iman menu-cta" href="#encargo">Encargar una caja</a>
+  </nav>
+</header>
+
+<main id="contenido">
+
+<!-- 1 · PORTADA ============================================== -->
+<section class="portada" id="portada" aria-labelledby="portada-titulo">
+  <div class="portada-texto">
+    <p class="portada-ante">Chocolatería e bombonería · Ribadeo</p>
+    <h1 class="portada-titulo" id="portada-titulo" data-revelar><span class="t-ancho">Si cruje,</span> <em>está bien</em> <span class="t-ancho">templado.</span></h1>
+    <p class="portada-entradilla">Templamos a mano, en mármol, cada mañana. Un chocolate bien templado brilla, se suelta solo del molde y, al partirlo, suena: <em>estalo</em>.</p>
+    <div class="portada-acciones">
+      <a class="boton boton--relleno iman" href="#bombones">Ver los bombones</a>
+      <a class="boton boton--linea iman" href="#curva">Cómo se templa</a>
+    </div>
+  </div>
+  <figure class="tableta" id="tableta">
+    <svg class="tableta-poster" viewBox="0 0 300 400" aria-hidden="true">
+      <rect width="300" height="400" rx="10" fill="#2E1A12"/>
+      <g fill="#3E2419" stroke="#55331F" stroke-width="2"><rect x="12" y="12" width="84" height="66" rx="4"/><rect x="108" y="12" width="84" height="66" rx="4"/><rect x="204" y="12" width="84" height="66" rx="4"/><rect x="12" y="90" width="84" height="66" rx="4"/><rect x="108" y="90" width="84" height="66" rx="4"/><rect x="204" y="90" width="84" height="66" rx="4"/><rect x="12" y="168" width="84" height="66" rx="4"/><rect x="108" y="168" width="84" height="66" rx="4"/><rect x="204" y="168" width="84" height="66" rx="4"/><rect x="12" y="246" width="84" height="66" rx="4"/><rect x="108" y="246" width="84" height="66" rx="4"/><rect x="204" y="246" width="84" height="66" rx="4"/><rect x="12" y="324" width="84" height="64" rx="4"/><rect x="108" y="324" width="84" height="64" rx="4"/><rect x="204" y="324" width="84" height="64" rx="4"/></g>
+    </svg>
+    <canvas class="tableta-canvas" id="tableta-canvas" aria-hidden="true"></canvas>
+    <figcaption class="tableta-pie">
+      <span class="cifra" id="onzas-cuenta">15 onzas</span> · tableta 70 % · 100 g
+      <span class="tableta-botones">
+        <button type="button" class="enlace-boton" id="partir">Partir una onza</button>
+        <button type="button" class="enlace-boton" id="otra" hidden>Otra tableta</button>
+      </span>
+    </figcaption>
+  </figure>
+  <p class="portada-pista">Pasa el ratón para ver el brillo · pulsa una onza para partirla</p>
+</section>
+
+<!-- 2 · LA CURVA (anclada) ==================================== -->
+<section class="curva" id="curva" aria-labelledby="curva-titulo">
+  <div class="curva-pin" id="curva-pin">
+    <header class="curva-cabeza">
+      <p class="seccion-num">01 · Templar</p>
+      <h2 class="seccion-titulo" id="curva-titulo" data-revelar>La curva <em>del brillo</em></h2>
+    </header>
+    <figure class="curva-figura">
+      <svg class="curva-graf" id="curva-graf" viewBox="0 0 640 360" role="img" aria-labelledby="curva-graf-tit">
+        <title id="curva-graf-tit">Curva de templado: fundir a 45 °C, enfriar en el mármol a 27 °C, recalentar a 31 °C y cristalizar a 17 °C, a lo largo de unos cuarenta minutos.</title>
+        <g class="curva-ejes">
+          <path d="M60 20V320H620"/>
+          <g class="curva-rejilla"><path d="M60 47H620M60 145H620M60 173H620M60 243H620"/></g>
+          <text x="52" y="51" text-anchor="end">45°</text><text x="52" y="143" text-anchor="end">31°</text><text x="52" y="183" text-anchor="end">27°</text><text x="52" y="247" text-anchor="end">17°</text>
+          <text x="60" y="344">0 min</text><text x="620" y="344" text-anchor="end">40 min</text>
+        </g>
+        <path class="curva-sombra" d="M60 47H172L312 173H368L424 145H508L620 243"/>
+        <path class="curva-linea" id="curva-linea" pathLength="1" d="M60 47H172L312 173H368L424 145H508L620 243"/>
+        <circle class="curva-punto" id="curva-punto" cx="620" cy="243" r="9"/>
+      </svg>
+      <div class="muestra" aria-hidden="true"><div class="muestra-onza"><span class="muestra-flor" id="muestra-flor"></span><span class="muestra-brillo" id="muestra-brillo"></span></div><p>la misma onza, ahora</p></div>
+    </figure>
+    <dl class="curva-lectura">
+      <div><dt>Temperatura</dt><dd><span class="cifra" id="cu-temp">45</span> °C</dd></div>
+      <div><dt>Cristales que mandan</dt><dd><span id="cu-forma">ninguno</span></dd></div>
+      <div><dt>Brillo</dt><dd><span class="cifra" id="cu-brillo">0</span> %</dd></div>
+    </dl>
+    <ol class="curva-pasos" id="curva-pasos">
+      <li class="cpaso" data-p="0"><p class="cpaso-num">1 / 4 · 45 °C</p><h3>Fundir del todo</h3><p>A 45 °C no queda ni un cristal de manteca de cacao. Es el punto de partida: borrar lo que el chocolate traía.</p></li>
+      <li class="cpaso" data-p="0.4"><p class="cpaso-num">2 / 4 · 27 °C</p><h3>Al mármol</h3><p>Dos tercios se vuelcan sobre la piedra fría y se trabajan con la espátula. Nacen cristales de dos tipos: los buenos, de forma V, y otros inestables.</p></li>
+      <li class="cpaso" data-p="0.65"><p class="cpaso-num">3 / 4 · 31 °C</p><h3>Recalentar un poco</h3><p>Se junta con el tercio caliente y sube a 31 °C. Los inestables se funden; los de forma V aguantan. Ya está templado.</p></li>
+      <li class="cpaso" data-p="1"><p class="cpaso-num">4 / 4 · 17 °C</p><h3>Cristalizar</h3><p>En el molde y a 17 °C, el chocolate encoge un 2 % y se suelta solo. Por eso brilla, por eso cruje y por eso no se funde en la mano.</p></li>
+    </ol>
+    <div class="curva-progreso" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+
+<!-- 3 · BOMBONES ============================================= -->
+<section class="bombones" id="bombones" aria-labelledby="bombones-titulo">
+  <header class="seccion-cabeza seccion-cabeza--bombones">
+    <p class="seccion-num">02 · Esta semana</p>
+    <h2 class="seccion-titulo" id="bombones-titulo" data-revelar>Doce bombones, <em>por dentro</em></h2>
+    <p class="seccion-entradilla">Cada cáscara se pinta a mano con manteca de cacao de color antes de llenarla. Elige uno y te lo partimos por la mitad.</p>
+  </header>
+  <div class="bombones-rejilla">
+    <ul class="molde" id="molde" aria-label="Bombones de la semana">
+      <li><button type="button" class="bombon" aria-pressed="true" data-nombre="Sal da ría" data-desc="Caramelo blando con escamas de sal de Ribadeo, en cáscara de chocolate con leche 40 %." data-capas="#E0A15A:caramelo blando|#B98A5A:ganache de leche" data-al="leche" data-cacao="40" style="--p1:#31B2A6;--p2:#F3E7D6"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Sal da ría</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Avelá" data-desc="Praliné de avellana tostada aquí, con crujiente de barquillo." data-capas="#B07A3C:praliné de avellana|#D9B47A:crujiente" data-al="leche, frutos de cáscara, gluten" data-cacao="55" style="--p1:#C09B49;--p2:#7B4A2E"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Avelá</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Albariño" data-desc="Ganache de chocolate blanco con mosto de albariño reducido." data-capas="#E8E0A0:ganache de mosto|#C9C46A:gelée de uva" data-al="leche, sulfitos" data-cacao="33" style="--p1:#C9C46A;--p2:#F3E7D6"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Albariño</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Café de pota" data-desc="Ganache negra infusionada con café de pota toda la noche." data-capas="#5A3524:ganache de café" data-al="leche" data-cacao="66" style="--p1:#8A5A3B;--p2:#2E1A12"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Café de pota</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Framboesa" data-desc="Pasta de fruta de frambuesa sobre ganache de chocolate negro." data-capas="#B3204A:pasta de frambuesa|#4A2A22:ganache negra" data-al="leche" data-cacao="70" style="--p1:#E0466B;--p2:#F3E7D6"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Framboesa</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Castaña e mel" data-desc="Crema de castaña asada con miel de brezo. Solo en otoño." data-capas="#A0703F:crema de castaña|#D9A23A:miel" data-al="leche" data-cacao="55" style="--p1:#A0703F;--p2:#D9A23A"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Castaña e mel</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Laranxa 70" data-desc="Ganache de agua con piel de naranja confitada. Sin leche." data-capas="#3B2117:ganache de agua|#F08A24:naranja confitada" data-al="puede contener soja" data-cacao="70" style="--p1:#F08A24;--p2:#2E1A12"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Laranxa 70</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Pistacho" data-desc="Praliné de pistacho sin colorante, con un punto de sal." data-capas="#9DA65A:praliné de pistacho" data-al="leche, frutos de cáscara" data-cacao="40" style="--p1:#8FB657;--p2:#F3E7D6"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Pistacho</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Augardente de herbas" data-desc="Ganache con licor de hierbas. Lleva alcohol." data-capas="#C9B04A:ganache de licor" data-al="leche; contiene alcohol" data-cacao="55" style="--p1:#E3C84A;--p2:#6E8C3A"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Augardente de herbas</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Xenxibre e lima" data-desc="Ganache de leche con jengibre fresco y ralladura de lima." data-capas="#D8C690:ganache de jengibre|#9DB36A:gelée de lima" data-al="leche" data-cacao="40" style="--p1:#9DB36A;--p2:#F3E7D6"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Xenxibre e lima</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Queixo e marmelo" data-desc="Ganache de queso tierno con capa de membrillo de la casa." data-capas="#F1E1B8:ganache de queso|#C4572E:membrillo" data-al="leche" data-cacao="33" style="--p1:#C4572E;--p2:#F1E1B8"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Queixo e marmelo</span></button></li>
+      <li><button type="button" class="bombon" aria-pressed="false" data-nombre="Negro 82" data-desc="Solo chocolate: ganache de 82 % de cacao, sin aromas. Para medir al chocolatero." data-capas="#2A1510:ganache 82 %" data-al="leche" data-cacao="82" style="--p1:#2E1A12;--p2:#7B4A2E"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#b-forma"/></svg><span class="visualmente-oculto">Negro 82</span></button></li>
+    </ul>
+    <svg class="sprite" aria-hidden="true" width="0" height="0"><defs>
+      <symbol id="b-forma" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" style="fill:var(--p1)"/>
+        <path d="M18 62c10-8 20 6 30-4s18-14 34-6c-2 12-12 22-32 24S20 72 18 62z" style="fill:var(--p2)" opacity=".85"/>
+        <circle cx="70" cy="34" r="5" style="fill:var(--p2)" opacity=".8"/><circle cx="62" cy="24" r="2.5" style="fill:var(--p2)" opacity=".8"/>
+        <ellipse cx="36" cy="30" rx="12" ry="6" fill="#fff" opacity=".35" transform="rotate(-30 36 30)"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+      </symbol>
+    </defs></svg>
+    <aside class="corte" id="corte" aria-live="polite">
+      <svg class="corte-dib" id="corte-dib" viewBox="0 0 240 150" aria-hidden="true"></svg>
+      <h3 class="corte-nombre" id="corte-nombre">Sal da ría</h3>
+      <p class="corte-desc" id="corte-desc">Caramelo blando con escamas de sal de Ribadeo, en cáscara de chocolate con leche 40 %.</p>
+      <ul class="corte-capas" id="corte-capas"></ul>
+      <p class="corte-dato"><span class="cifra" id="corte-cacao">40</span> % de cacao en la cáscara</p>
+      <p class="corte-al">Alérgenos: <span id="corte-al">leche</span></p>
+    </aside>
+  </div>
+  <div class="cacao-tabla" id="cacao-tabla">
+    <h3>Los doce, por cacao</h3>
+    <p>De más a menos: lo que pesa el chocolate en cada uno.</p>
+    <ol class="cacao-barras" id="cacao-barras"></ol>
+  </div>
+  <p class="bombones-nota">Todos se elaboran en un obrador donde se trabaja con frutos de cáscara, leche, gluten y soja. Precio por unidad: 1,90 €.</p>
+</section>
+
+<!-- 4 · CINTA ================================================ -->
+<div class="cinta" aria-hidden="true"><div class="cinta-pista" id="cinta-pista"><span>Ecuador 70 %</span><b>·</b><span><em>Perú 64 %</em></span><b>·</b><span>Madagascar 68 %</span><b>·</b><span><em>Tanzania 75 %</em></span><b>·</b><span>Venezuela 72 %</span><b>·</b></div></div>
+
+<!-- 5 · CAJAS (pila sticky) ================================== -->
+<section class="cajas" id="cajas" aria-labelledby="cajas-titulo">
+  <header class="seccion-cabeza seccion-cabeza--cajas">
+    <p class="seccion-num">03 · Para regalar</p>
+    <h2 class="seccion-titulo" id="cajas-titulo" data-revelar>Cajas que <em>se cierran solas</em></h2>
+    <p class="seccion-entradilla">Las montamos delante de ti o te la dejamos lista con un día de aviso. El cierre es imantado: se abre con un clac.</p>
+  </header>
+  <ol class="pila" id="pila">
+    <li class="pila-item" data-n="4" data-precio="9"><article class="caja"><svg class="caja-dib" viewBox="0 0 220 130" aria-hidden="true"><rect x="10" y="20" width="200" height="100" rx="8" class="caja-fondo"/><g class="caja-huecos"></g></svg><div><p class="caja-num">4 bombones</p><h3>La de bolsillo</h3><p>Para probar, o para dejar encima de una mesa con una nota.</p><p class="caja-precio">9,00 €</p></div></article></li>
+    <li class="pila-item" data-n="9" data-precio="19"><article class="caja"><svg class="caja-dib" viewBox="0 0 220 130" aria-hidden="true"><rect x="10" y="20" width="200" height="100" rx="8" class="caja-fondo"/><g class="caja-huecos"></g></svg><div><p class="caja-num">9 bombones</p><h3>La de visita</h3><p>Nueve distintos, uno de cada cáscara pintada que haya esa semana.</p><p class="caja-precio">19,00 €</p></div></article></li>
+    <li class="pila-item" data-n="16" data-precio="32"><article class="caja"><svg class="caja-dib" viewBox="0 0 220 130" aria-hidden="true"><rect x="10" y="20" width="200" height="100" rx="8" class="caja-fondo"/><g class="caja-huecos"></g></svg><div><p class="caja-num">16 bombones</p><h3>La de celebrar</h3><p>Los doce de la semana y cuatro repetidos a tu elección.</p><p class="caja-precio">32,00 €</p></div></article></li>
+    <li class="pila-item" data-n="25" data-precio="48"><article class="caja"><svg class="caja-dib" viewBox="0 0 220 130" aria-hidden="true"><rect x="10" y="20" width="200" height="100" rx="8" class="caja-fondo"/><g class="caja-huecos"></g></svg><div><p class="caja-num">25 bombones</p><h3>La de compartir</h3><p>Para una oficina, una boda pequeña o una sobremesa larga.</p><p class="caja-precio">48,00 €</p></div></article></li>
+  </ol>
+  <div class="por-bombon" id="por-bombon">
+    <h3>Lo mismo, por bombón</h3>
+    <ul id="por-bombon-barras"></ul>
+  </div>
+
+  <form class="encargo" id="encargo" novalidate aria-labelledby="encargo-titulo">
+    <h3 id="encargo-titulo">Encargar una caja</h3>
+    <p class="encargo-nota">Formulario de muestra: en esta demo no se envía nada.</p>
+    <div class="campo"><label for="f-nombre">Nombre</label><input id="f-nombre" autocomplete="given-name" required></div>
+    <div class="campo"><label for="f-tel">Teléfono</label><input id="f-tel" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,}"></div>
+    <div class="campo"><label for="f-caja">Caja</label><select id="f-caja"><option>4 bombones</option><option>9 bombones</option><option>16 bombones</option><option>25 bombones</option></select></div>
+    <div class="campo"><label for="f-fecha">Para el día</label><input id="f-fecha" type="date" required><p class="campo-ayuda">Con un día de aviso.</p></div>
+    <button class="boton boton--relleno iman" type="submit">Enviar el encargo</button>
+    <p class="encargo-estado" id="encargo-estado" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<!-- 6 · HORARIO ============================================== -->
+<section class="horario" id="horario" aria-labelledby="horario-titulo">
+  <h2 class="seccion-titulo" id="horario-titulo" data-revelar>Abrimos <em>cuando el mármol se enfría</em></h2>
+  <p class="estado-ahora" id="estado-ahora"><span class="estado-luz" aria-hidden="true"></span><span id="estado-texto">Consulta el horario.</span></p>
+  <table class="hor">
+    <caption class="visualmente-oculto">Horario de la tienda</caption>
+    <tbody>
+      <tr data-dia="1"><th scope="row">Lunes</th><td>Cerrado · obrador</td></tr>
+      <tr data-dia="2"><th scope="row">Martes</th><td>11:00 – 14:00 · 17:00 – 20:30</td></tr>
+      <tr data-dia="3"><th scope="row">Miércoles</th><td>11:00 – 14:00 · 17:00 – 20:30</td></tr>
+      <tr data-dia="4"><th scope="row">Jueves</th><td>11:00 – 14:00 · 17:00 – 20:30</td></tr>
+      <tr data-dia="5"><th scope="row">Viernes</th><td>11:00 – 14:00 · 17:00 – 21:00</td></tr>
+      <tr data-dia="6"><th scope="row">Sábado</th><td>10:30 – 14:30 · 17:00 – 21:00</td></tr>
+      <tr data-dia="0"><th scope="row">Domingo</th><td>11:00 – 14:30</td></tr>
+    </tbody>
+  </table>
+  <p class="horario-nota">Por las mañanas se templa con la puerta cerrada: el mármol necesita la tienda a 18 °C. En julio y agosto no hacemos bombones de ganache; sí tabletas y helado de chocolate.</p>
+</section>
+
+<!-- 7 · VISITA =============================================== -->
+<section class="visita" id="visita" aria-labelledby="visita-titulo">
+  <div class="visita-texto">
+    <h2 class="seccion-titulo" id="visita-titulo" data-revelar>Rúa do Mármore <em>Vello, 4</em></h2>
+    <address>
+      <p>27700 Ribadeo (Lugo)</p>
+      <p><a class="enlace" href="tel:+34982000000">982 00 00 00</a></p>
+      <p><a class="enlace" href="mailto:ola@estalo.example">ola@estalo.example</a></p>
+    </address>
+    <blockquote class="testimonio"><p>«Le regalé la caja de nueve a mi madre y me llamó para preguntar cuál era el de queso.»</p><footer>Antía, clienta (opinión de muestra)</footer></blockquote>
+  </div>
+  <div class="mapa" id="mapa">
+    <svg class="mapa-dib" viewBox="0 0 400 300" aria-hidden="true"><rect width="400" height="300" fill="#24150F"/><path d="M0 210c80-20 140 10 220-10s120-40 180-30V300H0z" fill="#16323A"/><path d="M40 0v200M150 0v190M260 0v170M0 60h400M0 130h400" stroke="#3A251C" stroke-width="10"/><circle cx="150" cy="96" r="12" fill="#31B2A6"/></svg>
+    <button class="boton boton--relleno iman mapa-boton" id="mapa-boton" type="button">Cargar el mapa de Google</button>
+    <p class="mapa-aviso">Al cargarlo, Google puede guardar cookies. Hasta que no pulses, no se conecta nada.</p>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <p class="pie-marca"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>Estalo</p>
+  <nav class="pie-nav" aria-label="Pie"><a href="legal.html">Aviso legal y privacidad</a><a href="#portada">Volver arriba</a></nav>
+  <p class="sello">Sitio de demostración. Estalo es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Aquí no hay cookies de terceros ni analítica. Guardamos en tu navegador solo que has cerrado este aviso. El mapa de Google se carga únicamente si lo pides.</p>
+  <button class="boton boton--relleno" id="cookies-ok" type="button">Entendido</button>
+</div>
+
+<!-- MANDO DE DEMOSTRACIÓN: inicio — NUNCA viaja al sitio de un cliente. Ver README, «Receta de borrado». -->
+<div class="mando" id="mando" role="region" aria-label="Mando de demostración" hidden>
+  <div class="mando-grupo" role="group" aria-label="Densidad de la maqueta"><span class="mando-rot">Maqueta</span><button type="button" data-maqueta="cargada" aria-pressed="true">Templado</button><button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button></div>
+  <div class="mando-grupo" role="group" aria-label="Color de marca"><span class="mando-rot">Color</span><button type="button" data-paleta="turquesa" aria-pressed="true"><span class="mando-muestra" style="background:#31B2A6"></span>Turquesa</button><button type="button" data-paleta="coral" aria-pressed="false"><span class="mando-muestra" style="background:#E0897B"></span>Coral</button><button type="button" data-paleta="oro" aria-pressed="false"><span class="mando-muestra" style="background:#C09B49"></span>Oro</button></div>
+</div>
+<!-- MANDO DE DEMOSTRACIÓN: fin -->
+
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"><span class="cursor-rot"></span></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
