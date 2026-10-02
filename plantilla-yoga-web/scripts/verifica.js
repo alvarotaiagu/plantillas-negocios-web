@@ -250,6 +250,32 @@ async function pruebas(b) {
     await ctx.close();
   }
 
+  // 5 bis. Domingo, teclado, legal, 404 y transición a medias
+  {
+    const { ctx, page, log } = await nueva(b, ESC);
+    await page.goto(BASE + '?ahora=2026-10-04T11:00'); await page.waitForTimeout(4400);
+    const dom = await page.evaluate(() => ({ dia: document.querySelector('.vivo-dia').textContent, clase: document.querySelector('.vivo-clase').textContent, hoy: document.querySelectorAll('.cuadro-dia.es-hoy').length, sig: document.querySelector('.sesion.es-siguiente').closest('.cuadro-dia').dataset.dia }));
+    ok('domingo: cerrado, ninguna columna de hoy y la siguiente es el lunes 07:30', /cerrado/.test(dom.dia) && dom.hoy === 0 && dom.sig === '1' && /07:30/.test(dom.clase), dom);
+    await foto(page, 'domingo-portada');
+    for (let i = 0; i < 3; i++) await page.keyboard.press('Tab');
+    await page.waitForTimeout(300);
+    const foco = await page.evaluate(() => { const a = document.activeElement; const cs = getComputedStyle(a); return { el: a.textContent.trim().slice(0, 30), outline: cs.outlineStyle + ' ' + cs.outlineWidth }; });
+    ok('teclado: el foco se ve (contorno de 3 px)', /solid 3px/.test(foco.outline), foco);
+    await foto(page, 'teclado-foco');
+    const yC = await topDe(page, '.cuadro');
+    await ruedaHasta(page, yC - 620);
+    await foto(page, 'transicion-prensada-cuadro');
+    const clip = await page.evaluate(() => getComputedStyle(document.querySelector('.cuadro')).clipPath);
+    ok('transición: el cuadro llega prensado (clip-path con esquinas redondas)', /round/.test(clip) && !/round 0px/.test(clip), clip);
+    await page.goto(BASE + 'legal.html'); await page.waitForTimeout(600); await foto(page, 'legal');
+    await page.goto(BASE + 'no-existe/otra.html'); await page.waitForTimeout(600);
+    await foto(page, '404');
+    const e404 = await page.evaluate(() => document.title);
+    ok('404 propia servida en una ruta inexistente', /esterilla/.test(e404), e404);
+    ok('consola limpia (domingo, legal)', log.errores.filter(e => !/no-existe|status of 404/.test(e)).length === 0, log.errores);
+    await ctx.close();
+  }
+
   // 6. Textos de relleno y marcadores
   {
     const { ctx, page } = await nueva(b, ESC);

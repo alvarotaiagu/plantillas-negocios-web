@@ -124,7 +124,7 @@
     if (siguiente) {
       $('.vivo-dia').textContent = etiqueta + ' · siguiente clase';
       $('.vivo-clase').textContent = siguiente.s.nombre + ' · ' + siguiente.s.hora;
-      $('.vivo-detalle').textContent = siguiente.s.datos + ' · ' + cuando + '.' + (enCurso ? ' Ahora mismo: ' + enCurso.nombre + ', hasta las ' + enCurso.el.dataset.fin + '.' : '');
+      $('.vivo-detalle').textContent = siguiente.s.datos + ' · ' + cuando.replace(/ a las \d\d:\d\d$/, '') + '.' + (enCurso ? ' Ahora mismo: ' + enCurso.nombre + ', hasta las ' + enCurso.el.dataset.fin + '.' : '');
     }
     // Cabecera del cuadro
     var txt = (enCurso ? 'Ahora: ' + enCurso.nombre + ' (hasta las ' + enCurso.el.dataset.fin + '). ' : '') +

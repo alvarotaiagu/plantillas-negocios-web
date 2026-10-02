@@ -80,7 +80,7 @@ Revisadas antes de diseñar las fichas de **As Caldeiras** (balneario, «Grados�
 4. **Rendimiento y accesibilidad medidos desde el principio, no al final.**
    `PerformanceObserver` de `longtask` desde el `<head>` (`window.__longtasks`),
    bucle de WebGL que duerme fuera de pantalla y con la pestaña oculta, auditoría
-   **axe a cero** en seis estados (ver `AUDITORIA.md`) y **35 comprobaciones**
+   **axe a cero** en seis estados (ver `AUDITORIA.md`) y **44 comprobaciones**
    automáticas en `scripts/verifica.js`.
 5. **La receta de borrado de los mandos es un script**, no una lista: deja la
    copia del cliente en cualquiera de las seis combinaciones (dos densidades ×
@@ -245,7 +245,7 @@ en el navegador y funcionan sin errores.
 
 - `node scripts/contraste.js` — contraste de las 31 parejas.
 - `node scripts/verifica.js` — capturas de cada sección en 1440×900 y 390×844 y
-  35 comprobaciones del §7 (cortina en los tres casos, sin GSAP, movimiento
+  44 comprobaciones del §7 (cortina en los tres casos, sin GSAP, movimiento
   reducido, cookies, mando, densidades, paletas, menú móvil, mapa, pila sticky
   en pasos de 90 px, hero en 360×640 y 375×667, longtask en frío, marcadores).
 - `node scripts/axe.js --axe=ruta/a/axe.min.js` — auditoría, escribe `AUDITORIA.md`.
