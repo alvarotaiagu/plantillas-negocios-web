@@ -69,7 +69,7 @@ bucle duerme fuera de pantalla. Con el scroll del hero se levantan rachas.
 - Pestañas con flechas del teclado.
 - Hero en 360×640 y 375×667 sin solapes (incluido el selector de aire).
 - Lunes: «Hoy descansan los caballos. Abrimos mañana a las 10:00.»
-- `longtask` en frío: ver la última línea de esta sección.
+- `longtask` en frío con la caché deshabilitada: **dos tareas al cargar (73 y 64 ms)** y **ninguna** recorriendo la página entera; el control de 120 ms lanzado con `setTimeout` se detecta.
 - axe-core: **0 violaciones** en seis estados (`AUDITORIA.md`).
 - Receta de borrado: seis combinaciones sin restos; dos copias cargadas en el
   navegador sin errores.
