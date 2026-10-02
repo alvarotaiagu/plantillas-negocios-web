@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="56" height="56" role="img" aria-labelledby="t">
+  <title id="t">Fiambreira, consulta de nutrición</title>
+  <defs>
+    <pattern id="v" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#FAF8F1"/><rect width="3" height="6" fill="#3E7A45" opacity=".45"/><rect width="6" height="3" fill="#3E7A45" opacity=".45"/></pattern>
+    <clipPath id="c"><path d="M8 24 H48 V40 C48 46 44 50 38 50 H18 C12 50 8 46 8 40 Z"/></clipPath>
+  </defs>
+  <!-- la fiambreira: tartera de dos pisos con asa, envuelta en un pano de vichy -->
+  <path d="M18 14 C18 7 38 7 38 14" fill="none" stroke="#172419" stroke-width="2.6" stroke-linecap="round"/>
+  <rect x="10" y="14" width="36" height="9" rx="3" fill="#FAF8F1" stroke="#172419" stroke-width="2.6"/>
+  <g clip-path="url(#c)"><rect x="6" y="22" width="44" height="30" fill="url(#v)"/></g>
+  <path d="M8 24 H48 V40 C48 46 44 50 38 50 H18 C12 50 8 46 8 40 Z" fill="none" stroke="#172419" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M28 24 L22 34 L34 34 Z" fill="#D8462B"/>
+</svg>

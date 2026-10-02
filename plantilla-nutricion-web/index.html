@@ -1,0 +1,385 @@
+<!--
+  SITIO DE DEMOSTRACIÓN. «Fiambreira» es una consulta de nutrición FICTICIA.
+  Nombre, dirección, teléfonos, números de colegiación y de registro sanitario,
+  tarifas y personas son de muestra y no corresponden a ningún negocio real.
+-->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fiambreira · Consulta de nutrición en Ourense (demo)</title>
+<meta name="description" content="Consulta de dietética y nutrición ficticia en Ourense: sin dietas milagro, sin promesas de kilos. Sitio de demostración.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1C3322">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fiambreira · Consulta de nutrición (demo)">
+<meta property="og:description" content="Lo que importa pasa en tu mesa. Plantilla de demostración de una consulta de nutrición ficticia en Ourense.">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+  /* Bloqueante a propósito: densidad y paleta ANTES de pintar.
+     MANDO DE DEMOSTRACIÓN — no viaja al sitio de un cliente (ver README). */
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    /* MANDO-INICIO */
+    try {
+      if (localStorage.getItem('fiambreira-maqueta') === 'sobria') d.classList.add('maqueta-sobria');
+      var p = localStorage.getItem('fiambreira-paleta');
+      if (p === 'loza' || p === 'ocre') d.classList.add('paleta-' + p);
+    } catch (e) {}
+    if (/[?&]revision(=|&|$)/.test(location.search)) d.classList.add('es-revision');
+    /* MANDO-FIN */
+    /* Retirada garantizada de la cortina, pase lo que pase con los scripts. */
+    setTimeout(function () { d.classList.add('cortina-fuera'); }, 4000);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Onest:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Fiambreira · Consulta de nutrición (sitio de demostración)",
+  "description": "Negocio ficticio de demostración.",
+  "address": { "@type": "PostalAddress", "streetAddress": "Rúa do Pementeiro, 7, baixo", "postalCode": "32005", "addressLocality": "Ourense", "addressCountry": "ES" },
+  "telephone": "+34 988 00 00 00",
+  "email": "mesa@fiambreira.example",
+  "openingHours": ["Mo-Th 10:00-14:00", "Mo-Th 16:30-20:00", "Fr 10:00-15:00"]
+}
+</script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- Cortina: una servilleta de vichy que se dobla dos veces y se retira a la esquina -->
+<div class="cortina" aria-hidden="true">
+  <div class="cortina-pano"></div>
+  <p class="cortina-marca">Fiambreira</p>
+</div>
+
+<header class="cabecera">
+  <div class="cabecera-fila">
+    <a class="marca" href="#inicio" aria-label="Fiambreira, ir al inicio">
+      <img src="img/logo.svg" alt="" width="46" height="46">
+      <span class="marca-texto"><span class="marca-nombre">Fiambreira</span><span class="marca-sub">dietética y nutrición · Ourense</span></span>
+    </a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu"><span>Menú</span><span class="menu-boton-icono" aria-hidden="true"></span></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="#no">Lo que no hacemos</a></li>
+        <li><a href="#mesa">Cómo trabajamos</a></li>
+        <li><a href="#carta">Consultas</a></li>
+        <li><a href="#temporada">Temporada</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a class="boton boton-pequeno iman" href="#contacto">Pedir cita</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============ PORTADA: el mantel (WebGL) ============ -->
+<section class="portada" id="inicio" aria-labelledby="portada-titulo" data-cursor="alisa">
+  <canvas class="mantel" aria-hidden="true"></canvas>
+  <div class="portada-plato">
+    <p class="antetitulo">Dietista-nutricionista · Ourense · consulta y en línea</p>
+    <h1 id="portada-titulo" class="titulo-portada" data-letras><span class="tl">Lo que importa</span> <span class="tl">pasa en <em>tu mesa.</em></span></h1>
+    <p class="entradilla">No vendemos dietas. Miramos contigo lo que ya comes, cómo compras y cómo cocinas, y buscamos cambios que quepan en tu semana. Sin listas de prohibidos y sin prometerte kilos.</p>
+    <div class="portada-acciones">
+      <a class="boton iman" href="#contacto"><span>Pedir primera consulta</span></a>
+      <a class="enlace-flecha" href="#mesa">Cómo es <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+  <p class="portada-pie"><span class="solo-raton">Pasa la mano: el mantel se arruga y se vuelve a alisar.</span><span class="solo-tactil">Toca el mantel: se arruga y se vuelve a alisar.</span></p>
+  <dl class="portada-datos">
+    <div><dt>Primera consulta</dt><dd>60 min · 60 €<sup>*</sup></dd></div>
+    <div><dt>Seguimiento</dt><dd>30 min · 40 €<sup>*</sup></dd></div>
+    <div><dt>Dónde</dt><dd>Rúa do Pementeiro, 7 · Ourense</dd></div>
+  </dl>
+</section>
+
+<!-- ============ LO QUE NO HACEMOS: se tacha ============ -->
+<section class="no" id="no" aria-labelledby="no-titulo">
+  <div class="no-cabeza">
+    <p class="antetitulo">Antes de nada</p>
+    <h2 id="no-titulo" class="titulo-seccion" data-letras>Lo que aquí <em>no</em> vas a encontrar</h2>
+    <p class="no-intro">Una lista de la compra se tacha cuando ya está resuelta. Esta se tacha porque no la vas a necesitar.</p>
+  </div>
+  <ul class="tachados">
+    <li><span>Dietas de 1.200 calorías iguales para todo el mundo</span></li>
+    <li><span>Batidos, sobres, pastillas o «productos de la casa»</span></li>
+    <li><span>Promesas de kilos ni de tallas en una fecha</span></li>
+    <li><span>Alimentos prohibidos para siempre</span></li>
+    <li><span>Pesarte cada semana si no quieres</span></li>
+    <li><span>Menús que no se pueden cocinar un martes</span></li>
+  </ul>
+</section>
+
+<div class="franja" aria-hidden="true"></div>
+
+<!-- ============ PONER LA MESA (anclado con scrub) ============ -->
+<section class="mesa-seccion" id="mesa" aria-labelledby="mesa-titulo">
+  <div class="mesa-escena">
+    <header class="mesa-cabeza">
+      <p class="antetitulo antetitulo-claro">De la primera llamada al alta</p>
+      <h2 id="mesa-titulo" class="titulo-seccion" data-letras>Poner la mesa, <em>pieza a pieza</em></h2>
+    </header>
+    <figure class="mesa-dibujo">
+      <svg class="mesa" viewBox="0 0 600 600" role="img" aria-labelledby="mesa-t">
+        <title id="mesa-t">Una mesa vista desde arriba con mantel de cuadros, en la que se van poniendo servilleta, plato, vaso, cubiertos, frutero y jarra de agua, una pieza por paso.</title>
+        <defs>
+          <pattern id="vichy" width="40" height="40" patternUnits="userSpaceOnUse">
+            <rect width="40" height="40" fill="var(--papel)"/>
+            <rect width="20" height="40" fill="var(--albahaca)" opacity=".42"/>
+            <rect width="40" height="20" fill="var(--albahaca)" opacity=".42"/>
+          </pattern>
+        </defs>
+        <rect x="20" y="20" width="560" height="560" rx="18" fill="url(#vichy)"/>
+        <rect x="20" y="20" width="560" height="560" rx="18" fill="none" stroke="var(--tinta)" stroke-width="3"/>
+        <g class="pieza" data-pieza="1"><path d="M70 430 L 190 430 L 130 540 Z" fill="var(--tomate)" stroke="var(--tinta)" stroke-width="3" stroke-linejoin="round"/><path d="M100 430 L 130 486 L 160 430" fill="none" stroke="var(--tinta)" stroke-width="2"/></g>
+        <g class="pieza" data-pieza="2"><circle cx="300" cy="320" r="130" fill="var(--crema)" stroke="var(--tinta)" stroke-width="3"/><circle cx="300" cy="320" r="92" fill="none" stroke="var(--tinta)" stroke-width="2"/><circle cx="300" cy="320" r="120" fill="none" stroke="var(--albahaca)" stroke-width="3" stroke-dasharray="4 8"/></g>
+        <g class="pieza" data-pieza="3"><circle cx="480" cy="150" r="44" fill="var(--agua)" stroke="var(--tinta)" stroke-width="3"/><circle cx="480" cy="150" r="30" fill="none" stroke="var(--tinta)" stroke-width="1.5" opacity=".6"/><path d="M462 136 a 22 22 0 0 1 20 -8" fill="none" stroke="var(--crema)" stroke-width="4" stroke-linecap="round"/></g>
+        <g class="pieza" data-pieza="4"><rect x="140" y="200" width="14" height="220" rx="7" fill="var(--metal)" stroke="var(--tinta)" stroke-width="2.5"/><path d="M134 200 v -44 M147 200 v -44 M160 200 v -44 M134 200 q 13 18 26 0" fill="none" stroke="var(--tinta)" stroke-width="2.5" stroke-linecap="round"/><path d="M450 210 q 22 70 4 130 v 90 a 7 7 0 0 1 -14 0 V 220 q 0 -10 10 -10 z" fill="var(--metal)" stroke="var(--tinta)" stroke-width="2.5"/></g>
+        <g class="pieza" data-pieza="5"><ellipse cx="160" cy="120" rx="80" ry="60" fill="var(--limon)" stroke="var(--tinta)" stroke-width="3"/><circle cx="135" cy="110" r="22" fill="var(--tomate)" stroke="var(--tinta)" stroke-width="2.5"/><circle cx="178" cy="100" r="20" fill="var(--albahaca)" stroke="var(--tinta)" stroke-width="2.5"/><circle cx="168" cy="140" r="18" fill="#E58B2B" stroke="var(--tinta)" stroke-width="2.5"/></g>
+        <g class="pieza" data-pieza="6"><circle cx="490" cy="480" r="58" fill="var(--agua)" stroke="var(--tinta)" stroke-width="3"/><path d="M546 470 q 26 10 0 24" fill="none" stroke="var(--tinta)" stroke-width="3"/><circle cx="490" cy="480" r="40" fill="none" stroke="var(--tinta)" stroke-width="1.5" opacity=".5"/></g>
+      </svg>
+    </figure>
+    <p class="mesa-cuenta" aria-hidden="true"><span class="mesa-num">1</span><span class="mesa-de"> de 6</span></p>
+    <ol class="mesa-pasos">
+      <li class="mpaso" data-paso="1"><p class="mpaso-cuando">La servilleta · día 0</p><h3>Llamas o escribes</h3><p>Te contesta Lúa o Uxío. Cinco minutos para saber qué buscas y si somos la consulta adecuada; si no lo somos, te decimos quién.</p></li>
+      <li class="mpaso" data-paso="2"><p class="mpaso-cuando">El plato · 60 minutos</p><h3>Primera consulta</h3><p>Tu historia, tus horarios, quién cocina en casa, qué te gusta y qué no. Si tienes análisis o informes, tráelos. No hace falta venir en ayunas.</p></li>
+      <li class="mpaso" data-paso="3"><p class="mpaso-cuando">El vaso · tres días</p><h3>Lo que ya comes</h3><p>Apuntas tres días normales, sin cambiar nada y sin que nadie lo juzgue. Es el punto de partida, no un examen.</p></li>
+      <li class="mpaso" data-paso="4"><p class="mpaso-cuando">Los cubiertos · una semana</p><h3>Tu pauta, por escrito</h3><p>Dos o tres cambios para empezar, con ideas de menú que se pueden cocinar en tu cocina y comprar en tu barrio.</p></li>
+      <li class="mpaso" data-paso="5"><p class="mpaso-cuando">El frutero · cada 3 a 5 semanas</p><h3>Seguimiento</h3><p>Treinta minutos para ver qué ha funcionado y qué no, y ajustar. Medirte o pesarte es opcional y lo decides tú.</p></li>
+      <li class="mpaso" data-paso="6"><p class="mpaso-cuando">La jarra · cuando toque</p><h3>El alta</h3><p>El objetivo es que dejes de necesitarnos. Te llevas por escrito lo que has aprendido y la puerta queda abierta.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ LA CARTA: consultas ============ -->
+<section class="carta" id="carta" aria-labelledby="carta-titulo">
+  <header class="carta-cabeza">
+    <p class="antetitulo">Hoy en consulta <span class="sello-muestra">precios de muestra</span></p>
+    <h2 id="carta-titulo" class="titulo-seccion" data-letras>La carta</h2>
+    <p class="carta-intro">Seis motivos frecuentes para venir. Todas las consultas empiezan igual: escuchando.</p>
+  </header>
+  <ol class="carta-lista">
+    <li class="plato" data-min="60" data-precio="60">
+      <h3>Alimentación del día a día</h3>
+      <p>Para comer mejor sin que la cocina se convierta en un trabajo: organización, compra, raciones y cenas rápidas.</p>
+      <p class="plato-datos"><span>60 min la primera</span><b>60 €</b></p>
+    </li>
+    <li class="plato" data-min="60" data-precio="60">
+      <h3>Embarazo y lactancia</h3>
+      <p>Qué cambia, qué no y qué es un mito. En coordinación con tu matrona o tu médica si hace falta.</p>
+      <p class="plato-datos"><span>60 min la primera</span><b>60 €</b></p>
+    </li>
+    <li class="plato" data-min="60" data-precio="65">
+      <h3>Deporte</h3>
+      <p>Para quien entrena y quiere comer acorde a lo que hace, sin suplementos que no necesita. No prometemos marcas ni récords.</p>
+      <p class="plato-datos"><span>60 min la primera</span><b>65 €</b></p>
+    </li>
+    <li class="plato" data-min="60" data-precio="60">
+      <h3>Molestias digestivas</h3>
+      <p>Siempre con un diagnóstico médico previo: nosotros no diagnosticamos. Adaptamos la alimentación a lo que te ha indicado tu médico.</p>
+      <p class="plato-datos"><span>60 min la primera</span><b>60 €</b></p>
+    </li>
+    <li class="plato" data-min="60" data-precio="60">
+      <h3>Vegetariana y vegana</h3>
+      <p>Para hacerlo bien y con tranquilidad: proteína, hierro, B12 y menús que no dependen de productos caros.</p>
+      <p class="plato-datos"><span>60 min la primera</span><b>60 €</b></p>
+    </li>
+    <li class="plato" data-min="45" data-precio="50">
+      <h3>Comer en familia</h3>
+      <p>Para madres, padres y quien cocina en casa: comedor escolar, meriendas, el «no me gusta». La consulta es con los adultos.</p>
+      <p class="plato-datos"><span>45 min</span><b>50 €</b></p>
+    </li>
+  </ol>
+  <!-- SOBRIA-INICIO · solo en la versión sobria: qué incluye cada consulta, comparado -->
+  <figure class="comparativa">
+    <figcaption><b>Qué incluye cada consulta</b> (orientativo)</figcaption>
+    <table>
+      <thead><tr><th scope="col">Consulta</th><th scope="col">Duración</th><th scope="col">Pauta escrita</th><th scope="col">Mediciones</th><th scope="col">Precio<sup>*</sup></th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Primera</th><td>60 min</td><td>sí, en una semana</td><td>si quieres</td><td>60 €</td></tr>
+        <tr><th scope="row">Seguimiento</th><td>30 min</td><td>ajustes</td><td>si quieres</td><td>40 €</td></tr>
+        <tr><th scope="row">En línea</th><td>igual</td><td>igual</td><td>no</td><td>igual</td></tr>
+      </tbody>
+    </table>
+  </figure>
+  <!-- SOBRIA-FIN -->
+  <p class="carta-nota"><sup>*</sup>Precios ficticios de demostración. Seguimiento: 30 min, 40 €. En línea, el mismo precio. Exento de IVA por ser servicio sanitario.</p>
+</section>
+
+<!-- ============ TEMPORADA (galería anclada horizontal) ============ -->
+<section class="temporada" id="temporada" aria-labelledby="temporada-titulo">
+  <div class="temporada-escena">
+    <header class="temporada-cabeza">
+      <p class="antetitulo">En la plaza de abastos</p>
+      <h2 id="temporada-titulo" class="titulo-seccion" data-letras>Qué hay cada mes</h2>
+      <p class="temporada-intro">Comer de temporada es más barato y más fácil. Una guía orientativa de lo que suele haber en los puestos de Ourense.</p>
+    </header>
+    <div class="temporada-pista" role="group" aria-label="Calendario de temporada, de enero a diciembre">
+      <ol class="meses">
+        <li class="mes" data-mes="0"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-grelo" width="96" height="96"/></svg><h3>Enero</h3><p>grelos, naranja, kiwi, coliflor, puerro</p></li>
+        <li class="mes" data-mes="1"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-naranja" width="96" height="96"/></svg><h3>Febrero</h3><p>naranja, grelos, nabo, acelga, kiwi</p></li>
+        <li class="mes" data-mes="2"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-kiwi" width="96" height="96"/></svg><h3>Marzo</h3><p>kiwi, espinaca, alcachofa, puerro, grelos</p></li>
+        <li class="mes" data-mes="3"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-guisante" width="96" height="96"/></svg><h3>Abril</h3><p>guisante, espárrago, ajo tierno, lechuga, haba</p></li>
+        <li class="mes" data-mes="4"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-fresa" width="96" height="96"/></svg><h3>Mayo</h3><p>fresa, guisante, lechuga, haba, espárrago</p></li>
+        <li class="mes" data-mes="5"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-cereza" width="96" height="96"/></svg><h3>Junio</h3><p>cereza, patata nueva, calabacín, judía verde, albaricoque</p></li>
+        <li class="mes" data-mes="6"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-pemento" width="96" height="96"/></svg><h3>Julio</h3><p>pimiento, tomate, calabacín, judía verde, ciruela</p></li>
+        <li class="mes" data-mes="7"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-tomate" width="96" height="96"/></svg><h3>Agosto</h3><p>tomate, pimiento, berenjena, melocotón, mora</p></li>
+        <li class="mes" data-mes="8"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-uva" width="96" height="96"/></svg><h3>Septiembre</h3><p>uva, higo, manzana, tomate, pimiento</p></li>
+        <li class="mes" data-mes="9"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-castana" width="96" height="96"/></svg><h3>Octubre</h3><p>castaña, calabaza, manzana, pera, setas</p></li>
+        <li class="mes" data-mes="10"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-cabaza" width="96" height="96"/></svg><h3>Noviembre</h3><p>calabaza, castaña, kiwi, membrillo, berza</p></li>
+        <li class="mes" data-mes="11"><svg class="mes-icono" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><use href="#i-repolo" width="96" height="96"/></svg><h3>Diciembre</h3><p>lombarda, mandarina, coliflor, kiwi, grelos</p></li>
+      </ol>
+    </div>
+    <div class="temporada-barra" aria-hidden="true"><span></span></div>
+  </div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-grelo" viewBox="0 0 96 96"><path d="M48 90 V 40" stroke="#4E7A3A" stroke-width="5" stroke-linecap="round"/><path d="M48 60 C 20 60 14 30 30 14 C 44 26 50 44 48 60 Z" fill="#3E7A45" stroke="#172419" stroke-width="3"/><path d="M48 50 C 76 50 82 22 66 8 C 52 20 46 36 48 50 Z" fill="#5E9A55" stroke="#172419" stroke-width="3"/><circle cx="40" cy="12" r="5" fill="#EEC643" stroke="#172419" stroke-width="2"/><circle cx="56" cy="8" r="5" fill="#EEC643" stroke="#172419" stroke-width="2"/></symbol>
+    <symbol id="i-naranja" viewBox="0 0 96 96"><circle cx="48" cy="54" r="32" fill="#E58B2B" stroke="#172419" stroke-width="3"/><path d="M48 22 C 52 12 62 10 70 14 C 64 22 56 24 48 22 Z" fill="#3E7A45" stroke="#172419" stroke-width="3"/><circle cx="38" cy="46" r="2" fill="#172419" opacity=".35"/><circle cx="56" cy="60" r="2" fill="#172419" opacity=".35"/></symbol>
+    <symbol id="i-kiwi" viewBox="0 0 96 96"><ellipse cx="48" cy="50" rx="34" ry="30" fill="#8A6A3E" stroke="#172419" stroke-width="3"/><ellipse cx="48" cy="50" rx="26" ry="22" fill="#8CBF4A"/><ellipse cx="48" cy="50" rx="9" ry="7" fill="#F4F0D8"/><g fill="#172419"><circle cx="34" cy="44" r="2"/><circle cx="62" cy="44" r="2"/><circle cx="36" cy="58" r="2"/><circle cx="60" cy="58" r="2"/><circle cx="48" cy="34" r="2"/><circle cx="48" cy="66" r="2"/></g></symbol>
+    <symbol id="i-guisante" viewBox="0 0 96 96"><path d="M12 60 C 30 30 66 24 86 34 C 70 60 40 72 12 60 Z" fill="#6FA552" stroke="#172419" stroke-width="3"/><g fill="#9BCB6A" stroke="#172419" stroke-width="2"><circle cx="34" cy="52" r="8"/><circle cx="50" cy="46" r="8"/><circle cx="66" cy="40" r="8"/></g></symbol>
+    <symbol id="i-fresa" viewBox="0 0 96 96"><path d="M48 88 C 20 70 16 42 26 32 C 36 26 60 26 70 32 C 80 42 76 70 48 88 Z" fill="#D8462B" stroke="#172419" stroke-width="3"/><path d="M30 30 L 40 20 L 48 28 L 56 20 L 66 30" fill="#3E7A45" stroke="#172419" stroke-width="3" stroke-linejoin="round"/><g fill="#EEC643"><circle cx="40" cy="46" r="2"/><circle cx="56" cy="46" r="2"/><circle cx="48" cy="58" r="2"/><circle cx="40" cy="66" r="2"/><circle cx="56" cy="66" r="2"/></g></symbol>
+    <symbol id="i-cereza" viewBox="0 0 96 96"><path d="M34 62 C 40 36 52 20 66 10 M62 66 C 62 40 64 24 66 10" fill="none" stroke="#4E7A3A" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="70" r="16" fill="#A11F2B" stroke="#172419" stroke-width="3"/><circle cx="62" cy="72" r="16" fill="#C02A33" stroke="#172419" stroke-width="3"/><path d="M66 10 C 74 6 84 10 86 18 C 76 20 70 16 66 10 Z" fill="#3E7A45" stroke="#172419" stroke-width="2.5"/></symbol>
+    <symbol id="i-pemento" viewBox="0 0 96 96"><path d="M38 24 C 20 30 22 64 32 80 C 38 90 52 86 56 76 C 64 56 66 32 52 24 C 46 20 42 22 38 24 Z" fill="#3E7A45" stroke="#172419" stroke-width="3"/><path d="M44 24 C 44 14 50 8 58 8" fill="none" stroke="#4E7A3A" stroke-width="5" stroke-linecap="round"/><path d="M34 40 C 32 54 34 66 38 74" fill="none" stroke="#9BCB6A" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-tomate" viewBox="0 0 96 96"><path d="M14 56 C 14 34 30 26 48 26 C 66 26 82 34 82 56 C 82 76 66 86 48 86 C 30 86 14 76 14 56 Z" fill="#D8462B" stroke="#172419" stroke-width="3"/><path d="M48 30 L 36 22 L 44 28 L 40 16 L 50 26 L 58 16 L 54 28 L 64 22 Z" fill="#3E7A45" stroke="#172419" stroke-width="2.5" stroke-linejoin="round"/><path d="M28 50 C 28 42 34 38 40 38" fill="none" stroke="#F6B3A3" stroke-width="4" stroke-linecap="round"/></symbol>
+    <symbol id="i-uva" viewBox="0 0 96 96"><path d="M48 18 V 8" stroke="#4E7A3A" stroke-width="4" stroke-linecap="round"/><g fill="#6B3C7A" stroke="#172419" stroke-width="2.5"><circle cx="36" cy="28" r="10"/><circle cx="58" cy="28" r="10"/><circle cx="26" cy="46" r="10"/><circle cx="48" cy="46" r="10"/><circle cx="70" cy="46" r="10"/><circle cx="36" cy="64" r="10"/><circle cx="58" cy="64" r="10"/><circle cx="48" cy="82" r="10"/></g><path d="M50 12 C 62 4 78 8 80 18 C 68 22 58 18 50 12 Z" fill="#3E7A45" stroke="#172419" stroke-width="2.5"/></symbol>
+    <symbol id="i-castana" viewBox="0 0 96 96"><path d="M48 14 C 70 30 84 52 80 70 C 76 84 20 84 16 70 C 12 52 26 30 48 14 Z" fill="#7A4524" stroke="#172419" stroke-width="3"/><path d="M18 70 C 30 78 66 78 78 70 C 76 84 20 84 18 70 Z" fill="#D9B98A" stroke="#172419" stroke-width="2.5"/><path d="M40 34 C 36 44 36 54 40 60" fill="none" stroke="#B07A50" stroke-width="4" stroke-linecap="round"/></symbol>
+    <symbol id="i-cabaza" viewBox="0 0 96 96"><path d="M48 26 C 22 24 10 44 14 62 C 18 80 36 84 48 80 C 60 84 78 80 82 62 C 86 44 74 24 48 26 Z" fill="#E58B2B" stroke="#172419" stroke-width="3"/><path d="M48 28 C 38 40 38 70 48 80 M48 28 C 58 40 58 70 48 80" fill="none" stroke="#172419" stroke-width="2.5"/><path d="M48 26 C 48 18 52 12 58 10" fill="none" stroke="#4E7A3A" stroke-width="5" stroke-linecap="round"/></symbol>
+    <symbol id="i-repolo" viewBox="0 0 96 96"><circle cx="48" cy="52" r="34" fill="#7A3D6B" stroke="#172419" stroke-width="3"/><path d="M48 18 C 30 30 30 74 48 86 M48 18 C 66 30 66 74 48 86 M16 48 C 34 40 62 40 80 48" fill="none" stroke="#C99BBF" stroke-width="3" stroke-linecap="round"/></symbol>
+  </svg>
+</section>
+
+<div class="franja" aria-hidden="true"></div>
+
+<!-- ============ QUIÉNES ============ -->
+<section class="equipo" id="equipo" aria-labelledby="equipo-titulo">
+  <h2 id="equipo-titulo" class="titulo-seccion" data-letras>Dos personas <em>a la mesa</em></h2>
+  <article class="persona">
+    <svg class="persona-plato" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="url(#vichy2)" stroke="var(--tinta)" stroke-width="3"/><circle cx="100" cy="100" r="64" fill="var(--crema)" stroke="var(--tinta)" stroke-width="2.5"/><text x="100" y="122" text-anchor="middle">L</text><defs><pattern id="vichy2" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="var(--papel)"/><rect width="12" height="24" fill="var(--albahaca)" opacity=".42"/><rect width="24" height="12" fill="var(--albahaca)" opacity=".42"/></pattern></defs></svg>
+    <h3>Lúa Barreiro Doval</h3>
+    <p class="persona-cargo">Dietista-nutricionista · adultos, embarazo, digestivo</p>
+    <p>Fundó Fiambreira en 2016 después de seis años en la cocina de un comedor escolar, que es donde aprendió que lo que no se puede cocinar no se come. Pregunta más por tu horario que por tu peso.</p>
+    <p class="colegiacion">Colegiada GAL-0000 <span class="muestra">n.º de muestra</span></p>
+  </article>
+  <article class="persona">
+    <svg class="persona-plato" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="url(#vichy2)" stroke="var(--tinta)" stroke-width="3"/><circle cx="100" cy="100" r="64" fill="var(--crema)" stroke="var(--tinta)" stroke-width="2.5"/><text x="100" y="122" text-anchor="middle">U</text></svg>
+    <h3>Uxío Penedo Lamela</h3>
+    <p class="persona-cargo">Dietista-nutricionista · deporte, vegetariana, familias</p>
+    <p>Entrena remo desde los catorce y cocina sin carne desde los veinte. En consulta desde 2020. Le pide a todo el mundo una foto de su nevera, y explica por qué.</p>
+    <p class="colegiacion">Colegiado GAL-0001 <span class="muestra">n.º de muestra</span></p>
+  </article>
+</section>
+
+<!-- ============ PREGUNTAS ============ -->
+<section class="preguntas" id="preguntas" aria-labelledby="preguntas-titulo">
+  <h2 id="preguntas-titulo" class="titulo-seccion" data-letras>Preguntas de sobremesa</h2>
+  <div class="preguntas-lista">
+    <details><summary>¿Me vais a poner a dieta para adelgazar?</summary><p>No trabajamos con dietas restrictivas ni prometemos una cifra en la báscula. Si el peso es una preocupación, lo hablamos, pero el trabajo es sobre hábitos que puedas mantener; y si hay una razón médica, en coordinación con tu médico.</p></details>
+    <details><summary>¿Me vais a pesar?</summary><p>Solo si tú quieres. Hay otras formas de ver si los cambios te sientan bien: cómo duermes, cómo llegas a la tarde, cómo te sienta la comida.</p></details>
+    <details><summary>¿Necesito análisis o un informe médico?</summary><p>No para empezar. Para molestias digestivas o cualquier enfermedad, sí necesitamos el diagnóstico de tu médico: no diagnosticamos.</p></details>
+    <details><summary>¿Y si tengo una relación difícil con la comida?</summary><p>Si crees que puedes tener un trastorno de la conducta alimentaria, habla primero con tu médico de cabecera. Ese trabajo se hace en equipo, con psicología y medicina; nosotros podemos formar parte, no sustituirlo.</p></details>
+    <details><summary>¿Vendéis suplementos?</summary><p>No vendemos nada más que la consulta. Si alguna vez hace falta un suplemento, te decimos cuál y lo compras donde quieras.</p></details>
+    <details><summary>¿Funciona igual en línea?</summary><p>La consulta es la misma y el precio también. Lo único que no hacemos en línea son mediciones.</p></details>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contacto-cabeza">
+    <p class="antetitulo antetitulo-claro">Contacto</p>
+    <h2 id="contacto-titulo" class="titulo-contacto" data-letras>Ven con hambre <em>de preguntas.</em></h2>
+  </div>
+  <div class="contacto-datos">
+    <dl>
+      <div><dt>Teléfono</dt><dd><a href="tel:+34988000000">988 00 00 00</a></dd></div>
+      <div><dt>Correo</dt><dd><a href="mailto:mesa@fiambreira.example">mesa@fiambreira.example</a></dd></div>
+      <div><dt>Consulta</dt><dd>Rúa do Pementeiro, 7, baixo<br>32005 Ourense</dd></div>
+    </dl>
+    <div class="horario">
+      <p class="horario-estado" aria-live="polite"><span class="horario-punto" aria-hidden="true"></span><span class="horario-texto">Horario</span></p>
+      <table>
+        <caption class="sr">Horario de la consulta</caption>
+        <tbody>
+          <tr data-dia="1"><th scope="row">Lunes</th><td>10:00–14:00 · 16:30–20:00</td></tr>
+          <tr data-dia="2"><th scope="row">Martes</th><td>10:00–14:00 · 16:30–20:00</td></tr>
+          <tr data-dia="3"><th scope="row">Miércoles</th><td>10:00–14:00 · 16:30–20:00</td></tr>
+          <tr data-dia="4"><th scope="row">Jueves</th><td>10:00–14:00 · 16:30–20:00</td></tr>
+          <tr data-dia="5"><th scope="row">Viernes</th><td>10:00–15:00</td></tr>
+          <tr data-dia="6"><th scope="row">Sábado</th><td>cerrado</td></tr>
+          <tr data-dia="0"><th scope="row">Domingo</th><td>cerrado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="mapa" data-cursor="mapa">
+    <div class="mapa-dibujo" aria-hidden="true">
+      <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice"><rect width="400" height="260" fill="var(--panel)"/><path d="M-10 210 C 90 180 160 230 250 200 S 380 150 410 170" fill="none" stroke="var(--agua)" stroke-width="26"/><text x="300" y="190" font-family="Onest, sans-serif" font-size="11" letter-spacing="2" fill="var(--tinta-apagada)">MIÑO</text><g stroke="var(--crema)" stroke-width="12" stroke-linecap="round" fill="none"><path d="M40 -10 L 120 270"/><path d="M-10 90 H 410"/><path d="M220 -10 C 230 80 210 140 240 200"/></g><g transform="translate(176 90)"><circle r="20" fill="var(--tomate)" opacity=".18"/><circle r="9" fill="var(--tomate)" stroke="var(--tinta)" stroke-width="2.5"/></g></svg>
+    </div>
+    <button class="boton boton-claro mapa-boton" type="button">Ver el mapa <small>(carga Google Maps)</small></button>
+  </div>
+  <form class="formulario" action="#" novalidate>
+    <p class="formulario-aviso">Formulario de muestra: no envía nada.</p>
+    <label>Cómo te llamas <input name="nombre" autocomplete="given-name" required></label>
+    <label>Teléfono o correo <input name="contacto" autocomplete="email" required></label>
+    <label>Qué te trae <small>(opcional)</small>
+      <select name="motivo"><option>Comer mejor en el día a día</option><option>Embarazo o lactancia</option><option>Deporte</option><option>Molestias digestivas</option><option>Vegetariana o vegana</option><option>Comer en familia</option><option>Otra cosa</option></select>
+    </label>
+    <button class="boton iman" type="submit"><span>Que me llaméis</span></button>
+    <p class="formulario-estado" role="status"></p>
+  </form>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-fila">
+    <img src="img/logo.svg" alt="Fiambreira" width="56" height="56">
+    <p class="pie-lema">Lo que importa pasa en tu mesa.</p>
+    <nav aria-label="Legal"><a href="legal.html">Aviso legal y privacidad</a> · <a href="legal.html#cookies">Cookies</a></nav>
+  </div>
+  <p class="pie-legal">Centro sanitario inscrito con el n.º C-32-000000 <span class="muestra">de muestra</span> · Lúa Barreiro Doval, colegiada GAL-0000 <span class="muestra">de muestra</span> · Uxío Penedo Lamela, colegiado GAL-0001 <span class="muestra">de muestra</span>. La información de esta web es general y no sustituye a una consulta.</p>
+  <p class="sello"><strong>Sitio de demostración.</strong> Fiambreira es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</footer>
+
+<div class="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies de terceros. Solo guarda en tu navegador que has cerrado este aviso<!-- MANDO-INICIO --> (y, en modo revisión, la versión y el color elegidos)<!-- MANDO-FIN -->. El mapa de Google no se carga hasta que lo pides. <a href="legal.html#cookies">Más</a></p>
+  <button class="boton boton-pequeno" type="button">Entendido</button>
+</div>
+
+<!-- MANDO-INICIO · MANDO DE DEMOSTRACIÓN — NO viaja al sitio de un cliente. Ver README, «Borrar los mandos». -->
+<aside class="mandos" aria-label="Mandos de demostración" hidden>
+  <div class="mando" role="group" aria-label="Densidad visual">
+    <span class="mando-etiqueta">Versión</span>
+    <button type="button" data-maqueta="mantel" aria-pressed="true">Mantel</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <div class="mando" role="group" aria-label="Color de marca">
+    <span class="mando-etiqueta">Color</span>
+    <button type="button" data-paleta="albahaca" aria-pressed="true"><i class="muestra-color" style="background:#3E7A45"></i>Albahaca</button>
+    <button type="button" data-paleta="loza" aria-pressed="false"><i class="muestra-color" style="background:#316FA2"></i>Loza</button>
+    <button type="button" data-paleta="ocre" aria-pressed="false"><i class="muestra-color" style="background:#8F5F17"></i>Ocre</button>
+  </div>
+</aside>
+<!-- MANDO-FIN -->
+
+<div class="cursor" aria-hidden="true"><span class="cursor-aro"><span class="cursor-texto"></span></span><span class="cursor-punto"></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
