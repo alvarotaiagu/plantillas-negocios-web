@@ -213,7 +213,7 @@ void main(){
   vec2 q = (p - isla) * vec2(1.0, 1.7);
   float di = length(q);
   float ang = atan(q.y, q.x);
-  float radio = 0.034 * (1.0 + 0.2 * sin(3.0 * ang + 0.6) + 0.1 * sin(5.0 * ang + 2.0));
+  float radio = 0.034 * mix(0.6, 1.0, clamp(asp, 0.0, 1.0)) * (1.0 + 0.2 * sin(3.0 * ang + 0.6) + 0.1 * sin(5.0 * ang + 2.0));
   // a sotavento de la isla (hacia la orilla) el mar de fondo llega doblado
   float estela = exp(-q.x * q.x / (0.012 + 0.03 * max(-q.y, 0.0))) * smoothstep(0.02, -0.25, q.y) * smoothstep(-0.9, -0.2, q.y);
   // fase del mar de fondo: avanza hacia la orilla; la costa la curva un poco
@@ -273,7 +273,9 @@ void main(){
     const vigilar = now => {
       if (previo) { media = media * 0.8 + (now - previo) * 0.2; cuenta++; }
       previo = now;
-      if (cuenta > 8 && media > 22 && factor > 0.36) { factor *= media > 40 ? 0.55 : 0.75; cuenta = 0; media = 16; ajustar(); html.dataset.marEscala = factor.toFixed(2); }
+      // suelo: en móvil el búfer ya parte de 0,6 y más abajo las líneas se pixelan
+      const suelo = innerWidth < 760 ? 0.5 : 0.22;
+      if (cuenta > 8 && media > 22 && factor > suelo) { factor = Math.max(suelo, factor * (media > 40 ? 0.55 : 0.75)); cuenta = 0; media = 16; ajustar(); html.dataset.marEscala = factor.toFixed(2); }
     };
     const ajustar = () => {
       const r = canvas.getBoundingClientRect(), k = escala();
@@ -420,6 +422,11 @@ void main(){
   const crestaEn = p => { for (let i = 1; i < tramos.length; i++) if (p <= tramos[i][0]) { const [p0, x0] = tramos[i - 1], [p1, x1] = tramos[i]; return lerp(x0, x1, (p - p0) / (p1 - p0)); } return 1420; };
   const espumas = Array.from({ length: 26 }, (_, i) => { const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('r', (1.5 + (i % 4)).toString()); espuma.appendChild(c); return { c, a: Math.random() * 6.28, r: Math.random() }; });
   let pasoActual = -1;
+  const barraViaje = $('#viaje-barra'), rotuloBorrasca = $('#borrasca-rotulo');
+  const medidaCorte = { W: 0, vw: 0 };
+  const medirCorte = () => { medidaCorte.W = corte.getBoundingClientRect().width; medidaCorte.vw = escena.clientWidth; };
+  medirCorte();
+  new ResizeObserver(medirCorte).observe(escena);
   function dibujarViaje(p, tiempo = 0) {
     const xc = crestaEn(p);
     const h = profundidad(xc);
@@ -482,7 +489,7 @@ void main(){
     surfista.classList.toggle('de-pie', p > 0.88);
     const bv = 1 - smooth(0.18, 0.32, p);
     borrasca.setAttribute('opacity', bv.toFixed(2));
-    $('#borrasca-rotulo').setAttribute('opacity', bv.toFixed(2));
+    rotuloBorrasca.setAttribute('opacity', bv.toFixed(2));
     borrasca.setAttribute('transform', `translate(190 215) rotate(${(-tiempo * 12 - p * 200).toFixed(1)})`);
     marca.setAttribute('x1', xc.toFixed(1)); marca.setAttribute('x2', xc.toFixed(1));
     marca.setAttribute('y1', yc.toFixed(1)); marca.setAttribute('y2', lecho(xc).toFixed(1));
@@ -494,9 +501,10 @@ void main(){
       pasoActual = i;
       pasos.forEach((li, k) => { li.classList.toggle('es-activo', k === i); $('.paso-boton', li).setAttribute('aria-current', k === i ? 'step' : 'false'); });
     }
-    const barra = $('#viaje-barra'); barra.style.setProperty('--p', p.toFixed(3));
-    // en móvil el corte es más ancho que la pantalla: la cámara sigue a la cresta
-    const W = corte.getBoundingClientRect().width, vw = escena.clientWidth;
+    barraViaje.style.setProperty('--p', p.toFixed(3));
+    // en móvil el corte es más ancho que la pantalla: la cámara sigue a la cresta.
+    // Medidas cacheadas: leer el layout en cada fotograma, con el pin, da tareas largas.
+    const W = medidaCorte.W, vw = medidaCorte.vw;
     if (W > vw + 4) {
       const tx = clamp(vw * 0.55 - xc / 1600 * W, vw - W, 0);
       corte.style.transform = `translate3d(${tx.toFixed(1)}px,0,0)`;
@@ -542,8 +550,10 @@ void main(){
   // comparativa de la versión sobria: sale de los data-* de cada nivel, no se repite la cifra
   const comp = $('#comparativa');
   const filasComp = items.map(li => ({ n: $('.nivel-num', li).textContent + ' · ' + $('.nivel-nombre', li).textContent, h: +li.dataset.horas, eur: +li.dataset.precio }));
-  const maxH = Math.max(...filasComp.map(f => f.eur / f.h));
-  comp.innerHTML = filasComp.map(f => `<li><span>${f.n}</span><span class="barra"><i style="--v:${(f.eur / f.h / maxH).toFixed(3)}"></i></span><b>${fmt(f.eur / f.h, 2)} €/h</b></li>`).join('');
+  // barras: horas reales en el agua (ahí está la diferencia); el €/h va como cifra,
+  // porque solo varía de 11 a 13 y en barras se exageraría o no se vería
+  const maxH = Math.max(...filasComp.map(f => f.h));
+  comp.innerHTML = filasComp.map(f => `<li><span>${f.n}</span><span class="barra" role="img" aria-label="${f.h} horas en el agua"><i style="--v:${(f.h / maxH).toFixed(3)}"></i></span><b>${f.h} h · ${fmt(f.eur / f.h, 2)} €/h</b></li>`).join('');
 
   /* ————————————————— 3 · Parte de MUESTRA (generado a partir de la fecha) ————————————————— */
   const hoy = new Date();

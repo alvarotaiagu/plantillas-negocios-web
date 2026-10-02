@@ -318,8 +318,8 @@ html:not(.maqueta-sobria) .nivel::before {
 .nivel-figura { grid-column: 3; grid-row: 1; margin: 0; }
 .escala { width: 100%; height: auto; display: block; }
 .escala-ola { fill: var(--vidrio); }
-.escala-persona circle { fill: var(--espuma); }
-.escala-persona path { stroke: var(--espuma); stroke-width: 5; stroke-linecap: round; fill: none; }
+.escala-persona circle, .escala-persona path { fill: var(--espuma); }
+.escala-tabla { fill: var(--panel2); stroke: var(--espuma); stroke-width: 1.5; }
 .nivel-dato { font-family: var(--m); color: var(--humo); font-size: .8rem; display: flex; align-items: baseline; gap: .4rem; }
 .nivel-dato-n { color: var(--vidrio); font-size: 1.1rem; font-weight: 600; }
 .nivel-cifras { grid-column: 3; grid-row: 2; align-self: end; margin: 0; display: grid; gap: .25rem; font-size: .82rem; }
@@ -354,14 +354,14 @@ html:not(.maqueta-sobria) .comparativa { display: none !important; }
 .comparativa h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); font-variation-settings: "wdth" 40, "wght" 800; margin-bottom: .8rem; }
 .comparativa p { color: var(--humo); }
 .comparativa-barras { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
-.comparativa-barras li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 5rem; gap: .8rem; align-items: center; font-size: .86rem; }
+.comparativa-barras li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 9rem; gap: .8rem; align-items: center; font-size: .86rem; }
 .comparativa-barras .barra { height: 14px; background: var(--panel2); border-radius: 99px; overflow: hidden; }
 .comparativa-barras .barra i { display: block; height: 100%; background: var(--humo); border-radius: 99px; transform-origin: left; transform: scaleX(var(--v, 0)); transition: transform 1s var(--ease); }
 .comparativa-barras li:first-child .barra i { background: var(--vidrio); }
 .comparativa-barras b { font-family: var(--m); font-weight: 600; text-align: right; }
 @media (max-width: 760px) {
   .comparativa { grid-template-columns: 1fr; }
-  .comparativa-barras li { grid-template-columns: 5.5rem minmax(0, 1fr) 4rem; }
+  .comparativa-barras li { grid-template-columns: 5.5rem minmax(0, 1fr) 7.6rem; font-size: .78rem; }
 }
 
 .sueltas { margin-top: clamp(1rem, 4vw, 3rem); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.2rem; align-items: start; }

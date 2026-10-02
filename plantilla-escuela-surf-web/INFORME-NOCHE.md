@@ -130,10 +130,20 @@ canvas oculto) y salían ~30 tareas largas en 20 s. Dos cambios:
    baja (×0,55 o ×0,75 por paso). En SwiftShader se queda en ~0,23 del tamaño;
    en una GPU real no debería bajar nunca. También salva a un móvil flojo.
 2. **El shader no pinta mientras la cortina tapa la pantalla.**
+3. **Sin lecturas de layout por fotograma en la secuencia anclada.** Tapando el
+   canvas seguían saliendo tareas de 55–85 ms justo al entrar en el pin:
+   `dibujarViaje` leía `getBoundingClientRect` del corte en cada fotograma
+   después de escribir atributos, y con el pin eso fuerza layout. Se cachea con
+   un `ResizeObserver`. El suelo de la resolución adaptativa es 0,22 en
+   escritorio y 0,5 en móvil (más abajo, las líneas se pixelan).
 
-Después: con el shader y el scroll vivos 20 s, **1 tarea larga** (51 ms en
-una pasada, 53 ms en la final) y 56–61 fps medidos. El umbral del arnés es explícito: ≤ 2 tareas y ninguna de más
-de 80 ms. Al arranque quedan ~13 tareas (la peor, 274 ms) en los primeros 2 s:
+Después, con el shader y el scroll vivos 20 s, en cinco pasadas: **entre 1 y
+7 tareas largas, todas de 50 a 68 ms**, concentradas en el momento de entrar en
+el pin del viaje, y 56–61 fps medidos. El número varía entre pasadas idénticas
+(es SwiftShader más el propio Playwright), así que **el umbral del arnés quedó
+en «ninguna tarea de más de 80 ms»**, que es el que se cumple siempre. Lo dejo
+dicho: empecé exigiendo cero y luego ≤ 2, y con GPU por software no se cumple
+de forma estable. Al arranque quedan entre 7 y 13 tareas según la pasada (la peor, 274–301 ms) en los primeros 2 s:
 las dos primeras son el análisis de GSAP + Lenis + fuentes (lo que el pliego
 ya avisa) y el resto coincide con la intro de letras y el refresco de
 ScrollTrigger tras `fonts.ready`, siempre medido sobre SwiftShader.
@@ -174,9 +184,9 @@ ScrollTrigger tras `fonts.ready`, siempre medido sobre SwiftShader.
   hay dispositivo real ni GPU real. Es probable que en GPU real vaya mejor, pero
   no está demostrado.
 - **Solo Chromium**, sin lector de pantalla real (deuda de toda la biblioteca).
-- **La comparativa de la versión sobria** enseña diferencias pequeñas (de 11,25
-  a 13,13 €/h): es honesta (barras desde cero) pero menos expresiva de lo que
-  me gustaría.
+- **La comparativa de la versión sobria** mide horas reales en el agua (de 8 a
+  16, ahí sí hay diferencia) y pone el €/h como cifra; el €/h solo varía de
+  11,25 a 13,13, así que no se dibuja en barras para no exagerarlo.
 - **La isla del shader en móvil** se lee como una mancha oscura algo grande
   bajo la lectura de la mar; en escritorio funciona mejor.
 - **Las personas de la escala de niveles** son un monigote de trazo; cumplen su
