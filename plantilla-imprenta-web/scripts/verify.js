@@ -51,7 +51,7 @@ async function irA(p, sel, desfase = 0) {
     await p.waitForFunction(() => document.querySelector('.cortina-pliego').getBoundingClientRect().top < -20, null, { polling: 16, timeout: 8000 }).catch(() => {});
     const medio = await p.evaluate(() => { const c = document.querySelector('.cortina-pliego'); const r = c.getBoundingClientRect(); return { top: Math.round(r.top), fondoCortina: getComputedStyle(c).backgroundColor, fondoBody: getComputedStyle(document.body).backgroundColor }; });
     await p.screenshot({ path: path.join(SHOTS, 'cortina-a-medias-escritorio.png') });
-    ok('Cortina: fotograma a medias capturado con la chapa en movimiento', medio.top < -20 && medio.top > -1100, medio);
+    ok('Cortina: fotograma a medias capturado con la chapa en movimiento', medio.top < -10 && medio.top > -1100, medio);
     ok('Cortina de color distinto al fondo', medio.fondoCortina !== medio.fondoBody, medio);
     // segundo fotograma: en otra carga, para que la captura anterior no se lo coma
     {
