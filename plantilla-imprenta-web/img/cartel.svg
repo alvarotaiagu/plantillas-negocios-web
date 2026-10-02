@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <!-- Respaldo sin WebGL: el mismo cartel de la portada, con una trama de puntos en SVG -->
+  <defs>
+    <pattern id="tc" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(15)"><circle cx="5" cy="5" r="3.6" fill="#00A0E3"/></pattern>
+    <pattern id="tm" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(75)"><circle cx="5" cy="5" r="3.4" fill="#E6007E"/></pattern>
+    <pattern id="ty" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="4" fill="#FFE500"/></pattern>
+    <pattern id="tk" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="5" cy="5" r="4.6" fill="#16161A"/></pattern>
+    <clipPath id="sol"><circle cx="336" cy="320" r="182"/></clipPath>
+  </defs>
+  <rect width="600" height="800" fill="#FBFAF6"/>
+  <g clip-path="url(#sol)" style="mix-blend-mode:multiply">
+    <rect width="600" height="800" fill="url(#ty)"/>
+    <rect width="600" height="420" fill="url(#tm)" opacity=".9"/>
+  </g>
+  <path d="M0 528C120 500 220 560 340 525S520 490 600 515V800H0Z" fill="url(#tc)"/>
+  <path d="M0 640C140 615 260 665 380 640S540 610 600 630V800H0Z" fill="url(#tk)" opacity=".75"/>
+  <rect x="42" y="56" width="330" height="28" fill="#16161A"/>
+  <rect x="42" y="100" width="222" height="20" fill="#16161A"/>
+  <rect x="42" y="132" width="138" height="12" fill="#16161A"/>
+</svg>
