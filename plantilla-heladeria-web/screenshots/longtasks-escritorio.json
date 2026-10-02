@@ -1,0 +1,189 @@
+{
+  "t": [
+    {
+      "inicio": 45,
+      "duracion": 142
+    },
+    {
+      "inicio": 189,
+      "duracion": 140
+    },
+    {
+      "inicio": 332,
+      "duracion": 51
+    },
+    {
+      "inicio": 384,
+      "duracion": 228
+    },
+    {
+      "inicio": 616,
+      "duracion": 104
+    },
+    {
+      "inicio": 730,
+      "duracion": 141
+    },
+    {
+      "inicio": 872,
+      "duracion": 100
+    },
+    {
+      "inicio": 973,
+      "duracion": 119
+    },
+    {
+      "inicio": 1094,
+      "duracion": 97
+    },
+    {
+      "inicio": 1192,
+      "duracion": 88
+    },
+    {
+      "inicio": 1281,
+      "duracion": 103
+    },
+    {
+      "inicio": 1384,
+      "duracion": 86
+    },
+    {
+      "inicio": 1471,
+      "duracion": 101
+    },
+    {
+      "inicio": 1572,
+      "duracion": 119
+    },
+    {
+      "inicio": 1691,
+      "duracion": 118
+    },
+    {
+      "inicio": 1810,
+      "duracion": 101
+    },
+    {
+      "inicio": 1912,
+      "duracion": 109
+    },
+    {
+      "inicio": 2021,
+      "duracion": 104
+    },
+    {
+      "inicio": 2125,
+      "duracion": 95
+    },
+    {
+      "inicio": 2221,
+      "duracion": 95
+    },
+    {
+      "inicio": 2336,
+      "duracion": 140
+    },
+    {
+      "inicio": 2493,
+      "duracion": 98
+    },
+    {
+      "inicio": 2592,
+      "duracion": 95
+    },
+    {
+      "inicio": 2688,
+      "duracion": 99
+    },
+    {
+      "inicio": 2788,
+      "duracion": 103
+    },
+    {
+      "inicio": 2891,
+      "duracion": 110
+    },
+    {
+      "inicio": 3006,
+      "duracion": 87
+    },
+    {
+      "inicio": 3094,
+      "duracion": 98
+    },
+    {
+      "inicio": 3193,
+      "duracion": 101
+    },
+    {
+      "inicio": 3294,
+      "duracion": 83
+    },
+    {
+      "inicio": 3378,
+      "duracion": 86
+    },
+    {
+      "inicio": 3470,
+      "duracion": 80
+    },
+    {
+      "inicio": 3550,
+      "duracion": 75
+    },
+    {
+      "inicio": 3626,
+      "duracion": 77
+    },
+    {
+      "inicio": 3703,
+      "duracion": 95
+    },
+    {
+      "inicio": 3798,
+      "duracion": 87
+    },
+    {
+      "inicio": 3886,
+      "duracion": 77
+    },
+    {
+      "inicio": 3964,
+      "duracion": 72
+    },
+    {
+      "inicio": 4036,
+      "duracion": 70
+    },
+    {
+      "inicio": 4107,
+      "duracion": 89
+    },
+    {
+      "inicio": 4197,
+      "duracion": 80
+    },
+    {
+      "inicio": 4277,
+      "duracion": 82
+    },
+    {
+      "inicio": 4360,
+      "duracion": 116
+    },
+    {
+      "inicio": 4652,
+      "duracion": 50
+    },
+    {
+      "inicio": 6124,
+      "duracion": 56
+    },
+    {
+      "inicio": 6400,
+      "duracion": 56
+    }
+  ],
+  "fuentes": 720
+}

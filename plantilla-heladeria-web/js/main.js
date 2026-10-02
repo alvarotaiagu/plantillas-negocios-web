@@ -129,7 +129,7 @@
       .fromTo('#cortina-rizo-trazo', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.85, autoRound: false, immediateRender: false }, '<0.1')
       .to('.cortina-marca', { scale: 1.25, autoAlpha: 0, duration: 0.7, ease: 'expo.in' }, '+=0.05')
       .to('.cortina-rizo', { scale: 4.2, autoAlpha: 0, duration: 1.0 }, '<0.1')
-      .to(r, { v: 140, duration: 1.15, onUpdate: pintarHueco }, '<')
+      .to(r, { v: 74, duration: 1.4, onUpdate: pintarHueco }, '<') // 74 ya despeja las esquinas: el gesto entero se ve
       .call(revelarPortada, null, '<0.45');
   }
 
@@ -240,13 +240,17 @@
     var stir = 0, base = colorBase.slice(), veta = colorVeta.slice(), objBase = base.slice(), objVeta = veta.slice();
     var visible = true, corriendo = false, t0 = performance.now(), anterior = t0;
 
+    // Calidad adaptativa: si los fotogramas tardan, se baja la resolución interna
+    // (la crema es suave y aguanta el reescalado mucho mejor que un tirón).
+    var calidad = 1, tiempos = [], aDemanda = false;
     function medir() {
       var r = lienzo.getBoundingClientRect();
-      var esc = Math.min(window.devicePixelRatio || 1, 1.5) * 0.7;
-      var w = Math.max(64, Math.min(820, Math.round(r.width * esc))), h = Math.max(64, Math.min(820, Math.round(r.height * esc)));
-      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+      var esc = Math.min(window.devicePixelRatio || 1, 1.5) * 0.7 * calidad;
+      var w = Math.max(64, Math.min(760, Math.round(r.width * esc))), h = Math.max(64, Math.min(760, Math.round(r.height * esc)));
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); return true; }
     }
-    new ResizeObserver(function () { medir(); if (!corriendo) pintar(performance.now()); }).observe(lienzo);
+    // Redimensionar borra el búfer: se repinta en el acto para que no asome un fotograma negro.
+    new ResizeObserver(function () { if (medir()) pintar(performance.now()); }).observe(lienzo);
     medir();
 
     function anadir(x, y) {
@@ -300,12 +304,27 @@
     function bucle(ahora) {
       if (!corriendo) return;
       pintar(ahora);
+      tiempos.push(ahora - (bucle.ultimo || ahora)); bucle.ultimo = ahora;
+      if (tiempos.length === 40) {
+        tiempos.sort(function (a, b) { return a - b; });
+        var mediana = tiempos[20];
+        if (mediana > 26 && calidad > 0.4) { calidad = Math.max(0.4, calidad * 0.7); if (medir()) pintar(performance.now()); }
+        // Último escalón: si ni a la resolución mínima va fluido, la bola deja de
+        // moverse sola y solo se repinta cuando la tocas o haces scroll.
+        else if (mediana > 40) { aDemanda = true; parar(); }
+        tiempos = [];
+      }
       requestAnimationFrame(bucle);
     }
-    function arrancar() { if (corriendo || !motion || !visible || document.hidden) return; corriendo = true; anterior = performance.now(); requestAnimationFrame(bucle); }
+    function arrancar() { if (aDemanda || corriendo || !motion || !visible || document.hidden) return; corriendo = true; anterior = performance.now(); bucle.ultimo = 0; tiempos = []; requestAnimationFrame(bucle); }
     function parar() { corriendo = false; }
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; visible ? arrancar() : parar(); }).observe(lienzo);
     document.addEventListener('visibilitychange', function () { document.hidden ? parar() : arrancar(); });
+    var pedidoScroll = 0;
+    window.addEventListener('scroll', function () {
+      if (corriendo || !visible || pedidoScroll) return;
+      pedidoScroll = requestAnimationFrame(function () { pedidoScroll = 0; pintar(performance.now()); });
+    }, { passive: true });
     canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); parar(); lienzo.classList.remove('es-webgl'); });
 
     // fotograma inicial: con movimiento reducido es el único, con un surco ya hecho

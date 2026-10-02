@@ -133,8 +133,10 @@ html.js .cortina:not([hidden]) { display: block; }
 .cortina-rizo { position: absolute; left: 50%; top: 56%; width: 40vmin; height: 40vmin; transform: translate(-50%, -50%); overflow: visible; }
 .cortina-rizo path { stroke: var(--leite); stroke-dasharray: 1; stroke-dashoffset: 1; }
 .cortina-marca { position: absolute; left: 50%; top: 56%; transform: translate(-50%, -50%); text-align: center; color: var(--leite); }
-.cortina-logo { width: 22vmin; height: 22vmin; display: block; margin: 0 auto; }
-.cortina-nombre { font: italic 600 clamp(2rem, 6vmin, 3.6rem)/1 var(--f-display); margin-top: .6rem; }
+/* el logo va en su plato de leche: su bola es del mismo color que la cortina */
+.cortina-logo { width: 22vmin; height: 22vmin; display: block; margin: 0 auto; padding: 3vmin; box-sizing: content-box; background: var(--leite); border-radius: 50%; }
+.cortina-nombre { font: italic 600 clamp(2rem, 6vmin, 3.6rem)/1 var(--f-display); margin-top: 6vmin; }
+.cortina-marca { margin-top: 4vmin; }
 /* Sin GSAP: se retira sola con una transición CSS. */
 html.js .cortina.es-saliendo { transition: opacity .6s var(--ease-io), transform .6s var(--ease-io); opacity: 0; transform: scale(1.04); }
 

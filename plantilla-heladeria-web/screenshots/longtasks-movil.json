@@ -1,0 +1,173 @@
+{
+  "t": [
+    {
+      "inicio": 84,
+      "duracion": 144
+    },
+    {
+      "inicio": 293,
+      "duracion": 308
+    },
+    {
+      "inicio": 604,
+      "duracion": 480
+    },
+    {
+      "inicio": 1089,
+      "duracion": 189
+    },
+    {
+      "inicio": 1281,
+      "duracion": 197
+    },
+    {
+      "inicio": 1762,
+      "duracion": 51
+    },
+    {
+      "inicio": 7277,
+      "duracion": 152
+    },
+    {
+      "inicio": 7431,
+      "duracion": 86
+    },
+    {
+      "inicio": 7518,
+      "duracion": 87
+    },
+    {
+      "inicio": 7606,
+      "duracion": 101
+    },
+    {
+      "inicio": 7710,
+      "duracion": 126
+    },
+    {
+      "inicio": 7837,
+      "duracion": 107
+    },
+    {
+      "inicio": 7946,
+      "duracion": 113
+    },
+    {
+      "inicio": 8059,
+      "duracion": 101
+    },
+    {
+      "inicio": 8161,
+      "duracion": 127
+    },
+    {
+      "inicio": 8289,
+      "duracion": 98
+    },
+    {
+      "inicio": 8389,
+      "duracion": 96
+    },
+    {
+      "inicio": 8486,
+      "duracion": 76
+    },
+    {
+      "inicio": 8563,
+      "duracion": 76
+    },
+    {
+      "inicio": 8640,
+      "duracion": 83
+    },
+    {
+      "inicio": 8724,
+      "duracion": 73
+    },
+    {
+      "inicio": 8798,
+      "duracion": 79
+    },
+    {
+      "inicio": 8879,
+      "duracion": 105
+    },
+    {
+      "inicio": 8986,
+      "duracion": 96
+    },
+    {
+      "inicio": 9085,
+      "duracion": 109
+    },
+    {
+      "inicio": 9195,
+      "duracion": 76
+    },
+    {
+      "inicio": 9273,
+      "duracion": 104
+    },
+    {
+      "inicio": 9379,
+      "duracion": 87
+    },
+    {
+      "inicio": 9466,
+      "duracion": 115
+    },
+    {
+      "inicio": 9581,
+      "duracion": 184
+    },
+    {
+      "inicio": 9767,
+      "duracion": 114
+    },
+    {
+      "inicio": 9882,
+      "duracion": 135
+    },
+    {
+      "inicio": 10022,
+      "duracion": 185
+    },
+    {
+      "inicio": 10209,
+      "duracion": 153
+    },
+    {
+      "inicio": 10364,
+      "duracion": 142
+    },
+    {
+      "inicio": 10506,
+      "duracion": 135
+    },
+    {
+      "inicio": 10642,
+      "duracion": 54
+    },
+    {
+      "inicio": 10700,
+      "duracion": 55
+    },
+    {
+      "inicio": 10756,
+      "duracion": 72
+    },
+    {
+      "inicio": 10830,
+      "duracion": 95
+    },
+    {
+      "inicio": 10928,
+      "duracion": 87
+    },
+    {
+      "inicio": 11028,
+      "duracion": 56
+    }
+  ],
+  "fuentes": 1535
+}
