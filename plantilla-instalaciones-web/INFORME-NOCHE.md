@@ -75,11 +75,12 @@ magnéticos, hero WebGL interactivo, cursor contextual, escena anclada, máscara
 
 ## Verificación (Playwright + Chromium, `scripts/verificar.js`)
 
-Última pasada completa antes de este informe: **67 de 70 comprobaciones en
-verde**; las **tres** rojas eran **reintentos fallidos del proxy del entorno
-contra Google Fonts** (`ERR_TOO_MANY_RETRIES` en `fonts.googleapis.com` /
-`fonts.gstatic.com`), no errores de la página. El arnés las separa ahora y
-las anota aparte en `screenshots/verificacion.json`. Los números:
+Pasada final completa: **70 de 70 comprobaciones en verde**. Durante la
+pasada, el proxy del entorno volvió a fallar dos veces contra Google Fonts
+(`ERR_TOO_MANY_RETRIES`); el arnés separa esos fallos de red de los de la
+página y los anota en `screenshots/verificacion.json`
+(`fallosDeRedDelEntorno`). En la pasada anterior, antes de separarlos, eran
+las únicas 3 rojas de 70. Los números:
 
 - **Cortina**: fotografiada **a mitad de camino** en las dos fases (la roza
   cortando y la pared abriéndose con el titular subiendo:
@@ -88,7 +89,7 @@ las anota aparte en `screenshots/verificacion.json`. Los números:
   y con las dos cosas a la vez.
 - **Tareas largas** (`PerformanceObserver`, carga **en frío** con la caché
   desactivada por CDP, control positivo de 120 ms lanzado con `setTimeout`
-  que sí se registra): **3 al arrancar, de 86 a 119 ms**; **0 recorriendo la
+  que sí se registra): **5 en los primeros segundos, de 58 a 114 ms** (ninguna pasa de 120 ms; en la pasada previa, 3 de 86–119 ms); **0 recorriendo la
   página entera** con la rueda.
 - **Shader**: 10–11 fotogramas/s **con WebGL por software** (SwiftShader: el
   entorno no tiene GPU). No es representativo de un equipo real y lo marco

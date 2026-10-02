@@ -1,7 +1,23 @@
 {
- "fecha": "2026-10-01T23:53:00.840Z",
- "fallos": 6,
+ "fecha": "2026-10-02T01:24:06.111Z",
+ "fallos": 0,
  "resultados": [
+  {
+   "nombre": "Cortina: fotogramas a mitad de camino (roza cortando y pared abriéndose)",
+   "ok": true,
+   "detalle": {
+    "roza": {
+     "f": "dentro",
+     "roza": 0.28,
+     "y": 0.51
+    },
+    "abriendo": {
+     "f": "dentro",
+     "roza": 1,
+     "y": 0.41
+    }
+   }
+  },
   {
    "nombre": "Cortina acaba en display:none (normal)",
    "ok": true
@@ -26,21 +42,21 @@
    "nombre": "La lectura térmica cambia con el cursor",
    "ok": true,
    "detalle": [
-    "58,7",
+    "66,5",
     "27,4"
    ]
   },
   {
-   "nombre": "Shader: fotogramas por segundo (swiftshader, sin GPU)",
-   "ok": false,
-   "detalle": 11
+   "nombre": "Shader: fotogramas por segundo (informativo: GL por software, sin GPU en el entorno)",
+   "ok": true,
+   "detalle": 10
   },
   {
    "nombre": "PerformanceObserver de longtask vivo (control de 120 ms con setTimeout)",
    "ok": true,
    "detalle": [
     {
-     "t": 23721,
+     "t": 25332,
      "d": 120
     }
    ]
@@ -50,16 +66,24 @@
    "ok": true,
    "detalle": [
     {
-     "t": 4407,
-     "d": 143
+     "t": 5805,
+     "d": 114
     },
     {
-     "t": 4553,
-     "d": 100
+     "t": 5921,
+     "d": 84
     },
     {
-     "t": 4660,
-     "d": 341
+     "t": 6012,
+     "d": 76
+    },
+    {
+     "t": 9527,
+     "d": 81
+    },
+    {
+     "t": 13228,
+     "d": 58
     }
    ]
   },
@@ -107,6 +131,10 @@
    "ok": true
   },
   {
+   "nombre": "Logo de la cabecera visible (no se encoge)",
+   "ok": true
+  },
+  {
    "nombre": "Sin <img> rotas",
    "ok": true
   },
@@ -117,7 +145,10 @@
   {
    "nombre": "Consola limpia (escritorio)",
    "ok": true,
-   "detalle": []
+   "detalle": {
+    "errores": [],
+    "fallidas": []
+   }
   },
   {
    "nombre": "Sin desbordamiento horizontal (movil)",
@@ -125,10 +156,11 @@
   },
   {
    "nombre": "Consola limpia (movil)",
-   "ok": false,
-   "detalle": [
-    "Failed to load resource: net::ERR_TOO_MANY_RETRIES"
-   ]
+   "ok": true,
+   "detalle": {
+    "errores": [],
+    "fallidas": []
+   }
   },
   {
    "nombre": "Sin cursor propio en táctil",
@@ -144,11 +176,11 @@
     "Paso 3 · Presupuesto · 0,6",
     "Paso 3 · Presupuesto · 1,1",
     "Paso 4 · Obra · 1,2",
-    "Paso 4 · Obra · 1,5",
+    "Paso 4 · Obra · 1,4",
     "Paso 5 · Prueba · 1,6",
     "Paso 5 · Prueba · 5,2",
     "Paso 6 · Boletín · 5,9",
-    "Paso 6 · Boletín · 2,3",
+    "Paso 6 · Boletín · 2,4",
     "Paso 6 · Boletín · 1,5",
     "Paso 6 · Boletín · 1,5",
     "Paso 6 · Boletín · 1,5"
@@ -387,17 +419,17 @@
    "ok": true,
    "detalle": {
     "laton": {
-     "boton": "rgb(232, 140, 10)",
+     "boton": "rgb(230, 142, 5)",
      "pres": "true",
      "ls": "laton"
     },
     "brezo": {
-     "boton": "rgb(241, 114, 186)",
+     "boton": "rgb(241, 114, 184)",
      "pres": "true",
      "ls": "brezo"
     },
     "real": {
-     "boton": "rgb(255, 118, 85)",
+     "boton": "rgb(255, 118, 86)",
      "pres": "true",
      "ls": "real"
     }
@@ -407,8 +439,8 @@
    "nombre": "Paleta guardada aplicada sin parpadeo (clase ya en load)",
    "ok": true,
    "detalle": {
-    "claseAlCargar": "js es-revision pal-laton has-motion lenis es-cursor es-webgl",
-    "claseLoad": "js es-revision pal-laton has-motion lenis es-cursor es-webgl"
+    "claseAlCargar": "js es-revision pal-laton has-motion lenis es-webgl",
+    "claseLoad": "js es-revision pal-laton has-motion lenis es-webgl"
    }
   },
   {
@@ -422,7 +454,10 @@
   {
    "nombre": "404: consola limpia",
    "ok": true,
-   "detalle": []
+   "detalle": {
+    "errores": [],
+    "fallidas": []
+   }
   },
   {
    "nombre": "axe 404: sin violaciones",
@@ -435,52 +470,34 @@
   },
   {
    "nombre": "legal: consola limpia",
-   "ok": false,
-   "detalle": [
-    "Failed to load resource: net::ERR_TOO_MANY_RETRIES"
-   ]
+   "ok": true,
+   "detalle": {
+    "errores": [],
+    "fallidas": []
+   }
   },
   {
    "nombre": "axe legal: sin violaciones",
-   "ok": false,
-   "detalle": [
-    {
-     "id": "region",
-     "impacto": "moderate",
-     "n": 1,
-     "ej": [
-      "a"
-     ]
-    }
-   ]
+   "ok": true,
+   "detalle": []
   },
   {
    "nombre": "axe portada (escritorio): sin violaciones",
-   "ok": false,
-   "detalle": [
-    {
-     "id": "landmark-complementary-is-top-level",
-     "impacto": "moderate",
-     "n": 1,
-     "ej": [
-      "aside"
-     ]
-    }
-   ]
+   "ok": true,
+   "detalle": []
   },
   {
    "nombre": "axe portada (movil): sin violaciones",
-   "ok": false,
-   "detalle": [
-    {
-     "id": "landmark-complementary-is-top-level",
-     "impacto": "moderate",
-     "n": 1,
-     "ej": [
-      "aside"
-     ]
-    }
-   ]
+   "ok": true,
+   "detalle": []
   }
+ ],
+ "fallosDeRedDelEntorno": [
+  [
+   "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmg.woff2"
+  ],
+  [
+   "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Mona+Sans:wdth,wght@75..125,200..900&display=swap"
+  ]
  ]
 }
