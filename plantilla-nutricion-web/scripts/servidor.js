@@ -1,5 +1,5 @@
 // Servidor estático mínimo que imita a GitHub Pages: sirve la carpeta padre,
-// de modo que la web vive bajo /plantilla-psicologia-web/, y responde 404 con
+// de modo que la web vive bajo /plantilla-nutricion-web/, y responde 404 con
 // el 404.html propio. node scripts/servidor.js [puerto]
 const http = require('http');
 const fs = require('fs');

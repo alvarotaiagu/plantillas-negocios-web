@@ -1,0 +1,485 @@
+[
+  {
+    "nombre": "[escritorio] la mesa anclada llega al paso 6 con las seis piezas puestas",
+    "ok": true,
+    "detalle": [
+      "6",
+      6,
+      "6"
+    ]
+  },
+  {
+    "nombre": "[escritorio] temporada: el mes actual marcado",
+    "ok": true,
+    "detalle": [
+      1,
+      true
+    ]
+  },
+  {
+    "nombre": "[escritorio] sin desbordamiento horizontal",
+    "ok": true,
+    "detalle": [
+      1440,
+      1440
+    ]
+  },
+  {
+    "nombre": "[escritorio] consola limpia y sin 404",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "[movil] la mesa anclada llega al paso 6 con las seis piezas puestas",
+    "ok": true,
+    "detalle": [
+      "6",
+      6,
+      "6"
+    ]
+  },
+  {
+    "nombre": "[movil] temporada: el mes actual marcado",
+    "ok": true,
+    "detalle": [
+      1,
+      true
+    ]
+  },
+  {
+    "nombre": "[movil] sin desbordamiento horizontal",
+    "ok": true,
+    "detalle": [
+      390,
+      390
+    ]
+  },
+  {
+    "nombre": "[movil] consola limpia y sin 404",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cortina: acaba en display:none (normal)",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "cortina: distinta del fondo (vichy sobre un fondo liso)",
+    "ok": true,
+    "detalle": [
+      "linear-gradient(90deg, rgba(62, 122, 69,",
+      "none"
+    ]
+  },
+  {
+    "nombre": "cortina: display:none sin GSAP",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "sinGsap: sin has-motion, los seis pasos y las seis piezas visibles, titulares enteros y los seis tachados hechos",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "piezasVisibles": 6,
+      "letrasOcultas": 0,
+      "tachados": 6,
+      "hoy": 1,
+      "mes": 1,
+      "horario": "Cerrado · abrimos hoy a las 10:00"
+    }
+  },
+  {
+    "nombre": "sinGsap: el contenido vivo sigue (hoy, mes actual, abierto/cerrado)",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "piezasVisibles": 6,
+      "letrasOcultas": 0,
+      "tachados": 6,
+      "hoy": 1,
+      "mes": 1,
+      "horario": "Cerrado · abrimos hoy a las 10:00"
+    }
+  },
+  {
+    "nombre": "sinGsap: la pista de temporada desborda y es focusable con role=group y aria-label",
+    "ok": true,
+    "detalle": [
+      true,
+      "0",
+      "group",
+      true
+    ]
+  },
+  {
+    "nombre": "sinGsap: exactamente los 3 scripts del CDN abortados",
+    "ok": true,
+    "detalle": 3
+  },
+  {
+    "nombre": "sinGsap: consola limpia (salvo el CDN tumbado a propósito)",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cortina: display:none con movimiento reducido",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "reducido: sin has-motion, los seis pasos y las seis piezas visibles, titulares enteros y los seis tachados hechos",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "piezasVisibles": 6,
+      "letrasOcultas": 0,
+      "tachados": 6,
+      "hoy": 1,
+      "mes": 1,
+      "horario": "Cerrado · abrimos hoy a las 10:00"
+    }
+  },
+  {
+    "nombre": "reducido: el contenido vivo sigue (hoy, mes actual, abierto/cerrado)",
+    "ok": true,
+    "detalle": {
+      "hasMotion": false,
+      "pasosVisibles": 6,
+      "piezasVisibles": 6,
+      "letrasOcultas": 0,
+      "tachados": 6,
+      "hoy": 1,
+      "mes": 1,
+      "horario": "Cerrado · abrimos hoy a las 10:00"
+    }
+  },
+  {
+    "nombre": "reducido: la pista de temporada desborda y es focusable con role=group y aria-label",
+    "ok": true,
+    "detalle": [
+      true,
+      "0",
+      "group",
+      true
+    ]
+  },
+  {
+    "nombre": "reducido: consola limpia (salvo el CDN tumbado a propósito)",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cookies visible al entrar y mando apartado mientras tanto",
+    "ok": true,
+    "detalle": [
+      false,
+      true,
+      "flex"
+    ]
+  },
+  {
+    "nombre": "el botón de cookies cierra de verdad y aparece el mando",
+    "ok": true,
+    "detalle": [
+      true,
+      "none",
+      false,
+      "flex",
+      "ok"
+    ]
+  },
+  {
+    "nombre": "Mantel: franjas de vichy, 12 iconos y marco de la carta; sin comparativa",
+    "ok": true,
+    "detalle": {
+      "franjas": 2,
+      "iconos": 12,
+      "comparativa": "none",
+      "filas": 3,
+      "marco": "\"\"",
+      "ancho": true,
+      "pulsado": "false"
+    }
+  },
+  {
+    "nombre": "Sobria: fuera franjas, iconos y marco; dentro la comparativa de consultas",
+    "ok": true,
+    "detalle": {
+      "franjas": 0,
+      "iconos": 0,
+      "comparativa": "block",
+      "filas": 3,
+      "marco": "none",
+      "ancho": true,
+      "pulsado": "true"
+    }
+  },
+  {
+    "nombre": "Sobria: sin desbordamiento horizontal nuevo",
+    "ok": true,
+    "detalle": true
+  },
+  {
+    "nombre": "se puede volver a Mantel",
+    "ok": true,
+    "detalle": {
+      "franjas": 2,
+      "iconos": 12,
+      "comparativa": "none",
+      "filas": 3,
+      "marco": "\"\"",
+      "ancho": true,
+      "pulsado": "false"
+    }
+  },
+  {
+    "nombre": "paleta loza: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": {
+      "boton": "rgb(25, 80, 124)",
+      "em": "rgb(25, 80, 124)",
+      "logo": "img/logo.svg",
+      "pulsado": "loza",
+      "guardado": "loza"
+    }
+  },
+  {
+    "nombre": "paleta ocre: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": {
+      "boton": "rgb(106, 67, 1)",
+      "em": "rgb(106, 67, 1)",
+      "logo": "img/logo.svg",
+      "pulsado": "ocre",
+      "guardado": "ocre"
+    }
+  },
+  {
+    "nombre": "paleta albahaca: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": {
+      "boton": "rgb(36, 90, 45)",
+      "em": "rgb(36, 90, 45)",
+      "logo": "img/logo.svg",
+      "pulsado": "albahaca",
+      "guardado": "albahaca"
+    }
+  },
+  {
+    "nombre": "las tres paletas cambian el color computado del botón",
+    "ok": true,
+    "detalle": {
+      "loza": "rgb(25, 80, 124)",
+      "ocre": "rgb(106, 67, 1)",
+      "albahaca": "rgb(36, 90, 45)"
+    }
+  },
+  {
+    "nombre": "el logo no cambia con la paleta (es un SVG con colores fijos)",
+    "ok": true
+  },
+  {
+    "nombre": "al recargar, la paleta guardada se aplica sin parpadeo",
+    "ok": true,
+    "detalle": [
+      true,
+      "#6A4301"
+    ]
+  },
+  {
+    "nombre": "sin ?revision el mando no se ve",
+    "ok": true,
+    "detalle": "none"
+  },
+  {
+    "nombre": "el iframe del mapa no existe hasta pulsar, y aparece al pulsar",
+    "ok": true,
+    "detalle": [
+      "https://www.google.com/maps?q=R%C3%BAa%20do%20Pementeiro%207%2C%20Ourense&output=embed"
+    ]
+  },
+  {
+    "nombre": "formulario: avisa si falta algo y dice que es de muestra",
+    "ok": true,
+    "detalle": [
+      "Falta tu nombre y un teléfono o correo para poder llamarte.",
+      "Es un formulario de muestra: no se ha enviado nada. En el sitio real, te llamaríamos en un día laborable."
+    ]
+  },
+  {
+    "nombre": "consola limpia en la pasada de mandos",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "cursor: el nativo se oculta solo tras el primer pointermove de ratón (cursor:none + punto y aro)",
+    "ok": true,
+    "detalle": {
+      "antes": false,
+      "despues": [
+        true,
+        "none",
+        "block"
+      ]
+    }
+  },
+  {
+    "nombre": "cursor: cambia sobre enlaces y botones",
+    "ok": true
+  },
+  {
+    "nombre": "mantel (WebGL): al pasar la mano la tela se hunde (presión > 0,3) y el cursor dice «alisa»",
+    "ok": true,
+    "detalle": [
+      {
+        "pr": 0.915,
+        "rip": 0,
+        "s": 0,
+        "vivo": true
+      },
+      true,
+      "alisa"
+    ]
+  },
+  {
+    "nombre": "mantel: un toque deja una onda",
+    "ok": true,
+    "detalle": 0.711
+  },
+  {
+    "nombre": "mantel: sin mano, la tela se vuelve a alisar sola",
+    "ok": true,
+    "detalle": {
+      "pr": 0.008,
+      "rip": 0.01,
+      "s": 0,
+      "vivo": true
+    }
+  },
+  {
+    "nombre": "cursor: nada en táctil",
+    "ok": true,
+    "detalle": [
+      false,
+      "none"
+    ]
+  },
+  {
+    "nombre": "menú móvil: abre, aria-expanded=true y ocupa el alto entero (100dvh, no inset:0)",
+    "ok": true,
+    "detalle": [
+      "true",
+      0,
+      844,
+      844,
+      "visible"
+    ]
+  },
+  {
+    "nombre": "menú móvil: el mismo botón lo cierra (no queda debajo de la cortina del menú)",
+    "ok": true,
+    "detalle": [
+      "false",
+      "hidden"
+    ]
+  },
+  {
+    "nombre": "portada 360×640: sin solapes entre plato, aviso, datos, cabecera y textos",
+    "ok": true,
+    "detalle": "ninguno"
+  },
+  {
+    "nombre": "portada 375×667: sin solapes entre plato, aviso, datos, cabecera y textos",
+    "ok": true,
+    "detalle": "ninguno"
+  },
+  {
+    "nombre": "[escritorio] temporada: avanza en horizontal sin retrocesos y llega a diciembre",
+    "ok": true,
+    "detalle": {
+      "pasos": 44,
+      "retrocesos": 0,
+      "primero": [
+        -37,
+        4254,
+        3771
+      ],
+      "ultimo": [
+        -2909,
+        1382,
+        -59
+      ]
+    }
+  },
+  {
+    "nombre": "[movil] temporada: avanza en horizontal sin retrocesos y llega a diciembre",
+    "ok": true,
+    "detalle": {
+      "pasos": 47,
+      "retrocesos": 0,
+      "primero": [
+        -78,
+        3596,
+        4066
+      ],
+      "ultimo": [
+        -3300,
+        374,
+        -35
+      ]
+    }
+  },
+  {
+    "nombre": "index.html: noindex, sello, comentario arriba, sin marcadores, modo estándar",
+    "ok": true,
+    "detalle": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "marcadores": [],
+      "comentario": true,
+      "modo": "CSS1Compat"
+    }
+  },
+  {
+    "nombre": "index.html: consola limpia",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "legal.html: noindex, sello, comentario arriba, sin marcadores, modo estándar",
+    "ok": true,
+    "detalle": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "marcadores": [],
+      "comentario": true,
+      "modo": "CSS1Compat"
+    }
+  },
+  {
+    "nombre": "legal.html: consola limpia",
+    "ok": true,
+    "detalle": []
+  },
+  {
+    "nombre": "no-existe-esta-ruta: noindex, sello, comentario arriba, sin marcadores, modo estándar",
+    "ok": true,
+    "detalle": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "marcadores": [],
+      "comentario": true,
+      "modo": "CSS1Compat"
+    }
+  },
+  {
+    "nombre": "no-existe-esta-ruta: consola limpia (salvo el propio 404)",
+    "ok": true,
+    "detalle": []
+  }
+]

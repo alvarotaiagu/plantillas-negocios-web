@@ -20,7 +20,7 @@ const AXE = require.resolve('axe-core/axe.min.js');
     const ctx = await b.newContext({ viewport: { width: w, height: h }, isMobile: w < 600, hasTouch: w < 600, ignoreHTTPSErrors: true });
     const page = await ctx.newPage();
     await rutas(page);
-    await page.addInitScript((m) => { localStorage.setItem('fiambreira-cookies', 'ok'); if (m) localStorage.setItem('debandoira-maqueta', m); }, maqueta);
+    await page.addInitScript((m) => { localStorage.setItem('fiambreira-cookies', 'ok'); if (m) localStorage.setItem('fiambreira-maqueta', m); }, maqueta);
     await page.goto(BASE + ruta, { waitUntil: 'load' });
     await page.waitForTimeout(3500);
     if (!ruta || ruta === '?revision') { await rueda(page, 16000, 400, 40); await page.waitForTimeout(1500); }

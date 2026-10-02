@@ -1,16 +1,16 @@
 // Comprueba la receta «Borrar los mandos» del README contra los archivos reales.
 // Aplica la receta sobre una COPIA (nunca sobre la carpeta) y verifica que no
 // queda rastro de los mandos y que la web sigue cargando sin errores.
-//   node scripts/borrar-mandos.js ovillo   → el cliente se queda la versión cargada
+//   node scripts/borrar-mandos.js mantel   → el cliente se queda la versión cargada
 //   node scripts/borrar-mandos.js sobria   → el cliente se queda la versión sobria
 // Con --aplicar <carpeta> escribe el resultado en esa carpeta (para entregar).
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const queda = process.argv[2] === 'sobria' ? 'sobria' : 'ovillo';
+const queda = process.argv[2] === 'sobria' ? 'sobria' : 'mantel';
 const RAIZ = path.join(__dirname, '..');
 const destinoArg = process.argv.indexOf('--aplicar');
-const DEST = destinoArg > 0 ? path.resolve(process.argv[destinoArg + 1]) : fs.mkdtempSync(path.join(os.tmpdir(), 'debandoira-'));
+const DEST = destinoArg > 0 ? path.resolve(process.argv[destinoArg + 1]) : fs.mkdtempSync(path.join(os.tmpdir(), 'fiambreira-'));
 
 // Quita cada tramo entre un marcador de inicio y su fin, sin comodines:
 // busca posiciones exactas y se niega si hay un inicio sin fin o anidado.
@@ -46,10 +46,14 @@ for (const f of archivos) {
   const r1 = quitarTramos(t, 'MANDO-INICIO', 'MANDO-FIN', f); t = r1.texto;
   t = quitarLineas(t, '// MANDO');
   let ns = 0;
-  if (queda === 'ovillo') {
+  if (queda === 'mantel') {
+    // el marco de vichy de la carta pasa a ser incondicional
+    t = t.split('html:not(.maqueta-sobria) ').join('');
+    t = t.split('MANTEL-INICIO · ').join('');
+    t = t.split('\n').filter((l) => !/^\s*(<!--|\/\*)\s*MANTEL-FIN\s*(-->|\*\/)\s*$/.test(l)).join('\n');
     const r2 = quitarTramos(t, 'SOBRIA-INICIO', 'SOBRIA-FIN', f); t = r2.texto; ns = r2.n;
-    if (f === 'index.html') t = t.split('\n').filter((l) => !l.includes('class="tarjeta-datos"')).join('\n');
   } else {
+    t = quitarTramos(t, 'MANTEL-INICIO', 'MANTEL-FIN', f).texto;
     // la sobria pasa a ser incondicional: fuera el prefijo de clase y los marcadores
     t = t.split('html.maqueta-sobria ').join('');
     t = t.split('SOBRIA-INICIO · ').join('');
@@ -59,15 +63,15 @@ for (const f of archivos) {
   if (lineas0 - lineas1 > 200) throw new Error(`${f}: la receta se lleva ${lineas0 - lineas1} líneas, demasiadas — revisar marcadores`);
   fs.mkdirSync(path.dirname(path.join(DEST, f)), { recursive: true });
   fs.writeFileSync(path.join(DEST, f), t);
-  informe.push(`${f}: ${r1.n} tramos de mando${queda === 'ovillo' ? `, ${ns} de sobria` : ''}, ${lineas0} → ${lineas1} líneas`);
+  informe.push(`${f}: ${r1.n} tramos de mando${queda === 'mantel' ? `, ${ns} de sobria` : ''}, ${lineas0} → ${lineas1} líneas`);
 }
 for (const extra of ['img', 'manifest.json', '.nojekyll']) fs.cpSync(path.join(RAIZ, extra), path.join(DEST, extra), { recursive: true });
 
 // Que no quede rastro
-const rastros = /\bmandos?\b|data-maqueta|data-paleta|paleta-brezo|paleta-musgo|debandoira-maqueta|debandoira-paleta|es-revision|colocarMandos|MANDO-|SOBRIA-/;
+const rastros = /\bmandos?\b|data-maqueta|data-paleta|paleta-loza|paleta-ocre|fiambreira-maqueta|fiambreira-paleta|es-revision|colocarMandos|MANDO-|SOBRIA-|MANTEL-|maqueta-sobria/;
 const sobran = [];
 for (const f of archivos) fs.readFileSync(path.join(DEST, f), 'utf8').split('\n').forEach((l, i) => { if (rastros.test(l)) sobran.push(`${f}:${i + 1}: ${l.trim().slice(0, 90)}`); });
-if (queda === 'ovillo') { const c = fs.readFileSync(path.join(DEST, 'css/estilos.css'), 'utf8'); if (/maqueta-sobria/.test(c)) sobran.push('css: quedan reglas de la sobria'); }
+
 try { new Function(fs.readFileSync(path.join(DEST, 'js/main.js'), 'utf8')); } catch (e) { sobran.push('js/main.js no compila: ' + e.message); }
 console.log(informe.join('\n'));
 console.log(sobran.length ? 'QUEDAN RASTROS:\n' + sobran.join('\n') : `Sin rastro de los mandos (queda la versión «${queda}») en ${DEST}`);
@@ -83,9 +87,9 @@ console.log(sobran.length ? 'QUEDAN RASTROS:\n' + sobran.join('\n') : `Sin rastr
   const errores = []; page.on('pageerror', (e) => errores.push(String(e))); page.on('console', (m) => { if (m.type() === 'error') errores.push(m.text()); });
   await rutas(page);
   await page.goto(`http://localhost:${port}/?revision`); await page.waitForTimeout(3500);
-  const d = await page.evaluate(() => ({ mandos: !!document.querySelector('.mandos'), sobria: getComputedStyle(document.querySelector('.tarjeta-dibujo')).display === 'none', ovillo: document.documentElement.classList.contains('ovillo-vivo') }));
+  const d = await page.evaluate(() => ({ mandos: !!document.querySelector('.mandos'), sobria: getComputedStyle(document.querySelector('.franja')).display === 'none', marco: getComputedStyle(document.querySelector('.carta'), '::before').content !== 'none', mantel: !!window.__mantel }));
   await b.close(); srv.close();
-  const bien = errores.length === 0 && !d.mandos && d.ovillo && (queda === 'sobria' ? d.sobria : !d.sobria);
+  const bien = errores.length === 0 && !d.mandos && d.mantel && (queda === 'sobria' ? d.sobria && !d.marco : !d.sobria && d.marco);
   console.log(`Carga de la copia: ${bien ? 'ok' : 'MAL'} ${JSON.stringify({ ...d, errores })}`);
   process.exit(sobran.length || !bien ? 1 : 0);
 })();

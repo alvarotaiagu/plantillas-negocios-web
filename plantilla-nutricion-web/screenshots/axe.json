@@ -1,0 +1,35 @@
+{
+  "404": {
+    "violaciones": [],
+    "pasan": 18,
+    "incompletas": [
+      "color-contrast"
+    ]
+  },
+  "portada escritorio": {
+    "violaciones": [],
+    "pasan": 55,
+    "incompletas": [
+      "color-contrast"
+    ]
+  },
+  "portada móvil": {
+    "violaciones": [],
+    "pasan": 55,
+    "incompletas": [
+      "color-contrast"
+    ]
+  },
+  "portada sobria": {
+    "violaciones": [],
+    "pasan": 55,
+    "incompletas": [
+      "color-contrast"
+    ]
+  },
+  "aviso legal": {
+    "violaciones": [],
+    "pasan": 30,
+    "incompletas": []
+  }
+}

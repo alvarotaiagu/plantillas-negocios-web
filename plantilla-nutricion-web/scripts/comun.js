@@ -12,7 +12,7 @@ const LOCAL = {
 // Google Fonts a través del proxy del entorno de prueba falla a ratos en
 // Chromium (ERR_TOO_MANY_RETRIES): se descarga con curl y se cachea en disco.
 const { execFileSync } = require('child_process');
-const CACHE = process.env.FONT_CACHE || '/tmp/debandoira-fuentes';
+const CACHE = process.env.FONT_CACHE || '/tmp/fiambreira-fuentes';
 fs.mkdirSync(CACHE, { recursive: true });
 function traer(url) {
   const f = path.join(CACHE, Buffer.from(url).toString('base64url').slice(0, 200));
