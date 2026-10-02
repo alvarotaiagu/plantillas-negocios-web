@@ -20,10 +20,10 @@ const ARGS = ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swif
 const ESCRITORIO = { viewport: { width: 1440, height: 900 } };
 const MOVIL = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 };
 const espera = (p, ms) => p.waitForTimeout(ms);
-// Los reintentos fallidos contra fonts.gstatic.com son del proxy del entorno, no de la página:
+// Los reintentos fallidos contra fonts.googleapis.com / fonts.gstatic.com son del proxy del entorno, no de la página:
 // se separan para no confundirlos con errores propios (y se cuentan en el informe).
 const entorno = [];
-const propios = (p) => { const f = p.fallidas.filter((u) => !/fonts\.gstatic\.com/.test(u)); const e = p.errores.filter((x) => !/ERR_TOO_MANY_RETRIES/.test(x) || f.length); if (f.length !== p.fallidas.length) entorno.push(p.fallidas); return { errores: e, fallidas: f }; };
+const propios = (p) => { const f = p.fallidas.filter((u) => !/fonts\.(gstatic|googleapis)\.com/.test(u)); const e = p.errores.filter((x) => !/ERR_TOO_MANY_RETRIES/.test(x) || f.length); if (f.length !== p.fallidas.length) entorno.push(p.fallidas); return { errores: e, fallidas: f }; };
 
 async function contexto(b, opts = {}, { sinGsap = false, cookiesCerradas = true, reduce = false } = {}) {
   const ctx = await b.newContext({ ignoreHTTPSErrors: true, reducedMotion: reduce ? 'reduce' : 'no-preference', ...opts });
@@ -70,30 +70,46 @@ async function irA(p, sel, extra = 0) {
   fs.mkdirSync(OUT, { recursive: true });
   const b = await chromium.launch({ args: ARGS });
 
-  // ---------- 1. Escritorio: cortina, portada, secciones, consola ----------
+  // ---------- 0. Cortina a mitad de camino (contexto propio) ----------
+  {
+    const ctx = await contexto(b, ESCRITORIO);
+    const p = await ctx.newPage();
+    // las capturas en GL por software tardan casi un segundo: se ralentiza la línea de tiempo
+    // global solo en esta pasada, se muestrea el estado (barato) y se fotografía al llegar a cada fase
+    // (y, solo aquí, se aplazan los dos temporizadores de retirada de seguridad de 3,2 y 8 s,
+    // que si no retirarían la cortina a mitad del gesto ralentizado; se prueban en las otras pasadas)
+    await p.addInitScript(() => {
+      const st = window.setTimeout; window.setTimeout = (f, ms, ...r) => st(f, ms === 3200 || ms === 8000 ? 60000 : ms, ...r);
+      const t = setInterval(() => { if (window.gsap) { window.gsap.globalTimeline.timeScale(0.1); clearInterval(t); } }, 5);
+    });
+    await p.goto(URL, { waitUntil: 'commit' });
+    const estados = []; const fotos = {};
+    const t0 = Date.now();
+    while (Date.now() - t0 < 60000 && !(fotos.roza && fotos.abriendo)) {
+      const e = await p.evaluate(() => {
+        const c = document.querySelector('.cortina'); if (!c) return { f: 'sin-dom' };
+        if (getComputedStyle(c).display === 'none') return { f: 'fuera' };
+        const roza = new DOMMatrix(getComputedStyle(c.querySelector('.cortina-roza')).transform).a;
+        const y = c.querySelector('.cortina-arriba').getBoundingClientRect().bottom / innerHeight;
+        return { f: 'dentro', roza: +roza.toFixed(2), y: +y.toFixed(2) };
+      }).catch(() => ({ f: 'cargando' }));
+      estados.push(e);
+      if (!fotos.roza && e.roza > 0.25 && e.roza < 0.95 && e.y > 0.49) { fotos.roza = e; await p.screenshot({ path: path.join(OUT, 'cortina-1-roza.png') }); await p.evaluate(() => { window.gsap.globalTimeline.timeScale(0.06); }); }
+      if (!fotos.abriendo && e.y > 0.12 && e.y < 0.42) { fotos.abriendo = e; await p.screenshot({ path: path.join(OUT, 'cortina-2-abriendo.png') }); }
+      if (e.f === 'fuera') break;
+      await espera(p, 40);
+    }
+    ok('Cortina: fotogramas a mitad de camino (roza cortando y pared abriéndose)', fotos.roza && fotos.abriendo, fotos.abriendo ? fotos : estados.slice(-6));
+    await ctx.close();
+  }
+
+  // ---------- 1. Escritorio: portada, consola, longtask en frío ----------
   {
     const ctx = await contexto(b, ESCRITORIO);
     const cdp = await ctx.newCDPSession(await ctx.newPage()); // en frío
     await cdp.send('Network.enable'); await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
-    // fotogramas a mitad de camino: se dispara la carga sin esperar y se fotografía cada 200 ms
-    const p = await ctx.newPage(); p.errores = []; p.fallidas = [];
-    p.on('console', (m) => { if (m.type() === 'error') p.errores.push(m.text()); });
-    p.on('pageerror', (e) => p.errores.push('pageerror: ' + e.message));
-    p.on('requestfailed', (r) => { if (!/cdn\.jsdelivr/.test(r.url())) p.fallidas.push(r.url()); });
-    // las capturas en GL por software tardan más que la cortina entera: se ralentiza la
-    // línea de tiempo global solo en esta pasada para poder fotografiar el gesto a medias
-    await p.addInitScript(() => { const t = setInterval(() => { if (window.gsap) { window.gsap.globalTimeline.timeScale(0.12); clearInterval(t); } }, 5); });
-    await p.goto(URL, { waitUntil: 'commit' });
-    const estados = [];
-    for (let k = 0; k < 14; k++) {
-      await espera(p, 700);
-      const e = await p.evaluate(() => { const c = document.querySelector('.cortina'); if (!c) return 'sin-dom'; const a = c.querySelector('.cortina-arriba'); return getComputedStyle(c).display === 'none' ? 'fuera' : (a.style.transform || 'quieta'); }).catch(() => 'cargando');
-      estados.push(e);
-      await p.screenshot({ path: path.join(OUT, `cortina-${String(k).padStart(2, '0')}.png`) });
-    }
-    ok('Cortina: hay fotogramas a medio abrir', estados.some((e) => /translate/.test(e) && !/-10[56]/.test(e)), estados);
-    await p.evaluate(() => window.gsap && window.gsap.globalTimeline.timeScale(1));
-    await espera(p, 9000);
+    const p = await pagina(ctx);
+    await espera(p, 6000);
     ok('Cortina acaba en display:none (normal)', await p.evaluate(() => getComputedStyle(document.querySelector('.cortina')).display === 'none'));
     ok('Cortina de color distinto al fondo', await p.evaluate(() => getComputedStyle(document.querySelector('.cortina-arriba')).backgroundColor !== getComputedStyle(document.body).backgroundColor));
     ok('Clases de arranque', await p.evaluate(() => document.documentElement.className), undefined);
@@ -119,6 +135,7 @@ async function irA(p, sel, extra = 0) {
     await recorrer(p, 900, 'escritorio-recorrido');
     const lt = await p.evaluate((n) => window.__longtasks.slice(n), antes);
     ok('Tareas largas recorriendo la página entera', lt.length <= 3, lt);
+    if (process.env.SOLO === '1') { await b.close(); process.exit(fallos ? 1 : 0); }
     ok('Sin desbordamiento horizontal (escritorio)', await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), await p.evaluate(() => [document.documentElement.scrollWidth, innerWidth]));
     { const r = propios(p); ok('Consola limpia (escritorio)', r.errores.length === 0, r.errores); ok('Sin peticiones fallidas (escritorio)', r.fallidas.length === 0, r.fallidas); }
     const txt = await p.evaluate(() => document.body.textContent);
@@ -324,7 +341,7 @@ async function irA(p, sel, extra = 0) {
   }
 
   await b.close();
-  console.log('Fallos de red del entorno (fonts.gstatic):', JSON.stringify(entorno));
+  console.log('Fallos de red del entorno (Google Fonts):', JSON.stringify(entorno));
   fs.writeFileSync(path.join(OUT, 'verificacion.json'), JSON.stringify({ fecha: new Date().toISOString(), fallos, resultados, fallosDeRedDelEntorno: entorno }, null, 1));
   console.log(`\n${resultados.length - fallos}/${resultados.length} comprobaciones en verde`);
   process.exit(fallos ? 1 : 0);
