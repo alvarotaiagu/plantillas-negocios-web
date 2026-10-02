@@ -72,7 +72,7 @@ que imita GitHub Pages bajo el prefijo del repo.
 | fps del ovillo | 61 en escritorio; 47–51 en móvil con CPU ×4 |
 | Receta de borrado | aplicada sobre copia en las dos direcciones, sin rastro, la copia carga sin errores |
 
-Capturas en `screenshots/` (61 JPEG): las 14 secciones en escritorio y en
+Capturas en `screenshots/` (64 JPEG): las 14 secciones en escritorio y en
 móvil, fotogramas de la cortina, pila cada ~720 px, sin GSAP, reducido,
 sobria, paletas, menú abierto, mapa cargado, legal y 404. Las miré todas.
 
@@ -119,7 +119,9 @@ sobria, paletas, menú abierto, mapa cargado, legal y 404. Las miré todas.
 
 ## Segunda plantilla
 
-Con la primera cerrada y verificada a las 23:55 UTC quedaba tiempo de sobra,
-así que se empezó la de **nutricionista-dietista** en la rama
-`claude/noche-nutricion` (carpeta `plantilla-nutricion-web/`), con su propio
-informe.
+Con esta cerrada y verificada antes de medianoche, se hizo también la de
+**dietista-nutricionista**: **Fiambreira** (Ourense, concepto «Mantel», mantel
+de vichy en WebGL), en la rama `claude/noche-nutricion`, carpeta
+`plantilla-nutricion-web/`, con su propio `INFORME-NOCHE.md`, 55/55
+comprobaciones y axe sin violaciones. Ficha en `registro/nutricion.md` de esa
+rama.
