@@ -193,4 +193,14 @@ ScrollTrigger tras `fonts.ready`, siempre medido sobre SwiftShader.
   función de escala pero no están a la altura de los retratos.
 - **El parte no se puede usar tal cual con un cliente**: el README dice cómo
   sustituirlo.
-- **Segunda plantilla (Camping)**: ver el final de este informe.
+- **Segunda plantilla (Camping)**: ver abajo.
+
+## Segunda plantilla: Camping
+
+Con esta verificada en 46/46 y más de una hora por delante, se hizo la de
+camping en la rama **`claude/noche-camping`**, carpeta `plantilla-camping-web/`:
+**Camping A Piqueta** (Navia de Suarna, Os Ancares), concepto **«Vientos»**
+—una lona de rayas simulada que el cursor sopla y el scroll tensa—, registro
+claro y cálido (lona, tinta verde bosque, acento cuerda), Instrument Serif +
+Rethink Sans + Fragment Mono. **47/47** en el mismo arnés, 0 tareas largas con
+la lona viva y axe sin violaciones. Su informe está en esa rama.
