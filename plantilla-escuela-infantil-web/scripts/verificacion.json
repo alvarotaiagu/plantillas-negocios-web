@@ -1,18 +1,18 @@
 [
  {
   "nombre": "Cortina: fotogramas a medias capturados (hilo y manta)",
-  "ok": false,
-  "detalle": "manta congelada en M0 0H1000V637.9088Q500 1027.0684 0 637.9088Z"
+  "ok": true,
+  "detalle": "manta congelada en M0 0H1000V392.6576Q500 1103.1808 0 392.6576Z"
  },
  {
   "nombre": "Cortina: el hilo pasa por valores intermedios (autoRound:false)",
   "ok": true,
-  "detalle": "0.917, 0.844, 0.770, 0.705, 0.640, 0.579"
+  "detalle": "0.125, 0.125, 0.125, 0.125, 0.125, 0.125"
  },
  {
   "nombre": "Cortina: la manta se levanta con borde curvo en varios fotogramas",
   "ok": true,
-  "detalle": "105 fotogramas intermedios, p. ej. M0 0H1000V637.9088Q500 1027.0684 0 637.9088Z"
+  "detalle": "58 fotogramas intermedios, p. ej. M0 0H1000V418.9523Q500 1177.0565 0 418.9523Z"
  },
  {
   "nombre": "Cortina: acaba en display:none (normal)",
@@ -32,7 +32,7 @@
  {
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
-  "detalle": "[{\"t\":3007,\"d\":75},{\"t\":10669,\"d\":120}]"
+  "detalle": "[{\"t\":9665,\"d\":120}]"
  },
  {
   "nombre": "Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo",
@@ -42,7 +42,7 @@
  {
   "nombre": "Tareas largas con el canvas vivo y la página recorrida (caché templada)",
   "ok": true,
-  "detalle": "arranque: [{\"t\":3007,\"d\":75}] · recorriendo: []"
+  "detalle": "arranque: [] · recorriendo: []"
  },
  {
   "nombre": "Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible",
@@ -82,12 +82,12 @@
  {
   "nombre": "Consola limpia y sin 404 en escritorio (fuera del iframe de Google)",
   "ok": true,
-  "detalle": "[] · Google: 5"
+  "detalle": "[] · Google: 9"
  },
  {
   "nombre": "Tareas largas en frío (caché deshabilitada): arranque y recorrido",
   "ok": true,
-  "detalle": "arranque: [{\"t\":4059,\"d\":62},{\"t\":4124,\"d\":58}] · recorriendo la página entera: []"
+  "detalle": "arranque: [{\"t\":2641,\"d\":89},{\"t\":2732,\"d\":67}] · recorriendo la página entera: []"
  },
  {
   "nombre": "Pila: todos los <li> con el mismo alto (el de la tarjeta más alta)",
@@ -102,7 +102,7 @@
  {
   "nombre": "Pila en pasos de 90 px: nunca una tarjeta posterior por encima de la anterior",
   "ok": true,
-  "detalle": "[[812,1392,1972],[408,988,1568],[92,583,1163],[92,178,758],[92,114,353],[92,114,136],[-151,-151,-151],[-556,-556,-556]]"
+  "detalle": "[[813,1393,1973],[408,988,1568],[92,583,1163],[92,178,758],[92,114,353],[92,114,136],[-151,-151,-151],[-556,-556,-556]]"
  },
  {
   "nombre": "Pila: las tres llegan a apilarse en su sitio (reposo antes de soltarse)",
@@ -162,7 +162,7 @@
  {
   "nombre": "Sin GSAP: sin errores de JS propios",
   "ok": true,
-  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\"]"
+  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\"]"
  },
  {
   "nombre": "Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo",

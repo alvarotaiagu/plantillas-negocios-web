@@ -1,0 +1,56 @@
+== 1. Escritorio: cortina, consola, secciones
+OK    Cortina: fotogramas a medias capturados (hilo y manta) — manta congelada en M0 0H1000V392.6576Q500 1103.1808 0 392.6576Z
+OK    Cortina: el hilo pasa por valores intermedios (autoRound:false) — 0.125, 0.125, 0.125, 0.125, 0.125, 0.125
+OK    Cortina: la manta se levanta con borde curvo en varios fotogramas — 58 fotogramas intermedios, p. ej. M0 0H1000V418.9523Q500 1177.0565 0 418.9523Z
+OK    Cortina: acaba en display:none (normal)
+OK    Cortina de color distinto al fondo
+OK    Cursor propio: aparece al primer pointermove de ratón y oculta el nativo
+OK    PerformanceObserver de longtask vivo (control de 120 ms detectado) — [{"t":9665,"d":120}]
+OK    Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo — paso 0 → 2, top -0.359375
+OK    Tareas largas con el canvas vivo y la página recorrida (caché templada) — arranque: [] · recorriendo: []
+OK    Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible
+OK    Escritorio sin desbordamiento horizontal
+OK    Mapa: sin iframe antes del clic
+OK    Mapa: iframe de Google tras el clic
+OK    Calculadora: jornada completa + mañana = 370
+OK    Formulario de muestra: responde sin enviar nada
+OK    Menú: una pestaña marcada es-hoy en laborable o el lunes en fin de semana
+OK    Consola limpia y sin 404 en escritorio (fuera del iframe de Google) — [] · Google: 9
+== 1b. Tareas largas en frío
+OK    Tareas largas en frío (caché deshabilitada): arranque y recorrido — arranque: [{"t":2641,"d":89},{"t":2732,"d":67}] · recorriendo la página entera: []
+== 2. Pila sticky en pasos de ~90 px
+OK    Pila: todos los <li> con el mismo alto (el de la tarjeta más alta) — {"altos":[454,454,454],"mb":["126px","126px","126px"],"maxT":454,"after":"306px"}
+OK    Pila: mismo margin-bottom en todos, incluido el último; reposo por ::after — 126px 126px 126px / after 306px
+OK    Pila en pasos de 90 px: nunca una tarjeta posterior por encima de la anterior — [[813,1393,1973],[408,988,1568],[92,583,1163],[92,178,758],[92,114,353],[92,114,136],[-151,-151,-151],[-556,-556,-556]]
+OK    Pila: las tres llegan a apilarse en su sitio (reposo antes de soltarse) — tops sticky [92,114,136]
+== 3. Móvil 390×844 + menú + táctil
+OK    Táctil: sin cursor propio
+OK    Menú móvil: abre, aria-expanded=true y ocupa 100dvh pese al backdrop-filter — {"exp":"true","h":844,"ih":844,"top":0}
+OK    Menú móvil: el mismo botón lo cierra
+OK    Menú móvil: un enlace cierra el menú y lleva a la sección
+OK    Móvil sin desbordamiento horizontal — 390 / 390
+OK    Consola limpia y sin 404 en móvil (fuera de cortes del proxy en fuentes) — [] · entorno: []
+== 4. Portada en 360×640 y 375×667: sin solapes
+OK    Portada 360×640: sin solapes entre bloques ni con el móvil — {"choques":[],"movilAbajo":294,"anteArriba":294,"sw":360,"iw":360}
+OK    Portada 375×667: sin solapes entre bloques ni con el móvil — {"choques":[],"movilAbajo":304,"anteArriba":304,"sw":375,"iw":375}
+== 5. Sin GSAP (CDN caído)
+OK    Sin GSAP: cortina fuera, sin has-motion y ninguna palabra oculta — {"motion":false,"cortina":"none","ocultas":0}
+OK    Sin GSAP: la adaptación cambia de paso con IntersectionObserver
+OK    Sin GSAP: sin errores de JS propios — ["Failed to load resource: net::ERR_FAILED","Failed to load resource: net::ERR_FAILED","Failed to load resource: net::ERR_FAILED"]
+== 6. Movimiento reducido
+OK    Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo — {"motion":false,"cortina":"none","estado":"Cerrado · abre hoy a las 7:30","lenis":false}
+OK    Reducido: la adaptación sigue cambiando de paso
+OK    Reducido: los contadores muestran su cifra final
+== 7. Cookies + mandos (maqueta y paleta) con ?revision
+OK    Cookies: visible con display:flex y los mandos apartados mientras tanto — {"cookies":"flex","mandos":true}
+OK    Cookies: el botón la cierra de verdad (display:none) y aparecen los mandos — {"cookies":"none","mandos":false,"ls":"1"}
+OK    Mandos ocultos sin ?revision
+OK    Maqueta sobria: fuera piezas y dibujos, entra el gráfico de ratio y el dato — {"clase":true,"ratio":"block","svg":"none","dato":"\"8\"","piezas":0,"ls":"sobria","sw":1440,"iw":1440,"pressed":"true"}
+OK    Maqueta: se puede volver a «Móvil»
+OK    Paleta: cada botón cambia el color computado de verdad — rgb(159, 52, 27) | rgb(0, 99, 88) | rgb(132, 58, 139)
+OK    Paleta: aria-pressed y localStorage correctos — {"ls":"malva","pressed":"true","otro":"false"}
+OK    Paleta guardada aplicada antes de pintar (script bloqueante del head) — js es-revision paleta-malva has-motion lenis
+== 8. Marcadores pendientes en las tres páginas
+OK    Sin marcadores pendientes; noindex y sello en las tres páginas
+
+45/45 comprobaciones en verde

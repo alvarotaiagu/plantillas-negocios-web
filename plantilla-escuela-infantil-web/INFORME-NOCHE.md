@@ -58,7 +58,65 @@ y correo son de muestra (`.example`).
 
 ## Verificación (números)
 
-RESULTADOS
+Herramientas: **Playwright 1.56 + Chromium** (el del entorno), `axe-core`
+4.10.2, Node 22. Todo con scripts que quedan en el repo:
+`scripts/verificar.js` (salida en `scripts/verificacion.json` y
+`scripts/verificacion.log`), `scripts/auditar.js` (`scripts/auditoria.json`),
+`scripts/paleta.js` y `scripts/quitar-mandos.js`. **45 capturas** en
+`screenshots/`, miradas una a una.
+
+- **Verificación: 45/45 comprobaciones en verde** (última pasada).
+- **axe: 0 violaciones** en 8 análisis (portada, aviso legal, 404 y portada
+  en versión sobria, cada uno a 1440×900 y 390×844, con la página recorrida).
+  La primera pasada dio 3 tipos (un `<dl role=tabpanel>`, `aria-label` en un
+  `<span>` genérico del titular partido y los mandos fuera de una región):
+  corregidos.
+- **Tareas largas** (`PerformanceObserver` desde el `<head>`, control de
+  120 ms lanzado con `setTimeout` para demostrar que el observador está vivo):
+  en frío con la caché deshabilitada, **2 al arrancar (89 y 67 ms)** y **0
+  recorriendo la página entera** con el canvas vivo; con caché templada, 0 y 0.
+- **Canvas**: un contador sobre `CanvasRenderingContext2D` confirma **0**
+  asignaciones de `filter`/`shadowBlur` en el canvas visible durante todo el
+  recorrido (las sombras se difuminan una vez, en el sprite).
+- **Cortina**: fotogramas a medias capturados (hilo bajando y manta
+  levantándose con el borde curvo, `escritorio-00*.png` y
+  `movil-00-cortina-media.png`); el `stroke-dashoffset` del hilo pasa por
+  valores intermedios (0,91 → 0,58…, `autoRound:false`); 58 fotogramas con la
+  manta a medias; acaba en `display:none` en los tres casos (normal, sin GSAP
+  y con movimiento reducido). Color de la cortina (noche) distinto del fondo.
+- **Cursor**: se activa al primer `pointermove` de ratón, `cursor:none` en el
+  `body`; con táctil (390×844 con `hasTouch`) no aparece.
+- **Pila sticky**: tres `<li>` de 454 px (el alto de la tarjeta más alta,
+  medido por JS), `margin-bottom` de 126 px en los tres incluido el último,
+  reposo de 306 px por `::after`; recorrida en pasos de 90 px sin que una
+  tarjeta adelante a la anterior y llegando las tres a apilarse.
+- **Menú móvil**: abre, `aria-expanded`, el panel mide exactamente 844 px
+  (`100dvh`, no `inset:0`, pese al `backdrop-filter` de la cabecera); el mismo
+  botón lo cierra; un enlace lo cierra y lleva a su sección.
+- **Cookies**: `display:flex` solo con `:not([hidden])`; el botón la cierra de
+  verdad y los mandos aparecen al cerrarla (con `?revision`), y no existen
+  sin `?revision`.
+- **Maqueta**: en sobria desaparecen hilos, piezas y dibujos, entra el dato
+  (plazas en grande) y el gráfico de ratio; sin desbordamiento; se vuelve.
+- **Paleta**: el color computado del botón cambia de verdad
+  (`rgb(159,52,27)` → `rgb(0,99,88)` → `rgb(132,58,139)`), `aria-pressed` y
+  `localStorage` correctos y la clase está puesta **antes de pintar** al
+  recargar. Contrastes de las derivadas: texto 5,0:1 sobre panel, botón 7,0–7,2:1.
+- **Portada en 360×640 y 375×667**: cero solapes entre cabecera, antetítulo,
+  titular, entradilla, botones y datos, y el móvil del canvas termina justo
+  donde empieza el texto (294/294 y 304/304 px). Sin desbordamiento horizontal
+  en ningún tamaño.
+- **Sin GSAP** (CDN abortado): cortina fuera, ninguna palabra oculta, la
+  adaptación cambia de paso con IntersectionObserver. **Reducido**: sin Lenis
+  ni `has-motion`, el paso de la adaptación, el estado abierto/cerrado y los
+  contadores siguen cambiando.
+- **Mapa**: sin iframe antes del clic; con el clic aparece el de Google.
+- **Consola**: limpia y sin 404 propios. Lo único que falla es del entorno
+  (iframe de Google y alguna fuente cortada por el proxy), separado y contado.
+- **Sin marcadores** `[PENDIENTE]`/`TODO`/lorem; `noindex, nofollow` y sello en
+  las tres páginas.
+- **Receta de quitar los mandos**, ejecutada sobre una copia: 4 + 3 + 3 + 1
+  bloques fuera, sin rastro y `main.js` válido.
 
 ## Decisiones tomadas solo
 
@@ -107,13 +165,17 @@ RESULTADOS
   verdad, la luz de la ventana cambiando con las horas).
 - **El dato de ratio legal** (Decreto 329/2005) está puesto de memoria y
   marcado en las decisiones para revisarlo.
-- **No hice la segunda plantilla** (academia de idiomas). Ver abajo.
 
-## Por qué no hay segunda plantilla
+## Segunda plantilla
 
-El encargo pedía hacerla solo si sobraba más de una hora con la primera ya
-verificada y excelente. Cada pasada completa de verificación tarda aquí unos
-20 minutos (CPU compartida, proxy lento con las fuentes) y la primera
-necesitó varias rondas para cazar fallos reales de la cortina. Con el margen
-que quedaba, una segunda habría salido a medias, y el encargo dice que mejor
-una excelente que dos a medias.
+Con esta verificada (45/45 y axe a cero) a la hora y media de empezar,
+quedaba margen y se hizo la segunda del encargo, **academia de idiomas**, en
+la rama `claude/noche-academia-idiomas` (carpeta
+`plantilla-academia-idiomas-web/`), con su propio `INFORME-NOCHE.md`.
+
+## El otro agente
+
+La rama `claude/noche-escuela-infantil` («Colcha», Retallos) no ha recibido
+ningún commit más desde el primero (00:57 hora peninsular): solo tiene el
+esqueleto (README, isotipo y manifest). Si nadie la retoma, esta es la
+plantilla de escuela infantil de la noche.
