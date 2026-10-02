@@ -1,4 +1,154 @@
 {
+  "escritorio: sin desbordamiento horizontal": {
+    "ok": true,
+    "info": {
+      "sw": 1440,
+      "iw": 1440,
+      "largas": [
+        {
+          "inicio": 7180,
+          "ms": 338
+        },
+        {
+          "inicio": 7535,
+          "ms": 283
+        }
+      ]
+    }
+  },
+  "escritorio: consola limpia y ningún recurso propio fallido": {
+    "ok": true,
+    "info": []
+  },
+  "escritorio-externos-fallidos": [
+    "https://fonts.gstatic.com/s/onest/v11/gNMKW3F-SZuj7xmf-HY.woff2 net::ERR_TOO_MANY_RETRIES",
+    "https://fonts.gstatic.com/s/bodonimoda/v28/aFTQ7PxzY382XsXX63LUYJSKSKg.woff2 net::ERR_TOO_MANY_RETRIES"
+  ],
+  "escritorio: cero 404": {
+    "ok": true,
+    "info": []
+  },
+  "escritorio-longtasks": [
+    {
+      "inicio": 7180,
+      "ms": 338
+    },
+    {
+      "inicio": 7535,
+      "ms": 283
+    }
+  ],
+  "escritorio: el observador de longtask funciona (control)": {
+    "ok": true,
+    "info": {
+      "antes": 2,
+      "despues": 3
+    }
+  },
+  "movil: sin desbordamiento horizontal": {
+    "ok": true,
+    "info": {
+      "sw": 390,
+      "iw": 390,
+      "largas": [
+        {
+          "inicio": 2976,
+          "ms": 248
+        },
+        {
+          "inicio": 3240,
+          "ms": 50
+        },
+        {
+          "inicio": 4281,
+          "ms": 156
+        },
+        {
+          "inicio": 4454,
+          "ms": 55
+        },
+        {
+          "inicio": 7079,
+          "ms": 69
+        }
+      ]
+    }
+  },
+  "movil: consola limpia y ningún recurso propio fallido": {
+    "ok": true,
+    "info": []
+  },
+  "movil-externos-fallidos": [
+    "https://fonts.gstatic.com/s/onest/v11/gNMKW3F-SZuj7xmf-HY.woff2 net::ERR_TOO_MANY_RETRIES"
+  ],
+  "movil: cero 404": {
+    "ok": true,
+    "info": []
+  },
+  "movil-longtasks": [
+    {
+      "inicio": 2976,
+      "ms": 248
+    },
+    {
+      "inicio": 3240,
+      "ms": 50
+    },
+    {
+      "inicio": 4281,
+      "ms": 156
+    },
+    {
+      "inicio": 4454,
+      "ms": 55
+    },
+    {
+      "inicio": 7079,
+      "ms": 69
+    }
+  ],
+  "movil: el observador de longtask funciona (control)": {
+    "ok": true,
+    "info": {
+      "antes": 5,
+      "despues": 6
+    }
+  },
+  "sin GSAP: la cortina acaba en display:none": {
+    "ok": true,
+    "info": {
+      "cortina": "none",
+      "motion": false,
+      "titulo": "1"
+    }
+  },
+  "sin GSAP: no se enciende has-motion": {
+    "ok": true
+  },
+  "sin GSAP: consola limpia (salvo el CDN tumbado)": {
+    "ok": true,
+    "info": []
+  },
+  "reducido: la cortina acaba en display:none": {
+    "ok": true,
+    "info": "none"
+  },
+  "reducido: los contadores llegan a su valor": {
+    "ok": true,
+    "info": [
+      "55",
+      "4",
+      "28"
+    ]
+  },
+  "reducido: el oficio cambia de paso sin animar": {
+    "ok": true,
+    "info": "4"
+  },
+  "reducido: la báscula sigue pesando": {
+    "ok": true,
+    "info": "7,25"
+  },
   "normal: la cortina acaba en display:none": {
     "ok": true,
     "info": "none"
@@ -45,7 +195,7 @@
     "info": "https://www.google.com/maps?q=R%C3%BAa%20dos%20Coiteleiros%209%2C%2027800%20Vilalba%2C%20Lugo&output=embed"
   },
   "cursor propio: nunca en táctil": {
-    "ok": false
+    "ok": true
   },
   "cursor propio: aparece con el primer movimiento de ratón y oculta el nativo": {
     "ok": true,
@@ -64,7 +214,7 @@
     "info": {
       "clase": true,
       "dibujos": 0,
-      "num": 104,
+      "num": 132.8,
       "comparador": "block",
       "filas": 18,
       "sw": 1440,
@@ -81,7 +231,7 @@
     "info": {
       "clase": true,
       "dibujos": 0,
-      "num": 104,
+      "num": 132.8,
       "comparador": "block",
       "filas": 18,
       "sw": 1440,
@@ -163,5 +313,105 @@
   },
   "paleta: al recargar se aplica antes del load (sin parpadeo)": {
     "ok": true
+  },
+  "pila: mismo alto en todos (el de la más alta)": {
+    "ok": true,
+    "info": {
+      "altos": [
+        433,
+        433,
+        433,
+        433,
+        433
+      ],
+      "mb": [
+        "342px",
+        "342px",
+        "342px",
+        "342px",
+        "342px"
+      ],
+      "after": "108px",
+      "art": [
+        433,
+        433,
+        433,
+        433,
+        433
+      ]
+    }
+  },
+  "pila: mismo margin-bottom en todos, incluido el último, y ::after de reposo": {
+    "ok": true,
+    "info": {
+      "altos": [
+        433,
+        433,
+        433,
+        433,
+        433
+      ],
+      "mb": [
+        "342px",
+        "342px",
+        "342px",
+        "342px",
+        "342px"
+      ],
+      "after": "108px",
+      "art": [
+        433,
+        433,
+        433,
+        433,
+        433
+      ]
+    }
+  },
+  "pila: 60 pasos de 90 px sin tarjetas fantasma": {
+    "ok": true,
+    "info": {
+      "pasos": 60
+    }
+  },
+  "portada 360×640: sin solapes, cabe y sin desbordar": {
+    "ok": true,
+    "info": {
+      "o": [],
+      "dentro": true,
+      "cursiva": true,
+      "sw": 360
+    }
+  },
+  "portada 375×667: sin solapes, cabe y sin desbordar": {
+    "ok": true,
+    "info": {
+      "o": [],
+      "dentro": true,
+      "cursiva": true,
+      "sw": 375
+    }
+  },
+  "legal.html: noindex, sello y consola limpia": {
+    "ok": true,
+    "info": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "err": [],
+      "f404": []
+    }
+  },
+  "404.html: noindex, sello y consola limpia": {
+    "ok": true,
+    "info": {
+      "robots": "noindex, nofollow",
+      "sello": true,
+      "err": [],
+      "f404": []
+    }
+  },
+  "sin [PENDIENTE], TODO ni lorem": {
+    "ok": true,
+    "info": []
   }
 }

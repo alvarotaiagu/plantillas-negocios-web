@@ -67,9 +67,11 @@ Antes de diseñar se revisaron las fichas y decisiones de **Trinquete**
    captura).
 5. **Medido, no supuesto:** `PerformanceObserver` de `longtask` dentro del
    propio `main.js` (expuesto en `window.mouriscalLongtasks`), con control de
-   que el observador vive; 30+ comprobaciones automáticas en
+   que el observador vive; 44 comprobaciones automáticas en
    `scripts/verificar.js` (incluida la pila sticky en pasos de 90 px y el
-   contraste de las tres paletas medido en la página).
+   contraste de las tres paletas medido en la página) y auditoría axe sin
+   infracciones en ocho casos (`AUDITORIA.md`), que en la biblioteca solo
+   tienen 6 de 27.
 
 ## Mapa de secciones
 
@@ -205,8 +207,9 @@ que no queda ni rastro (`mandos`, `mouriscal-maqueta`, `mouriscal-paleta`,
 
 ## Verificación
 
-`scripts/verificar.js` (Playwright, Chromium) — ver `INFORME-NOCHE.md` para
-los números de la última pasada. Capturas en `screenshots/`.
+`scripts/verificar.js` (Playwright, Chromium), `scripts/auditar.js` (axe-core →
+`AUDITORIA.md`), `scripts/contraste.js` y `scripts/quitar-mandos.js`. Números de
+la última pasada en `INFORME-NOCHE.md`; capturas en `screenshots/`.
 
 ## Créditos
 

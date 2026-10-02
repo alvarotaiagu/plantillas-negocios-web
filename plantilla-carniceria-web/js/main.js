@@ -94,8 +94,9 @@
   /* ---------- Char-reveal: letra a letra (portada) y palabra a palabra (resto) ---------- */
   function partir(el, porLetra) {
     var texto = el.textContent.trim();
-    el.setAttribute('aria-label', texto);
+    // aria-label no vale en un <span>: el texto entero va oculto a la vista y las letras, ocultas al lector
     el.textContent = '';
+    var sr = document.createElement('span'); sr.className = 'visually-hidden'; sr.textContent = texto; el.appendChild(sr);
     texto.split(/\s+/).forEach(function (pal, i, arr) {
       var w = document.createElement('span'); w.className = 'palabra'; w.setAttribute('aria-hidden', 'true');
       if (porLetra) {
@@ -226,7 +227,11 @@
   })();
 
   /* ---------- Portada: la veta en WebGL, y el cursor es el cuchillo ---------- */
-  var veta = (function () {
+  // El shader se compila en su propia tarea, detrás de la cortina: así no se suma a la
+  // tarea larga del arranque (GSAP + fuentes), y la cortina tapa la portada de todos modos.
+  var veta = { colores: function () {} };
+  setTimeout(function () { veta = iniciarVeta(); }, 30);
+  function iniciarVeta() {
     var canvas = $('#veta');
     var gl = canvas && (canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' }) || canvas.getContext('experimental-webgl'));
     if (!gl) { html.classList.add('sin-webgl'); return { colores: function () {} }; }
@@ -376,7 +381,7 @@
       pintarUnaVez();
     }
     return { colores: colores };
-  })();
+  }
 
   /* ---------- Oficio: cinco gestos, un solo dibujo, progreso continuo ---------- */
   var oficio = (function () {
@@ -451,7 +456,7 @@
       };
       var pend = false;
       var io = new IntersectionObserver(function (ent) {
-        if (ent.some(function (e) { return e.isIntersecting; })) window.addEventListener('scroll', alMover, { passive: true });
+        if (ent.some(function (e) { return e.isIntersecting; })) { window.addEventListener('scroll', alMover, { passive: true }); elegir(); }
         else window.removeEventListener('scroll', alMover);
       });
       var alMover = function () { if (!pend) { pend = true; requestAnimationFrame(function () { pend = false; elegir(); }); } };
