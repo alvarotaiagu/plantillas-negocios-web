@@ -1,0 +1,187 @@
+[
+ {
+  "nombre": "Cortina: subrayado a medias con autoRound:false (dashoffset intermedio)",
+  "ok": true,
+  "detalle": "dashoffset 0.5"
+ },
+ {
+  "nombre": "Cortina: fotograma con la hoja pasando, canto curvo",
+  "ok": true,
+  "detalle": "M0 0H606.2998Q367.1837 500 606.2998 1000H0Z"
+ },
+ {
+  "nombre": "Cortina: acaba en display:none (normal)",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Cortina de color distinto al fondo",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Cursor propio: aparece con el ratón y oculta el nativo",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "PerformanceObserver de longtask vivo (control de 120 ms)",
+  "ok": true,
+  "detalle": "[{\"t\":8181,\"d\":120}]"
+ },
+ {
+  "nombre": "Descifrar anclado: el nivel sube con el scroll, el porcentaje también y el marco sigue fijo",
+  "ok": true,
+  "detalle": "[\"A1\",[\"B2\",95,0,3]]"
+ },
+ {
+  "nombre": "Tareas largas recorriendo la página con el canvas vivo (caché templada)",
+  "ok": true,
+  "detalle": "arranque: [] · recorriendo: []"
+ },
+ {
+  "nombre": "Canvas: ningún filter/shadowBlur en el canvas visible",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Escritorio sin desbordamiento horizontal",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Prueba de nivel: corrige 2 bien y 1 mal, con la corrección escrita",
+  "ok": true,
+  "detalle": "[\"2 de 3. Rondas el A2–B1. La prueba oral lo afina.\",2,1]"
+ },
+ {
+  "nombre": "Mapa: sin iframe antes del clic",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Mapa: iframe de Google tras el clic",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Consola limpia y sin 404 propios (escritorio)",
+  "ok": true,
+  "detalle": "[] · entorno: 1"
+ },
+ {
+  "nombre": "Tareas largas en frío: arranque y recorrido entero",
+  "ok": true,
+  "detalle": "arranque: [{\"t\":2614,\"d\":52}] · recorriendo: []"
+ },
+ {
+  "nombre": "Táctil: sin cursor propio",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Menú móvil: abre, aria-expanded y 100dvh pese al backdrop-filter",
+  "ok": true,
+  "detalle": "{\"exp\":\"true\",\"h\":844,\"ih\":844,\"top\":0}"
+ },
+ {
+  "nombre": "Menú móvil: el mismo botón lo cierra",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Menú móvil: un enlace lo cierra y lleva a la sección",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Móvil sin desbordamiento horizontal",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Consola limpia y sin 404 propios (móvil)",
+  "ok": true,
+  "detalle": "[]"
+ },
+ {
+  "nombre": "Portada 360×640: sin solapes y el saludo por encima del texto",
+  "ok": true,
+  "detalle": "{\"ch\":[],\"lienzo\":256,\"ante\":256,\"sw\":360,\"iw\":360}"
+ },
+ {
+  "nombre": "Portada 375×667: sin solapes y el saludo por encima del texto",
+  "ok": true,
+  "detalle": "{\"ch\":[],\"lienzo\":264,\"ante\":264,\"sw\":375,\"iw\":375}"
+ },
+ {
+  "nombre": "Sin GSAP: cortina fuera y sin has-motion",
+  "ok": true,
+  "detalle": "{\"motion\":false,\"cortina\":\"none\"}"
+ },
+ {
+  "nombre": "Sin GSAP: el nivel del texto cambia con la posición",
+  "ok": true,
+  "detalle": "B2"
+ },
+ {
+  "nombre": "Sin GSAP: sin errores de JS propios",
+  "ok": true,
+  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\"]"
+ },
+ {
+  "nombre": "Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo",
+  "ok": true,
+  "detalle": "{\"motion\":false,\"cortina\":\"none\",\"lenis\":false,\"estado\":\"Cerrado ahora\"}"
+ },
+ {
+  "nombre": "Reducido: el nivel y el porcentaje siguen cambiando",
+  "ok": true,
+  "detalle": "B2"
+ },
+ {
+  "nombre": "Cookies visibles (flex) y mandos apartados",
+  "ok": true,
+  "detalle": "{\"c\":\"flex\",\"m\":true}"
+ },
+ {
+  "nombre": "Cookies: el botón la cierra de verdad y aparecen los mandos",
+  "ok": true,
+  "detalle": "{\"c\":\"none\",\"m\":false,\"ls\":\"1\"}"
+ },
+ {
+  "nombre": "Mandos ocultos sin ?revision",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Maqueta sobria: fuera el margen rojo y la cinta, entra el gráfico de horas",
+  "ok": true,
+  "detalle": "{\"cl\":true,\"horas\":\"block\",\"cinta\":\"none\",\"margen\":\"none\",\"sw\":1440,\"iw\":1440,\"ls\":\"sobria\"}"
+ },
+ {
+  "nombre": "Maqueta: se vuelve a «Descifrar»",
+  "ok": true,
+  "detalle": ""
+ },
+ {
+  "nombre": "Paleta: cambia el color computado de verdad",
+  "ok": true,
+  "detalle": "rgb(171, 33, 16) | rgb(23, 83, 188) | rgb(0, 101, 66)"
+ },
+ {
+  "nombre": "Paleta: aria-pressed y localStorage",
+  "ok": true,
+  "detalle": "{\"ls\":\"verde\",\"p\":\"true\",\"o\":\"false\"}"
+ },
+ {
+  "nombre": "Paleta guardada aplicada antes de pintar",
+  "ok": true,
+  "detalle": "js es-revision paleta-verde has-motion lenis"
+ },
+ {
+  "nombre": "Sin marcadores; noindex y sello en las tres páginas",
+  "ok": true,
+  "detalle": ""
+ }
+]

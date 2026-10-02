@@ -1,0 +1,48 @@
+[
+ {
+  "nombre": "index · 1440",
+  "violaciones": []
+ },
+ {
+  "nombre": "aviso-legal.html · 1440",
+  "violaciones": []
+ },
+ {
+  "nombre": "404.html · 1440",
+  "violaciones": []
+ },
+ {
+  "nombre": "?revision (sobria) · 1440",
+  "violaciones": []
+ },
+ {
+  "nombre": "index · 390",
+  "violaciones": [
+   {
+    "id": "scrollable-region-focusable",
+    "impacto": "serious",
+    "nodos": 1,
+    "ejemplo": ".pauta-envoltorio"
+   }
+  ]
+ },
+ {
+  "nombre": "aviso-legal.html · 390",
+  "violaciones": []
+ },
+ {
+  "nombre": "404.html · 390",
+  "violaciones": []
+ },
+ {
+  "nombre": "?revision (sobria) · 390",
+  "violaciones": [
+   {
+    "id": "scrollable-region-focusable",
+    "impacto": "serious",
+    "nodos": 1,
+    "ejemplo": ".pauta-envoltorio"
+   }
+  ]
+ }
+]

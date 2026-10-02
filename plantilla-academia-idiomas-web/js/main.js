@@ -160,7 +160,9 @@
     cursor.classList.toggle('es-oscuro', !!t.closest('.prueba, .pie'));
   }
   window.addEventListener('pointermove', function (e) {
-    if (e.pointerType !== 'mouse') return;
+    /* Solo ratón de verdad: se exige además pointer: fine (en táctil, un
+       toque puede llegar como evento de ratón) */
+    if (e.pointerType !== 'mouse' || !ratonFino) return;
     cx = e.clientX; cy = e.clientY;
     if (!vivo) { vivo = true; ax = cx; ay = cy; html.classList.add('cursor-propio'); requestAnimationFrame(mover); }
     estadoCursor(e.target);
@@ -338,6 +340,12 @@
       res.textContent = contestadas < 3 ? 'Contesta las tres y vuelve a corregir.' : (bien + ' de 3. ' + (bien === 3 ? 'Apunta alto: B1 o más. Lo confirmamos en la prueba oral.' : bien === 2 ? 'Rondas el A2–B1. La prueba oral lo afina.' : 'Empezaríamos por A1–A2, sin prisa.'));
     });
   })();
+
+  /* La tabla de idiomas desborda en móvil: focusable solo cuando desborda
+     de verdad (PLIEGO §5), y se revisa al redimensionar */
+  var envoltorio = $('.pauta-envoltorio');
+  var revisaDesborde = function () { if (envoltorio.scrollWidth > envoltorio.clientWidth + 2) envoltorio.setAttribute('tabindex', '0'); else envoltorio.removeAttribute('tabindex'); };
+  revisaDesborde(); window.addEventListener('resize', revisaDesborde);
 
   /* ---------------- Mapa bajo clic ---------------- */
   $('#mapa-boton').addEventListener('click', function () {
