@@ -205,7 +205,7 @@
     <p class="filtros-cuenta mono" id="filtros-cuenta" aria-live="polite">42 parcelas</p>
   </div>
   <div class="plano-rejilla">
-    <figure class="plano">
+    <figure class="plano" id="plano-caja" role="group" aria-label="Plano del camping; en pantallas estrechas se desplaza en horizontal">
       <svg id="plano" viewBox="0 0 900 560" role="group" aria-label="Plano del camping con sus parcelas">
         <path class="p-rio" d="M0 500 C 160 470 300 530 460 498 C 620 468 760 530 900 496 L900 560 L0 560 Z"/>
         <path class="p-camino" d="M60 0 C 70 120 40 220 120 300 C 200 380 420 360 520 420 C 600 468 700 440 900 430"/>
@@ -220,7 +220,7 @@
       </svg>
       <figcaption class="plano-leyenda mono"><span><i class="ley ley-tienda"></i>Tienda</span><span><i class="ley ley-caravana"></i>Caravana</span><span><i class="ley ley-cabana"></i>Cabaña</span></figcaption>
     </figure>
-    <aside class="ficha" id="ficha" aria-live="polite" aria-label="Ficha de la parcela">
+    <div class="ficha" id="ficha" aria-live="polite">
       <p class="ficha-num mono" id="ficha-num">Parcela 12</p>
       <h3 class="ficha-titulo" id="ficha-titulo">Carballeira, bajo el roble grande</h3>
       <dl class="ficha-datos" id="ficha-datos">
@@ -230,7 +230,7 @@
         <div><dt>Enchufe</dt><dd>no</dd></div>
       </dl>
       <p class="ficha-nota" id="ficha-nota">La favorita de agosto. Suelo de hoja, algo de desnivel hacia el camino.</p>
-    </aside>
+    </div>
   </div>
 </section>
 

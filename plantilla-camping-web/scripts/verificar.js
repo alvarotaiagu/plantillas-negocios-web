@@ -17,14 +17,14 @@ const sinCookies = ctxPage => ctxPage.addInitScript(() => { try { localStorage.s
 // Espera al fotograma en el que la cortina está a medio levantar y lo captura.
 async function cortinaAMedias(page, nombre) {
   for (let i = 0; i < 120; i++) {
-    const e = await page.evaluate(() => { const c = document.getElementById('cortina'); if (!c) return null; const r = c.getBoundingClientRect(); return { display: getComputedStyle(c).display, top: Math.round(r.top), h: innerHeight }; }).catch(() => null);
+    const e = await page.evaluate(() => { const c = document.getElementById('cortina'); if (!c) return null; const r = (getComputedStyle(c).transform !== 'none' ? c : c.querySelector('.cortina-lona')).getBoundingClientRect(); return { display: getComputedStyle(c).display, top: Math.round(r.top), h: innerHeight }; }).catch(() => null);
     if (e && e.display !== 'none' && e.top < -e.h * 0.15 && e.top > -e.h * 0.85) {
       // se congela el gesto para que la captura sea de ese fotograma y no del siguiente
       const fijo = await page.evaluate(() => {
         const c = document.getElementById('cortina');
         if (window.gsap) gsap.globalTimeline.pause();
         else { c.style.transform = getComputedStyle(c).transform; c.style.transition = 'none'; }
-        return Math.round(c.getBoundingClientRect().top);
+        return Math.round((getComputedStyle(c).transform !== 'none' ? c : c.querySelector('.cortina-lona')).getBoundingClientRect().top);
       });
       await shot(page, nombre);
       await page.evaluate(() => { if (window.gsap) gsap.globalTimeline.resume(); else { const c = document.getElementById('cortina'); c.style.transition = ''; c.style.transform = 'translate3d(0, calc(-100% - 140px), 0)'; } });

@@ -361,6 +361,10 @@
     $('#ficha-nota').textContent = p.nota;
   }
   elegir(16);
+  // en móvil el plano desborda: focusable SOLO si de verdad desborda
+  const caja = $('#plano-caja');
+  const revisarCaja = () => { if (caja.scrollWidth > caja.clientWidth + 2) caja.setAttribute('tabindex', '0'); else caja.removeAttribute('tabindex'); };
+  revisarCaja(); addEventListener('resize', revisarCaja);
   const filtros = $$('.filtro');
   const aplicar = () => {
     const act = filtros.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.filtro);

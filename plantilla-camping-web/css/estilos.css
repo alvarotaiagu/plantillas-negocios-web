@@ -270,7 +270,15 @@ html.maqueta-sobria .vientos-deco { display: none; }
 .calculo-total { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--tinta); padding-top: .8rem; }
 .calculo-total strong { font-family: var(--serif); font-size: 3rem; font-weight: 400; color: var(--cuerda-texto); }
 .calculo-nota { grid-column: 1 / -1; margin: 0; font-size: .86rem; color: var(--musgo); }
+.tarifas-rejilla > *, .plano-rejilla > * { min-width: 0; }
+.calculo input[type=number], .calculo select { width: 100%; min-width: 0; }
 @media (max-width: 860px) { .tarifas-rejilla { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+  .calculo { grid-template-columns: 1fr 1fr; padding: 1.1rem; }
+  .tabla-precios th { font-size: .9rem; }
+  .plano { overflow-x: auto; overscroll-behavior-x: contain; }
+  #plano { min-width: 640px; }
+}
 .solo-sobria { display: none; }
 html.maqueta-sobria .comparativa { display: grid; }
 .comparativa { margin: 3rem 0 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 2rem; border-top: 1px solid var(--tinta); padding-top: 2rem; position: relative; }

@@ -1,0 +1,279 @@
+{
+  "comprobaciones": [
+    {
+      "nombre": "escritorio: cortina vista a mitad de camino",
+      "ok": true,
+      "detalle": "{\"display\":\"block\",\"top\":-178,\"h\":900}"
+    },
+    {
+      "nombre": "escritorio: cortina acaba en display:none",
+      "ok": true,
+      "detalle": "none"
+    },
+    {
+      "nombre": "escritorio: cortina de color distinto al fondo",
+      "ok": true,
+      "detalle": "rgb(210, 80, 42) vs rgb(239, 231, 214)"
+    },
+    {
+      "nombre": "escritorio: el botón de cookies cierra de verdad",
+      "ok": true,
+      "detalle": "[{\"visible\":true,\"disp\":\"flex\"},{\"disp\":\"none\",\"ls\":\"ok\"}]"
+    },
+    {
+      "nombre": "escritorio: cursor nativo oculto tras el primer pointermove y cursor propio visible",
+      "ok": true,
+      "detalle": "{\"clase\":true,\"cursor\":\"none\",\"visible\":\"block\"}"
+    },
+    {
+      "nombre": "escritorio: sin desbordamiento horizontal",
+      "ok": true,
+      "detalle": "{\"sw\":1440,\"iw\":1440}"
+    },
+    {
+      "nombre": "escritorio: mapa solo bajo clic",
+      "ok": true,
+      "detalle": "0 iframes antes · https://www.google.com/maps?q=Navia%20de%20Suarna%2C%20Lugo&output=embed"
+    },
+    {
+      "nombre": "escritorio: el formulario de muestra responde",
+      "ok": true,
+      "detalle": "Gracias, Prueba. Es una demostración: no se ha enviado nada. En la web real te confirmaríamos la parcela hoy mismo."
+    },
+    {
+      "nombre": "escritorio: sin marcadores pendientes",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "escritorio: consola limpia y sin peticiones fallidas",
+      "ok": true,
+      "detalle": "{\"errores\":[],\"fallos\":[\"https://www.google.com/maps?q=Navia%20de%20Suarna%2C%20Lugo&output=embed net::ERR_TUNNEL_CONNECTION_FAILED\"]}"
+    },
+    {
+      "nombre": "movil: cortina vista a mitad de camino",
+      "ok": true,
+      "detalle": "{\"display\":\"block\",\"top\":-162,\"h\":844}"
+    },
+    {
+      "nombre": "movil: cortina acaba en display:none",
+      "ok": true,
+      "detalle": "none"
+    },
+    {
+      "nombre": "movil: cortina de color distinto al fondo",
+      "ok": true,
+      "detalle": "rgb(210, 80, 42) vs rgb(239, 231, 214)"
+    },
+    {
+      "nombre": "movil: el botón de cookies cierra de verdad",
+      "ok": true,
+      "detalle": "[{\"visible\":true,\"disp\":\"flex\"},{\"disp\":\"none\",\"ls\":\"ok\"}]"
+    },
+    {
+      "nombre": "móvil: sin cursor propio en táctil",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "móvil: el menú abre a pantalla completa y vuelve a cerrar",
+      "ok": true,
+      "detalle": "{\"exp\":\"true\",\"vis\":\"visible\",\"h\":844,\"ih\":844}"
+    },
+    {
+      "nombre": "movil: sin desbordamiento horizontal",
+      "ok": true,
+      "detalle": "{\"sw\":390,\"iw\":390}"
+    },
+    {
+      "nombre": "movil: mapa solo bajo clic",
+      "ok": true,
+      "detalle": "0 iframes antes · https://www.google.com/maps?q=Navia%20de%20Suarna%2C%20Lugo&output=embed"
+    },
+    {
+      "nombre": "movil: el formulario de muestra responde",
+      "ok": true,
+      "detalle": "Gracias, Prueba. Es una demostración: no se ha enviado nada. En la web real te confirmaríamos la parcela hoy mismo."
+    },
+    {
+      "nombre": "movil: sin marcadores pendientes",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "movil: consola limpia y sin peticiones fallidas",
+      "ok": true,
+      "detalle": "{\"errores\":[],\"fallos\":[\"https://www.google.com/maps?q=Navia%20de%20Suarna%2C%20Lugo&output=embed net::ERR_TUNNEL_CONNECTION_FAILED\"]}"
+    },
+    {
+      "nombre": "portada 360×640: sin solapes y todo dentro de pantalla",
+      "ok": true,
+      "detalle": "{\"sol\":[],\"fuera\":[],\"bajoCabecera\":true}"
+    },
+    {
+      "nombre": "portada 375×667: sin solapes y todo dentro de pantalla",
+      "ok": true,
+      "detalle": "{\"sol\":[],\"fuera\":[],\"bajoCabecera\":true}"
+    },
+    {
+      "nombre": "plano: los filtros cuentan y apagan parcelas de verdad",
+      "ok": true,
+      "detalle": "42 parcelas · 10 parcelas · 4 parcelas · 38"
+    },
+    {
+      "nombre": "plano: ficha por clic y por teclado (flechas + Intro)",
+      "ok": true,
+      "detalle": "Parcela 17 · Carballeira → Parcela 30 · Cabañas → Parcela 2 · Prado"
+    },
+    {
+      "nombre": "tarifas: la temporada cambia la tabla y la calculadora aplica la noche gratis",
+      "ok": true,
+      "detalle": "79,50 € → 108,00 € · En temporada baja, una de cada siete noches no se cobra: pagas 6 de 7."
+    },
+    {
+      "nombre": "sin GSAP: la cortina también se levanta (fotograma a medias)",
+      "ok": true,
+      "detalle": "{\"display\":\"block\",\"top\":-147,\"h\":900}"
+    },
+    {
+      "nombre": "sin GSAP: la cortina se retira (display:none) y no hay estados vacíos",
+      "ok": true,
+      "detalle": "{\"cortina\":\"none\",\"motion\":false,\"titular\":\"none\"}"
+    },
+    {
+      "nombre": "sin GSAP: los pasos del montaje se eligen a mano y el dibujo cambia",
+      "ok": true,
+      "detalle": "100 % → 0 %"
+    },
+    {
+      "nombre": "movimiento reducido: cortina fuera, sin Lenis ni estados vacíos",
+      "ok": true,
+      "detalle": "{\"cortina\":\"none\",\"motion\":false,\"lenis\":false}"
+    },
+    {
+      "nombre": "movimiento reducido: el contenido sigue cambiando (pasos, hoy, silencio, plano)",
+      "ok": true,
+      "detalle": "{\"antes\":\"100 %\",\"despues\":\"0 %\",\"hoy\":true,\"ahora\":true,\"marea\":true,\"contador\":\"6,4\"}"
+    },
+    {
+      "nombre": "mandos: ocultos mientras está el aviso de cookies y visibles al cerrarlo",
+      "ok": true,
+      "detalle": "grid"
+    },
+    {
+      "nombre": "mandos: ocultos sin ?revision",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "sobria: se retiran los vientos decorativos y aparece la comparativa",
+      "ok": true,
+      "detalle": "{\"clase\":true,\"deco\":\"none\",\"comp\":\"grid\",\"filas\":3,\"sw\":1440,\"iw\":1440,\"ls\":\"sobria\",\"pressed\":\"true\"}"
+    },
+    {
+      "nombre": "maqueta: se puede volver a «Vientos»",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "paletas: cada botón cambia un color computado real, aria-pressed y localStorage",
+      "ok": true,
+      "detalle": "{\"base\":\"rgb(138, 46, 16)\",\"xesta\":{\"color\":\"rgb(79, 79, 9)\",\"pressed\":\"true\",\"ls\":\"xesta\"},\"lousa\":{\"color\":\"rgb(23, 64, 183)\",\"pressed\":\"true\",\"ls\":\"lousa\"}}"
+    },
+    {
+      "nombre": "paletas: la guardada se aplica al recargar, sin parpadeo",
+      "ok": true,
+      "detalle": "js es-revision paleta-lousa has-motion cortina-js lenis lona-viva montar-vivo"
+    },
+    {
+      "nombre": "paletas: contraste medido (texto ≥ 4,5 y botón ≥ 7) en las tres",
+      "ok": true,
+      "detalle": "{\"cuerda\":{\"textoSobrePanel2\":6.06,\"botón\":7.67},\"paleta-xesta\":{\"textoSobrePanel2\":6.09,\"botón\":7.67},\"paleta-lousa\":{\"textoSobrePanel2\":6.06,\"botón\":7.67}}"
+    },
+    {
+      "nombre": "longtask: el observador funciona (control con setTimeout detectado)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "longtask: con la lona y el scroll vivos 20 s, ninguna tarea > 80 ms",
+      "ok": true,
+      "detalle": "{\"n\":0,\"rodando\":[],\"fps\":61}"
+    },
+    {
+      "nombre": "axe index-escritorio: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe index-movil: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe legal-escritorio: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe legal-movil: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe 404-escritorio: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe 404-movil: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    },
+    {
+      "nombre": "axe index-sobria: sin violaciones",
+      "ok": true,
+      "detalle": "[]"
+    }
+  ],
+  "longtask": {
+    "arranque": [
+      {
+        "t": 33,
+        "d": 94
+      },
+      {
+        "t": 139,
+        "d": 80
+      }
+    ],
+    "control": 1,
+    "rodando": [],
+    "fpsHero": 61
+  },
+  "axe": {
+    "index-escritorio": [],
+    "index-movil": [],
+    "legal-escritorio": [],
+    "legal-movil": [],
+    "404-escritorio": [],
+    "404-movil": [],
+    "index-sobria": []
+  },
+  "errores": {
+    "escritorio": {
+      "consola": [],
+      "peticiones": [
+        "https://www.google.com/maps?q=Navia%20de%20Suarna%2C%20Lugo&output=embed net::ERR_TUNNEL_CONNECTION_FAILED"
+      ]
+    },
+    "movil": {
+      "consola": [],
+      "peticiones": [
+        "https://www.google.com/maps?q=Navia%20de%20Suarna%2C%20Lugo&output=embed net::ERR_TUNNEL_CONNECTION_FAILED"
+      ]
+    },
+    "sin-gsap": []
+  },
+  "resumen": "47/47 comprobaciones en verde"
+}
