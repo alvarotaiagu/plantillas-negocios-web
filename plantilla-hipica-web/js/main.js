@@ -248,7 +248,7 @@
       if (Math.round(w * dpr) === W && Math.round(h * dpr) === H) return;
       W = Math.round(w * dpr); H = Math.round(h * dpr); canvas.width = W; canvas.height = H;
       var movil = w < 760;
-      horizonte = H * (movil ? 0.6 : 0.6);
+      horizonte = H * (movil ? 0.6 : 0.64);
       // Cielo, colinas y niebla: se pintan una vez en un lienzo aparte y se copian (nada de filtros por fotograma).
       cielo = document.createElement('canvas'); cielo.width = W; cielo.height = H;
       var c = cielo.getContext('2d');
@@ -265,8 +265,9 @@
       c.lineTo(W, horizonte); c.closePath(); c.fill();
       // Postes de la cerca en el horizonte
       c.strokeStyle = '#8E8A6E'; c.lineWidth = 1.2 * dpr;
-      for (x = W * 0.08; x < W * 0.62; x += W * 0.028) { c.beginPath(); c.moveTo(x, horizonte + H * 0.004); c.lineTo(x, horizonte - H * 0.018); c.stroke(); }
-      c.beginPath(); c.moveTo(W * 0.08, horizonte - H * 0.012); c.lineTo(W * 0.62, horizonte - H * 0.012); c.stroke();
+      var cx0 = movil ? 0.45 : 0.52, cx1 = movil ? 0.97 : 0.94;
+      for (x = W * cx0; x < W * cx1; x += W * (movil ? 0.04 : 0.024)) { c.beginPath(); c.moveTo(x, horizonte + H * 0.004); c.lineTo(x, horizonte - H * 0.018); c.stroke(); }
+      c.beginPath(); c.moveTo(W * cx0, horizonte - H * 0.012); c.lineTo(W * cx1, horizonte - H * 0.012); c.stroke();
       var suelo = c.createLinearGradient(0, horizonte, 0, H);
       suelo.addColorStop(0, '#A8B07E'); suelo.addColorStop(0.35, '#6F8A4C'); suelo.addColorStop(1, '#2C4222');
       c.fillStyle = suelo; c.fillRect(0, horizonte, W, H - horizonte);

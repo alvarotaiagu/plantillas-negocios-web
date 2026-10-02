@@ -122,7 +122,7 @@ html.cabecera-oculta .cabecera { transform: translateY(-100%); }
 /* ─────────── 1 · Portada ─────────── */
 .portada { position: relative; min-height: max(100svh, 620px); overflow: hidden; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; padding: calc(var(--cab) + 6vh) var(--margen) clamp(24px, 5vh, 56px); }
 .portada-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; display: block; touch-action: pan-y; }
-.portada-respaldo { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, #EEE7D2 0%, #E4DDC4 60%, #6E8A4A 60.2%, #3E5A2E 82%, #2A3F22 100%); }
+.portada-respaldo { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, #EEE7D2 0%, #E4DDC4 64%, #6E8A4A 64.2%, #3E5A2E 84%, #2A3F22 100%); }
 html.lienzo-ok .portada-respaldo { visibility: hidden; }
 .portada-texto { grid-column: 1; max-width: 62rem; position: relative; }
 .portada-ante { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 14px; color: var(--apagado-avena); }
@@ -212,7 +212,8 @@ html.aires-anclada .aires-boton { display: none; }
 .progreso-aires { grid-column: 1 / 3; height: 2px; background: #34482f; align-self: end; }
 .progreso-aires span { display: block; height: 100%; background: var(--heno); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); }
 @media (max-width: 980px) {
-  .aires-fijo { grid-template-columns: 1fr; gap: 14px; }
+  .aires-fijo { grid-template-columns: 1fr; grid-template-rows: none; gap: 14px; align-content: center; }
+  .diagrama-etiquetas text { font-size: 20px; } .diagrama-barras text { font-size: 24px; } .diagrama-eje { font-size: 22px; } .diagrama-barras .suspension-texto { font-size: 22px; }
   .aires-cabeza { grid-template-columns: 1fr; grid-column: 1; }
   .aires-entrada { display: none; }
   .diagrama { grid-column: 1; grid-row: auto; }
@@ -237,7 +238,7 @@ html.aires-anclada .aires-boton { display: none; }
 .cuadra-cabeza .titular { grid-column: 1; max-width: 14ch; }
 .cuadra-cabeza .seccion-num { grid-column: 1; }
 .cuadra-entrada { grid-column: 2; grid-row: 1 / 3; color: var(--apagado-nata); margin: 0 0 1em; }
-.cuadra-marco { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none; padding: 20px var(--margen) 10px; cursor: grab; }
+.cuadra-marco { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: var(--margen); scrollbar-width: none; padding: 20px var(--margen) 10px; cursor: grab; }
 .cuadra-marco::-webkit-scrollbar { display: none; }
 .cuadra-marco.arrastrando { cursor: grabbing; scroll-snap-type: none; }
 .cuadra-lista { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; width: max-content; }

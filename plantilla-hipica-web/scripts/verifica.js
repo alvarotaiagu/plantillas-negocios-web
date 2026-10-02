@@ -79,7 +79,7 @@ async function pruebas(b) {
     if (caso === 'normal') {
       await page.waitForTimeout(1750); await foto(page, 'cortina-1-mitad');
       await page.waitForTimeout(250); await foto(page, 'cortina-2-mitad');
-      const colores = await page.evaluate(() => ({ cortina: getComputedStyle(document.querySelector('.cortina-lamina')).backgroundColor, fondo: getComputedStyle(document.body).backgroundColor }));
+      const colores = await page.evaluate(() => ({ cortina: getComputedStyle(document.querySelector('.cortina-arriba')).backgroundColor, fondo: getComputedStyle(document.body).backgroundColor }));
       ok('la cortina es de otro color que el fondo', colores.cortina !== colores.fondo, colores);
     }
     if (caso === 'sinCdn') { await page.waitForTimeout(900); await foto(page, 'cortina-sin-gsap-mitad'); }
