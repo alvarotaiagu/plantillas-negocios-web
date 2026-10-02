@@ -1,0 +1,452 @@
+<!doctype html>
+<!--
+  SITIO DE DEMOSTRACIÓN. Picadeiro Brañavella es un negocio ficticio; los datos,
+  ilustraciones y opiniones son de muestra. Camiño das Cancelas, 7 (Vilalba) es
+  una dirección inventada y los teléfonos son números de ejemplo.
+-->
+<html lang="es" class="sin-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Picadeiro Brañavella · centro ecuestre en Vilalba</title>
+  <meta name="description" content="Escuela de equitación, pupilaje y rutas a caballo por la Terra Chá, en Vilalba (Lugo). Doce caballos, dos pistas y mucho prado. (Sitio de demostración)">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1D2B1B">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:title" content="Picadeiro Brañavella · centro ecuestre en Vilalba">
+  <meta property="og:description" content="Tres aires, una chaira. Sitio de demostración de un centro ecuestre ficticio.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.remove('sin-js'); h.classList.add('js');
+      window.__longtasks = [];
+      try { new PerformanceObserver(function (l) { l.getEntries().forEach(function (e) { window.__longtasks.push({ t: Math.round(e.startTime), d: Math.round(e.duration) }); }); }).observe({ type: 'longtask', buffered: true }); } catch (e) {}
+      // Retirada garantizada de la cortina.
+      setTimeout(function () { h.classList.add('cortina-fuera'); }, 4200);
+      // ── MANDOS DE DEMOSTRACIÓN (maqueta y paleta) · NO VIAJAN AL SITIO DE UN CLIENTE ──
+      try {
+        if (/[?&]revision\b/.test(location.search)) {
+          h.classList.add('en-revision');
+          var d = localStorage.getItem('branavella-densidad');
+          var p = localStorage.getItem('branavella-paleta');
+          if (d === 'sobria') h.classList.add('densidad-sobria');
+          if (p === 'azul' || p === 'ocre') h.classList.add('paleta-' + p);
+        }
+      } catch (e) {}
+      // ── FIN MANDOS DE DEMOSTRACIÓN ──
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&family=Fragment+Mono&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Picadeiro Brañavella (sitio de demostración)",
+    "description": "Centro ecuestre ficticio. Sitio de demostración.",
+    "address": { "@type": "PostalAddress", "streetAddress": "Camiño das Cancelas, 7, Insua", "postalCode": "27800", "addressLocality": "Vilalba", "addressRegion": "Lugo", "addressCountry": "ES" },
+    "telephone": "+34 982 00 00 00",
+    "email": "ola@branavella.example",
+    "openingHours": ["Tu-Fr 10:00-14:00", "Tu-Fr 16:30-21:00", "Sa-Su 09:30-14:00", "Sa-Su 16:30-20:00"]
+  }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cortina: la puerta de cuadra de dos hojas; primero se abre la de arriba. -->
+  <div class="cortina" aria-hidden="true">
+    <div class="cortina-hoja cortina-arriba"><span class="cortina-herraje"></span></div>
+    <div class="cortina-hoja cortina-abajo"><span class="cortina-cerrojo"></span></div>
+    <p class="cortina-texto">Brañavella</p>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Marca: herradura vista de frente, con sus siete clavos, abierta hacia arriba (la de la suerte). -->
+      <symbol id="marca" viewBox="0 0 64 64">
+        <path d="M14 8 C10 30 12 50 32 56 C52 50 54 30 50 8 L41 8 C44 28 42 42 32 46 C22 42 20 28 23 8 Z" fill="var(--marca-fondo, #8A2923)"/>
+        <g fill="var(--marca-trazo, #F3EEE1)">
+          <circle cx="17.5" cy="16" r="1.6"/><circle cx="17" cy="27" r="1.6"/><circle cx="19.5" cy="38" r="1.6"/><circle cx="25.5" cy="47.5" r="1.6"/>
+          <circle cx="46.5" cy="16" r="1.6"/><circle cx="47" cy="27" r="1.6"/><circle cx="44.5" cy="38" r="1.6"/>
+        </g>
+      </symbol>
+      <!-- Cabeza de caballo de perfil (mira a la derecha). Las capas se colorean con variables. -->
+      <symbol id="cabeza" viewBox="0 0 240 240">
+        <path class="c-capa" d="M92 26 C104 22 118 26 128 38 C150 62 176 92 196 118 C210 136 214 152 206 164 C198 176 182 178 168 170 C156 164 146 160 134 162 C128 182 122 204 118 230 L48 230 C52 196 54 160 58 128 C60 94 70 52 92 26 Z" style="fill:var(--capa)"/>
+        <path class="c-crin" d="M92 26 C76 40 66 64 60 94 C56 120 54 150 50 182 C48 200 46 216 46 230 L32 230 C32 200 36 160 40 128 C44 92 54 58 74 34 C80 28 86 24 92 26 Z" style="fill:var(--crin)"/>
+        <path class="c-oreja" d="M96 30 L100 4 L112 30 Z" style="fill:var(--capa)"/>
+        <path d="M100 10 L104 28" style="stroke:var(--crin);stroke-width:3;fill:none"/>
+        <path class="c-marca" d="M126 46 C134 60 150 84 166 108 C178 126 192 144 196 156 C186 150 172 130 160 112 C146 92 132 70 126 46 Z" style="fill:var(--marca, transparent)"/>
+        <ellipse cx="128" cy="68" rx="7" ry="6" style="fill:#1B1A14"/><circle cx="130" cy="66" r="2" style="fill:#F3EEE1"/>
+        <ellipse cx="192" cy="150" rx="6" ry="4" transform="rotate(30 192 150)" style="fill:#1B1A14;opacity:.55"/>
+        <path d="M176 168 C182 172 192 172 200 166" style="stroke:#1B1A14;stroke-width:2.5;fill:none;stroke-linecap:round;opacity:.5"/>
+        <path class="c-cabezada" d="M108 44 L150 150 M110 60 C120 64 132 64 140 60 M150 150 C160 154 172 154 184 150" style="stroke:var(--cuero, #5A3A22);stroke-width:5;fill:none;stroke-linecap:round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="cabecera">
+    <a class="logo" href="#inicio" aria-label="Picadeiro Brañavella — inicio">
+      <svg class="logo-marca" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true"><use href="#marca"/></svg>
+      <span class="logo-texto"><span class="logo-nombre">Brañavella</span><span class="logo-sub">picadeiro · Vilalba</span></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-boton" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="nav-boton-texto">Menú</span><span class="nav-boton-icono" aria-hidden="true"></span>
+      </button>
+      <div class="nav-panel" id="nav-panel">
+        <ul class="nav-lista">
+          <li><a href="#aires">Los aires</a></li>
+          <li><a href="#cuadra">La cuadra</a></li>
+          <li><a href="#escuela">Escuela y tarifas</a></li>
+          <li><a href="#preguntas">Seguridad</a></li>
+          <li><a href="#visita">Visita</a></li>
+        </ul>
+        <a class="boton boton-casaca nav-cta iman" href="#escuela">Bautismo · 20&nbsp;€</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ═════════ 1 · PORTADA: la chaira y un caballo que no se ve ═════════ -->
+    <section class="portada" id="inicio" aria-labelledby="portada-titulo">
+      <canvas class="portada-lienzo" aria-hidden="true"></canvas>
+      <div class="portada-respaldo" aria-hidden="true"></div>
+      <div class="portada-texto">
+        <p class="portada-ante">Centro ecuestre · Vilalba, Terra Chá</p>
+        <h1 class="portada-titulo" id="portada-titulo"><span class="t1">Tres aires,</span> <span class="t2">una chaira.</span></h1>
+        <p class="portada-entrada">Escuela de equitación desde el primer paso, pupilaje y rutas por la Terra Chá. Doce caballos, dos pistas y todo el prado que se ve desde la cancela.</p>
+        <div class="portada-acciones">
+          <a class="boton boton-casaca iman" href="#escuela">Reservar un bautismo</a>
+          <a class="enlace-flecha" href="#aires">Los tres aires <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="aire" role="group" aria-label="Elige un aire: el prado se mueve a su ritmo">
+        <p class="aire-titulo">Escucha el prado</p>
+        <div class="aire-botones">
+          <button type="button" class="aire-boton" data-aire="paso" aria-pressed="true">Paso</button>
+          <button type="button" class="aire-boton" data-aire="trote" aria-pressed="false">Trote</button>
+          <button type="button" class="aire-boton" data-aire="galope" aria-pressed="false">Galope</button>
+        </div>
+        <p class="aire-tiempos" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i>4</i></p>
+        <p class="aire-nota"><span class="aire-nota-texto">Al paso: cuatro tiempos, unos 6 km/h.</span></p>
+      </div>
+    </section>
+
+    <!-- ═════════ 2 · CINTA DE CASCOS ═════════ -->
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>paso</span><b>1·2·3·4</b><span>trote</span><b>1·2</b><span>galope</span><b>1·2·3</b><span>parada</span><b>·</b>
+        <span>paso</span><b>1·2·3·4</b><span>trote</span><b>1·2</b><span>galope</span><b>1·2·3</b><span>parada</span><b>·</b>
+      </div>
+    </div>
+
+    <!-- ═════════ 3 · LOS TRES AIRES (secuencia anclada) ═════════ -->
+    <section class="aires" id="aires" aria-labelledby="aires-titulo">
+      <div class="aires-fijo">
+        <div class="aires-cabeza">
+          <p class="seccion-num">I · Los aires</p>
+          <h2 class="titular revela" id="aires-titulo">Cada aire suena distinto</h2>
+          <p class="aires-entrada">Antes de subir, en Brañavella se escucha. El paso tiene cuatro golpes; el trote, dos; el galope, tres y un silencio. Aprender a montar es aprender a ir con ese compás, no contra él.</p>
+        </div>
+
+        <figure class="diagrama" aria-labelledby="diagrama-pie">
+          <svg class="diagrama-svg" viewBox="0 0 720 300" role="img" aria-labelledby="diagrama-desc">
+            <title id="diagrama-desc">Diagrama de apoyos de las cuatro patas a lo largo de una zancada; cambia del paso al trote y al galope.</title>
+            <g class="diagrama-rejilla"></g>
+            <g class="diagrama-barras"></g>
+            <line class="diagrama-cursor" x1="120" y1="20" x2="120" y2="250"/>
+            <g class="diagrama-etiquetas">
+              <text x="0" y="62">Mano izq.</text><text x="0" y="117">Mano der.</text><text x="0" y="172">Pie izq.</text><text x="0" y="227">Pie der.</text>
+            </g>
+            <text class="diagrama-eje" x="120" y="282">inicio de la zancada</text>
+            <text class="diagrama-eje" x="700" y="282" text-anchor="end">fin</text>
+          </svg>
+          <figcaption id="diagrama-pie">Cada barra es el tiempo que esa pata está en el suelo. Las cifras marcan el orden en que golpean.</figcaption>
+        </figure>
+
+        <div class="aires-datos">
+          <p class="aires-dato"><b class="dato-tiempos">4</b><span>tiempos</span></p>
+          <p class="aires-dato"><b class="dato-kmh">6</b><span>km/h, más o menos</span></p>
+          <p class="aires-golpes" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i>4</i></p>
+        </div>
+
+        <ol class="etapas" aria-label="Tres etapas de la escuela">
+          <li class="etapa es-activa" data-etapa="0">
+            <p class="etapa-num">Paso · primeras clases</p>
+            <h3>Cuatro golpes, siempre tres patas en el suelo</h3>
+            <p>Es el aire más estable y el primero que se monta. Aprendes a sentarte, a dejar que la cadera acompañe y a llevar las riendas sin colgarte de ellas.</p>
+          </li>
+          <li class="etapa" data-etapa="1">
+            <p class="etapa-num">Trote · del segundo mes en adelante</p>
+            <h3>Dos golpes, en diagonal</h3>
+            <p>Mano izquierda con pie derecho, y al revés. Bota, y por eso se aprende a levantarse al compás: un golpe arriba, otro abajo. Al principio cansa; luego es el aire que más se disfruta.</p>
+          </li>
+          <li class="etapa" data-etapa="2">
+            <p class="etapa-num">Galope · cuando tienes asiento</p>
+            <h3>Tres golpes y un momento en el aire</h3>
+            <p>Hay un instante en que ninguna pata toca el suelo. No se galopa hasta que el asiento es firme al trote; nadie tiene prisa, y el caballo tampoco.</p>
+          </li>
+        </ol>
+        <div class="aires-mando" role="group" aria-label="Recorrer los aires">
+          <button type="button" class="aires-boton" data-dir="-1" aria-label="Aire anterior">←</button>
+          <span class="aires-cuenta" aria-live="polite">Paso · 1 de 3</span>
+          <button type="button" class="aires-boton" data-dir="1" aria-label="Aire siguiente">→</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ 4 · LA CUADRA ═════════ -->
+    <section class="cuadra" id="cuadra" aria-labelledby="cuadra-titulo">
+      <div class="cuadra-cabeza">
+        <p class="seccion-num">II · La cuadra</p>
+        <h2 class="titular revela" id="cuadra-titulo">Doce caballos, cada uno con su carácter</h2>
+        <p class="cuadra-entrada">Te presentamos a ocho. Antes de cada clase decidimos quién te lleva según lo que vas a trabajar, no según quién está libre.</p>
+      </div>
+      <div class="cuadra-marco" role="group" aria-label="Caballos de la cuadra; desliza para ver más">
+        <ul class="cuadra-lista">
+          <li class="caballo" data-alto="158" data-calma="5" data-brio="2" style="--capa:#B9B6AE;--crin:#6E6A64;--marca:transparent">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,58</b><span>m a la cruz</span></div>
+            <h3>Faro</h3><p class="caballo-ficha">Tordo · 14 años · 1,58 m</p>
+            <p>El más paciente de la cuadra. Ha llevado casi todas las primeras clases de los últimos seis años.</p>
+            <p class="caballo-para">Para: primeros pasos</p>
+          </li>
+          <li class="caballo" data-alto="152" data-calma="4" data-brio="3" style="--capa:#7A4426;--crin:#2B1A12;--marca:#F3EEE1">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,52</b><span>m a la cruz</span></div>
+            <h3>Lúa</h3><p class="caballo-ficha">Castaña con cordón · 11 años · 1,52 m</p>
+            <p>Trote suave y regular, de los que dejan aprender a levantarse sin pelearse con el compás.</p>
+            <p class="caballo-para">Para: trote levantado</p>
+          </li>
+          <li class="caballo" data-alto="128" data-calma="4" data-brio="3" style="--capa:#E9E1D0;--crin:#3B2A1E;--marca:#5B3A26">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,28</b><span>m a la cruz</span></div>
+            <h3>Trasno</h3><p class="caballo-ficha">Poni pío · 9 años · 1,28 m</p>
+            <p>El jefe de la escuela de ponis. Tiene más paciencia que tamaño y se sabe el camino del picadero mejor que nadie.</p>
+            <p class="caballo-para">Para: escuela de poni (8 a 12 años)</p>
+          </li>
+          <li class="caballo" data-alto="155" data-calma="5" data-brio="2" style="--capa:#DCD8CF;--crin:#9C968C;--marca:transparent">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,55</b><span>m a la cruz</span></div>
+            <h3>Bruma</h3><p class="caballo-ficha">Torda clara · 16 años · 1,55 m</p>
+            <p>Hecha a las pistas de tierra de la Chaira. Si la ruta es larga, es la primera que ensillamos.</p>
+            <p class="caballo-para">Para: rutas largas</p>
+          </li>
+          <li class="caballo" data-alto="165" data-calma="2" data-brio="5" style="--capa:#222019;--crin:#0F0E0B;--marca:#F3EEE1">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,65</b><span>m a la cruz</span></div>
+            <h3>Carbón</h3><p class="caballo-ficha">Negro con lucero · 8 años · 1,65 m</p>
+            <p>Mucho motor y mucho salto. Solo para quien ya galopa con el asiento quieto.</p>
+            <p class="caballo-para">Para: salto y perfeccionamiento</p>
+          </li>
+          <li class="caballo" data-alto="154" data-calma="4" data-brio="3" style="--capa:#B5622E;--crin:#C8874F;--marca:transparent">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,54</b><span>m a la cruz</span></div>
+            <h3>Canela</h3><p class="caballo-ficha">Alazana · 12 años · 1,54 m</p>
+            <p>El galope más redondo de la cuadra. Con ella se dan los primeros galopes en la pista cubierta.</p>
+            <p class="caballo-para">Para: primer galope</p>
+          </li>
+          <li class="caballo" data-alto="150" data-calma="5" data-brio="2" style="--capa:#C9A36A;--crin:#2B211A;--marca:transparent">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,50</b><span>m a la cruz</span></div>
+            <h3>Xeito</h3><p class="caballo-ficha">Bayo · 10 años · 1,50 m</p>
+            <p>No se asusta de un tractor, ni de un perro, ni de una bolsa al viento. Por eso va delante en las rutas.</p>
+            <p class="caballo-para">Para: rutas</p>
+          </li>
+          <li class="caballo" data-alto="160" data-calma="3" data-brio="4" style="--capa:#4A2A1A;--crin:#1E140E;--marca:#F3EEE1">
+            <div class="caballo-dibujo"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#cabeza"/></svg></div>
+            <div class="caballo-dato" aria-hidden="true"><b>1,60</b><span>m a la cruz</span></div>
+            <h3>Néboa</h3><p class="caballo-ficha">Castaña oscura · 7 años · 1,60 m</p>
+            <p>La más joven de la escuela. Fina y atenta; con ella se trabaja la doma en la pista de arena.</p>
+            <p class="caballo-para">Para: doma</p>
+          </li>
+        </ul>
+      </div>
+      <p class="cuadra-pista" aria-hidden="true">Arrastra o desliza →</p>
+
+      <!-- Solo en la versión sobria -->
+      <figure class="alzadas" aria-labelledby="alzadas-titulo">
+        <figcaption id="alzadas-titulo"><b>Alzada a la cruz</b>, de 1,28 m a 1,65 m: el caballo se elige también por tu tamaño y tu experiencia.</figcaption>
+        <ul class="alzadas-lista"></ul>
+      </figure><!-- fin alzadas -->
+
+      <div class="equipo">
+        <p><b>Iria Montouto</b> dirige la escuela y da las clases de doma y salto; lleva veinte años en la pista. <b>Brais Penabad</b> lleva la cuadra y guía las rutas: conoce cada camino de la Chaira y cada charco que conviene rodear.</p>
+      </div>
+    </section>
+
+    <!-- ═════════ 5 · ESCUELA Y TARIFAS ═════════ -->
+    <section class="escuela" id="escuela" aria-labelledby="escuela-titulo">
+      <div class="escuela-cabeza">
+        <p class="seccion-num">III · Escuela y tarifas</p>
+        <h2 class="titular revela" id="escuela-titulo">Empieza por un bautismo</h2>
+        <div class="bautismo">
+          <p class="bautismo-precio"><b>20</b><span>€</span></p>
+          <p>Media hora con Faro, a la cuerda y al paso, en la pista cubierta. Casco y chaleco los ponemos nosotros.</p>
+        </div>
+      </div>
+
+      <div class="tablon">
+        <div class="pestanas" role="tablist" aria-label="Tarifas">
+          <button type="button" role="tab" id="pt-clases" aria-controls="pp-clases" aria-selected="true">Clases</button>
+          <button type="button" role="tab" id="pt-rutas" aria-controls="pp-rutas" aria-selected="false" tabindex="-1">Rutas</button>
+          <button type="button" role="tab" id="pt-pupilaje" aria-controls="pp-pupilaje" aria-selected="false" tabindex="-1">Pupilaje</button>
+        </div>
+        <div class="panel" role="tabpanel" id="pp-clases" aria-labelledby="pt-clases">
+          <ul class="tarifas">
+            <li><span class="t-n">Clase en grupo <small>1 h · máx. 4 jinetes</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">28&nbsp;€</span></li>
+            <li><span class="t-n">Bono 4 clases <small>al mes</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">100&nbsp;€</span></li>
+            <li><span class="t-n">Bono 8 clases <small>al mes</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">185&nbsp;€</span></li>
+            <li><span class="t-n">Clase particular <small>1 h</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">40&nbsp;€</span></li>
+            <li><span class="t-n">Escuela de poni <small>45 min · de 8 a 12 años</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">22&nbsp;€</span></li>
+          </ul>
+        </div>
+        <div class="panel" role="tabpanel" id="pp-rutas" aria-labelledby="pt-rutas" hidden>
+          <ul class="tarifas">
+            <li><span class="t-n">Ruta corta <small>1 h · al paso, sin experiencia</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">30&nbsp;€</span></li>
+            <li><span class="t-n">Ruta por la braña <small>2 h · paso y trote</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">50&nbsp;€</span></li>
+            <li><span class="t-n">Media jornada <small>4 h · con almuerzo en el campo</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">85&nbsp;€</span></li>
+          </ul>
+        </div>
+        <div class="panel" role="tabpanel" id="pp-pupilaje" aria-labelledby="pt-pupilaje" hidden>
+          <ul class="tarifas">
+            <li><span class="t-n">Pupilaje completo <small>box, prado, pienso y limpieza</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">380&nbsp;€<small>/mes</small></span></li>
+            <li><span class="t-n">Prado con refugio <small>sin box</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">190&nbsp;€<small>/mes</small></span></li>
+            <li><span class="t-n">Media pensión de un caballo de la escuela <small>3 días a la semana</small></span><span class="t-g" aria-hidden="true"></span><span class="t-p">160&nbsp;€<small>/mes</small></span></li>
+          </ul>
+        </div>
+        <p class="tarifas-nota"><b>Precios de muestra, ficticios.</b> IVA incluido. Las clases se recuperan avisando con 24 horas.</p>
+      </div>
+    </section>
+
+    <!-- ═════════ 6 · SEGURIDAD Y PREGUNTAS ═════════ -->
+    <section class="preguntas" id="preguntas" aria-labelledby="preguntas-titulo">
+      <div class="preguntas-cabeza">
+        <p class="seccion-num">IV · Seguridad</p>
+        <h2 class="titular revela" id="preguntas-titulo">Lo que pedimos y lo que no hacemos</h2>
+        <ul class="normas">
+          <li><b>Casco homologado</b>, siempre. Si no tienes, te prestamos uno.</li>
+          <li><b>Botas con tacón</b> o botines; nada de deportivas.</li>
+          <li><b>Desde 8 años</b> en la escuela de poni y desde 12 en las rutas.</li>
+          <li><b>Hasta 95 kg</b> de jinete, por el bienestar de los caballos.</li>
+        </ul>
+      </div>
+      <div class="lista-preguntas">
+        <details>
+          <summary>¿Nunca he montado. Puedo empezar con cualquier edad?</summary>
+          <p>Sí. El bautismo y las primeras clases son al paso y a la cuerda: el caballo va sujeto por la instructora y tú solo tienes que aprender a sentarte. Hay alumnos que empezaron con sesenta años.</p>
+        </details>
+        <details>
+          <summary>¿Hacéis hipoterapia o equinoterapia?</summary>
+          <p>No. Somos una escuela de equitación, no un centro sanitario, y no ofrecemos terapias. Si buscas eso, pide consejo a un profesional sanitario sobre dónde acudir.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si llueve?</summary>
+          <p>En Vilalba llueve, así que tenemos pista cubierta de 20 × 40 m. Las rutas se aplazan si el camino está peligroso, no por cuatro gotas.</p>
+        </details>
+        <details>
+          <summary>¿Puedo visitar la cuadra sin montar?</summary>
+          <p>Claro. Los sábados por la mañana se puede ver la limpieza y el herrado si toca; avísanos antes y no entres en los boxes sin alguien de la casa.</p>
+        </details>
+        <details>
+          <summary>¿Por qué cerráis los lunes?</summary>
+          <p>Porque los caballos también descansan. Los lunes salen al prado todo el día y no se montan.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ═════════ 7 · VISITA ═════════ -->
+    <section class="visita" id="visita" aria-labelledby="visita-titulo">
+      <div class="visita-datos">
+        <p class="seccion-num">V · Visita</p>
+        <h2 class="titular revela" id="visita-titulo">A la cancela, por el camino de tierra</h2>
+        <address>
+          <p><b>Camiño das Cancelas, 7 · Insua</b><br>27800 Vilalba (Lugo)</p>
+          <p><a href="tel:+34982000000">982 00 00 00</a> · WhatsApp <a href="https://wa.me/34600000000">600 00 00 00</a><br><a href="mailto:ola@branavella.example">ola@branavella.example</a></p>
+        </address>
+        <ul class="semana" aria-label="Horario">
+          <li data-dia="1"><span>Lunes</span><span>descanso de los caballos</span></li>
+          <li data-dia="2"><span>Martes</span><span>10–14 · 16:30–21</span></li>
+          <li data-dia="3"><span>Miércoles</span><span>10–14 · 16:30–21</span></li>
+          <li data-dia="4"><span>Jueves</span><span>10–14 · 16:30–21</span></li>
+          <li data-dia="5"><span>Viernes</span><span>10–14 · 16:30–21</span></li>
+          <li data-dia="6"><span>Sábado</span><span>9:30–14 · 16:30–20</span></li>
+          <li data-dia="0"><span>Domingo</span><span>9:30–14 · 16:30–20</span></li>
+        </ul>
+        <p class="estado" aria-live="polite"></p>
+      </div>
+      <div class="visita-mapa">
+        <div class="mapa-caja" data-mapa>
+          <svg class="mapa-dibujo" viewBox="0 0 400 320" aria-hidden="true">
+            <rect width="400" height="320" class="md-prado"/>
+            <g class="md-parcelas"><path d="M0 60 L170 40 L190 150 L0 170Z"/><path d="M220 30 L400 10 L400 140 L235 150Z"/><path d="M0 200 L180 185 L170 320 L0 320Z"/><path d="M250 185 L400 175 L400 320 L240 320Z"/></g>
+            <path d="M200 0 C205 80 190 160 210 320" class="md-camino"/>
+            <path d="M0 175 C120 168 260 168 400 160" class="md-carretera"/>
+            <rect x="230" y="88" width="70" height="44" rx="4" class="md-pista"/>
+            <g transform="translate(214 108)"><circle r="14" class="md-pin"/><circle r="5" class="md-pin-c"/></g>
+            <text x="36" y="160" class="md-texto">a Vilalba, 4 km</text>
+            <text x="240" y="80" class="md-texto">Brañavella</text>
+          </svg>
+          <button class="boton boton-nata mapa-boton" type="button">Cargar el mapa de Google</button>
+          <p class="mapa-aviso">Al pulsar se carga Google Maps, que puede instalar sus propias cookies.</p>
+        </div>
+      </div>
+      <form class="formulario" novalidate>
+        <h3>Pide día para el bautismo</h3>
+        <label>Nombre<input name="nombre" autocomplete="given-name" required></label>
+        <label>Teléfono o correo<input name="contacto" autocomplete="email" required></label>
+        <label>Qué te interesa
+          <select name="interes"><option>Bautismo</option><option>Clases</option><option>Escuela de poni</option><option>Rutas</option><option>Pupilaje</option></select>
+        </label>
+        <button class="boton boton-casaca iman" type="submit">Enviar</button>
+        <p class="formulario-estado" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="pie-marca"><svg viewBox="0 0 64 64" width="54" height="54" aria-hidden="true"><use href="#marca"/></svg><p class="pie-nombre">Brañavella</p></div>
+    <p class="pie-sello"><b>Sitio de demostración.</b> Picadeiro Brañavella es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+    <ul class="pie-enlaces"><li><a href="legal.html">Aviso legal y privacidad</a></li><li><button type="button" class="pie-cookies">Preferencias de cookies</button></li></ul>
+    <p class="pie-pequeno">© 2026 Picadeiro Brañavella · Vilalba</p>
+  </footer>
+
+  <div class="cookies" role="dialog" aria-label="Aviso de cookies" hidden>
+    <p>Esta web no usa cookies de seguimiento. Guarda en tu navegador que has cerrado este aviso<span class="cookies-revision"> y, en modo revisión, la maqueta y el color elegidos</span>. El mapa de Google solo se carga si lo pides.</p>
+    <button type="button" class="boton boton-nata cookies-aceptar">Entendido</button>
+  </div>
+
+  <!-- ── MANDO DE DEMOSTRACIÓN · NO VIAJA AL SITIO DE UN CLIENTE (ver README) ── -->
+  <div class="mando" role="region" aria-label="Mandos de demostración" hidden>
+    <div class="mando-grupo" role="group" aria-label="Densidad de la maqueta">
+      <span class="mando-titulo">Maqueta</span>
+      <button type="button" data-densidad="aires" aria-pressed="true">Aires</button>
+      <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+    </div>
+    <div class="mando-grupo" role="group" aria-label="Color de marca">
+      <span class="mando-titulo">Color</span>
+      <button type="button" data-paleta="casaca" aria-pressed="true"><i style="background:#8A2923"></i>Casaca</button>
+      <button type="button" data-paleta="azul" aria-pressed="false"><i style="background:#22457C"></i>Azul</button>
+      <button type="button" data-paleta="ocre" aria-pressed="false"><i style="background:#5E4710"></i>Ocre</button>
+    </div>
+  </div>
+  <!-- ── FIN MANDO DE DEMOSTRACIÓN ── -->
+
+  <div class="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-aro"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
