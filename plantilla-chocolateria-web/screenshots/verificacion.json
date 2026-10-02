@@ -1,0 +1,452 @@
+[
+  {
+    "nombre": "escritorio: cortina retirada (display:none)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: aviso de cookies visible al llegar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: el botón cierra las cookies de verdad",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: mando oculto sin ?revision",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: tableta en canvas en la portada",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: recorrido con rueda hasta el pie",
+    "ok": true,
+    "detalle": "13 capturas"
+  },
+  {
+    "nombre": "escritorio: sin desbordamiento horizontal",
+    "ok": true,
+    "detalle": "1440 / 1440"
+  },
+  {
+    "nombre": "escritorio: sin marcadores pendientes ni relleno",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: consola y red limpias",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: cortina retirada (display:none)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: aviso de cookies visible al llegar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: el botón cierra las cookies de verdad",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: mando oculto sin ?revision",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: tableta en canvas en la portada",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: recorrido con rueda hasta el pie",
+    "ok": true,
+    "detalle": "14 capturas"
+  },
+  {
+    "nombre": "movil: sin desbordamiento horizontal",
+    "ok": true,
+    "detalle": "390 / 390"
+  },
+  {
+    "nombre": "movil: sin marcadores pendientes ni relleno",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: consola y red limpias",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cortina retirada (normal)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cortina retirada (sin-gsap)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cortina retirada (reducido)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cortina de color distinto al fondo",
+    "ok": true,
+    "detalle": "rgb(123, 74, 46) vs rgb(26, 15, 11)"
+  },
+  {
+    "nombre": "sin GSAP: no se enciende has-motion",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sin GSAP: titulares visibles",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sin GSAP: curva sin anclar, pasos a la vista",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sin GSAP: sin errores propios",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "reducido: sin Lenis",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "reducido: curva sin anclar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "reducido: las cifras de la curva siguen cambiando",
+    "ok": true,
+    "detalle": "45, 31, 17"
+  },
+  {
+    "nombre": "reducido: partir una onza cambia la cuenta (sin vuelo)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "reducido: el corte del bombón cambia",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "reducido: estado del horario calculado",
+    "ok": true,
+    "detalle": "Cerrado ahora · abrimos hoy a las 11:00"
+  },
+  {
+    "nombre": "cursor: oculto hasta el primer movimiento de ratón",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cursor: nativo oculto (cursor:none) tras pointermove de ratón",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cursor: «partir» sobre la tableta",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "tableta: el clic parte una onza",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "cursor: nada en táctil",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: pila — mismo alto en todos los <li>",
+    "ok": true,
+    "detalle": "286, 286, 286, 286"
+  },
+  {
+    "nombre": "escritorio: pila — mismo margin-bottom, también el último",
+    "ok": true,
+    "detalle": "40px"
+  },
+  {
+    "nombre": "escritorio: pila — el <li> es el sticky",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: pila — alto medido, no 100vh",
+    "ok": true,
+    "detalle": "286 px"
+  },
+  {
+    "nombre": "escritorio: pila — ::after da el reposo",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: pila — sin tarjetas fantasma en 21 pasos de 90 px",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: pila — mismo alto en todos los <li>",
+    "ok": true,
+    "detalle": "338, 338, 338, 338"
+  },
+  {
+    "nombre": "movil: pila — mismo margin-bottom, también el último",
+    "ok": true,
+    "detalle": "40px"
+  },
+  {
+    "nombre": "movil: pila — el <li> es el sticky",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: pila — alto medido, no 100vh",
+    "ok": true,
+    "detalle": "338 px"
+  },
+  {
+    "nombre": "movil: pila — ::after da el reposo",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil: pila — sin tarjetas fantasma en 22 pasos de 90 px",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "menú móvil: abre con aria-expanded",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "menú móvil: ocupa la pantalla (100dvh × 100vw)",
+    "ok": true,
+    "detalle": "390 844 390 844"
+  },
+  {
+    "nombre": "menú móvil: el botón vuelve a cerrar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "menú móvil: un enlace cierra y navega",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "mapa: ningún iframe antes del clic",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "mapa: el clic carga el iframe de Google",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "bombones: elegir uno lo parte (nombre, capas y aria-pressed)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "formulario: vacío marca errores",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "formulario: completo responde (sin enviar nada)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "curva: la temperatura pasa por 45, 27, 31 y 17",
+    "ok": true,
+    "detalle": "45 43 38 34 29 27 28 31 25 20 17"
+  },
+  {
+    "nombre": "curva: pasan los cuatro pasos",
+    "ok": true,
+    "detalle": "Fundir del todo · Al mármol · Recalentar un poco · Cristalizar"
+  },
+  {
+    "nombre": "curva: el trazo se dibuja con el scroll (dashoffset < 0,05)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "mando: se aparta mientras está el aviso de cookies",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "mando: aparece al cerrar el aviso",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sobria: se retiran el molde y las cajas dibujadas",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sobria: ocupan su sitio el % de cacao y el precio por bombón",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sobria: sin desbordamiento nuevo y guardada",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "sobria: se puede volver a «Templado»",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "paleta turquesa: cambia el color computado",
+    "ok": true,
+    "detalle": "rgb(49, 178, 166)"
+  },
+  {
+    "nombre": "paleta turquesa: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "paleta turquesa: contraste botón/cacao ≥ 7 y acento oscuro/crema ≥ 4,5",
+    "ok": true,
+    "detalle": "7.21 / 5.95"
+  },
+  {
+    "nombre": "paleta coral: cambia el color computado",
+    "ok": true,
+    "detalle": "rgb(224, 137, 123)"
+  },
+  {
+    "nombre": "paleta coral: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "paleta coral: contraste botón/cacao ≥ 7 y acento oscuro/crema ≥ 4,5",
+    "ok": true,
+    "detalle": "7.19 / 6.04"
+  },
+  {
+    "nombre": "paleta oro: cambia el color computado",
+    "ok": true,
+    "detalle": "rgb(192, 155, 73)"
+  },
+  {
+    "nombre": "paleta oro: aria-pressed y localStorage",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "paleta oro: contraste botón/cacao ≥ 7 y acento oscuro/crema ≥ 4,5",
+    "ok": true,
+    "detalle": "7.18 / 6.00"
+  },
+  {
+    "nombre": "paleta: al recargar se aplica antes de pintar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "portada 360×640: sin solapes",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "portada 375×667: sin solapes",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: PerformanceObserver vivo (control de 120 ms detectado)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio: tareas largas medidas",
+    "ok": true,
+    "detalle": "2 en total [96 ms, 81 ms]; tras fonts.ready (292 ms): 0"
+  },
+  {
+    "nombre": "movil: PerformanceObserver vivo (control de 120 ms detectado)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "movil (CPU ×4): tareas largas medidas",
+    "ok": true,
+    "detalle": "5 en total [396 ms, 404 ms, 185 ms, 78 ms, 79 ms]; tras fonts.ready (1234 ms): 1"
+  },
+  {
+    "nombre": "escritorio-sin-canvas: PerformanceObserver vivo (control de 120 ms detectado)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "escritorio-sin-canvas: tareas largas medidas",
+    "ok": true,
+    "detalle": "2 en total [87 ms, 59 ms]; tras fonts.ready (228 ms): 0"
+  },
+  {
+    "nombre": "index: noindex, nofollow y sello de demo",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "legal.html: noindex, nofollow y sello de demo",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "legal.html: consola limpia",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "404.html: noindex, nofollow y sello de demo",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "404.html: consola limpia",
+    "ok": true,
+    "detalle": ""
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "t": [
+    {
+      "inicio": 121,
+      "duracion": 396
+    },
+    {
+      "inicio": 524,
+      "duracion": 404
+    },
+    {
+      "inicio": 947,
+      "duracion": 185
+    },
+    {
+      "inicio": 1135,
+      "duracion": 78
+    },
+    {
+      "inicio": 7132,
+      "duracion": 79
+    }
+  ],
+  "fuentes": 1234
+}
