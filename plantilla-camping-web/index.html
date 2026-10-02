@@ -1,0 +1,404 @@
+<!--
+  SITIO DE DEMOSTRACIÓN. Camping A Piqueta es un negocio FICTICIO:
+  nombre, dirección, teléfono, precios, parcelas y opiniones son de muestra.
+  Plantilla de la biblioteca de negocios ficticios. No indexar.
+-->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Camping A Piqueta · Os Ancares — una lona bien tensa</title>
+<meta name="description" content="Camping en Navia de Suarna, Os Ancares (Lugo). Parcelas de sombra y de río, cabañas, tarifas por temporada y rutas desde la puerta. Sitio de demostración: negocio ficticio.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#EFE7D6">
+<meta property="og:title" content="Camping A Piqueta (demo)">
+<meta property="og:description" content="Una lona bien tensa. Camping ficticio en Os Ancares.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Instrument+Serif:ital@0;1&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script>
+  /* Script bloqueante: decide clases ANTES de pintar para que no haya salto. */
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    var rev = /[?&]revision(=|&|$)/.test(location.search);
+    /* MANDOS:INICIO — mandos de demostración (maqueta y paleta), solo con ?revision.
+       NO VIAJAN AL SITIO DE UN CLIENTE: ver «Borrar los mandos» en el README. */
+    if (rev) {
+      d.classList.add('es-revision');
+      try {
+        if (localStorage.getItem('piqueta-maqueta') === 'sobria') d.classList.add('maqueta-sobria');
+        var p = localStorage.getItem('piqueta-paleta');
+        if (p === 'xesta' || p === 'lousa') d.classList.add('paleta-' + p);
+      } catch (e) {}
+    }
+    /* MANDOS:FIN */
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Campground",
+  "name": "Camping A Piqueta (negocio ficticio de demostración)",
+  "description": "Camping ficticio. Sitio de demostración.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Camiño das Bidueiras, 3",
+    "postalCode": "27650",
+    "addressLocality": "Navia de Suarna",
+    "addressRegion": "Lugo",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34 982 00 00 00",
+  "email": "reservas@apiqueta.example"
+}
+</script>
+</head>
+<body>
+
+<!-- Cortina «izar»: la lona sube tirada por sus dos vientos. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <svg class="cortina-cuerdas" viewBox="0 0 1440 900" preserveAspectRatio="none"><path id="cuerda-i" d="M0 0 L120 0"/><path id="cuerda-d" d="M1440 0 L1320 0"/></svg>
+  <div class="cortina-lona">
+    <div class="cortina-marca">
+      <svg viewBox="0 0 64 64" width="64" height="64"><use href="#marca"/></svg>
+      <span class="cortina-nombre">A Piqueta</span>
+      <span class="cortina-dato mono">camping · os ancares · 42°58′ N</span>
+    </div>
+  </div>
+  <svg class="cortina-borde" viewBox="0 0 1440 90" preserveAspectRatio="none"><path id="cortina-panza" d="M0 0 L1440 0 L1440 4 Q720 80 0 4 Z"/></svg>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="marca" viewBox="0 0 64 64">
+      <!-- una piqueta clavada a 45° con su viento tenso hacia la tienda -->
+      <path d="M8 52 L56 52" stroke="#1F2A22" stroke-width="3" stroke-linecap="round"/>
+      <path d="M14 14 L50 50" stroke="#D2502A" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.1 5.2"/>
+      <path d="M14 14 L42 42" stroke="#D2502A" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M40 58 L48 36" stroke="#1F2A22" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M44 38 L52 41" stroke="#1F2A22" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M6 30 L14 14 L22 30" fill="none" stroke="#1F2A22" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera" id="cabecera">
+  <a class="logo" href="#portada" aria-label="Camping A Piqueta — inicio">
+    <svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><use href="#marca"/></svg>
+    <span class="logo-texto"><span class="logo-nombre">A Piqueta</span><span class="logo-sub">camping · Os Ancares</span></span>
+  </a>
+  <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu"><span class="menu-boton-texto">Menú</span><span class="menu-boton-lineas" aria-hidden="true"><i></i><i></i></span></button>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ol>
+      <li><a href="#montar">Montar</a></li>
+      <li><a href="#parcelas">Parcelas</a></li>
+      <li><a href="#tarifas">Tarifas</a></li>
+      <li><a href="#noche">De noche</a></li>
+      <li><a href="#rutas">Rutas</a></li>
+      <li><a href="#reserva" class="menu-reserva">Reservar</a></li>
+    </ol>
+  </nav>
+</header>
+
+<main id="contenido">
+
+<!-- PORTADA: la lona. El cursor es el viento; el scroll tensa los vientos. -->
+<section class="portada" id="portada" aria-labelledby="portada-titulo">
+  <canvas class="portada-lona" id="lona" aria-hidden="true"></canvas>
+  <svg class="portada-respaldo" viewBox="0 0 1440 560" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M120 60 L1320 60 Q1300 300 1240 470 Q720 520 200 470 Q140 300 120 60 Z" fill="#D2502A" fill-opacity=".9"/>
+  </svg>
+  <div class="portada-marco">
+    <p class="portada-sup mono"><span>Camping de montaña</span><span>Navia de Suarna · Lugo</span><span>Abierto de marzo a noviembre</span></p>
+    <h1 class="portada-titulo" id="portada-titulo"><span class="linea">Una lona</span> <span class="linea"><em>bien</em> tensa.</span></h1>
+    <div class="portada-pie">
+      <p class="portada-entradilla">Cuarenta y dos parcelas entre carballos y el río Navia, cuatro cabañas y una regla: aquí se monta bien. Si tu tienda aletea a las tres de la mañana, alguien de recepción te enseña a tensarla.</p>
+      <div class="portada-acciones">
+        <a class="boton boton-lleno iman" href="#reserva">Reservar parcela</a>
+        <a class="boton boton-linea iman" href="#parcelas">Ver el plano</a>
+      </div>
+    </div>
+    <p class="portada-pista mono" aria-hidden="true"><span class="pista-raton">Mueve el cursor: eres el viento. Baja y los vientos se tensan.</span><span class="pista-tactil">Arrastra el dedo: eres el viento.</span></p>
+    <p class="portada-tension mono" aria-hidden="true">tensión <span id="tension">flojo</span></p>
+  </div>
+</section>
+
+<div class="cinta" role="group" aria-label="Normas del camping">
+  <div class="cinta-pista" id="cinta">
+    <p class="cinta-grupo mono"><span>Silencio de 23:00 a 8:00</span><i aria-hidden="true">/</i><span>Aquí no se hace fuego</span><i aria-hidden="true">/</i><span>Agua de manantial</span><i aria-hidden="true">/</i><span>Perros con correa</span><i aria-hidden="true">/</i><span>Coches fuera de la carballeira</span><i aria-hidden="true">/</i><span>Recepción hasta las 22:00</span><i aria-hidden="true">/</i></p>
+  </div>
+</div>
+
+<!-- MONTAR: anclada con scrub. Cinco pasos para que la tienda no aletee. -->
+<section class="montar" id="montar" aria-labelledby="montar-titulo">
+  <div class="montar-pin">
+    <header class="montar-cab">
+      <p class="etiqueta mono">Lo que enseñamos el primer día</p>
+      <h2 class="titular" id="montar-titulo" data-reveal>Cómo se monta una tienda que no aletea</h2>
+    </header>
+    <figure class="montar-escena">
+      <svg id="tienda" viewBox="0 0 900 520" role="img" aria-labelledby="tienda-t">
+        <title id="tienda-t">Una tienda iglú montándose en cinco pasos: sitio, suelo, varillas, piquetas y vientos</title>
+        <!-- el terreno, con su leve desnivel y la sombra del carballo -->
+        <path class="t-suelo" d="M0 430 C 200 426 420 432 640 424 C 760 420 840 418 900 416 L900 520 L0 520 Z"/>
+        <ellipse class="t-sombra" cx="690" cy="430" rx="190" ry="22"/>
+        <g class="t-carballo"><path d="M760 430 L760 300" /><circle cx="760" cy="250" r="90"/><circle cx="700" cy="290" r="54"/><circle cx="820" cy="292" r="58"/></g>
+        <g class="t-sol" id="t-sol"><circle cx="120" cy="90" r="26"/></g>
+        <path class="t-flecha" id="t-flecha" d="M130 360 L250 360" />
+        <!-- 2 · el suelo -->
+        <path class="t-huella" id="t-huella" d="M250 432 L610 432 L640 444 L220 444 Z"/>
+        <!-- 3 · las varillas cruzadas -->
+        <path class="t-varilla" id="t-varilla-1" pathLength="1" d="M240 438 C 280 230 560 230 620 438"/>
+        <path class="t-varilla" id="t-varilla-2" pathLength="1" d="M300 440 C 340 260 500 236 560 440"/>
+        <!-- la lona, que pasa de arrugada a tensa -->
+        <path class="t-lona" id="t-lona" d="M240 438 C 280 240 560 240 620 438 Z"/>
+        <path class="t-puerta" id="t-puerta" d="M392 438 C 400 380 460 380 468 438 Z"/>
+        <!-- 4 · piquetas a 45° -->
+        <g class="t-piquetas" id="t-piquetas">
+          <path d="M226 446 L212 420"/><path d="M634 446 L648 420"/><path d="M300 450 L288 426"/><path d="M560 450 L572 426"/>
+        </g>
+        <!-- 5 · los vientos -->
+        <path class="t-viento" id="t-viento-1" pathLength="1" d="M300 300 L130 446"/>
+        <path class="t-viento" id="t-viento-2" pathLength="1" d="M560 300 L730 446"/>
+        <g class="t-piquetas t-piquetas-viento" id="t-piquetas-v"><path d="M130 448 L116 424"/><path d="M730 448 L744 424"/></g>
+        <g class="t-rotulos mono">
+          <text x="70" y="70" id="t-r1">sombra a las 17:00 ↘</text>
+          <text x="610" y="486" id="t-r4">45° contra el tiro</text>
+        </g>
+      </svg>
+      <figcaption class="montar-dato mono" aria-live="off"><span>Tensión de la lona</span><b id="tension-dato">0 %</b></figcaption>
+    </figure>
+    <ol class="montar-pasos" id="montar-pasos">
+      <li class="paso" data-paso="0"><button type="button" class="paso-boton"><span class="paso-num mono">01</span><span class="paso-titulo">El sitio antes que la tienda</span></button><p>Busca dónde da la sombra a las cinco de la tarde, no a mediodía. Cabeza hacia lo alto si hay desnivel y nunca en la vaguada: ahí corre el agua cuando llueve.</p></li>
+      <li class="paso" data-paso="1"><button type="button" class="paso-boton"><span class="paso-num mono">02</span><span class="paso-titulo">El suelo, más pequeño que la tienda</span></button><p>Si la huella sobresale, recoge la lluvia y la mete debajo. Dóblala hacia dentro hasta que no se vea desde fuera.</p></li>
+      <li class="paso" data-paso="2"><button type="button" class="paso-boton"><span class="paso-num mono">03</span><span class="paso-titulo">Varillas cruzadas, sin forzar</span></button><p>Se arquean solas cuando entran en sus ojales. Si hay que empujar, alguna está en el sitio equivocado.</p></li>
+      <li class="paso" data-paso="3"><button type="button" class="paso-boton"><span class="paso-num mono">04</span><span class="paso-titulo">Piquetas a 45°, contra el tiro</span></button><p>Inclinadas hacia fuera, al revés de hacia donde tira la lona. Clavadas rectas se salen con la primera ráfaga.</p></li>
+      <li class="paso" data-paso="4"><button type="button" class="paso-boton"><span class="paso-num mono">05</span><span class="paso-titulo">Los vientos, tensos y en línea</span></button><p>Cada cuerda sigue la costura que la sujeta. Tensa en cruz, como una rueda, y repasa al anochecer: la lona se afloja con el relente.</p></li>
+    </ol>
+    <div class="montar-barra" aria-hidden="true"><span id="montar-barra"></span></div>
+  </div>
+</section>
+
+<!-- PARCELAS: el plano, filtrable. -->
+<section class="parcelas" id="parcelas" aria-labelledby="parcelas-titulo">
+  <header class="parcelas-cab">
+    <p class="etiqueta mono">El plano</p>
+    <h2 class="titular" id="parcelas-titulo" data-reveal>Cuarenta y dos parcelas, ninguna igual</h2>
+    <p class="parcelas-intro">Elige lo que te importa y el plano te dice cuáles. Pulsa una para ver su ficha: metros, horas de sombra y lo que hay que andar hasta las duchas.</p>
+  </header>
+  <div class="filtros" role="group" aria-label="Filtrar parcelas">
+    <button type="button" class="filtro" data-filtro="sombra" aria-pressed="false">Sombra por la tarde</button>
+    <button type="button" class="filtro" data-filtro="rio" aria-pressed="false">Junto al río</button>
+    <button type="button" class="filtro" data-filtro="luz" aria-pressed="false">Con enchufe</button>
+    <button type="button" class="filtro" data-filtro="calma" aria-pressed="false">Sin coches al lado</button>
+    <p class="filtros-cuenta mono" id="filtros-cuenta" aria-live="polite">42 parcelas</p>
+  </div>
+  <div class="plano-rejilla">
+    <figure class="plano">
+      <svg id="plano" viewBox="0 0 900 560" role="group" aria-label="Plano del camping con sus parcelas">
+        <path class="p-rio" d="M0 500 C 160 470 300 530 460 498 C 620 468 760 530 900 496 L900 560 L0 560 Z"/>
+        <path class="p-camino" d="M60 0 C 70 120 40 220 120 300 C 200 380 420 360 520 420 C 600 468 700 440 900 430"/>
+        <g class="p-arboles" id="p-arboles"></g>
+        <g id="p-parcelas"></g>
+        <g class="p-edificios">
+          <rect x="20" y="20" width="110" height="56" rx="4"/><text x="75" y="54" text-anchor="middle" class="mono">Recepción</text>
+          <rect x="430" y="40" width="96" height="48" rx="4"/><text x="478" y="70" text-anchor="middle" class="mono">Duchas</text>
+          <rect x="780" y="300" width="96" height="48" rx="4"/><text x="828" y="330" text-anchor="middle" class="mono">Duchas</text>
+        </g>
+        <text class="p-rotulo mono" x="640" y="545">río Navia</text>
+      </svg>
+      <figcaption class="plano-leyenda mono"><span><i class="ley ley-tienda"></i>Tienda</span><span><i class="ley ley-caravana"></i>Caravana</span><span><i class="ley ley-cabana"></i>Cabaña</span></figcaption>
+    </figure>
+    <aside class="ficha" id="ficha" aria-live="polite" aria-label="Ficha de la parcela">
+      <p class="ficha-num mono" id="ficha-num">Parcela 12</p>
+      <h3 class="ficha-titulo" id="ficha-titulo">Carballeira, bajo el roble grande</h3>
+      <dl class="ficha-datos" id="ficha-datos">
+        <div><dt>Superficie</dt><dd>90 m²</dd></div>
+        <div><dt>Sombra</dt><dd>de 14:00 a 20:00</dd></div>
+        <div><dt>A las duchas</dt><dd>60 m</dd></div>
+        <div><dt>Enchufe</dt><dd>no</dd></div>
+      </dl>
+      <p class="ficha-nota" id="ficha-nota">La favorita de agosto. Suelo de hoja, algo de desnivel hacia el camino.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- TARIFAS: por temporada, con calculadora. -->
+<section class="tarifas" id="tarifas" aria-labelledby="tarifas-titulo">
+  <svg class="vientos-deco" viewBox="0 0 400 300" aria-hidden="true"><path d="M400 0 L120 300"/><path d="M400 0 L250 300"/><path d="M114 296 L128 270"/><path d="M244 296 L258 270"/></svg>
+  <header class="tarifas-cab">
+    <p class="etiqueta mono">Tarifas por noche · IVA incluido</p>
+    <h2 class="titular" id="tarifas-titulo" data-reveal>Lo que cuesta dormir aquí</h2>
+  </header>
+  <div class="temporadas" role="group" aria-label="Temporada">
+    <button type="button" class="temporada" data-temp="0" aria-pressed="false">Baja <small class="mono">mar–may · oct–nov</small></button>
+    <button type="button" class="temporada" data-temp="1" aria-pressed="false">Media <small class="mono">jun · sep</small></button>
+    <button type="button" class="temporada" data-temp="2" aria-pressed="true">Alta <small class="mono">jul · ago</small></button>
+  </div>
+  <div class="tarifas-rejilla">
+    <table class="tabla-precios" id="tabla-precios">
+      <caption class="sr">Precios por noche según la temporada elegida</caption>
+      <tbody>
+        <tr data-p="6,7.5,9"><th scope="row">Adulto</th><td class="mono">9,00 €</td></tr>
+        <tr data-p="4,5,6"><th scope="row">Menor de 3 a 12 años</th><td class="mono">6,00 €</td></tr>
+        <tr data-p="6,7,8.5"><th scope="row">Parcela de tienda</th><td class="mono">8,50 €</td></tr>
+        <tr data-p="9,11,13"><th scope="row">Parcela de caravana o autocaravana</th><td class="mono">13,00 €</td></tr>
+        <tr data-p="4,4,4"><th scope="row">Electricidad (6 A)</th><td class="mono">4,00 €</td></tr>
+        <tr data-p="0,0,0"><th scope="row">Perro</th><td class="mono">gratis</td></tr>
+        <tr data-p="55,70,85"><th scope="row">Cabaña (hasta 4 personas)</th><td class="mono">85,00 €</td></tr>
+      </tbody>
+    </table>
+    <form class="calculo" id="calculo" aria-labelledby="calculo-t">
+      <h3 id="calculo-t">Tu estancia</h3>
+      <label>Noches <input type="number" name="noches" min="1" max="30" value="3"></label>
+      <label>Adultos <input type="number" name="adultos" min="0" max="8" value="2"></label>
+      <label>Menores <input type="number" name="menores" min="0" max="8" value="0"></label>
+      <label>Alojamiento
+        <select name="tipo"><option value="tienda">Parcela de tienda</option><option value="caravana">Parcela de caravana</option><option value="cabana">Cabaña</option></select>
+      </label>
+      <label class="calculo-check"><input type="checkbox" name="luz"> Con electricidad</label>
+      <output class="calculo-total" id="calculo-total" for="calculo" aria-live="polite"><span class="mono">Total</span> <strong>79,50 €</strong></output>
+      <p class="calculo-nota" id="calculo-nota">Siete noches o más en temporada baja: la séptima no se cobra.</p>
+    </form>
+  </div>
+  <!-- Solo en la versión sobria: la misma estancia en las tres temporadas. -->
+  <figure class="comparativa solo-sobria" aria-labelledby="comparativa-t">
+    <figcaption><h3 id="comparativa-t">La misma noche, en las tres temporadas</h3><p>Dos adultos en parcela de tienda, sin luz. Venir en junio en vez de en agosto ahorra lo que cuesta la cena.</p></figcaption>
+    <ol class="comparativa-barras" id="comparativa"></ol>
+  </figure>
+</section>
+
+<!-- DE NOCHE: normas, silencio y cielo. -->
+<section class="noche" id="noche" aria-labelledby="noche-titulo">
+  <canvas class="noche-cielo" id="cielo" aria-hidden="true"></canvas>
+  <div class="noche-cuerpo">
+    <p class="etiqueta mono">De noche</p>
+    <h2 class="titular" id="noche-titulo" data-reveal>Aquí la noche se oye</h2>
+    <p class="noche-estado" id="noche-estado"><span class="noche-luz" aria-hidden="true"></span><span id="noche-texto">Ahora mismo: horario normal.</span></p>
+    <ol class="normas">
+      <li><b class="mono">23:00</b><span>Silencio hasta las ocho. Se habla bajo y la música, con cascos.</span></li>
+      <li><b class="mono">fuego</b><span>No se hace fuego en ningún sitio del camping, tampoco barbacoa de carbón. Hay dos fogones de gas cubiertos junto a recepción.</span></li>
+      <li><b class="mono">luces</b><span>Las farolas del camino van bajas y cálidas a propósito. Trae frontal: con luz roja no deslumbra al de la parcela de al lado.</span></li>
+      <li><b class="mono">coches</b><span>Se aparcan a la entrada. A la carballeira se entra andando.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- RUTAS: desde la puerta. -->
+<section class="rutas" id="rutas" aria-labelledby="rutas-titulo">
+  <header class="rutas-cab">
+    <p class="etiqueta mono">Sin coger el coche</p>
+    <h2 class="titular" id="rutas-titulo" data-reveal>Tres rutas que salen de recepción</h2>
+  </header>
+  <ol class="rutas-lista">
+    <li class="ruta">
+      <svg class="ruta-perfil" viewBox="0 0 300 80" aria-hidden="true"><path d="M0 70 C 40 66 70 50 110 44 C 150 38 180 40 220 30 C 250 22 280 26 300 24"/></svg>
+      <div class="ruta-texto"><h3>Ribeira do Navia</h3><p>Río arriba por el camino viejo, entre alisos, hasta el molino caído. Llana y con sombra: la de las tardes de agosto.</p></div>
+      <dl class="ruta-datos mono"><div><dt>Distancia</dt><dd><span data-contador="6.4" data-dec="1">6,4</span> km</dd></div><div><dt>Desnivel</dt><dd>+120 m</dd></div><div><dt>Tiempo</dt><dd>2 h</dd></div></dl>
+    </li>
+    <li class="ruta">
+      <svg class="ruta-perfil" viewBox="0 0 300 80" aria-hidden="true"><path d="M0 72 C 30 70 60 60 90 40 C 120 20 150 12 170 10 C 200 14 240 40 270 58 C 285 66 295 70 300 70"/></svg>
+      <div class="ruta-texto"><h3>Castro y pallozas</h3><p>Sube por la ladera de enfrente hasta un castro y una aldea de pallozas. Vuelta por el otro lado del valle.</p></div>
+      <dl class="ruta-datos mono"><div><dt>Distancia</dt><dd><span data-contador="11.2" data-dec="1">11,2</span> km</dd></div><div><dt>Desnivel</dt><dd>+480 m</dd></div><div><dt>Tiempo</dt><dd>4 h 30</dd></div></dl>
+    </li>
+    <li class="ruta">
+      <svg class="ruta-perfil" viewBox="0 0 300 80" aria-hidden="true"><path d="M0 74 C 40 72 70 56 100 36 C 130 16 160 6 190 4 C 220 6 250 10 300 8"/></svg>
+      <div class="ruta-texto"><h3>Cordal de los teixos</h3><p>Larga y seria: al cordal por el bosque de tejos y vuelta por la pista. Solo con buen tiempo; pregunta antes en recepción.</p></div>
+      <dl class="ruta-datos mono"><div><dt>Distancia</dt><dd><span data-contador="17.8" data-dec="1">17,8</span> km</dd></div><div><dt>Desnivel</dt><dd>+910 m</dd></div><div><dt>Tiempo</dt><dd>7 h</dd></div></dl>
+    </li>
+  </ol>
+  <div class="voces">
+    <p class="etiqueta mono">Lo que dicen <span class="sello-muestra">Opiniones de muestra</span></p>
+    <blockquote class="voz"><p>«La primera noche nos vino a ver una chica de recepción con una maza y dos piquetas largas. Dormimos como nunca.»</p><footer>— Iria y Nacho, parcela 9</footer></blockquote>
+    <blockquote class="voz"><p>«Lo del silencio va en serio. A las once solo se oía el río.»</p><footer>— Manuel, cabaña 2</footer></blockquote>
+  </div>
+</section>
+
+<!-- RESERVA Y CONTACTO -->
+<section class="reserva-sec" id="reserva" aria-labelledby="reserva-titulo">
+  <h2 class="titular titular-grande" id="reserva-titulo" data-reveal>Clava la primera piqueta</h2>
+  <div class="reserva-rejilla">
+    <form class="reserva" id="formulario" novalidate>
+      <p class="reserva-aviso mono">Formulario de muestra: no envía nada a ningún sitio.</p>
+      <label>Nombre<input name="nombre" autocomplete="name" required></label>
+      <label>Teléfono o email<input name="contacto" autocomplete="email" required></label>
+      <label>Llegada<input name="llegada" type="date"></label>
+      <label>Qué necesitas<select name="que"><option>Parcela de tienda</option><option>Parcela de caravana</option><option>Cabaña</option></select></label>
+      <button class="boton boton-lleno iman" type="submit">Pedir reserva</button>
+      <p class="reserva-estado" id="reserva-estado" role="status"></p>
+    </form>
+    <div class="contacto-datos">
+      <address>
+        <p class="contacto-direccion">Camiño das Bidueiras, 3<br>27650 Navia de Suarna<br>Lugo</p>
+        <p><a class="mono" href="tel:+34982000000">982 00 00 00</a><br><a class="mono" href="mailto:reservas@apiqueta.example">reservas@apiqueta.example</a></p>
+      </address>
+      <table class="horario" id="horario">
+        <caption>Recepción</caption>
+        <tbody>
+          <tr data-dias="1,2,3,4,5"><th scope="row">Lunes a viernes</th><td class="mono">9:00 – 14:00 · 16:00 – 22:00</td></tr>
+          <tr data-dias="6,0"><th scope="row">Sábado y domingo</th><td class="mono">8:30 – 22:00</td></tr>
+        </tbody>
+      </table>
+      <p class="horario-nota">Abierto del 15 de marzo al 15 de noviembre. Llegadas después de las 22:00, avisando antes.</p>
+      <div class="mapa" id="mapa">
+        <button class="mapa-boton" id="mapa-boton" type="button" data-cursor="mapa">
+          <span>Ver el mapa</span>
+          <small>Al pulsar se carga Google Maps, que puede guardar cookies propias.</small>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-marca">
+    <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><use href="#marca"/></svg>
+    <p class="pie-nombre">A Piqueta</p>
+  </div>
+  <nav class="pie-nav" aria-label="Pie"><a href="legal.html">Aviso legal y privacidad</a><a href="#tarifas">Tarifas</a><a href="#reserva">Reservar</a></nav>
+  <p class="sello">Sitio de demostración. Camping A Piqueta es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies de terceros. Guarda en tu navegador que has cerrado este aviso<!-- MANDOS:INICIO --> y, solo en modo revisión, la versión y la paleta elegidas en los mandos de demostración<!-- MANDOS:FIN -->. El mapa de Google solo se carga si lo pides. <a href="legal.html#cookies">Más</a></p>
+  <button class="boton boton-lleno" id="cookies-ok" type="button">Entendido</button>
+</div>
+
+<!-- MANDOS:INICIO — mandos de demostración (maqueta y paleta). Solo con ?revision.
+     NO VIAJAN AL SITIO DE UN CLIENTE: borrar este bloque (ver README). -->
+<div class="mandos" id="mandos" role="region" aria-label="Mandos de demostración" hidden>
+  <p class="mandos-titulo mono">Maqueta</p>
+  <div class="mandos-fila">
+    <button type="button" data-maqueta="vientos" aria-pressed="true">Vientos</button>
+    <button type="button" data-maqueta="sobria" aria-pressed="false">Sobria</button>
+  </div>
+  <p class="mandos-titulo mono">Paleta</p>
+  <div class="mandos-fila">
+    <button type="button" data-paleta="cuerda" aria-pressed="true"><i style="background:#D2502A"></i>Cuerda</button>
+    <button type="button" data-paleta="xesta" aria-pressed="false"><i style="background:#7D7F19"></i>Xesta</button>
+    <button type="button" data-paleta="lousa" aria-pressed="false"><i style="background:#4F76DC"></i>Lousa</button>
+  </div>
+</div>
+<!-- MANDOS:FIN -->
+
+<div class="cursor" aria-hidden="true"><span class="cursor-aro"><span class="cursor-texto"></span></span><span class="cursor-punto"></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
