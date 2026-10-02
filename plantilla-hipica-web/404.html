@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- SITIO DE DEMOSTRACIÓN. Picadeiro Brañavella es un negocio ficticio; los datos, ilustraciones y opiniones son de muestra. -->
+<!-- Autocontenida a propósito: en GitHub Pages la 404 se sirve desde cualquier ruta y las rutas relativas no valdrían. -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Esta cuadra está vacía · Brañavella (demostración)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1D2B1B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Fragment+Mono&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    :root { --prado: #1D2B1B; --heno: #E3CC88; --nata: #F3EEE1; --casaca: #8A2923; --gris: #B7C1A6; }
+    * { box-sizing: border-box; }
+    html { overflow-x: clip; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; background: var(--prado); color: var(--nata); font-family: "DM Sans", system-ui, sans-serif; text-align: center; }
+    main { max-width: 34rem; }
+    svg { width: min(220px, 60vw); height: auto; }
+    .mono { font-family: "Fragment Mono", monospace; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--heno); margin: 14px 0 6px; }
+    h1 { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 800; font-size: clamp(2.4rem, 1.6rem + 4vw, 4rem); line-height: .98; margin: 0 0 16px; }
+    p { color: var(--gris); }
+    a.boton { display: inline-flex; align-items: center; min-height: 48px; padding: .8em 1.5em; border-radius: 4px; background: var(--heno); color: #1B1A14; font-weight: 600; text-decoration: none; }
+    a:focus-visible { outline: 3px solid var(--nata); outline-offset: 3px; }
+    .sello { margin-top: 40px; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <svg viewBox="0 0 220 200" aria-hidden="true">
+      <rect x="20" y="20" width="180" height="170" rx="4" fill="none" stroke="#E3CC88" stroke-width="4"/>
+      <path d="M20 105 H200 M110 20 V105" stroke="#E3CC88" stroke-width="4"/>
+      <path d="M30 30 L100 95 M100 30 L30 95 M120 30 L190 95 M190 30 L120 95" stroke="#E3CC88" stroke-width="2" opacity="1"/>
+      <text x="110" y="160" text-anchor="middle" font-family="Fragment Mono, monospace" font-size="40" fill="#F3EEE1">404</text>
+    </svg>
+    <p class="mono">Página no encontrada</p>
+    <h1>Esta cuadra está vacía.</h1>
+    <p>La dirección no existe o ha cambiado. Vuelve a la cancela y empieza otra vez al paso.</p>
+    <a class="boton" id="volver" href="./">Volver al inicio</a>
+    <p class="sello"><b>Sitio de demostración.</b> Picadeiro Brañavella es un negocio ficticio; los datos, fotografías y opiniones son de muestra.</p>
+  </main>
+  <script>
+    (function () { var s = location.pathname.split('/').filter(Boolean); if (location.hostname.endsWith('github.io') && s.length) document.getElementById('volver').href = '/' + s[0] + '/'; })();
+  </script>
+</body>
+</html>

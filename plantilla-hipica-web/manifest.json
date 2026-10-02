@@ -1,0 +1,15 @@
+{
+  "name": "Picadeiro Brañavella (demostración)",
+  "short_name": "Brañavella",
+  "description": "Sitio de demostración de un centro ecuestre ficticio en Vilalba.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F3EEE1",
+  "theme_color": "#1D2B1B",
+  "lang": "es",
+  "icons": [
+    { "src": "img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "img/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icono-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
