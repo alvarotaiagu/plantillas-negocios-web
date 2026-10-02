@@ -130,6 +130,7 @@
   }
   var fuentes = d.fonts && d.fonts.ready ? Promise.race([d.fonts.ready, new Promise(function (r) { setTimeout(r, 1500); })]) : Promise.resolve();
   if (gsapReady && motion) {
+    window.__cortinaEnMarcha = true;
     gsap.set('.antetitulo, .portada-entrada, .portada-acciones, .lectura', { autoAlpha: 0 });
     fuentes.then(function () {
       gsap.timeline({ onComplete: quitarCortina })
@@ -171,7 +172,7 @@
     function generarTrazado(w, h) {
       var movil = w < 900 * 0.5;
       var cx, cy, rx, ry;
-      if (movil) { cx = w * 0.5; cy = h * 0.37; rx = w * 0.44; ry = h * 0.24; }
+      if (movil) { cx = w * 0.5; cy = h * 0.335; rx = w * 0.42; ry = h * 0.19; }
       else { cx = w * 0.7; cy = h * 0.52; rx = w * 0.25; ry = h * 0.36; }
       // ida: r = kθ de fuera adentro; retorno: r = k(θ−π) de dentro afuera. Los dos extremos
       // exteriores quedan juntos y abajo (ángulo π/2), como en un colector de verdad.
@@ -332,8 +333,8 @@
       var t = (ahora - t0) / 1000;
       // la lente: el ratón manda; sin ratón (táctil o quieto), pasea sola por la espiral
       if (!tocando && ahora - ultimoRaton > 3500) {
-        lente.tx = (mqMovil.matches ? 0.5 : 0.7) + Math.sin(t * 0.37) * (mqMovil.matches ? 0.3 : 0.17);
-        lente.ty = (mqMovil.matches ? 0.63 : 0.5) + Math.sin(t * 0.53 + 1) * (mqMovil.matches ? 0.14 : 0.24);
+        lente.tx = (mqMovil.matches ? 0.5 : 0.75) + Math.sin(t * 0.37) * (mqMovil.matches ? 0.3 : 0.12);
+        lente.ty = (mqMovil.matches ? 0.66 : 0.5) + Math.sin(t * 0.53 + 1) * (mqMovil.matches ? 0.11 : 0.24);
       }
       var k = motion ? 0.14 : 1;
       lente.x += (lente.tx - lente.x) * k; lente.y += (lente.ty - lente.y) * k;

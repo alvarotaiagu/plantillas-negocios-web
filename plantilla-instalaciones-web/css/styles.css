@@ -77,6 +77,7 @@ p { margin: 0; }
 .boton-tinta { background: var(--tinta); color: var(--yeso); }
 .boton-tinta:hover { background: var(--quente-t); }
 .boton-grande { min-height: 60px; padding: 1rem 1.8rem; font-size: 1.1rem; }
+@media (max-width: 420px) { .boton-grande { padding: .9rem 1.1rem; font-size: 1rem; white-space: nowrap; } }
 .enlace { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
 
 .indice { font: 500 .8rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--humo); display: flex; align-items: center; gap: .8rem; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
@@ -105,7 +106,8 @@ p { margin: 0; }
   transition: transform .5s var(--ease);
 }
 .cabecera.es-escondida { transform: translateY(-100%); }
-.marca { display: flex; align-items: center; gap: .7rem; text-decoration: none; margin-right: auto; }
+.marca { position: relative; z-index: 3; display: flex; align-items: center; gap: .7rem; text-decoration: none; margin-right: auto; }
+.marca svg { flex: none; }
 .marca-nombre { white-space: nowrap; word-spacing: .08em; font-weight: 800; font-stretch: 115%; font-size: 1.05rem; line-height: 1.05; letter-spacing: -.01em; }
 .marca-nombre small { display: block; font: 500 .66rem/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--humo); font-stretch: 100%; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(.8rem, 1.6vw, 1.6rem); align-items: center; }
@@ -128,8 +130,8 @@ p { margin: 0; }
     background: var(--panel2); border: 0; color: var(--hueso); cursor: pointer; position: relative; z-index: 3;
   }
   .menu-raya { width: 20px; height: 2px; background: currentColor; transition: transform .4s var(--ease); }
-  .menu-boton[aria-expanded="true"] .menu-raya:first-of-type { transform: translateY(4px) rotate(45deg); }
-  .menu-boton[aria-expanded="true"] .menu-raya:last-of-type { transform: translateY(-4px) rotate(-45deg); }
+  .menu-boton[aria-expanded="true"] .menu-raya:nth-child(2) { transform: translateY(4px) rotate(45deg); }
+  .menu-boton[aria-expanded="true"] .menu-raya:nth-child(3) { transform: translateY(-4px) rotate(-45deg); }
   /* La cabecera lleva backdrop-filter, que hace de bloque contenedor para los fixed:
      por eso el panel va con top:0 + height:100dvh, nunca con inset:0. */
   .nav {

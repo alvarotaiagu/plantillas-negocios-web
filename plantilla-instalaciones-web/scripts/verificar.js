@@ -20,6 +20,10 @@ const ARGS = ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swif
 const ESCRITORIO = { viewport: { width: 1440, height: 900 } };
 const MOVIL = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 };
 const espera = (p, ms) => p.waitForTimeout(ms);
+// Los reintentos fallidos contra fonts.gstatic.com son del proxy del entorno, no de la página:
+// se separan para no confundirlos con errores propios (y se cuentan en el informe).
+const entorno = [];
+const propios = (p) => { const f = p.fallidas.filter((u) => !/fonts\.gstatic\.com/.test(u)); const e = p.errores.filter((x) => !/ERR_TOO_MANY_RETRIES/.test(x) || f.length); if (f.length !== p.fallidas.length) entorno.push(p.fallidas); return { errores: e, fallidas: f }; };
 
 async function contexto(b, opts = {}, { sinGsap = false, cookiesCerradas = true, reduce = false } = {}) {
   const ctx = await b.newContext({ ignoreHTTPSErrors: true, reducedMotion: reduce ? 'reduce' : 'no-preference', ...opts });
@@ -76,16 +80,20 @@ async function irA(p, sel, extra = 0) {
     p.on('console', (m) => { if (m.type() === 'error') p.errores.push(m.text()); });
     p.on('pageerror', (e) => p.errores.push('pageerror: ' + e.message));
     p.on('requestfailed', (r) => { if (!/cdn\.jsdelivr/.test(r.url())) p.fallidas.push(r.url()); });
+    // las capturas en GL por software tardan más que la cortina entera: se ralentiza la
+    // línea de tiempo global solo en esta pasada para poder fotografiar el gesto a medias
+    await p.addInitScript(() => { const t = setInterval(() => { if (window.gsap) { window.gsap.globalTimeline.timeScale(0.12); clearInterval(t); } }, 5); });
     await p.goto(URL, { waitUntil: 'commit' });
     const estados = [];
-    for (let k = 0; k < 22; k++) {
-      await espera(p, 200);
+    for (let k = 0; k < 14; k++) {
+      await espera(p, 700);
       const e = await p.evaluate(() => { const c = document.querySelector('.cortina'); if (!c) return 'sin-dom'; const a = c.querySelector('.cortina-arriba'); return getComputedStyle(c).display === 'none' ? 'fuera' : (a.style.transform || 'quieta'); }).catch(() => 'cargando');
       estados.push(e);
       await p.screenshot({ path: path.join(OUT, `cortina-${String(k).padStart(2, '0')}.png`) });
     }
     ok('Cortina: hay fotogramas a medio abrir', estados.some((e) => /translate/.test(e) && !/-10[56]/.test(e)), estados);
-    await espera(p, 2600);
+    await p.evaluate(() => window.gsap && window.gsap.globalTimeline.timeScale(1));
+    await espera(p, 9000);
     ok('Cortina acaba en display:none (normal)', await p.evaluate(() => getComputedStyle(document.querySelector('.cortina')).display === 'none'));
     ok('Cortina de color distinto al fondo', await p.evaluate(() => getComputedStyle(document.querySelector('.cortina-arriba')).backgroundColor !== getComputedStyle(document.body).backgroundColor));
     ok('Clases de arranque', await p.evaluate(() => document.documentElement.className), undefined);
@@ -112,14 +120,14 @@ async function irA(p, sel, extra = 0) {
     const lt = await p.evaluate((n) => window.__longtasks.slice(n), antes);
     ok('Tareas largas recorriendo la página entera', lt.length <= 3, lt);
     ok('Sin desbordamiento horizontal (escritorio)', await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), await p.evaluate(() => [document.documentElement.scrollWidth, innerWidth]));
-    ok('Consola limpia (escritorio)', p.errores.length === 0, p.errores);
-    ok('Sin peticiones fallidas (escritorio)', p.fallidas.length === 0, p.fallidas);
+    { const r = propios(p); ok('Consola limpia (escritorio)', r.errores.length === 0, r.errores); ok('Sin peticiones fallidas (escritorio)', r.fallidas.length === 0, r.fallidas); }
     const txt = await p.evaluate(() => document.body.textContent);
     ok('Sin [PENDIENTE], TODO ni lorem', !/\[PENDIENTE\]|\bTODO\b/.test(txt) && !/lorem ipsum/i.test(txt));
     ok('noindex, nofollow', await p.evaluate(() => document.querySelector('meta[name=robots]').content === 'noindex, nofollow'));
     ok('Sello en el pie', /Sitio de demostración\. Ida e Retorno es un negocio ficticio/.test(txt));
     ok('Comentario HTML de demo arriba del todo', /^<!doctype html>\s*<!--\s*SITIO DE DEMOSTRACIÓN/i.test(fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8')));
     ok('schema.org sin aggregateRating ni review', !(await p.evaluate(() => /aggregateRating|"review"/.test(document.querySelector('script[type="application/ld+json"]').textContent))));
+    ok('Logo de la cabecera visible (no se encoge)', await p.evaluate(() => document.querySelector('.marca svg').getBoundingClientRect().width === 40));
     ok('Sin <img> rotas', await p.evaluate(() => [...document.images].every((i) => i.naturalWidth > 0)));
     await ctx.close();
   }
@@ -135,7 +143,7 @@ async function irA(p, sel, extra = 0) {
       await p.screenshot({ path: path.join(OUT, `${nombre}-seccion-${String(i++).padStart(2, '0')}-${s.replace(/[#.]/g, '')}.png`) });
     }
     ok(`Sin desbordamiento horizontal (${nombre})`, await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-    ok(`Consola limpia (${nombre})`, p.errores.length === 0, { errores: p.errores, fallidas: p.fallidas });
+    { const r = propios(p); ok(`Consola limpia (${nombre})`, r.errores.length === 0 && r.fallidas.length === 0, r); }
     if (nombre === 'movil') ok('Sin cursor propio en táctil', !(await p.evaluate(() => document.documentElement.classList.contains('es-cursor'))));
     await ctx.close();
   }
@@ -299,7 +307,7 @@ async function irA(p, sel, extra = 0) {
       const p = await pagina(ctx, ruta); await espera(p, 1200);
       await p.screenshot({ path: path.join(OUT, `pagina-${nombre}.png`) });
       ok(`${nombre}: noindex y sello`, await p.evaluate(() => document.querySelector('meta[name=robots]').content === 'noindex, nofollow' && /negocio ficticio/.test(document.body.textContent)));
-      ok(`${nombre}: consola limpia`, p.errores.length === 0, { errores: p.errores, fallidas: p.fallidas });
+      { const r = propios(p); ok(`${nombre}: consola limpia`, r.errores.length === 0 && r.fallidas.length === 0, r); }
       await p.addScriptTag({ content: AXE });
       const v = await p.evaluate(async () => (await axe.run({ resultTypes: ['violations'] })).violations.map((x) => ({ id: x.id, impacto: x.impact, n: x.nodes.length, ej: x.nodes[0].target })));
       ok(`axe ${nombre}: sin violaciones`, v.length === 0, v);
@@ -316,7 +324,8 @@ async function irA(p, sel, extra = 0) {
   }
 
   await b.close();
-  fs.writeFileSync(path.join(OUT, 'verificacion.json'), JSON.stringify({ fecha: new Date().toISOString(), fallos, resultados }, null, 1));
+  console.log('Fallos de red del entorno (fonts.gstatic):', JSON.stringify(entorno));
+  fs.writeFileSync(path.join(OUT, 'verificacion.json'), JSON.stringify({ fecha: new Date().toISOString(), fallos, resultados, fallosDeRedDelEntorno: entorno }, null, 1));
   console.log(`\n${resultados.length - fallos}/${resultados.length} comprobaciones en verde`);
   process.exit(fallos ? 1 : 0);
 })();

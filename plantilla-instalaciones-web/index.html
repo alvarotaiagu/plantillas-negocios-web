@@ -519,10 +519,15 @@
 
 <script>
   // Retirada garantizada de la cortina: aunque main.js o el CDN fallen.
-  setTimeout(function () {
-    var c = document.querySelector('.cortina');
-    if (c && c.style.display !== 'none') { c.classList.add('cortina-fuera'); setTimeout(function () { c.style.display = 'none'; }, 700); }
-  }, 3200);
+  // Si main.js no ha tomado el mando a los 3,2 s, se retira; si lo tomó, como mucho a los 8 s.
+  (function () {
+    function retirar() {
+      var c = document.querySelector('.cortina');
+      if (c && c.style.display !== 'none') { c.classList.add('cortina-fuera'); setTimeout(function () { c.style.display = 'none'; }, 700); }
+    }
+    setTimeout(function () { if (!window.__cortinaEnMarcha) retirar(); }, 3200);
+    setTimeout(retirar, 8000);
+  })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
