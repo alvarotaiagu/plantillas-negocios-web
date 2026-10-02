@@ -46,6 +46,7 @@
         l.getEntries().forEach(function (e) { window.__tareasLargas.push({ t: Math.round(e.startTime), d: Math.round(e.duration) }); });
       }).observe({ type: 'longtask', buffered: true });
     } catch (e) {}
+    /* MANDOS-INICIO */
     /* CONTROLES DE DEMOSTRACIÓN (maqueta y paleta). Se resuelven aquí para
        que la página no arranque en una versión y salte a la otra. Nunca
        viajan al sitio de un cliente: ver README, «Quitar los mandos». */
@@ -56,9 +57,10 @@
       var p = localStorage.getItem('abaneo-paleta');
       if (p === 'pino' || p === 'malva') html.classList.add('paleta-' + p);
     } catch (e) {}
+    /* MANDOS-FIN */
     /* Red de seguridad de la cortina: aunque main.js no llegue a correr,
-       a los 5 s se retira. */
-    setTimeout(function () { var c = document.getElementById('cortina'); if (c) c.classList.add('es-retirada'); }, 5000);
+       a los 6 s se retira. main.js la sustituye por la suya al animar. */
+    window.__cortinaSegura = setTimeout(function () { var c = document.getElementById('cortina'); if (c) c.classList.add('es-retirada'); }, 6000);
   })();
 </script>
 
@@ -272,6 +274,7 @@
       <p class="aulas-intro">Las aulas se llaman como las piezas del móvil del logo. En las tres, las ventanas empiezan a cuarenta centímetros del suelo: para mirar fuera no hay que estar en brazos.</p>
     </header>
 
+    <!-- MANDOS-INICIO -->
     <!-- Versión sobria: el dato en lugar del dibujo. Niños por adulto en cada
          aula contra el máximo que permite la normativa gallega. -->
     <figure class="ratio" aria-labelledby="ratio-titulo">
@@ -282,6 +285,7 @@
         <li><span class="ratio-nombre">Barquiño · 2–3 años</span><span class="ratio-pista"><span class="ratio-max" style="--v:1">máx. 20</span><span class="ratio-nos" style="--v:.45">9</span></span></li>
       </ul>
     </figure>
+    <!-- MANDOS-FIN -->
 
     <ul class="pila" id="pila">
       <li class="pila-item" style="--n:0">
@@ -516,10 +520,11 @@
 
 <!-- Aviso de cookies -->
 <div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
-  <p>Aquí no hay cookies de seguimiento ni analítica. Tu navegador solo guarda que has visto este aviso (y, en la versión de revisión, la densidad y el color elegidos). El mapa de Google solo se carga si lo pides.</p>
+  <p>Aquí no hay cookies de seguimiento ni analítica. Tu navegador solo guarda que has visto este aviso<!-- MANDOS-INICIO --> (y, en la versión de revisión, la densidad y el color elegidos)<!-- MANDOS-FIN -->. El mapa de Google solo se carga si lo pides.</p>
   <div class="cookies-acciones"><a href="aviso-legal.html#privacidad">Más detalle</a><button type="button" class="boton boton-lleno" id="cookies-ok"><span>Entendido</span></button></div>
 </div>
 
+<!-- MANDOS-INICIO -->
 <!-- MANDOS DE DEMOSTRACIÓN (maqueta + paleta). Solo con ?revision en la URL.
      NO VIAJAN AL SITIO DE UN CLIENTE: ver README, «Quitar los mandos». -->
 <div class="mandos" id="mandos" hidden>
@@ -536,6 +541,7 @@
   </div>
   <p class="mando-lt" id="mando-lt">tareas largas: —</p>
 </div>
+<!-- MANDOS-FIN -->
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>

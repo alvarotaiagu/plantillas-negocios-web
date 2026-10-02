@@ -91,8 +91,9 @@
     if (cortina) cortina.classList.add('es-retirada');
     revelarPortada();
   }
-  /* Red de seguridad: pase lo que pase con GSAP, a los 4 s no hay cortina */
-  setTimeout(retirarCortina, 4000);
+  /* Red de seguridad: pase lo que pase con GSAP, a los 6 s no hay cortina
+     (y la del <head> cubre el caso de que este archivo no llegue a correr) */
+  var seguroCortina = setTimeout(retirarCortina, 6000);
 
   function animarCortina() {
     if (!cortina) return;
@@ -114,6 +115,11 @@
       .to(tela, { attr: { d: 'M0 0H1000V420Q500 1180 0 420Z' }, duration: .55, ease: 'power2.in' }, 1)
       .to(tela, { attr: { d: 'M0 0H1000V0Q500 0 0 0Z' }, duration: .85, ease: 'expo.inOut' }, 1.45)
       .add(revelarPortada, 1.75);
+    /* La animación arranca: la red de seguridad pasa a medirse desde aquí */
+    clearTimeout(window.__cortinaSegura);
+    clearTimeout(seguroCortina);
+    seguroCortina = setTimeout(retirarCortina, (tl.duration() + 1.2) * 1000);
+    window.__cortinaLinea = tl; /* solo para fotografiarla a medias en la verificación */
   }
 
   /* ---------------------------------------------------------------------
@@ -853,6 +859,7 @@
   $('#cookies-reabrir').addEventListener('click', function () { cookies.hidden = false; mostrarMandos(); $('#cookies-ok').focus(); });
   mostrarMandos();
 
+  /* MANDOS-INICIO */
   /* MANDOS DE DEMOSTRACIÓN — no viajan al sitio de un cliente (README) */
   if (mandos && enRevision) {
     var marcar = function (attr, valor) {
@@ -887,6 +894,7 @@
       lt.textContent = 'tareas largas: ' + l.length + (l.length ? ' · peor ' + peor + ' ms' : '');
     }, 2000);
   }
+  /* MANDOS-FIN */
 
   /* ---------------------------------------------------------------------
      Arranque: medir desde las fuentes (las tareas largas al cargar suelen

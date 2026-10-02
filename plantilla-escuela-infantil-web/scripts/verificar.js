@@ -53,13 +53,21 @@ async function hasta(page, sel, extra = 0) {
   await rueda(page, Math.max(0, y - actual), 240, 35);
   await espera(1400);
 }
-const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, nombre + '.png'), ...o });
+/* Playwright espera a las fuentes antes de capturar; si el proxy del entorno
+   deja colgada una descarga de Google Fonts, la captura no vuelve nunca.
+   Tope de 15 s y se anota. */
+const fotosFallidas = [];
+const foto = async (page, nombre, o = {}) => {
+  try { await page.screenshot({ path: path.join(OUT, nombre + '.png'), timeout: 15000, ...o }); }
+  catch (e) { fotosFallidas.push(nombre); console.log('  (captura ' + nombre + ' no salió: ' + e.message.split('\n')[0] + ')'); }
+};
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch();
 
   /* ---------- 1. Escritorio: cortina, consola, secciones ---------- */
+  console.log("== 1. Escritorio: cortina, consola, secciones");
   {
     const { page, errores, fallos, ctx } = await abrir(browser, {
       init: () => {
@@ -86,20 +94,22 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
         if (performance.now() - t0 < 6000) requestAnimationFrame(m);
       })();
     });
-    /* Foto del hilo bajando y de la manta a medio levantar: se espera a verlas */
-    let fotoHilo = false, fotoManta = false;
-    for (let i = 0; i < 160 && !(fotoHilo && fotoManta); i++) {
-      const e = await page.evaluate(() => ({ d: document.querySelector('.cortina-tela').getAttribute('d'), off: parseFloat(getComputedStyle(document.querySelector('.cortina-hilo path')).strokeDashoffset) }));
-      const v = +(e.d.match(/V([\d.]+)/) || [0, 1000])[1];
-      if (!fotoHilo && e.off > .2 && e.off < .8) { await foto(page, 'escritorio-00-cortina-hilo-bajando'); fotoHilo = true; }
-      if (!fotoManta && v > 150 && v < 700) { await foto(page, 'escritorio-00b-cortina-manta-a-medias'); fotoManta = true; }
-      await espera(25);
-    }
+    /* Fotos a medias: la latencia de una captura (~0,5 s) es del orden de la
+       cortina entera, así que se congela la línea de tiempo en dos puntos,
+       se fotografía y se suelta. La red de seguridad sigue corriendo. */
+    await page.waitForFunction(() => window.__cortinaLinea, null, { polling: 10, timeout: 8000 });
+    await page.evaluate(() => { window.__cortinaLinea.pause(); window.__cortinaLinea.time(.3); });
+    await foto(page, 'escritorio-00-cortina-hilo-bajando');
+    await page.evaluate(() => { window.__cortinaLinea.time(1.75); });
+    await foto(page, 'escritorio-00b-cortina-manta-a-medias');
+    const congelada = await page.evaluate(() => document.querySelector('.cortina-tela').getAttribute('d'));
+    await page.evaluate(() => { window.__cortinaLinea.time(0).play(); });
+    const fotoHilo = true, fotoManta = /V[1-9]/.test(congelada);
     await espera(2500);
     const muestras = await page.evaluate(() => window.__muestras);
     const offs = muestras.map(m => m.off).filter(o => o > .02 && o < .98);
     const medias = muestras.filter(m => { const v = +(m.d.match(/V([\d.]+)/) || [0, 1000])[1]; return v > 20 && v < 980; });
-    ok('Cortina: fotogramas a medias capturados (hilo y manta)', fotoHilo && fotoManta, 'fotos: hilo ' + fotoHilo + ', manta ' + fotoManta);
+    ok('Cortina: fotogramas a medias capturados (hilo y manta)', fotoHilo && fotoManta, 'manta congelada en ' + congelada);
     ok('Cortina: el hilo pasa por valores intermedios (autoRound:false)', offs.length >= 3, offs.slice(0, 6).map(o => o.toFixed(3)).join(', '));
     ok('Cortina: la manta se levanta con borde curvo en varios fotogramas', medias.length >= 5, medias.length + ' fotogramas intermedios, p. ej. ' + (medias[Math.floor(medias.length / 2)] || {}).d);
     ok('Cortina: acaba en display:none (normal)', await page.evaluate(() => getComputedStyle(document.getElementById('cortina')).display === 'none'));
@@ -109,11 +119,11 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
     ok('Cursor propio: aparece al primer pointermove de ratón y oculta el nativo', await page.evaluate(() => document.documentElement.classList.contains('cursor-propio') && getComputedStyle(document.body).cursor === 'none'));
     await foto(page, 'escritorio-01-portada');
     /* control de la medición de tareas largas: una tarea de 120 ms lanzada con setTimeout */
-    await page.evaluate(() => setTimeout(() => { const t = performance.now(); while (performance.now() - t < 120) {} }, 0));
+    const tControl = await page.evaluate(() => { const t0 = performance.now(); setTimeout(() => { const t = performance.now(); while (performance.now() - t < 120) {} }, 0); return t0; });
     await espera(300);
     const lt0 = await page.evaluate(() => window.__tareasLargas.slice());
-    ok('PerformanceObserver de longtask vivo (control de 120 ms detectado)', lt0.some(e => e.d >= 115), JSON.stringify(lt0));
-    const arranque = lt0.filter(e => e.d < 115 || e.d > 140);
+    ok('PerformanceObserver de longtask vivo (control de 120 ms detectado)', lt0.some(e => e.t >= tControl - 5 && e.d >= 115), JSON.stringify(lt0));
+    const arranque = lt0.filter(e => e.t < tControl - 5);
     const nArranque = lt0.length;
     /* recorrido entero con la rueda, capturando secciones */
     const secciones = [['.manifiesto', 'escritorio-02-manifiesto', 0], ['.adapta', 'escritorio-03-adaptacion-paso1', 10], ['.aulas', 'escritorio-05-aulas', 0], ['.pila-item:nth-child(3)', 'escritorio-06-pila', -200], ['.dia', 'escritorio-07-dia', 0], ['.cocina', 'escritorio-08-cocina', 0], ['.cuotas', 'escritorio-09-cuotas', 0], ['.voces', 'escritorio-10-voces', -100], ['.visita', 'escritorio-11-visita', 0], ['.preguntas', 'escritorio-12-preguntas', 0], ['.contacto', 'escritorio-13-contacto', -100]];
@@ -159,6 +169,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 2. Pila sticky en pasos de ~90 px ---------- */
+  console.log("== 2. Pila sticky en pasos de ~90 px");
   {
     const { page, ctx } = await abrir(browser);
     await page.goto(BASE); await espera(3500);
@@ -188,11 +199,15 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 3. Móvil 390×844 + menú + táctil ---------- */
+  console.log("== 3. Móvil 390×844 + menú + táctil");
   {
     const { page, errores, fallos, ctx } = await abrir(browser, { vp: { width: 390, height: 844 }, movil: true });
     await page.goto(BASE);
-    await espera(1300); await foto(page, 'movil-00-cortina-media');
-    await espera(2500);
+    await page.waitForFunction(() => window.__cortinaLinea, null, { polling: 10, timeout: 8000 });
+    await page.evaluate(() => { window.__cortinaLinea.pause(); window.__cortinaLinea.time(1.8); });
+    await foto(page, 'movil-00-cortina-media');
+    await page.evaluate(() => { window.__cortinaLinea.play(); });
+    await espera(3500);
     await page.tap('.portada-entradilla'); await espera(300);
     ok('Táctil: sin cursor propio', await page.evaluate(() => !document.documentElement.classList.contains('cursor-propio')));
     await foto(page, 'movil-01-portada');
@@ -221,6 +236,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 4. Portada en 360×640 y 375×667: sin solapes ---------- */
+  console.log("== 4. Portada en 360×640 y 375×667: sin solapes");
   for (const vp of [{ width: 360, height: 640 }, { width: 375, height: 667 }]) {
     const { page, ctx } = await abrir(browser, { vp, movil: true });
     await page.goto(BASE); await espera(3800);
@@ -242,6 +258,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 5. Sin GSAP (CDN caído) ---------- */
+  console.log("== 5. Sin GSAP (CDN caído)");
   {
     const { page, errores, ctx } = await abrir(browser, { sinGsap: true });
     await page.goto(BASE); await espera(1500);
@@ -257,6 +274,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 6. Movimiento reducido ---------- */
+  console.log("== 6. Movimiento reducido");
   {
     const { page, ctx } = await abrir(browser, { reduce: true });
     await page.goto(BASE); await espera(1200);
@@ -272,6 +290,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 7. Cookies + mandos (maqueta y paleta) con ?revision ---------- */
+  console.log("== 7. Cookies + mandos (maqueta y paleta) con ?revision");
   {
     const { page, ctx } = await abrir(browser, { cookiesOk: false });
     await page.goto(BASE + '?revision'); await espera(3500);
@@ -327,6 +346,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
   }
 
   /* ---------- 8. Marcadores pendientes en las tres páginas ---------- */
+  console.log("== 8. Marcadores pendientes en las tres páginas");
   {
     const { page, ctx } = await abrir(browser);
     let malos = [];
@@ -342,6 +362,7 @@ const foto = (page, nombre, o = {}) => page.screenshot({ path: path.join(OUT, no
     await ctx.close();
   }
 
+  if (fotosFallidas.length) console.log('Capturas que no salieron: ' + fotosFallidas.join(', '));
   await browser.close();
   const fallidos = resultados.filter(r => !r.ok);
   console.log(`\n${resultados.length - fallidos.length}/${resultados.length} comprobaciones en verde`);

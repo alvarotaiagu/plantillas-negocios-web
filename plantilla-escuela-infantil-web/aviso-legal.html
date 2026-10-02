@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wdth,wght@0,5..1200,87.5..112.5,300..900;1,5..1200,87.5..112.5,300..900&family=Atkinson+Hyperlegible+Next:ital,wght@0,300..800;1,300..800&display=swap">
 <link rel="stylesheet" href="css/estilo.css">
 <script>
+  /* MANDOS-INICIO */
   try { var p = localStorage.getItem('abaneo-paleta'); if (p === 'pino' || p === 'malva') document.documentElement.classList.add('paleta-' + p); } catch (e) {}
+  /* MANDOS-FIN */
 </script>
 </head>
 <body class="pagina-texto">
@@ -40,10 +42,12 @@
   <p>El formulario de visitas de la portada <strong>no envía nada</strong>: es de muestra y lo que escribas se queda en tu pantalla. Esta web no usa analítica, ni píxeles de seguimiento, ni cookies de terceros.</p>
 
   <h2 id="cookies">Cookies y almacenamiento local</h2>
-  <p>No hay cookies. El navegador guarda, en su almacenamiento local, tres marcas que no salen de tu equipo:</p>
+  <p>No hay cookies. El navegador guarda, en su almacenamiento local, estas marcas, que no salen de tu equipo:</p>
   <ul>
     <li><code>abaneo-cookies</code>: que ya has visto el aviso, para no volver a enseñártelo.</li>
+    <!-- MANDOS-INICIO -->
     <li><code>abaneo-maqueta</code> y <code>abaneo-paleta</code>: solo en la versión de revisión (con <code>?revision</code> en la dirección), la densidad visual y el color que hayas elegido en los mandos de demostración.</li>
+    <!-- MANDOS-FIN -->
   </ul>
   <p>El mapa es de Google. Por eso no se carga hasta que pulsas «Cargar el mapa»: desde ese momento se aplican las condiciones y cookies de Google.</p>
 

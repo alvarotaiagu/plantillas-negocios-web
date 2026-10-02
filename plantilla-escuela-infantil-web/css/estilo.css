@@ -42,9 +42,11 @@
   --radio: 28px;
 }
 
+/* MANDOS-INICIO */
 /* CONTROL DE PALETA (demostración) — ver README, «Quitar los mandos» */
 html.paleta-pino  { --acento-sup: #009E8E; --acento-txt: #00695E; --boton: #006358; --acento-claro: #5CCEC8; }
 html.paleta-malva { --acento-sup: #B65DC0; --acento-txt: #883F8F; --boton: #843A8B; --acento-claro: #DFA0D8; }
+/* MANDOS-FIN */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { overflow-x: clip; -webkit-text-size-adjust: 100%; }
@@ -387,6 +389,7 @@ html.has-motion .aula-tarjeta-dibujo svg { animation: mece-lento 5.5s ease-in-ou
   .pila-item { top: calc(var(--cab-h) + 10px + var(--n) * 14px); margin-bottom: 8vh; }
 }
 
+/* MANDOS-INICIO */
 /* Gráfico de ratio: solo en la versión sobria */
 .ratio { display: none; margin: 0 0 56px; padding: clamp(20px, 3vw, 36px); border-radius: var(--radio); background: var(--crema); border: 1.5px solid var(--linea); }
 .ratio figcaption { margin-bottom: 18px; }
@@ -397,6 +400,7 @@ html.has-motion .aula-tarjeta-dibujo svg { animation: mece-lento 5.5s ease-in-ou
 .ratio-max, .ratio-nos { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--v) * 100%); border-radius: 10px; display: flex; align-items: center; justify-content: flex-end; padding: 0 10px; font-weight: 700; font-size: .9rem; white-space: nowrap; }
 .ratio-max { border: 2px dashed var(--apagado); color: var(--tinta); }
 .ratio-nos { background: var(--boton); color: #fff; min-width: 3.2em; }
+/* MANDOS-FIN */
 
 /* ---------- 5 · El día: tendedero ---------- */
 .dia { background: var(--noche); color: var(--luna); padding: clamp(90px, 10vw, 150px) 0 clamp(70px, 8vw, 120px); overflow: hidden; margin-top: 10vh; border-radius: 50% 50% 0 0 / 70px 70px 0 0; }
@@ -572,6 +576,7 @@ html.has-motion .vapor path:nth-child(3) { animation-delay: -2s; }
 .cookies-acciones a { font-weight: 700; font-size: .92rem; }
 @media (max-width: 640px) { .cookies:not([hidden]) { flex-direction: column; align-items: stretch; } .cookies-acciones { justify-content: space-between; } }
 
+/* MANDOS-INICIO */
 /* ---------- Mandos de demostración (solo con ?revision) ---------- */
 .mandos { position: fixed; left: 12px; bottom: 12px; z-index: 140; display: grid; gap: 6px; font-size: .8rem; }
 .mandos:not([hidden]) { display: grid; }
@@ -602,6 +607,8 @@ html.maqueta-sobria .cocina-dibujo .vapor { display: none; }
   html.maqueta-sobria .aula-tarjeta-dibujo { display: flex; align-items: baseline; gap: 10px; }
   html.maqueta-sobria .aula-tarjeta-dibujo::before { font-size: 4.4rem; }
 }
+
+/* MANDOS-FIN */
 
 /* ---------- Movimiento reducido: se apaga el movimiento, no el contenido ---------- */
 @media (prefers-reduced-motion: reduce) {
