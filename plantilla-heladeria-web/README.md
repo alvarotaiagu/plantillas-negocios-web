@@ -173,6 +173,29 @@ justamente lo que hace parecer genérica una web de heladería: la crema del
 hero es un shader y las cubetas, tartas y tallas son SVG propios. Por eso
 `CREDITOS.md` solo lista tipografías y librerías.
 
+## Verificación
+
+- `node scripts/verify.js` (Playwright, Chromium; servir la carpeta **padre**
+  en `http://127.0.0.1:8765/`): 88 comprobaciones del §7 del pliego —
+  recorrido con rueda en 1440×900 y 390×844, consola y red limpias, cortina
+  retirada en los tres casos, sin GSAP, movimiento reducido, cursor, pila
+  sticky en pasos de 90 px, menú, mapa, filtro, formulario, obrador, las dos
+  densidades, las tres paletas con su contraste medido, portada a 360×640 y
+  375×667 sin solapes, `longtask` en frío y `noindex` + sello en las tres
+  páginas. Capturas en `screenshots/` (JPEG 72).
+- `node scripts/receta.mjs`: comprueba la receta de borrado de los mandos.
+- `AUDITORIA.md`: axe-core, cero violaciones en seis estados.
+
 ## Decisiones
 
-Ver `INFORME-NOCHE.md`.
+- **Sin fotografía**: ver «Imágenes».
+- **Mandos solo con `?revision`**: la demo se enseña limpia por defecto; en
+  una reunión se añade `?revision` y aparecen los dos mandos.
+- **Calidad adaptativa del shader**: si la mediana de 16 fotogramas pasa de
+  26 ms, baja la resolución interna (hasta el 40 %); si aun así pasa de
+  40 ms, la bola deja de moverse sola y solo se repinta al tocarla o al
+  hacer scroll. La crema es suave y aguanta el reescalado.
+- **El horario manda en JS** (`HORARIO`) y la tabla del HTML es la versión
+  sin JS; ver «Reskinear».
+
+El detalle de la noche en que se construyó está en `INFORME-NOCHE.md`.

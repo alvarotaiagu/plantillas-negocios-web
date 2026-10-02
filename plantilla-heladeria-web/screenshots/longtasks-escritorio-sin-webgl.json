@@ -1,17 +1,21 @@
 {
   "t": [
     {
-      "inicio": 34,
-      "duracion": 143
+      "inicio": 47,
+      "duracion": 152
     },
     {
-      "inicio": 188,
-      "duracion": 107
+      "inicio": 201,
+      "duracion": 91
     },
     {
-      "inicio": 383,
-      "duracion": 101
+      "inicio": 296,
+      "duracion": 55
+    },
+    {
+      "inicio": 394,
+      "duracion": 97
     }
   ],
-  "fuentes": 368
+  "fuentes": 375
 }

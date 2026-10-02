@@ -145,7 +145,7 @@ html.js .cortina.es-saliendo { transition: opacity .6s var(--ease-io), transform
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   height: var(--cab); padding: 0 var(--gut);
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  background: color-mix(in srgb, var(--leite) 78%, transparent);
+  background: color-mix(in srgb, var(--leite) 92%, transparent); /* 92 %: sobre la vitrina oscura el subtítulo sigue por encima de 4,5:1 */
   -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
   border-bottom: 1px solid transparent;
   transition: border-color .4s, transform .5s var(--ease);
@@ -291,13 +291,13 @@ section { position: relative; }
 .manifiesto-frase em { color: var(--acento-txt); }
 .manifiesto-datos { grid-column: 1 / -1; margin: 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem var(--gut); }
 .dato { display: flex; flex-direction: column; border-top: 2px solid var(--tinta); padding-top: 1rem; }
-.dato dd { order: -1; white-space: nowrap; margin: 0; font: 400 clamp(3.4rem, 8vw, 7.5rem)/.9 var(--f-display); letter-spacing: -.03em; }
+.dato-num { order: -1; white-space: nowrap; margin: 0; font: 400 clamp(3.4rem, 8vw, 7.5rem)/.9 var(--f-display); letter-spacing: -.03em; }
 .dato dt { font-weight: 600; margin-top: .6rem; }
-.dato-nota { color: var(--tinta-apagada); font-size: .95rem; margin-top: .3rem; max-width: 22rem; }
+.dato-nota { color: var(--tinta-apagada); font-size: .95rem; margin: .3rem 0 0; max-width: 22rem; }
 .dato--a { grid-column: 2 / span 4; }
 .dato--b { grid-column: 7 / span 3; margin-top: 5rem; }
 .dato--c { grid-column: 10 / span 3; margin-top: 10rem; }
-.dato--c dd { font-size: clamp(3rem, 5.4vw, 5.2rem); }
+.dato--c .dato-num { font-size: clamp(3rem, 5.4vw, 5.2rem); }
 @media (max-width: 860px) {
   .manifiesto-frase { grid-column: 1 / -1; }
   .dato--a, .dato--b, .dato--c { grid-column: 1 / -1; margin-top: 0; }

@@ -71,7 +71,10 @@
   function partir(el) {
     if (el.dataset.partido) return;
     el.dataset.partido = '1';
-    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    // El texto entero queda para el lector de pantalla; las palabras partidas van ocultas.
+    var entero = document.createElement('span');
+    entero.className = 'visualmente-oculto';
+    entero.textContent = el.textContent.replace(/\s+/g, ' ').trim();
     var i = 0;
     var caminar = function (nodo) {
       Array.prototype.slice.call(nodo.childNodes).forEach(function (n) {
@@ -93,6 +96,7 @@
       });
     };
     caminar(el);
+    el.insertBefore(entero, el.firstChild);
   }
   var titulares = $$('[data-revelar]');
   titulares.forEach(partir);
@@ -305,9 +309,9 @@
       if (!corriendo) return;
       pintar(ahora);
       tiempos.push(ahora - (bucle.ultimo || ahora)); bucle.ultimo = ahora;
-      if (tiempos.length === 40) {
+      if (tiempos.length === 16) {
         tiempos.sort(function (a, b) { return a - b; });
-        var mediana = tiempos[20];
+        var mediana = tiempos[8];
         if (mediana > 26 && calidad > 0.4) { calidad = Math.max(0.4, calidad * 0.7); if (medir()) pintar(performance.now()); }
         // Último escalón: si ni a la resolución mínima va fluido, la bola deja de
         // moverse sola y solo se repinta cuando la tocas o haces scroll.

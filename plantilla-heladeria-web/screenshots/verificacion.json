@@ -157,7 +157,7 @@
   {
     "nombre": "reducido: estado del horario calculado",
     "ok": true,
-    "detalle": "Cerrado ahora · abrimos mañana a las 16:30"
+    "detalle": "Cerrado ahora · abrimos hoy a las 16:30"
   },
   {
     "nombre": "cursor: oculto hasta el primer movimiento de ratón",
@@ -287,7 +287,7 @@
   {
     "nombre": "obrador: la temperatura recorre 85 y −35",
     "ok": true,
-    "detalle": "4 6 35 78 85 80 41 7 3 −4 −8 −13 −30 −35"
+    "detalle": "4 6 35 78 85 80 42 7 3 −4 −8 −13 −30 −35"
   },
   {
     "nombre": "obrador: pasan los seis pasos",
@@ -392,7 +392,7 @@
   {
     "nombre": "escritorio: tareas largas medidas",
     "ok": true,
-    "detalle": "46 en total [142 ms, 140 ms, 51 ms, 228 ms, 104 ms, 141 ms, 100 ms, 119 ms, 97 ms, 88 ms, 103 ms, 86 ms, 101 ms, 119 ms, 118 ms, 101 ms, 109 ms, 104 ms, 95 ms, 95 ms, 140 ms, 98 ms, 95 ms, 99 ms, 103 ms, 110 ms, 87 ms, 98 ms, 101 ms, 83 ms, 86 ms, 80 ms, 75 ms, 77 ms, 95 ms, 87 ms, 77 ms, 72 ms, 70 ms, 89 ms, 80 ms, 82 ms, 116 ms, 50 ms, 56 ms, 56 ms]; tras fonts.ready (720 ms): 41"
+    "detalle": "28 en total [226 ms, 251 ms, 119 ms, 144 ms, 102 ms, 86 ms, 95 ms, 91 ms, 93 ms, 102 ms, 97 ms, 105 ms, 94 ms, 90 ms, 94 ms, 99 ms, 127 ms, 65 ms, 63 ms, 54 ms, 55 ms, 63 ms, 59 ms, 57 ms, 50 ms, 54 ms, 50 ms, 68 ms]; tras fonts.ready (699 ms): 25"
   },
   {
     "nombre": "movil: PerformanceObserver vivo (control de 120 ms detectado)",
@@ -402,7 +402,7 @@
   {
     "nombre": "movil (CPU ×4): tareas largas medidas",
     "ok": true,
-    "detalle": "42 en total [144 ms, 308 ms, 480 ms, 189 ms, 197 ms, 51 ms, 152 ms, 86 ms, 87 ms, 101 ms, 126 ms, 107 ms, 113 ms, 101 ms, 127 ms, 98 ms, 96 ms, 76 ms, 76 ms, 83 ms, 73 ms, 79 ms, 105 ms, 96 ms, 109 ms, 76 ms, 104 ms, 87 ms, 115 ms, 184 ms, 114 ms, 135 ms, 185 ms, 153 ms, 142 ms, 135 ms, 54 ms, 55 ms, 72 ms, 95 ms, 87 ms, 56 ms]; tras fonts.ready (1535 ms): 37"
+    "detalle": "42 en total [333 ms, 201 ms, 619 ms, 173 ms, 184 ms, 73 ms, 82 ms, 97 ms, 91 ms, 82 ms, 88 ms, 83 ms, 94 ms, 97 ms, 106 ms, 72 ms, 72 ms, 72 ms, 84 ms, 64 ms, 89 ms, 89 ms, 79 ms, 70 ms, 67 ms, 140 ms, 121 ms, 88 ms, 84 ms, 124 ms, 98 ms, 131 ms, 84 ms, 99 ms, 122 ms, 71 ms, 78 ms, 52 ms, 53 ms, 89 ms, 54 ms, 50 ms]; tras fonts.ready (1548 ms): 38"
   },
   {
     "nombre": "escritorio-sin-webgl: PerformanceObserver vivo (control de 120 ms detectado)",
@@ -412,7 +412,7 @@
   {
     "nombre": "escritorio-sin-webgl: tareas largas medidas",
     "ok": true,
-    "detalle": "3 en total [143 ms, 107 ms, 101 ms]; tras fonts.ready (368 ms): 1"
+    "detalle": "4 en total [152 ms, 91 ms, 55 ms, 97 ms]; tras fonts.ready (375 ms): 1"
   },
   {
     "nombre": "index: noindex, nofollow y sello de demo",
