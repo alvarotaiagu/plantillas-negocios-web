@@ -27,7 +27,7 @@
  {
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms)",
   "ok": true,
-  "detalle": "[{\"t\":8181,\"d\":120}]"
+  "detalle": "[{\"t\":9898,\"d\":120}]"
  },
  {
   "nombre": "Descifrar anclado: el nivel sube con el scroll, el porcentaje también y el marco sigue fijo",
@@ -67,12 +67,12 @@
  {
   "nombre": "Consola limpia y sin 404 propios (escritorio)",
   "ok": true,
-  "detalle": "[] · entorno: 1"
+  "detalle": "[] · entorno: 9"
  },
  {
   "nombre": "Tareas largas en frío: arranque y recorrido entero",
   "ok": true,
-  "detalle": "arranque: [{\"t\":2614,\"d\":52}] · recorriendo: []"
+  "detalle": "arranque: [{\"t\":4133,\"d\":60},{\"t\":4195,\"d\":50}] · recorriendo: []"
  },
  {
   "nombre": "Táctil: sin cursor propio",
@@ -127,7 +127,7 @@
  {
   "nombre": "Sin GSAP: sin errores de JS propios",
   "ok": true,
-  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\"]"
+  "detalle": "[\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_FAILED\",\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\",\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\",\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\"]"
  },
  {
   "nombre": "Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo",

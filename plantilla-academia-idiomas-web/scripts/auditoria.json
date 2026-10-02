@@ -17,14 +17,7 @@
  },
  {
   "nombre": "index · 390",
-  "violaciones": [
-   {
-    "id": "scrollable-region-focusable",
-    "impacto": "serious",
-    "nodos": 1,
-    "ejemplo": ".pauta-envoltorio"
-   }
-  ]
+  "violaciones": []
  },
  {
   "nombre": "aviso-legal.html · 390",
@@ -36,13 +29,6 @@
  },
  {
   "nombre": "?revision (sobria) · 390",
-  "violaciones": [
-   {
-    "id": "scrollable-region-focusable",
-    "impacto": "serious",
-    "nodos": 1,
-    "ejemplo": ".pauta-envoltorio"
-   }
-  ]
+  "violaciones": []
  }
 ]

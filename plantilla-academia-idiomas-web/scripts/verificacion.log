@@ -1,0 +1,47 @@
+== 1. Escritorio: cortina, consola, secciones
+OK    Cortina: subrayado a medias con autoRound:false (dashoffset intermedio) — dashoffset 0.5
+OK    Cortina: fotograma con la hoja pasando, canto curvo — M0 0H606.2998Q367.1837 500 606.2998 1000H0Z
+OK    Cortina: acaba en display:none (normal)
+OK    Cortina de color distinto al fondo
+OK    Cursor propio: aparece con el ratón y oculta el nativo
+OK    PerformanceObserver de longtask vivo (control de 120 ms) — [{"t":9898,"d":120}]
+OK    Descifrar anclado: el nivel sube con el scroll, el porcentaje también y el marco sigue fijo — ["A1",["B2",95,0,3]]
+OK    Tareas largas recorriendo la página con el canvas vivo (caché templada) — arranque: [] · recorriendo: []
+OK    Canvas: ningún filter/shadowBlur en el canvas visible
+OK    Escritorio sin desbordamiento horizontal
+OK    Prueba de nivel: corrige 2 bien y 1 mal, con la corrección escrita — ["2 de 3. Rondas el A2–B1. La prueba oral lo afina.",2,1]
+OK    Mapa: sin iframe antes del clic
+OK    Mapa: iframe de Google tras el clic
+OK    Consola limpia y sin 404 propios (escritorio) — [] · entorno: 9
+== 1b. Tareas largas en frío
+OK    Tareas largas en frío: arranque y recorrido entero — arranque: [{"t":4133,"d":60},{"t":4195,"d":50}] · recorriendo: []
+== 2. Móvil 390×844 + menú + táctil
+OK    Táctil: sin cursor propio
+OK    Menú móvil: abre, aria-expanded y 100dvh pese al backdrop-filter — {"exp":"true","h":844,"ih":844,"top":0}
+OK    Menú móvil: el mismo botón lo cierra
+OK    Menú móvil: un enlace lo cierra y lleva a la sección
+OK    Móvil sin desbordamiento horizontal
+OK    Consola limpia y sin 404 propios (móvil) — []
+== 3. Portada en 360×640 y 375×667
+OK    Portada 360×640: sin solapes y el saludo por encima del texto — {"ch":[],"lienzo":256,"ante":256,"sw":360,"iw":360}
+OK    Portada 375×667: sin solapes y el saludo por encima del texto — {"ch":[],"lienzo":264,"ante":264,"sw":375,"iw":375}
+== 4. Sin GSAP
+OK    Sin GSAP: cortina fuera y sin has-motion — {"motion":false,"cortina":"none"}
+OK    Sin GSAP: el nivel del texto cambia con la posición — B2
+OK    Sin GSAP: sin errores de JS propios — ["Failed to load resource: net::ERR_FAILED","Failed to load resource: net::ERR_FAILED","Failed to load resource: net::ERR_FAILED","Failed to load resource: net::ERR_TOO_MANY_RETRIES","Failed to load resource: net::ERR_TOO_MANY_RETRIES","Failed to load resource: net::ERR_TOO_MANY_RETRIES"]
+== 5. Movimiento reducido
+OK    Reducido: cortina fuera, sin has-motion ni Lenis, estado vivo — {"motion":false,"cortina":"none","lenis":false,"estado":"Cerrado ahora"}
+OK    Reducido: el nivel y el porcentaje siguen cambiando — B2
+== 6. Cookies + mandos con ?revision
+OK    Cookies visibles (flex) y mandos apartados — {"c":"flex","m":true}
+OK    Cookies: el botón la cierra de verdad y aparecen los mandos — {"c":"none","m":false,"ls":"1"}
+OK    Mandos ocultos sin ?revision
+OK    Maqueta sobria: fuera el margen rojo y la cinta, entra el gráfico de horas — {"cl":true,"horas":"block","cinta":"none","margen":"none","sw":1440,"iw":1440,"ls":"sobria"}
+OK    Maqueta: se vuelve a «Descifrar»
+OK    Paleta: cambia el color computado de verdad — rgb(171, 33, 16) | rgb(23, 83, 188) | rgb(0, 101, 66)
+OK    Paleta: aria-pressed y localStorage — {"ls":"verde","p":"true","o":"false"}
+OK    Paleta guardada aplicada antes de pintar — js es-revision paleta-verde has-motion lenis
+== 7. Marcadores, noindex y sello
+OK    Sin marcadores; noindex y sello en las tres páginas
+
+37/37 comprobaciones en verde

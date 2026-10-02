@@ -317,3 +317,4 @@ html.maqueta-sobria .h2 em::after { display: none; }
 .nivel { font-weight: 400; }
 .pauta thead th { font-size: 1.2rem; font-weight: 600; letter-spacing: .02em; }
 @media (max-width: 440px) { .cab-nombre small { display: none; } }
+.cifra { font-family: var(--sans); font-style: normal; font-weight: 300; font-size: .82em; }

@@ -39,7 +39,40 @@ gallego) es una palabra común; no hay marca del sector con ella.
 
 ## Verificación (números)
 
-RESULTADOS
+Mismas herramientas que la primera (Playwright 1.56 + Chromium, axe-core
+4.10.2, Node 22), con `scripts/verificar.js` adaptado (salida en
+`scripts/verificacion.json` y `.log`) y `scripts/auditar.js`. **34 capturas**
+en `screenshots/`, miradas.
+
+- **Verificación: 37/37 en verde** (última pasada).
+- **axe: 0 violaciones** en 8 análisis. La primera pasada dio una
+  (`scrollable-region-focusable` en la tabla de idiomas a 390 px):
+  corregida haciendo la tabla focusable **solo cuando desborda**.
+- **Tareas largas**: en frío, 2 al arrancar (60 y 50 ms) y **0 recorriendo la
+  página entera** con las partículas vivas; templado, 0 y 0. Control de
+  120 ms detectado. **0** `filter`/`shadowBlur` en el canvas.
+- **Descifrar anclado**: de A1 (54 % entendido) a B2 (95 %) a mitad de
+  recorrido, con el marco fijo (top 0). Sin GSAP y con movimiento reducido el
+  nivel también cambia (por la posición de la hoja).
+- **Cortina**: subrayado a medias (`dashoffset` 0,5 con `autoRound:false`) y
+  la hoja pasando con el canto curvo, fotografiados; `display:none` al final
+  en los tres casos.
+- **Prueba de nivel**: dos bien y una mal → «2 de 3», con la corrección a boli
+  rojo en la mal contestada.
+- **Portada en 360×640 y 375×667**: sin solapes; el saludo acaba exactamente
+  donde empieza el texto (256/256 y 264/264 px). Sin desbordamiento horizontal.
+- **Menú móvil** a 100dvh, cierre con el mismo botón y con un enlace;
+  **cookies** que se cierran de verdad; **mapa** solo tras el clic; **mandos**
+  solo con `?revision`, que se apartan con el aviso; **sobria** (fuera el
+  margen rojo, la cinta y los subrayados; entra el gráfico de horas) y vuelta;
+  **paleta** que cambia el color computado
+  (`rgb(171,33,16)` → `rgb(23,83,188)` → `rgb(0,101,66)`), con `aria-pressed`,
+  `localStorage` y clase puesta antes de pintar.
+- **Cursor propio** con ratón; nada en táctil, ni siquiera tras toques que el
+  navegador entrega como ratón (fallo cazado en las capturas de la primera
+  pasada y corregido en las dos plantillas).
+- Sin marcadores; `noindex, nofollow` y sello en las tres páginas. Receta de
+  quitar mandos comprobada (y la primera pasada cazó una fuga).
 
 ## Decisiones tomadas solo
 
@@ -50,7 +83,10 @@ RESULTADOS
    (*actually*, *embarrassed*) son los más conocidos. Para un cliente que
    enseñe sobre todo otro idioma, se cambia el párrafo (README, paso 4).
 3. **Cifras en Onest**: el «1» de Instrument Serif se lee como una «l» y
-   «A1» parecía «Al»; cazado en la captura, no en el código.
+   «A1» parecía «Al»; cazado en la captura, no en el código. También en el
+   titular «de A1 a C1»: ahí las dos cifras van en un `<span class="cifra">`
+   (comprobado con una captura del titular tras el cambio, después de la
+   última pasada completa).
 4. **Partículas como capa detrás del titular**, no al lado: la primera
    versión ponía el saludo a la derecha y competía con el titular; ahora es la
    pauta azul de la libreta por detrás.
