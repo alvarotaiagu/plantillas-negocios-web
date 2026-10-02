@@ -160,6 +160,7 @@ html.cursor-propio, html.cursor-propio * { cursor: none !important; }
 
 @media (max-width: 900px) {
   :root { --cab-h: 64px; }
+  .cab-nombre small { letter-spacing: .08em; white-space: nowrap; }
   .cab-cta { display: none; }
   .cab-boton {
     display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px;

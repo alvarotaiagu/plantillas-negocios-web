@@ -905,5 +905,12 @@
     if (gsapListo) ScrollTrigger.refresh();
     animarCortina();
   };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(listo); else listo();
+  /* …pero sin esperar indefinidamente: con una red lenta las fuentes pueden
+     tardar segundos, y la cortina no puede quedarse quieta mientras tanto
+     (ni retirarse por la red de seguridad antes de animarse). */
+  var arrancado = false;
+  var unaVez = function () { if (!arrancado) { arrancado = true; listo(); } };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(unaVez);
+  setTimeout(unaVez, 1500);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { medirPila(); if (gsapListo) ScrollTrigger.refresh(); });
 })();

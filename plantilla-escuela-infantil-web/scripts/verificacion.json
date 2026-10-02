@@ -2,17 +2,17 @@
  {
   "nombre": "Cortina: fotogramas a medias capturados (hilo y manta)",
   "ok": true,
-  "detalle": "fotos: hilo true, manta true"
+  "detalle": "manta congelada en M0 0H1000V609.3184Q500 1035.9413 0 609.3184Z"
  },
  {
   "nombre": "Cortina: el hilo pasa por valores intermedios (autoRound:false)",
   "ok": true,
-  "detalle": "0.922, 0.889, 0.848, 0.774, 0.705, 0.643"
+  "detalle": "0.908, 0.857, 0.783, 0.713, 0.647, 0.589"
  },
  {
   "nombre": "Cortina: la manta se levanta con borde curvo en varios fotogramas",
   "ok": true,
-  "detalle": "52 fotogramas intermedios, p. ej. M0 0H1000V642.488Q500 1101.3615 0 642.488Z"
+  "detalle": "115 fotogramas intermedios, p. ej. M0 0H1000V609.3184Q500 1035.9413 0 609.3184Z"
  },
  {
   "nombre": "Cortina: acaba en display:none (normal)",
@@ -32,17 +32,17 @@
  {
   "nombre": "PerformanceObserver de longtask vivo (control de 120 ms detectado)",
   "ok": true,
-  "detalle": "[{\"t\":3925,\"d\":118},{\"t\":4045,\"d\":69},{\"t\":15565,\"d\":120}]"
+  "detalle": "[{\"t\":4912,\"d\":115},{\"t\":5029,\"d\":66},{\"t\":17731,\"d\":120}]"
  },
  {
   "nombre": "Adaptación anclada: el paso avanza con el scroll y el marco sigue fijo",
   "ok": true,
-  "detalle": "paso 0 → 2, top 0.234375"
+  "detalle": "paso 0 → 2, top -0.359375"
  },
  {
   "nombre": "Tareas largas con el canvas vivo y la página recorrida (frío, sin caché)",
   "ok": true,
-  "detalle": "arranque: [{\"t\":4045,\"d\":69}] · recorriendo: []"
+  "detalle": "arranque: [{\"t\":5029,\"d\":66}] · recorriendo: []"
  },
  {
   "nombre": "Canvas: ningún ctx.filter / shadowBlur puesto en el canvas visible",
@@ -82,7 +82,7 @@
  {
   "nombre": "Consola limpia y sin 404 en escritorio (fuera del iframe de Google)",
   "ok": true,
-  "detalle": "[] · Google: 2"
+  "detalle": "[] · Google: 9"
  },
  {
   "nombre": "Pila: todos los <li> con el mismo alto (el de la tarjeta más alta)",
@@ -130,9 +130,9 @@
   "detalle": "390 / 390"
  },
  {
-  "nombre": "Consola limpia y sin 404 en móvil",
-  "ok": false,
-  "detalle": "[\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\"]"
+  "nombre": "Consola limpia y sin 404 en móvil (fuera de cortes del proxy en fuentes)",
+  "ok": true,
+  "detalle": "[] · entorno: [\"Failed to load resource: net::ERR_TOO_MANY_RETRIES\",\"FAILED https://fonts.gstatic.com/s/atkinsonhyperlegiblenext/v7/NaPNcYPdHfdVxJw0IfIP0lvYFqijb-UxCtm5_wdGseiJn3o.woff2 net::ERR_TOO_MANY_RETRIES\"]"
  },
  {
   "nombre": "Portada 360×640: sin solapes entre bloques ni con el móvil",

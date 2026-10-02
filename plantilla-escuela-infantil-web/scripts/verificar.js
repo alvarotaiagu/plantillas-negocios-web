@@ -82,7 +82,7 @@ const foto = async (page, nombre, o = {}) => {
     });
     const cdp = await ctx.newCDPSession(page);
     await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
-    await page.goto(BASE);
+    await page.goto(BASE, { waitUntil: 'domcontentloaded' });
     /* Muestreo de la cortina fotograma a fotograma, dentro de la página */
     await page.evaluate(() => {
       window.__muestras = [];
@@ -103,8 +103,9 @@ const foto = async (page, nombre, o = {}) => {
     await page.evaluate(() => { window.__cortinaLinea.time(1.75); });
     await foto(page, 'escritorio-00b-cortina-manta-a-medias');
     const congelada = await page.evaluate(() => document.querySelector('.cortina-tela').getAttribute('d'));
+    const visibleCongelada = await page.evaluate(() => getComputedStyle(document.getElementById('cortina')).display === 'block');
     await page.evaluate(() => { window.__cortinaLinea.time(0).play(); });
-    const fotoHilo = true, fotoManta = /V[1-9]/.test(congelada);
+    const fotoHilo = visibleCongelada, fotoManta = visibleCongelada && /V[1-9]/.test(congelada);
     await espera(2500);
     const muestras = await page.evaluate(() => window.__muestras);
     const offs = muestras.map(m => m.off).filter(o => o > .02 && o < .98);
@@ -202,7 +203,7 @@ const foto = async (page, nombre, o = {}) => {
   console.log("== 3. Móvil 390×844 + menú + táctil");
   {
     const { page, errores, fallos, ctx } = await abrir(browser, { vp: { width: 390, height: 844 }, movil: true });
-    await page.goto(BASE);
+    await page.goto(BASE, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => window.__cortinaLinea, null, { polling: 10, timeout: 8000 });
     await page.evaluate(() => { window.__cortinaLinea.pause(); window.__cortinaLinea.time(1.8); });
     await foto(page, 'movil-00-cortina-media');
